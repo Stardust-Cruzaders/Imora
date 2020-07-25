@@ -60,8 +60,9 @@ export default function ResidenceDetailed() {
           <View style={styles.descriptionView}>
             <View style={styles.titleWithIconView}>
               <Icon name={'home'} size={30} color={'#3F3F3F'} />
-              <Text style={styles.title1}>Descrição </Text>
+              <Text style={styles.title1}>Mansão </Text>
             </View>
+            <Text style={styles.description}>A casa toda pra você</Text>
             <Text style={styles.description}>
               Essa é uma descrição legal demais cara olha que casa legal oloco
               mano top demais tem tanta coisa um monte de coisa olha isso que
@@ -157,6 +158,16 @@ export default function ResidenceDetailed() {
               <Icon name={'user'} size={25} color={'#3F3F3F'} />
               <Text style={[styles.descriptionList, {top: 10}]}>
                 Número atual de ocupantes: 3
+              </Text>
+            </View>
+            <View style={styles.titleWithIconView}>
+              <MaterialCommunityIcon
+                name={'gender-male'}
+                size={25}
+                color={'blue'}
+              />
+              <Text style={[styles.descriptionList, {top: 10}]}>
+                Prefere ocupantes: Masculinos
               </Text>
             </View>
             <Text style={[styles.description, {marginTop: 10}]}>
