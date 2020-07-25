@@ -94,13 +94,19 @@ const styles = StyleSheet.create({
   },
   descriptionList: {
     color: '#3F3F3F',
-    fontSize: 20,
+    fontSize: 18,
 
     marginBottom: 15,
 
     marginLeft: 5,
 
     top: 5,
+  },
+  titleWithIconView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    marginHorizontal: 25,
   },
 });
 

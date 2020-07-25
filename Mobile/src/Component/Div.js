@@ -12,7 +12,7 @@ export default function Div({threshold}) {
         backgroundColor: '#3F3F3F',
         width: width - threshold,
         height: 1,
-        marginBottom: 25,
+        marginVertical: 5,
         alignSelf: 'center',
       }}
     />

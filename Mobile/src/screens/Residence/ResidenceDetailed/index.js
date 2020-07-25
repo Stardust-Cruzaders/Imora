@@ -3,7 +3,8 @@ import React from 'react';
 import {Text, View, useWindowDimensions, Image, ScrollView} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
-import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from './styles';
 import Div from '../../../Component/Div';
@@ -46,13 +47,7 @@ export default function ResidenceDetailed() {
             <Text style={styles.subTitle}> Proprietário </Text>
           </View>
           <View style={styles.descriptionView}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                marginHorizontal: 25,
-              }}>
+            <View style={styles.titleWithIconView}>
               <Icon name={'home'} size={30} color={'#3F3F3F'} />
               <Text style={styles.title1}>Descrição </Text>
             </View>
@@ -61,35 +56,83 @@ export default function ResidenceDetailed() {
               mano top demais tem tanta coisa um monte de coisa olha isso que
               top.
             </Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                marginHorizontal: 25,
-              }}>
+            <View style={styles.titleWithIconView}>
               <Text style={{fontSize: 30}}>•</Text>
-              <MaterialIcon name={'toilet'} size={25} color={'#3F3F3F'} />
-              <Text style={styles.descriptionList}>
-                Quantidade de banheiros: 2
-              </Text>
+              <MaterialCommunityIcon
+                name={'toilet'}
+                size={25}
+                color={'#3F3F3F'}
+              />
+              <Text style={styles.descriptionList}>Wifi</Text>
             </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                marginHorizontal: 25,
-              }}>
+            <View style={styles.titleWithIconView}>
               <Text style={{fontSize: 30, marginRight: 5}}>•</Text>
-              <MaterialIcon name={'bed-outline'} size={25} color={'#3F3F3F'} />
+              <MaterialCommunityIcon
+                name={'bed-outline'}
+                size={25}
+                color={'#3F3F3F'}
+              />
               <Text style={styles.descriptionList}>
                 Quantidade de quartos: 2
               </Text>
             </View>
           </View>
           <Div threshold={100} />
-          <View styles={styles.comfortView} />
+          <View styles={styles.comfortView}>
+            <View style={styles.titleWithIconView}>
+              <Icon name={'coffee'} size={30} color={'#3F3F3F'} />
+              <Text style={styles.title1}>Comodidades </Text>
+            </View>
+            <View style={styles.titleWithIconView}>
+              <Text style={{fontSize: 30, marginRight: 5}}>•</Text>
+              <Icon name={'wifi'} size={25} color={'#3F3F3F'} />
+              <Text style={styles.descriptionList}>Wifi</Text>
+            </View>
+            <View style={styles.titleWithIconView}>
+              <Text style={{fontSize: 30, marginRight: 5}}>•</Text>
+              <MaterialCommunityIcon
+                name={'food-fork-drink'}
+                size={25}
+                color={'#3F3F3F'}
+              />
+              <Text style={styles.descriptionList}>Cozinha</Text>
+            </View>
+            <View style={styles.titleWithIconView}>
+              <Text style={{fontSize: 30, marginRight: 5}}>•</Text>
+              <MaterialCommunityIcon
+                name={'pool'}
+                size={25}
+                color={'#3F3F3F'}
+              />
+              <Text style={styles.descriptionList}>Piscina</Text>
+            </View>
+            <View style={styles.titleWithIconView}>
+              <Text style={{fontSize: 30, marginRight: 5}}>•</Text>
+              <MaterialCommunityIcon
+                name={'food-steak'}
+                size={25}
+                color={'#3F3F3F'}
+              />
+              <Text style={styles.descriptionList}>Churrasqueira</Text>
+            </View>
+            <View style={styles.titleWithIconView}>
+              <Text style={{fontSize: 30, marginRight: 5}}>•</Text>
+              <Icon name={'tv'} size={25} color={'#3F3F3F'} />
+              <Text style={[styles.descriptionList, {top: 10}]}>Televisão</Text>
+            </View>
+            <View style={styles.titleWithIconView}>
+              <Text style={{fontSize: 30, marginRight: 5}}>•</Text>
+              <MaterialIcon
+                name={'computer'}
+                size={25}
+                color={'#3F3F3F'}
+              />
+              <Text style={styles.descriptionList}>
+                Lugar para trabalhar com notebook
+              </Text>
+            </View>
+          </View>
+          <Div threshold={100} />
           <View style={styles.conditionView} />
           <View style={styles.proximities} />
         </View>
