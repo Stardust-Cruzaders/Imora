@@ -32,6 +32,38 @@ const styles = StyleSheet.create({
 
     marginBottom: 15,
   },
+  availableText: {
+    backgroundColor: '#26E07C',
+    color: '#FFF',
+    paddingHorizontal: 5,
+    paddingVertical: 5,
+    paddingLeft: 10,
+    fontSize: 21,
+
+    fontWeight: 'bold',
+
+    marginBottom: 15,
+
+    borderRadius: 5,
+
+    bottom: 2,
+  },
+  unavailableText: {
+    backgroundColor: '#E03826',
+    color: '#FFF',
+    paddingHorizontal: 5,
+    paddingVertical: 5,
+    paddingLeft: 10,
+    fontSize: 21,
+
+    fontWeight: 'bold',
+
+    marginBottom: 15,
+
+    borderRadius: 5,
+
+    bottom: 2,
+  },
   price: {
     color: '#3F3F3F',
     fontSize: 25,
@@ -75,6 +107,14 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
+  comfortView: {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+  },
+  locationView: {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+  },
   title1: {
     color: '#3F3F3F',
     fontSize: 30,
@@ -90,7 +130,7 @@ const styles = StyleSheet.create({
 
     marginBottom: 15,
     marginHorizontal: 25,
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
   },
   descriptionList: {
     color: '#3F3F3F',
@@ -107,6 +147,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     marginHorizontal: 25,
+  },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginVertical: 15,
+
+    borderRadius: 10,
+
+    paddingVertical: 10,
+  },
+  buttonText: {
+    color: '#FFF',
+    fontSize: 24,
   },
 });
 
