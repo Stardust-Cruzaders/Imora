@@ -1,7 +1,13 @@
 import React from 'react';
 
-import Residence from './screens/Residence';
+import {StatusBar} from 'react-native';
+import ResidenceDetailed from './screens/Residence/ResidenceDetailed';
 
 export default function App() {
-  return <Residence />;
+  return (
+    <>
+      <StatusBar backgroundColor={'#4D2C91'} />
+      <ResidenceDetailed />
+    </>
+  );
 }
