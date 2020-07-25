@@ -70,7 +70,38 @@ const styles = StyleSheet.create({
     fontSize: 18,
 
     marginBottom: 15,
-  }
+  },
+  descriptionView: {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+  },
+  title1: {
+    color: '#3F3F3F',
+    fontSize: 30,
+
+    marginBottom: 10,
+    marginLeft: 5,
+
+    top: 5,
+  },
+  description: {
+    color: '#3F3F3F',
+    fontSize: 20,
+
+    marginBottom: 15,
+    marginHorizontal: 25,
+    alignSelf: 'center',
+  },
+  descriptionList: {
+    color: '#3F3F3F',
+    fontSize: 20,
+
+    marginBottom: 15,
+
+    marginLeft: 5,
+
+    top: 5,
+  },
 });
 
 export default styles;

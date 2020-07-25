@@ -13,6 +13,7 @@ export default function Div({threshold}) {
         width: width - threshold,
         height: 1,
         marginBottom: 25,
+        alignSelf: 'center',
       }}
     />
   );
