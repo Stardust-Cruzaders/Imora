@@ -1,6 +1,13 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 
-export default function Profile() {
-  return <Text>Form</Text>;
+import styles from './styles';
+
+export default function Form() {
+  return(
+    <View style={styles.container}>
+        
+    </View>
+
+  );
 }
