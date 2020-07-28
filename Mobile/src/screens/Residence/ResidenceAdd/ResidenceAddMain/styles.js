@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
 
     fontWeight: 'bold',
+    fontFamily: 'Roboto',
   },
   headerDivider: {
     backgroundColor: '#F9F8FD',
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 25,
     alignSelf: 'center',
-
+    fontFamily: 'Roboto',
     marginTop: 20,
   },
 
@@ -51,12 +52,15 @@ const styles = StyleSheet.create({
 
     left: 12,
     marginBottom: 20,
+
+    fontFamily: 'Roboto',
   },
   main: {
     marginHorizontal: 10,
   },
   cardText: {
     fontSize: 18,
+    fontFamily: 'Roboto',
   },
   input: {
     borderColor: 'black',
@@ -91,7 +95,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#3F3F3F',
     fontSize: 20,
-
+    fontFamily: 'Roboto',
     marginLeft: 5,
   },
   navButton: {

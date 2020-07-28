@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     color: '#F9F8FD',
 
     marginBottom: 15,
-
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
   headerDivider: {
@@ -41,14 +41,14 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 25,
     alignSelf: 'center',
-
+    fontFamily: 'Roboto',
     marginTop: 20,
   },
 
   description: {
     color: '#8D8D97',
     fontSize: 16,
-
+    fontFamily: 'Roboto',
     left: 12,
     marginBottom: 20,
   },
