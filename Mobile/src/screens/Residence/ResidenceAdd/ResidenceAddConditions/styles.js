@@ -75,6 +75,11 @@ const styles = StyleSheet.create({
 
     marginTop: 10,
   },
+  input: {
+    height: 50,
+
+    textAlign: 'right',
+  },
   dot: {
     color: '#888',
     fontSize: 50,

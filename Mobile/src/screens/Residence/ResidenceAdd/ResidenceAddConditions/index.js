@@ -7,10 +7,10 @@ import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../../Component/Div';
 
 import CheckboxComponent from '../../../../Component/CheckboxComponent';
-import {RadioButton} from 'react-native-paper';
+import {RadioButton, TextInput} from 'react-native-paper';
 
 export default function ResidenceAddConditions() {
-  const [maxResidentNum, setMaxResidentNum] = useState('');
+  const [maxResidentNum, setMaxResidentNum] = useState('1');
   const [allowPets, setAllowPets] = useState(false);
   const [allowSmokers, setAllowSmokers] = useState(false);
 
@@ -30,6 +30,23 @@ export default function ResidenceAddConditions() {
             Cheque todos os itens que serão proibidos na residência.
           </Text>
           <View style={styles.checklist}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+
+                marginBottom: 20,
+              }}>
+              <Text style={styles.cardText}>Número máximo de ocupantes: </Text>
+              <TextInput
+                style={[styles.input]}
+                value={maxResidentNum}
+                onChangeText={(text) => setMaxResidentNum(text)}
+                keyboardType={'number-pad'}
+                placeholder={'1'}
+              />
+            </View>
             <CheckboxComponent
               value={allowPets}
               setValue={setAllowPets}

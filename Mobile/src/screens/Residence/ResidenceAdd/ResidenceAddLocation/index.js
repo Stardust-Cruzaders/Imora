@@ -7,7 +7,7 @@ import {
   TextInput,
 } from 'react-native';
 import {Divider} from 'react-native-elements';
-import {RadioButton} from 'react-native-paper';
+
 import styles from './styles';
 
 import Icon from 'react-native-vector-icons/Feather';
