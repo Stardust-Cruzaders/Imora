@@ -1,4 +1,3 @@
-import React from 'react';
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -22,7 +21,6 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   imoraText: {
-    fontFamily: 'Roboto',
     fontWeight: 'bold',
     fontSize: 35,
     color: '#FFF',
