@@ -17,7 +17,7 @@ export default function ResidenceAddLocation() {
   const [street, setStreet] = useState('');
   const [number, setNumber] = useState('');
   const [neighborhood, setNeighborhood] = useState('');
-  const [city,setCity] = useState('');
+  const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [proximity, setProximity] = useState('');
   const width = useWindowDimensions().width;
