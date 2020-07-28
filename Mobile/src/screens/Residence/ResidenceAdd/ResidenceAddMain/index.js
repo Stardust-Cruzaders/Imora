@@ -13,9 +13,7 @@ import styles from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../../Component/Div';
 
-import CheckboxComponent from '../../../../Component/CheckboxComponent';
-
-export default function ResidenceMain() {
+export default function ResidenceAddMain() {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [checked, setChecked] = useState('first');
