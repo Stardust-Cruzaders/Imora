@@ -23,13 +23,13 @@ const styles = StyleSheet.create({
   mainTitle: {
     color: '#3F3F3F',
     fontSize: 36,
-
+    fontFamily: 'Roboto',
     marginBottom: 10,
   },
   location: {
     color: '#8D8D97',
     fontSize: 22,
-
+    fontFamily: 'Roboto',
     marginBottom: 15,
   },
   availableText: {
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontSize: 21,
 
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
 
     marginBottom: 15,
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingLeft: 10,
     fontSize: 21,
-
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
 
     marginBottom: 15,
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
   price: {
     color: '#3F3F3F',
     fontSize: 25,
-
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     marginBottom: 10,
   },
@@ -94,13 +95,13 @@ const styles = StyleSheet.create({
   name: {
     color: '#3F3F3F',
     fontSize: 25,
-
+    fontFamily: 'Roboto',
     marginBottom: 10,
   },
   subTitle: {
     color: '#8D8D97',
     fontSize: 18,
-
+    fontFamily: 'Roboto',
     marginBottom: 15,
   },
   descriptionView: {
@@ -121,13 +122,13 @@ const styles = StyleSheet.create({
 
     marginBottom: 10,
     marginLeft: 5,
-
+    fontFamily: 'Roboto',
     top: 5,
   },
   description: {
     color: '#3F3F3F',
     fontSize: 20,
-
+    fontFamily: 'Roboto',
     marginBottom: 15,
     marginHorizontal: 25,
     alignSelf: 'flex-start',
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
   descriptionList: {
     color: '#3F3F3F',
     fontSize: 18,
-
+    fontFamily: 'Roboto',
     marginBottom: 15,
 
     marginLeft: 5,
@@ -161,6 +162,15 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#FFF',
     fontSize: 24,
+    fontFamily: 'Roboto',
+  },
+  dot: {
+    color: '#888',
+    fontSize: 50,
+  },
+  activeDot: {
+    color: '#26E07C',
+    fontSize: 50,
   },
 });
 
