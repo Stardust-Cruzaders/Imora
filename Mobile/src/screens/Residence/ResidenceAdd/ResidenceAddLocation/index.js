@@ -14,6 +14,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../../Component/Div';
 
 export default function ResidenceAddLocation() {
+  const [zipcode, setZipcode] = useState('');
   const [street, setStreet] = useState('');
   const [number, setNumber] = useState('');
   const [neighborhood, setNeighborhood] = useState('');
@@ -35,6 +36,12 @@ export default function ResidenceAddLocation() {
             Aqui você pode definir a Localização da residência.
           </Text>
           <View style={styles.main}>
+            <TextInput
+              style={[styles.input, {width: width - 80}]}
+              value={zipcode}
+              onChangeText={(text) => setZipcode(text)}
+              placeholder={'Cep:'}
+            />
             <TextInput
               style={[styles.input, {width: width - 80}]}
               value={street}
