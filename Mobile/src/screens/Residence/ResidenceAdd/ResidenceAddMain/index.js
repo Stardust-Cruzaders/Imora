@@ -7,7 +7,6 @@ import {
   TextInput,
 } from 'react-native';
 import {Divider} from 'react-native-elements';
-import {RadioButton} from 'react-native-paper';
 import styles from './styles';
 
 import Icon from 'react-native-vector-icons/Feather';
@@ -16,7 +15,6 @@ import Div from '../../../../Component/Div';
 export default function ResidenceAddMain() {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
-  const [checked, setChecked] = useState('first');
   const width = useWindowDimensions().width;
   return (
     <>
@@ -46,6 +44,20 @@ export default function ResidenceAddMain() {
               placeholder={'Preço/Mês '}
               keyboardType={'decimal-pad'}
             />
+            <TextInput
+              style={[styles.input, {width: width - 80}]}
+              value={price.toString()}
+              onChangeText={(text) => setPrice(text)}
+              placeholder={'Quantidade de quartos disponíveis '}
+              keyboardType={'number-pad'}
+            />
+            <TextInput
+              style={[styles.input, {width: width - 80}]}
+              value={price.toString()}
+              onChangeText={(text) => setPrice(text)}
+              placeholder={'Quantidade de banheiros disponíveis'}
+              keyboardType={'number-pad'}
+            />
           </View>
 
           <TouchableOpacity
@@ -63,36 +75,6 @@ export default function ResidenceAddMain() {
             </View>
           </TouchableOpacity>
 
-          <Text style={styles.cardText}>Preferência de Residentes: </Text>
-          <View>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <RadioButton
-                value="first"
-                status={checked === 'first' ? 'checked' : 'unchecked'}
-                onPress={() => setChecked('first')}
-                color={'#7E57C2'}
-              />
-              <Text style={styles.cardText}> Masculino </Text>
-            </View>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <RadioButton
-                value="second"
-                status={checked === 'second' ? 'checked' : 'unchecked'}
-                onPress={() => setChecked('second')}
-                color={'#7E57C2'}
-              />
-              <Text style={styles.cardText}> Feminino </Text>
-            </View>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <RadioButton
-                value="third"
-                status={checked === 'third' ? 'checked' : 'unchecked'}
-                onPress={() => setChecked('third')}
-                color={'#7E57C2'}
-              />
-              <Text style={styles.cardText}> Indiferente </Text>
-            </View>
-          </View>
           <View style={styles.cardFooter}>
             <TouchableOpacity style={styles.navButton} onPress={() => {}}>
               <Icon name={'arrow-left-circle'} color={'#7E57C2'} size={40} />
