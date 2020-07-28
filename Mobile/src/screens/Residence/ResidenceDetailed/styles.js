@@ -164,6 +164,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: 'Roboto',
   },
+  dot: {
+    color: '#888',
+    fontSize: 50,
+  },
+  activeDot: {
+    color: '#26E07C',
+    fontSize: 50,
+  },
 });
 
 export default styles;

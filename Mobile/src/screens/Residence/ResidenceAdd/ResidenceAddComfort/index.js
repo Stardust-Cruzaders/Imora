@@ -75,6 +75,10 @@ export default function ResidenceAddComfort() {
             <TouchableOpacity style={styles.button} onPress={() => {}}>
               <Icon name={'arrow-left-circle'} color={'#7E57C2'} size={40} />
             </TouchableOpacity>
+            <Text style={styles.dot}>•</Text>
+            <Text style={styles.activeDot}>•</Text>
+            <Text style={styles.dot}>•</Text>
+            <Text style={styles.dot}>•</Text>
             <TouchableOpacity style={styles.button} onPress={() => {}}>
               <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
             </TouchableOpacity>

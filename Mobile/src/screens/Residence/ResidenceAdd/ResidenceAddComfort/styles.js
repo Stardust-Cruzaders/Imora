@@ -64,6 +64,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  dot: {
+    color: '#888',
+    fontSize: 50,
+  },
+  activeDot: {
+    color: '#26E07C',
+    fontSize: 50,
+  },
 });
 
 export default styles;

@@ -41,7 +41,10 @@ export default function ResidenceAddConditions() {
               text={'Fumar dentro de casa é proibido.'}
             />
             <View style={styles.preferenceView}>
-              <Text style={[styles.cardText, {marginBottom: 10, marginTop: 25}]}>Preferência de Residentes: </Text>
+              <Text
+                style={[styles.cardText, {marginBottom: 10, marginTop: 25}]}>
+                Preferência de Residentes:{' '}
+              </Text>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <RadioButton
                   value="first"
@@ -74,6 +77,10 @@ export default function ResidenceAddConditions() {
               <TouchableOpacity style={styles.button} onPress={() => {}}>
                 <Icon name={'arrow-left-circle'} color={'#7E57C2'} size={40} />
               </TouchableOpacity>
+              <Text style={styles.dot}>•</Text>
+              <Text style={styles.dot}>•</Text>
+              <Text style={styles.activeDot}>•</Text>
+              <Text style={styles.dot}>•</Text>
               <TouchableOpacity style={styles.button} onPress={() => {}}>
                 <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
               </TouchableOpacity>
