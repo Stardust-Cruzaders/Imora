@@ -1,6 +1,6 @@
-import {Stylesheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 
-const textStyles = Stylesheet.create({
+const textStyles = StyleSheet.create({
   font: {fontFamily: 'Roboto'},
 });
 export default textStyles;
