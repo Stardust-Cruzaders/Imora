@@ -12,16 +12,15 @@ import styles from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../../Component/Div';
 
+import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
+
 export default function ResidenceAddMain() {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const width = useWindowDimensions().width;
   return (
     <>
-      <View style={[styles.header, {width: width}]}>
-        <Text style={styles.headerText}> Configure seu anúncio </Text>
-        <Divider style={[styles.headerDivider, {width: width - 100}]} />
-      </View>
+      <ResidenceAddHeader />
       <View style={styles.container}>
         <View style={[styles.card, {width: width - 55}]}>
           <Text style={styles.cardTitle}> Introdução </Text>

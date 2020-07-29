@@ -16,6 +16,8 @@ import Div from '../../../../Component/Div';
 
 import {RadioButton} from 'react-native-paper';
 
+import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
+
 export default function ResidenceAddType() {
   const [checked, setChecked] = useState('first');
   const [checkedHouseType, setCheckedHouseType] = useState('house');
@@ -23,12 +25,7 @@ export default function ResidenceAddType() {
   const width = useWindowDimensions().width;
   return (
     <>
-      <View style={[styles.header, {width: width}]}>
-        <Text style={[styles.headerText, textStyles.font]}>
-          Configure seu anúncio
-        </Text>
-        <Divider style={[styles.headerDivider, {width: width - 100}]} />
-      </View>
+      <ResidenceAddHeader />
       <View style={styles.container}>
         <ScrollView>
           <View style={[styles.card, {width: width - 55}]}>

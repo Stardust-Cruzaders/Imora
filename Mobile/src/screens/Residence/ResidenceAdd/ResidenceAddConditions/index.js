@@ -8,6 +8,7 @@ import Div from '../../../../Component/Div';
 
 import CheckboxComponent from '../../../../Component/CheckboxComponent';
 import {RadioButton, TextInput} from 'react-native-paper';
+import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 
 export default function ResidenceAddConditions() {
   const [maxResidentNum, setMaxResidentNum] = useState('1');
@@ -18,10 +19,7 @@ export default function ResidenceAddConditions() {
   const width = useWindowDimensions().width;
   return (
     <>
-      <View style={[styles.header, {width: width}]}>
-        <Text style={styles.headerText}> Configure seu anúncio </Text>
-        <Divider style={[styles.headerDivider, {width: width - 100}]} />
-      </View>
+      <ResidenceAddHeader />
       <View style={styles.container}>
         <View style={[styles.card, {width: width - 55}]}>
           <Text style={styles.cardTitle}> Condições </Text>
