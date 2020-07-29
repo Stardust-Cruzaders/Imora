@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {Text, View, TouchableOpacity, useWindowDimensions} from 'react-native';
-import {Divider} from 'react-native-elements';
 import styles from './styles';
 
 import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../../Component/Div';
 
 import CheckboxComponent from '../../../../Component/CheckboxComponent';
+import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 
 export default function ResidenceAddComfort() {
   const [hasWifi, setHasWifi] = useState(false);
@@ -22,10 +22,7 @@ export default function ResidenceAddComfort() {
   const width = useWindowDimensions().width;
   return (
     <>
-      <View style={[styles.header, {width: width}]}>
-        <Text style={styles.headerText}> Configure seu anúncio </Text>
-        <Divider style={[styles.headerDivider, {width: width - 100}]} />
-      </View>
+      <ResidenceAddHeader />
       <View style={styles.container}>
         <View style={[styles.card, {width: width - 55}]}>
           <Text style={styles.cardTitle}> Comodidades </Text>
