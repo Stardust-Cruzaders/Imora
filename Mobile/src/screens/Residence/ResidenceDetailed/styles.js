@@ -31,35 +31,20 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   availableText: {
-    backgroundColor: '#26E07C',
-    color: '#FFF',
-    paddingHorizontal: 5,
-    paddingVertical: 5,
-    paddingLeft: 10,
-    fontSize: 21,
+    color: '#26E07C',
 
     fontWeight: 'bold',
 
-    marginBottom: 15,
-
-    borderRadius: 5,
-
-    bottom: 2,
+    textDecorationLine: 'underline',
+    textDecorationStyle: 'solid',
   },
   unavailableText: {
-    backgroundColor: '#E03826',
-    color: '#FFF',
-    paddingHorizontal: 5,
-    paddingVertical: 5,
-    paddingLeft: 10,
-    fontSize: 21,
+    color: '#E03826',
+
     fontWeight: 'bold',
 
-    marginBottom: 15,
-
-    borderRadius: 5,
-
-    bottom: 2,
+    textDecorationLine: 'underline',
+    textDecorationStyle: 'solid',
   },
   price: {
     color: '#3F3F3F',
@@ -152,6 +137,8 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#FFF',
     fontSize: 24,
+
+    fontWeight: 'bold',
   },
   dot: {
     color: '#888',
