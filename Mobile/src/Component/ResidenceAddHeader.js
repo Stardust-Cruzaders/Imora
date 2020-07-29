@@ -12,8 +12,17 @@ const styles = StyleSheet.create({
 
     padding: 20,
   },
-  headerText: {
+  headerTitle: {
     fontSize: 25,
+    color: '#F9F8FD',
+
+    marginBottom: 15,
+
+    fontWeight: 'bold',
+    fontFamily: 'Roboto',
+  },
+  headerText: {
+    fontSize: 18,
     color: '#F9F8FD',
 
     marginBottom: 15,
@@ -28,15 +37,19 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
-export default function ResidenceAddHeader({Title}) {
+export default function ResidenceAddHeader({title, subtitle}) {
   const width = useWindowDimensions().width;
 
   return (
     <View style={[styles.header, {width: width}]}>
-      <Text style={styles.headerText}>
+      <Text style={styles.headerTitle}>
         {' '}
-        {Title === undefined ? 'Configure seu anúncio' : Title}{' '}
+        {title === undefined ? 'Configure seu anúncio' : title}{' '}
       </Text>
+      {subtitle === undefined ? null : (
+        <Text style={styles.headerText}> {subtitle} </Text>
+      )}
+
       <Divider style={[styles.headerDivider, {width: width - 100}]} />
     </View>
   );

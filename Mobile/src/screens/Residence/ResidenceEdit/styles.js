@@ -17,6 +17,10 @@ const styles = StyleSheet.create({
   },
   bodyView: {
     backgroundColor: '#F9F8FD',
+
+    marginBottom: 25,
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
   },
   basicInfoView: {
     alignItems: 'flex-start',
@@ -136,13 +140,19 @@ const styles = StyleSheet.create({
   editButton: {
     alignSelf: 'center',
   },
+  footerView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+
+    marginHorizontal: 25,
+  },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
     marginVertical: 15,
 
-    borderRadius: 10,
+    borderRadius: 8,
 
     paddingVertical: 10,
   },
