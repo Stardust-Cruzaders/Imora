@@ -83,6 +83,7 @@ export default function ResidenceAddMain() {
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
+            <Text style={styles.dot}>•</Text>
             <TouchableOpacity style={styles.navButton} onPress={() => {}}>
               <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
             </TouchableOpacity>

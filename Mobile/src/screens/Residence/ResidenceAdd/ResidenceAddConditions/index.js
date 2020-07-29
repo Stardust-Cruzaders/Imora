@@ -96,6 +96,7 @@ export default function ResidenceAddConditions() {
               </TouchableOpacity>
               <Text style={styles.dot}>•</Text>
               <Text style={styles.dot}>•</Text>
+              <Text style={styles.dot}>•</Text>
               <Text style={styles.activeDot}>•</Text>
               <Text style={styles.dot}>•</Text>
               <TouchableOpacity style={styles.button} onPress={() => {}}>

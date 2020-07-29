@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     left: 12,
     marginBottom: 20,
   },
-  main: {
+  checklist: {
     marginHorizontal: 10,
     marginRight: 25,
   },
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   cardFooter: {
-    marginTop: 20,
+    marginTop: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -76,9 +76,16 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   input: {
-    height: 50,
+    borderColor: 'black',
+    borderWidth: 2,
+    borderRadius: 5,
+    paddingLeft: 15,
 
-    textAlign: 'right',
+    marginVertical: 5,
+
+    alignSelf: 'center',
+
+    textAlignVertical: 'top',
   },
   dot: {
     color: '#888',
@@ -87,6 +94,10 @@ const styles = StyleSheet.create({
   activeDot: {
     color: '#26E07C',
     fontSize: 50,
+  },
+  spaceType: {},
+  residenceType: {
+    marginTop: 15,
   },
 });
 

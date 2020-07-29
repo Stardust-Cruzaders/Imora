@@ -89,6 +89,7 @@ export default function ResidenceAddLocation() {
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
+            <Text style={styles.dot}>•</Text>
             <Text style={styles.activeDot}>•</Text>
             <TouchableOpacity style={styles.navButton} onPress={() => {}}>
               <Icon name={'check-circle'} color={'#26E07C'} size={40} />
