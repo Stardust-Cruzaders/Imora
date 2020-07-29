@@ -41,6 +41,7 @@ export default function ResidenceAddLocation() {
               value={zipcode}
               onChangeText={(text) => setZipcode(text)}
               placeholder={'Cep:'}
+              keyboardType={'numeric'}
             />
             <TextInput
               style={[styles.input, {width: width - 80}]}
@@ -54,6 +55,7 @@ export default function ResidenceAddLocation() {
               value={number}
               onChangeText={(text) => setNumber(text)}
               placeholder={'Número'}
+              keyboardType={'numeric'}
             />
 
             <TextInput
@@ -86,6 +88,7 @@ export default function ResidenceAddLocation() {
             <TouchableOpacity style={styles.navButton} onPress={() => {}}>
               <Icon name={'arrow-left-circle'} color={'#7E57C2'} size={40} />
             </TouchableOpacity>
+            <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>

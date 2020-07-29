@@ -45,6 +45,12 @@ const styles = StyleSheet.create({
     color: '#3F3F3F',
   },
 
+  cardText: {
+    fontSize: 18,
+    fontFamily: 'Roboto',
+    color: '#3F3F3F',
+  },
+
   description: {
     color: '#8D8D97',
     fontSize: 16,
@@ -54,15 +60,32 @@ const styles = StyleSheet.create({
   },
   checklist: {
     marginHorizontal: 10,
+    marginRight: 25,
+  },
+  preferenceView: {
+    marginTop: 10,
   },
   cardFooter: {
-    marginTop: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
+
+    marginTop: 10,
+  },
+  input: {
+    borderColor: 'black',
+    borderWidth: 2,
+    borderRadius: 5,
+    paddingLeft: 15,
+
+    marginVertical: 5,
+    color: '#3F3F3F',
+    alignSelf: 'center',
+
+    textAlignVertical: 'top',
   },
   dot: {
     color: '#888',
@@ -71,6 +94,10 @@ const styles = StyleSheet.create({
   activeDot: {
     color: '#26E07C',
     fontSize: 50,
+  },
+  spaceType: {},
+  residenceType: {
+    marginTop: 15,
   },
 });
 
