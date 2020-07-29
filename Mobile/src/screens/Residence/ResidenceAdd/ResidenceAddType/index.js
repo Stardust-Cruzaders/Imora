@@ -8,7 +8,6 @@ import {
   useWindowDimensions,
   ScrollView,
 } from 'react-native';
-import {Divider} from 'react-native-elements';
 import styles from './styles';
 import textStyles from '../../../../textStyles';
 import Icon from 'react-native-vector-icons/Feather';
