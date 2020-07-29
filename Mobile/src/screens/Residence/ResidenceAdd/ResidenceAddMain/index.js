@@ -77,7 +77,7 @@ export default function ResidenceAddMain() {
 
           <View style={styles.cardFooter}>
             <TouchableOpacity style={styles.navButton} onPress={() => {}}>
-              <Icon name={'arrow-left-circle'} color={'#7E57C2'} size={40} />
+              <Icon name={'log-out'} color={'#E03826'} size={40} />
             </TouchableOpacity>
             <Text style={styles.activeDot}>•</Text>
             <Text style={styles.dot}>•</Text>
