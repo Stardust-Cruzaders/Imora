@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   profilePicView: {
-    backgroundColor: 'red',
     borderRadius: 100,
     width: 95,
     height: 95,
@@ -78,6 +77,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'center',
     borderRadius: 100,
+  },
+  buttonPic: {
+    flex: 1,
   },
   name: {
     color: '#3F3F3F',

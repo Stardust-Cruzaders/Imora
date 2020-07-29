@@ -64,13 +64,15 @@ export default function ResidenceEdit() {
           </View>
           <View style={styles.ownerView}>
             <View style={styles.profilePicView}>
-              <Image
-                style={[styles.profilePic, {resizeMode: 'cover'}]}
-                source={{
-                  uri:
-                    'https://i.pinimg.com/564x/73/72/ca/7372caf9143345b46f5941218af00af2.jpg',
-                }}
-              />
+              <TouchableOpacity style={styles.buttonPic} onPress={() => {}}>
+                <Image
+                  style={[styles.profilePic, {resizeMode: 'cover'}]}
+                  source={{
+                    uri:
+                      'https://i.pinimg.com/564x/73/72/ca/7372caf9143345b46f5941218af00af2.jpg',
+                  }}
+                />
+              </TouchableOpacity>
             </View>
             <Text style={[styles.name, textStyles.font]}>لا احتيال</Text>
             <Text style={[styles.subTitle, textStyles.font]}>Proprietário</Text>
@@ -319,7 +321,7 @@ export default function ResidenceEdit() {
                 <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
               </TouchableOpacity>
             </View>
-            
+
             <Text style={styles.description}>
               Rua jorge de almeida bairro do limoeiro 7-85
             </Text>
