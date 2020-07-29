@@ -19,7 +19,7 @@ import Div from '../../../Component/Div';
 
 import ImageSwipe from '../../../Component/ImageSwipe';
 
-export default function ResidenceDetailed() {
+export default function ResidenceEdit() {
   const width = useWindowDimensions().width;
 
   const [available, setAvailable] = useState(true);
@@ -40,7 +40,12 @@ export default function ResidenceDetailed() {
       <View style={styles.container}>
         <View style={[styles.bodyView, {width: width - 50}]}>
           <View style={styles.basicInfoView}>
-            <Text style={[styles.mainTitle, textStyles.font]}>Título </Text>
+            <View style={[styles.titleWithEditOption, {width: width - 100}]}>
+              <Text style={[styles.mainTitle, textStyles.font]}>Título </Text>
+              <TouchableOpacity style={styles.editButton} onPress={() => {}}>
+                <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
+              </TouchableOpacity>
+            </View>
             <Text style={[styles.location, textStyles.font]}>
               Localização,Localização
             </Text>
@@ -72,9 +77,14 @@ export default function ResidenceDetailed() {
           </View>
           <Div threshold={100} />
           <View style={styles.descriptionView}>
-            <View style={styles.titleWithIconView}>
-              <Icon name={'home'} size={30} color={'#3F3F3F'} />
-              <Text style={[styles.title1, textStyles.font]}>Mansão</Text>
+            <View style={[styles.titleWithEditOption, {width: width - 80}]}>
+              <View style={styles.titleWithIconView}>
+                <Icon name={'home'} size={30} color={'#3F3F3F'} />
+                <Text style={[styles.title1, textStyles.font]}>Mansão</Text>
+              </View>
+              <TouchableOpacity style={styles.editButton} onPress={() => {}}>
+                <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
+              </TouchableOpacity>
             </View>
             <Text style={[styles.description, textStyles.font]}>
               A casa toda pra você
@@ -111,9 +121,16 @@ export default function ResidenceDetailed() {
           </View>
           <Div threshold={100} />
           <View styles={styles.comfortView}>
-            <View style={styles.titleWithIconView}>
-              <Icon name={'coffee'} size={30} color={'#3F3F3F'} />
-              <Text style={[styles.title1, textStyles.font]}>Comodidades </Text>
+            <View style={[styles.titleWithEditOption, {width: width - 75}]}>
+              <View style={styles.titleWithIconView}>
+                <Icon name={'coffee'} size={30} color={'#3F3F3F'} />
+                <Text style={[styles.title1, textStyles.font]}>
+                  Comodidades
+                </Text>
+              </View>
+              <TouchableOpacity style={styles.editButton} onPress={() => {}}>
+                <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
+              </TouchableOpacity>
             </View>
             <View style={styles.titleWithIconView}>
               <Text style={[{fontSize: 30, marginRight: 5}, textStyles.font]}>
@@ -185,9 +202,14 @@ export default function ResidenceDetailed() {
           </View>
           <Div threshold={100} />
           <View style={styles.conditionView}>
-            <View style={styles.titleWithIconView}>
-              <Icon name={'alert-octagon'} size={30} color={'#E03826'} />
-              <Text style={styles.title1}>Condições </Text>
+            <View style={[styles.titleWithEditOption, {width: width - 80}]}>
+              <View style={styles.titleWithIconView}>
+                <Icon name={'alert-octagon'} size={30} color={'#E03826'} />
+                <Text style={styles.title1}>Condições </Text>
+              </View>
+              <TouchableOpacity style={styles.editButton} onPress={() => {}}>
+                <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
+              </TouchableOpacity>
             </View>
             <View style={styles.titleWithIconView}>
               <Text
@@ -288,10 +310,16 @@ export default function ResidenceDetailed() {
           </View>
           <Div threshold={100} />
           <View style={styles.locationView}>
-            <View style={styles.titleWithIconView}>
-              <Icon name={'map-pin'} size={30} color={'#3F3F3F'} />
-              <Text style={styles.title1}>Localização </Text>
+            <View style={[styles.titleWithEditOption, {width: width - 80}]}>
+              <View style={styles.titleWithIconView}>
+                <Icon name={'map-pin'} size={30} color={'#3F3F3F'} />
+                <Text style={styles.title1}>Localização </Text>
+              </View>
+              <TouchableOpacity style={styles.editButton} onPress={() => {}}>
+                <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
+              </TouchableOpacity>
             </View>
+            
             <Text style={styles.description}>
               Rua jorge de almeida bairro do limoeiro 7-85
             </Text>
