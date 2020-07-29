@@ -42,12 +42,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
     alignSelf: 'center',
     fontFamily: 'Roboto',
-    marginTop: 20,
+    color: '#3F3F3F',
   },
 
   cardText: {
     fontSize: 18,
     fontFamily: 'Roboto',
+    color: '#3F3F3F',
   },
 
   description: {
@@ -65,7 +66,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   cardFooter: {
-    marginTop: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
 
     marginVertical: 5,
-
+    color: '#3F3F3F',
     alignSelf: 'center',
 
     textAlignVertical: 'top',

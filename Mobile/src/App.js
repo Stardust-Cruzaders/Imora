@@ -2,12 +2,12 @@ import React from 'react';
 
 import {StatusBar} from 'react-native';
 
-import ResidenceAddMain from './screens/Residence/ResidenceAdd/ResidenceAddMain';
+import ResidenceAddLocation from './screens/Residence/ResidenceAdd/ResidenceAddLocation';
 export default function App() {
   return (
     <>
       <StatusBar backgroundColor={'#4D2C91'} />
-      <ResidenceAddMain />
+      <ResidenceAddLocation />
     </>
   );
 }

@@ -42,12 +42,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
     alignSelf: 'center',
     fontFamily: 'Roboto',
-    marginTop: 20,
+    color: '#3F3F3F',
   },
 
   cardText: {
     fontSize: 18,
     fontFamily: 'Roboto',
+    color: '#3F3F3F',
   },
 
   description: {
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 50,
-
+    color: '#3F3F3F',
     textAlign: 'right',
   },
   dot: {

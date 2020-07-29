@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     alignSelf: 'center',
     fontFamily: 'Roboto',
-    marginTop: 20,
+    color: '#3F3F3F',
   },
 
   description: {

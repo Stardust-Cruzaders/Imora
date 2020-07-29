@@ -27,7 +27,7 @@ export default function ResidenceAddMain() {
           <Text style={styles.cardTitle}> Introdução </Text>
           <Div threshold={120} height={2} />
           <Text style={styles.description}>
-            Escolhe um nome, preço, e tire algumas fotos do seu imóvel :D
+            Escolhe um nome, preço, e tire algumas fotos do seu imóvel. :D
           </Text>
           <View style={styles.main}>
             <TextInput
