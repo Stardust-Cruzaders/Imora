@@ -41,6 +41,7 @@ export default function ResidenceAddLocation() {
               value={zipcode}
               onChangeText={(text) => setZipcode(text)}
               placeholder={'Cep:'}
+              keyboardType={'numeric'}
             />
             <TextInput
               style={[styles.input, {width: width - 80}]}
@@ -54,6 +55,7 @@ export default function ResidenceAddLocation() {
               value={number}
               onChangeText={(text) => setNumber(text)}
               placeholder={'Número'}
+              keyboardType={'numeric'}
             />
 
             <TextInput
