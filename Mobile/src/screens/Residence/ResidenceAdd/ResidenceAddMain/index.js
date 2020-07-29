@@ -27,7 +27,7 @@ export default function ResidenceAddMain() {
           <Text style={styles.cardTitle}> Introdução </Text>
           <Div threshold={120} height={2} />
           <Text style={styles.description}>
-            Escolhe um nome, preço, e tire algumas fotos do seu imóvel :D
+            Escolhe um nome, preço, e tire algumas fotos do seu imóvel. :D
           </Text>
           <View style={styles.main}>
             <TextInput
@@ -77,9 +77,10 @@ export default function ResidenceAddMain() {
 
           <View style={styles.cardFooter}>
             <TouchableOpacity style={styles.navButton} onPress={() => {}}>
-              <Icon name={'arrow-left-circle'} color={'#7E57C2'} size={40} />
+              <Icon name={'log-out'} color={'#E03826'} size={40} />
             </TouchableOpacity>
             <Text style={styles.activeDot}>•</Text>
+            <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>

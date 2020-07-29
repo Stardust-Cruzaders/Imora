@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     alignSelf: 'center',
     fontFamily: 'Roboto',
-    marginTop: 20,
+    color: '#3F3F3F',
   },
 
   description: {
@@ -61,13 +61,14 @@ const styles = StyleSheet.create({
   cardText: {
     fontSize: 18,
     fontFamily: 'Roboto',
+    color: '#3F3F3F',
   },
   input: {
     borderColor: 'black',
     borderWidth: 2,
     borderRadius: 5,
     paddingLeft: 15,
-
+    color: '#3F3F3F',
     marginVertical: 5,
 
     alignSelf: 'center',

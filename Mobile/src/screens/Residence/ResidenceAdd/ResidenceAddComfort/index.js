@@ -76,6 +76,7 @@ export default function ResidenceAddComfort() {
               <Icon name={'arrow-left-circle'} color={'#7E57C2'} size={40} />
             </TouchableOpacity>
             <Text style={styles.dot}>•</Text>
+            <Text style={styles.dot}>•</Text>
             <Text style={styles.activeDot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
