@@ -86,6 +86,15 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 5,
   },
+  buttonText: {
+    color: '#3F3F3F',
+    fontSize: 24,
+  },
+  button: {
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+
+  },
 });
 
 export default styles;
