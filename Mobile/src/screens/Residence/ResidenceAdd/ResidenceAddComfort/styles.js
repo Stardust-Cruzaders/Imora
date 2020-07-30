@@ -8,28 +8,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  header: {
-    backgroundColor: '#7E57C2',
-
-    justifyContent: 'center',
-    alignItems: 'center',
-
-    padding: 20,
-  },
-  headerText: {
-    fontSize: 25,
-    color: '#F9F8FD',
-
-    marginBottom: 15,
-    fontFamily: 'Roboto',
-    fontWeight: 'bold',
-  },
-  headerDivider: {
-    backgroundColor: '#F9F8FD',
-    height: 3,
-
-    alignSelf: 'center',
-  },
   card: {
     backgroundColor: '#FFF',
 

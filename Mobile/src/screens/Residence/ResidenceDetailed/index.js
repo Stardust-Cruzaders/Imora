@@ -70,30 +70,6 @@ export default function ResidenceDetailed() {
             <Text style={[styles.name, textStyles.font]}>لا احتيال</Text>
             <Text style={[styles.subTitle, textStyles.font]}>Proprietário</Text>
           </View>
-          <View style={styles.titleWithIconView}>
-            <Text style={[textStyles.font, {fontSize: 30}]}>•</Text>
-            <MaterialCommunityIcon
-              name={'toilet'}
-              size={25}
-              color={'#3F3F3F'}
-            />
-            <Text style={[styles.descriptionList, textStyles.font]}>
-              Quantidade de banheiros: 72
-            </Text>
-          </View>
-          <View style={styles.titleWithIconView}>
-            <Text style={[{fontSize: 30, marginRight: 5}, textStyles.font]}>
-              •
-            </Text>
-            <MaterialCommunityIcon
-              name={'bed-outline'}
-              size={25}
-              color={'#3F3F3F'}
-            />
-            <Text style={[styles.descriptionList, textStyles.font]}>
-              Quantidade de quartos: 2
-            </Text>
-          </View>
           <Div threshold={100} />
           <View style={styles.descriptionView}>
             <View style={styles.titleWithIconView}>
@@ -108,6 +84,30 @@ export default function ResidenceDetailed() {
               mano top demais tem tanta coisa um monte de coisa olha isso que
               top.
             </Text>
+            <View style={styles.titleWithIconView}>
+              <Text style={[textStyles.font, {fontSize: 30}]}>•</Text>
+              <MaterialCommunityIcon
+                name={'toilet'}
+                size={25}
+                color={'#3F3F3F'}
+              />
+              <Text style={[styles.descriptionList, textStyles.font]}>
+                Quantidade de banheiros: 72
+              </Text>
+            </View>
+            <View style={styles.titleWithIconView}>
+              <Text style={[{fontSize: 30, marginRight: 5}, textStyles.font]}>
+                •
+              </Text>
+              <MaterialCommunityIcon
+                name={'bed-outline'}
+                size={25}
+                color={'#3F3F3F'}
+              />
+              <Text style={[styles.descriptionList, textStyles.font]}>
+                Quantidade de quartos: 2
+              </Text>
+            </View>
           </View>
           <Div threshold={100} />
           <View styles={styles.comfortView}>
