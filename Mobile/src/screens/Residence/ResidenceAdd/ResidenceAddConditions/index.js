@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {Text, View, TouchableOpacity, useWindowDimensions} from 'react-native';
-import {Divider} from 'react-native-elements';
 import styles from './styles';
 
 import Icon from 'react-native-vector-icons/Feather';
