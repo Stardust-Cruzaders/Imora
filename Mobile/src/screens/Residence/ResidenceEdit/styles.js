@@ -11,8 +11,16 @@ const styles = StyleSheet.create({
   headerImgView: {
     marginBottom: 5,
   },
+  titleWithEditOption: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   bodyView: {
     backgroundColor: '#F9F8FD',
+
+    marginBottom: 25,
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
   },
   basicInfoView: {
     alignItems: 'flex-start',
@@ -24,6 +32,9 @@ const styles = StyleSheet.create({
     color: '#3F3F3F',
     fontSize: 36,
     marginBottom: 10,
+
+    alignSelf: 'flex-end',
+    marginTop: 5,
   },
   location: {
     color: '#8D8D97',
@@ -57,7 +68,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   profilePicView: {
-    backgroundColor: 'red',
     borderRadius: 100,
     width: 95,
     height: 95,
@@ -71,6 +81,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'center',
     borderRadius: 100,
+  },
+  buttonPic: {
+    flex: 1,
   },
   name: {
     color: '#3F3F3F',
@@ -124,13 +137,22 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginHorizontal: 25,
   },
+  editButton: {
+    alignSelf: 'center',
+  },
+  footerView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+
+    marginHorizontal: 25,
+  },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
     marginVertical: 15,
 
-    borderRadius: 10,
+    borderRadius: 8,
 
     paddingVertical: 10,
   },
