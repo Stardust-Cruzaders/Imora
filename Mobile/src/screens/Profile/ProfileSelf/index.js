@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  useWindowDimensions,
-  ScrollView,
-} from 'react-native';
+import {View, Text, Image, useWindowDimensions, ScrollView} from 'react-native';
+
+import {RectButton, BorderlessButton} from 'react-native-gesture-handler';
 
 import styles from './styles';
 import textStyles from '../../../textStyles';
@@ -20,9 +15,9 @@ export default function ProfileSelf() {
       <ScrollView>
         <View style={styles.headerView}>
           <View style={[styles.topBar, {width: width}]}>
-            <TouchableOpacity onPress={() => {}}>
+            <BorderlessButton onPress={() => {}}>
               <Icon name={'settings'} size={40} color={'#FFF'} />
-            </TouchableOpacity>
+            </BorderlessButton>
           </View>
           <View style={styles.profileInfo}>
             <View style={styles.profilePicView}>
@@ -75,6 +70,7 @@ export default function ProfileSelf() {
                 willSmithOficial@gmail.com
               </Text>
             </View>
+            <Div threshold={100} height={1.5} />
             <Text style={[styles.bodyTitle, textStyles.font]}>Sobre</Text>
             <Text style={[styles.bodyText, textStyles.font]}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
@@ -86,9 +82,7 @@ export default function ProfileSelf() {
             </Text>
             <View>
               <Div threshold={100} />
-              <TouchableOpacity
-                style={[styles.button, {width: width - 55}]}
-                onPress={() => {}}>
+              <RectButton style={styles.button} onPress={() => {}}>
                 <View style={styles.iconTextView}>
                   <Icon
                     name={'heart'}
@@ -98,11 +92,9 @@ export default function ProfileSelf() {
                   />
                   <Text style={styles.buttonText}> Favoritos </Text>
                 </View>
-              </TouchableOpacity>
+              </RectButton>
               <Div threshold={100} />
-              <TouchableOpacity
-                style={[styles.button, {width: width - 55}]}
-                onPress={() => {}}>
+              <RectButton style={styles.button} onPress={() => {}}>
                 <View style={styles.iconTextView}>
                   <Icon
                     name={'inbox'}
@@ -112,11 +104,9 @@ export default function ProfileSelf() {
                   />
                   <Text style={styles.buttonText}> Meus Anúncios </Text>
                 </View>
-              </TouchableOpacity>
+              </RectButton>
               <Div threshold={100} />
-              <TouchableOpacity
-                style={[styles.button, {width: width - 55}]}
-                onPress={() => {}}>
+              <RectButton style={styles.button} onPress={() => {}}>
                 <View style={styles.iconTextView}>
                   <Icon
                     name={'home'}
@@ -126,8 +116,8 @@ export default function ProfileSelf() {
                   />
                   <Text style={styles.buttonText}> Meus imóveis </Text>
                 </View>
-              </TouchableOpacity>
-              <Div threshold={100} />
+              </RectButton>
+              <Div threshold={100} height={1.5} />
             </View>
           </View>
         </View>

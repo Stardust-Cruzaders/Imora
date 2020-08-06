@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
-
+    width: '100%',
   },
 });
 
