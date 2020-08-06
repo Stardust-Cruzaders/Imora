@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
-import {ReactButton} from 'react-native-gesture-handler';
+import {RectButton} from 'react-native-gesture-handler';
 import styles from './styles';
 import textStyles from '../../textStyles';
 import Icon from 'react-native-vector-icons/Feather';
@@ -15,17 +15,17 @@ export default function Login() {
       </View>
 
       <View style={styles.whiteBox}>
-        <TouchableOpacity style={styles.feedButton}>
+        <RectButton onPress={() => {}} style={styles.feedButton}>
           <Text style={[styles.buttonText, textStyles.font]}>
             Explorar o App
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.facebookButton}>
+        </RectButton>
+        <RectButton onPress={() => {}} style={styles.facebookButton}>
           <Text style={[styles.buttonText, textStyles.font]}>Facebook</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.googleButton}>
+        </RectButton>
+        <RectButton onPress={() => {}} style={styles.googleButton}>
           <Text style={[styles.buttonText, textStyles.font]}>Google</Text>
-        </TouchableOpacity>
+        </RectButton>
       </View>
     </View>
   );
