@@ -1,13 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {
-  Text,
-  View,
-  useWindowDimensions,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import {Text, View, useWindowDimensions, Image, ScrollView} from 'react-native';
+import {RectButton} from 'react-native-gesture-handler';
 
 import Icon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -16,7 +10,6 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
 import textStyles from '../../../textStyles';
 import Div from '../../../Component/Div';
-
 import ImageSwipe from '../../../Component/ImageSwipe';
 
 export default function ResidenceDetailed() {
@@ -295,7 +288,7 @@ export default function ResidenceDetailed() {
             <Text style={styles.description}>
               Rua jorge de almeida bairro do limoeiro 7-85
             </Text>
-            <TouchableOpacity
+            <RectButton
               style={[
                 styles.button,
                 {backgroundColor: '#26E07C', width: width - 75},
@@ -305,16 +298,16 @@ export default function ResidenceDetailed() {
                 <Icon name={'map-pin'} size={30} color={'#FFF'} />
                 <Text style={styles.buttonText}> Mostrar no Google Maps </Text>
               </View>
-            </TouchableOpacity>
-            <TouchableOpacity
+            </RectButton>
+            <RectButton
               style={[
                 styles.button,
                 {backgroundColor: '#7E57C2', width: width - 75},
               ]}
               onPress={() => {}}>
               <Text style={styles.buttonText}>Demonstrar interesse</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
+            </RectButton>
+            <RectButton
               style={[
                 styles.button,
                 {backgroundColor: '#E03826', width: width - 75},
@@ -324,7 +317,7 @@ export default function ResidenceDetailed() {
                 <Icon name={'heart'} size={30} color={'#FFF'} />
                 <Text style={styles.buttonText}> Favoritar </Text>
               </View>
-            </TouchableOpacity>
+            </RectButton>
           </View>
         </View>
       </View>
