@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
-
+import {ReactButton} from 'react-native-gesture-handler';
 import styles from './styles';
 import textStyles from '../../textStyles';
 import Icon from 'react-native-vector-icons/Feather';
