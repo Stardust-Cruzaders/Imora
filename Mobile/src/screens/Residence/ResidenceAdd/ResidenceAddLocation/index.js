@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import {
   Text,
   View,
-  TouchableOpacity,
   useWindowDimensions,
   TextInput,
 } from 'react-native';
-
+import {BorderlessButton} from 'react-native-gesture-handler';
 import styles from './styles';
 
 import Icon from 'react-native-vector-icons/Feather';
@@ -82,17 +81,17 @@ export default function ResidenceAddLocation() {
           </View>
 
           <View style={styles.cardFooter}>
-            <TouchableOpacity style={styles.navButton} onPress={() => {}}>
+            <BorderlessButton style={styles.navButton} onPress={() => {}}>
               <Icon name={'arrow-left-circle'} color={'#7E57C2'} size={40} />
-            </TouchableOpacity>
+            </BorderlessButton>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.activeDot}>•</Text>
-            <TouchableOpacity style={styles.navButton} onPress={() => {}}>
+            <BorderlessButton style={styles.navButton} onPress={() => {}}>
               <Icon name={'check-circle'} color={'#26E07C'} size={40} />
-            </TouchableOpacity>
+            </BorderlessButton>
           </View>
         </View>
       </View>

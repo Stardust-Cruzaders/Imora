@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  useWindowDimensions,
-  TextInput,
-} from 'react-native';
+import {Text, View, useWindowDimensions, TextInput} from 'react-native';
 import {Divider} from 'react-native-elements';
 import styles from './styles';
 
@@ -13,6 +7,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../../Component/Div';
 
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
+import {BorderlessButton} from 'react-native-gesture-handler';
 
 export default function ResidenceAddMain() {
   const [title, setTitle] = useState('');
@@ -59,7 +54,7 @@ export default function ResidenceAddMain() {
             />
           </View>
 
-          <TouchableOpacity
+          <BorderlessButton
             style={[styles.button, {width: width - 80}]}
             onPress={() => {}}>
             <View style={{flexDirection: 'row'}}>
@@ -72,20 +67,20 @@ export default function ResidenceAddMain() {
                 style={{position: 'absolute', left: 290}}
               />
             </View>
-          </TouchableOpacity>
+          </BorderlessButton>
 
           <View style={styles.cardFooter}>
-            <TouchableOpacity style={styles.navButton} onPress={() => {}}>
+            <BorderlessButton style={styles.navButton} onPress={() => {}}>
               <Icon name={'log-out'} color={'#E03826'} size={40} />
-            </TouchableOpacity>
+            </BorderlessButton>
             <Text style={styles.activeDot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
-            <TouchableOpacity style={styles.navButton} onPress={() => {}}>
+            <BorderlessButton style={styles.navButton} onPress={() => {}}>
               <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
-            </TouchableOpacity>
+            </BorderlessButton>
           </View>
         </View>
       </View>

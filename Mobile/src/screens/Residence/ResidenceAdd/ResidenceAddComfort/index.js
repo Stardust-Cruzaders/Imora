@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Text, View, TouchableOpacity, useWindowDimensions} from 'react-native';
+import {Text, View, useWindowDimensions} from 'react-native';
+import {BorderlessButton} from 'react-native-gesture-handler';
 import styles from './styles';
 
 import Icon from 'react-native-vector-icons/Feather';
@@ -69,17 +70,17 @@ export default function ResidenceAddComfort() {
             />
           </View>
           <View style={styles.cardFooter}>
-            <TouchableOpacity style={styles.button} onPress={() => {}}>
+            <BorderlessButton style={styles.button} onPress={() => {}}>
               <Icon name={'arrow-left-circle'} color={'#7E57C2'} size={40} />
-            </TouchableOpacity>
+            </BorderlessButton>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.activeDot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
-            <TouchableOpacity style={styles.button} onPress={() => {}}>
+            <BorderlessButton style={styles.button} onPress={() => {}}>
               <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
-            </TouchableOpacity>
+            </BorderlessButton>
           </View>
         </View>
       </View>

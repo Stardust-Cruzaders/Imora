@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   View,
-  TouchableOpacity,
   useWindowDimensions,
   ScrollView,
 } from 'react-native';
@@ -16,6 +15,7 @@ import Div from '../../../../Component/Div';
 import {RadioButton} from 'react-native-paper';
 
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
+import {BorderlessButton} from 'react-native-gesture-handler';
 
 export default function ResidenceAddType() {
   const [checked, setChecked] = useState('first');
@@ -158,25 +158,25 @@ export default function ResidenceAddType() {
               </View>
 
               <View style={styles.cardFooter}>
-                <TouchableOpacity style={styles.button} onPress={() => {}}>
+                <BorderlessButton style={styles.button} onPress={() => {}}>
                   <Icon
                     name={'arrow-left-circle'}
                     color={'#7E57C2'}
                     size={40}
                   />
-                </TouchableOpacity>
+                </BorderlessButton>
                 <Text style={styles.dot}>•</Text>
                 <Text style={styles.activeDot}>•</Text>
                 <Text style={styles.dot}>•</Text>
                 <Text style={styles.dot}>•</Text>
                 <Text style={styles.dot}>•</Text>
-                <TouchableOpacity style={styles.button} onPress={() => {}}>
+                <BorderlessButton style={styles.button} onPress={() => {}}>
                   <Icon
                     name={'arrow-right-circle'}
                     color={'#7E57C2'}
                     size={40}
                   />
-                </TouchableOpacity>
+                </BorderlessButton>
               </View>
             </View>
           </View>
