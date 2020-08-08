@@ -24,7 +24,6 @@ export default function ResidenceDetailed() {
     'https://i.pinimg.com/564x/9c/40/ac/9c40acb5931b72b8ace4cb446ee0d068.jpg',
     'https://i.pinimg.com/236x/0d/a7/3b/0da73b6592ba04b63385c12280d1bf6a.jpg',
   ];
-
   return (
     <ScrollView style={styles.scroll}>
       <View style={[styles.headerImgView]}>
@@ -180,7 +179,7 @@ export default function ResidenceDetailed() {
           <View style={styles.conditionView}>
             <View style={styles.titleWithIconView}>
               <Icon name={'alert-octagon'} size={30} color={'#E03826'} />
-              <Text style={styles.title1}>Condições </Text>
+              <Text style={[styles.title1, textStyles.font]}>Condições </Text>
             </View>
             <View style={styles.titleWithIconView}>
               <Text
@@ -283,9 +282,9 @@ export default function ResidenceDetailed() {
           <View style={styles.locationView}>
             <View style={styles.titleWithIconView}>
               <Icon name={'map-pin'} size={30} color={'#3F3F3F'} />
-              <Text style={styles.title1}>Localização </Text>
+              <Text style={[styles.title1, textStyles.font]}>Localização </Text>
             </View>
-            <Text style={styles.description}>
+            <Text style={[styles.description, textStyles.font]}>
               Rua jorge de almeida bairro do limoeiro 7-85
             </Text>
             <RectButton
@@ -296,7 +295,10 @@ export default function ResidenceDetailed() {
               onPress={() => {}}>
               <View style={{flexDirection: 'row'}}>
                 <Icon name={'map-pin'} size={30} color={'#FFF'} />
-                <Text style={styles.buttonText}> Mostrar no Google Maps </Text>
+                <Text style={[styles.buttonText, textStyles.font]}>
+                  {' '}
+                  Mostrar no Google Maps{' '}
+                </Text>
               </View>
             </RectButton>
             <RectButton
@@ -305,18 +307,9 @@ export default function ResidenceDetailed() {
                 {backgroundColor: '#7E57C2', width: width - 75},
               ]}
               onPress={() => {}}>
-              <Text style={styles.buttonText}>Demonstrar interesse</Text>
-            </RectButton>
-            <RectButton
-              style={[
-                styles.button,
-                {backgroundColor: '#E03826', width: width - 75},
-              ]}
-              onPress={() => {}}>
-              <View style={{flexDirection: 'row'}}>
-                <Icon name={'heart'} size={30} color={'#FFF'} />
-                <Text style={styles.buttonText}> Favoritar </Text>
-              </View>
+              <Text style={[styles.buttonText, textStyles.font]}>
+                Demonstrar interesse
+              </Text>
             </RectButton>
           </View>
         </View>
