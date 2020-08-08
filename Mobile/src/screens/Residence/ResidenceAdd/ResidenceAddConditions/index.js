@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {Text, View, useWindowDimensions} from 'react-native';
+
+import textStyles from '../../../../textStyles';
 import styles from './styles';
 
 import {BorderlessButton} from 'react-native-gesture-handler';
@@ -23,9 +25,9 @@ export default function ResidenceAddConditions() {
       <ResidenceAddHeader />
       <View style={styles.container}>
         <View style={[styles.card, {width: width - 55}]}>
-          <Text style={styles.cardTitle}> Condições </Text>
+          <Text style={[styles.cardTitle, textStyles.font]}> Condições </Text>
           <Div threshold={120} height={2} />
-          <Text style={styles.description}>
+          <Text style={[styles.description, textStyles.font]}>
             Cheque todos os itens que serão proibidos na residência.
           </Text>
           <View style={styles.checklist}>
@@ -37,7 +39,9 @@ export default function ResidenceAddConditions() {
 
                 marginBottom: 20,
               }}>
-              <Text style={styles.cardText}>Número máximo de ocupantes: </Text>
+              <Text style={[styles.cardText, textStyles.font]}>
+                Número máximo de ocupantes:
+              </Text>
               <TextInput
                 style={[styles.input]}
                 value={maxResidentNum}
@@ -58,7 +62,11 @@ export default function ResidenceAddConditions() {
             />
             <View style={styles.preferenceView}>
               <Text
-                style={[styles.cardText, {marginBottom: 10, marginTop: 25}]}>
+                style={[
+                  styles.cardText,
+                  textStyles.font,
+                  {marginBottom: 10, marginTop: 25},
+                ]}>
                 Preferência de Residentes:{' '}
               </Text>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -68,7 +76,9 @@ export default function ResidenceAddConditions() {
                   onPress={() => setChecked('first')}
                   color={'#7E57C2'}
                 />
-                <Text style={styles.cardText}> Masculino </Text>
+                <Text style={[styles.cardText, textStyles.font]}>
+                  Masculino
+                </Text>
               </View>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <RadioButton
@@ -77,7 +87,7 @@ export default function ResidenceAddConditions() {
                   onPress={() => setChecked('second')}
                   color={'#7E57C2'}
                 />
-                <Text style={styles.cardText}> Feminino </Text>
+                <Text style={[styles.cardText, textStyles.font]}>Feminino</Text>
               </View>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <RadioButton
@@ -86,7 +96,9 @@ export default function ResidenceAddConditions() {
                   onPress={() => setChecked('third')}
                   color={'#7E57C2'}
                 />
-                <Text style={styles.cardText}> Indiferente </Text>
+                <Text style={[styles.cardText, textStyles.font]}>
+                  Indiferente
+                </Text>
               </View>
             </View>
             <View style={styles.cardFooter}>

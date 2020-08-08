@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {Text, View, useWindowDimensions, TextInput} from 'react-native';
-import {Divider} from 'react-native-elements';
+
 import styles from './styles';
+import textStyles from '../../../../textStyles';
 
 import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../../Component/Div';
@@ -18,9 +19,9 @@ export default function ResidenceAddMain() {
       <ResidenceAddHeader />
       <View style={styles.container}>
         <View style={[styles.card, {width: width - 55}]}>
-          <Text style={styles.cardTitle}> Introdução </Text>
+          <Text style={[styles.cardTitle, textStyles.font]}> Introdução </Text>
           <Div threshold={120} height={2} />
-          <Text style={styles.description}>
+          <Text style={[styles.description, textStyles.font]}>
             Escolhe um nome, preço, e tire algumas fotos do seu imóvel. :D
           </Text>
           <View style={styles.main}>

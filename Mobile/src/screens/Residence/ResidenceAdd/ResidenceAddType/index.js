@@ -44,9 +44,11 @@ export default function ResidenceAddType() {
                     onPress={() => setChecked('first')}
                     color={'#7E57C2'}
                   />
-                  <Text style={styles.cardText}>Espaço inteiro </Text>
+                  <Text style={[styles.cardText, textStyles.font]}>
+                    Espaço inteiro
+                  </Text>
                 </View>
-                <Text style={styles.description}>
+                <Text style={[styles.description, textStyles.font]}>
                   O usuário terá todo o espaço toda a sua disposição
                 </Text>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -56,9 +58,11 @@ export default function ResidenceAddType() {
                     onPress={() => setChecked('second')}
                     color={'#7E57C2'}
                   />
-                  <Text style={styles.cardText}> Quarto inteiro </Text>
+                  <Text style={[styles.cardText, textStyles.font]}>
+                    Quarto inteiro
+                  </Text>
                 </View>
-                <Text style={styles.description}>
+                <Text style={[styles.description, textStyles.font]}>
                   O usuário terá um quarto só seu, porém terá que dividir a
                   moradia com outros residentes
                 </Text>
@@ -69,9 +73,11 @@ export default function ResidenceAddType() {
                     onPress={() => setChecked('third')}
                     color={'#7E57C2'}
                   />
-                  <Text style={styles.cardText}>Quarto Compartilhado</Text>
+                  <Text style={[styles.cardText, textStyles.font]}>
+                    Quarto Compartilhado
+                  </Text>
                 </View>
-                <Text style={styles.description}>
+                <Text style={[styles.description, textStyles.font]}>
                   O usuário terá que compartilhar um quarto com outros
                   residentes.
                 </Text>

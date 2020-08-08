@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
-import {
-  Text,
-  View,
-  useWindowDimensions,
-  TextInput,
-} from 'react-native';
+import {Text, View, useWindowDimensions, TextInput} from 'react-native';
 import {BorderlessButton} from 'react-native-gesture-handler';
+
+import textStyles from '../../../../textStyles';
 import styles from './styles';
 
 import Icon from 'react-native-vector-icons/Feather';
@@ -26,7 +23,7 @@ export default function ResidenceAddLocation() {
       <ResidenceAddHeader />
       <View style={styles.container}>
         <View style={[styles.card, {width: width - 55}]}>
-          <Text style={styles.cardTitle}> Localização </Text>
+          <Text style={[styles.cardTitle, textStyles.font]}> Localização </Text>
           <Div threshold={120} height={2} />
           <Text style={styles.description}>
             Aqui você pode definir a Localização da residência.

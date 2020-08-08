@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {Text, View, useWindowDimensions} from 'react-native';
 import {BorderlessButton} from 'react-native-gesture-handler';
+
+import textStyles from '../../../../textStyles';
 import styles from './styles';
 
 import Icon from 'react-native-vector-icons/Feather';
@@ -26,9 +28,9 @@ export default function ResidenceAddComfort() {
       <ResidenceAddHeader />
       <View style={styles.container}>
         <View style={[styles.card, {width: width - 55}]}>
-          <Text style={styles.cardTitle}> Comodidades </Text>
+          <Text style={[styles.cardTitle, textStyles.font]}> Comodidades </Text>
           <Div threshold={120} height={2} />
-          <Text style={styles.description}>
+          <Text style={[styles.description, textStyles.font]}>
             Cheque todos os itens que o residente terá acesso.
           </Text>
           <View style={styles.checklist}>
@@ -69,7 +71,7 @@ export default function ResidenceAddComfort() {
               text={'Estacionamento Incluso'}
             />
           </View>
-          <View style={styles.cardFooter}>
+          <View style={[styles.cardFooter]}>
             <BorderlessButton style={styles.button} onPress={() => {}}>
               <Icon name={'arrow-left-circle'} color={'#7E57C2'} size={40} />
             </BorderlessButton>
