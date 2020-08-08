@@ -15,20 +15,5 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontSize: 50,
   },
-  favoriteButtonView: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 100,
-
-    position: 'absolute',
-    right: 1,
-  },
-  favoriteButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 100,
-    padding: 5,
-    alignSelf: 'center',
-  },
 });
 export default styles;
