@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {View, Text, StyleSheet, useWindowDimensions} from 'react-native';
+import {View, Text, useWindowDimensions} from 'react-native';
 import {Divider} from 'react-native-elements';
 
 import styles from './styles';

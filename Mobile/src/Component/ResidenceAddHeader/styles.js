@@ -1,3 +1,4 @@
+import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#7E57C2',
