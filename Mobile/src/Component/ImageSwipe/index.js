@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
 import {
   View,
@@ -5,30 +6,17 @@ import {
   Image,
   ScrollView,
   useWindowDimensions,
-  StyleSheet,
 } from 'react-native';
 
-const styles = StyleSheet.create({
-  pagination: {
-    flexDirection: 'row',
-    position: 'absolute',
-    top: 195,
-    alignSelf: 'center',
-  },
-  dot: {
-    color: '#888',
-    fontSize: 50,
-  },
-  activeDot: {
-    color: '#FFF',
-    fontSize: 50,
-  },
-});
+import {RectButton} from 'react-native-gesture-handler';
+import Ionicon from 'react-native-vector-icons/Ionicons';
+import styles from './styles';
 export default function ImageSwipe({img}) {
   const width = useWindowDimensions().width;
   const height = width * 0.6;
 
   const [active, setActive] = useState(0);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const change = ({nativeEvent}) => {
     const slide = Math.ceil(
@@ -38,6 +26,10 @@ export default function ImageSwipe({img}) {
       setActive(slide);
     }
   };
+
+  function toggleFavorite() {
+    setIsFavorite(!isFavorite);
+  }
   return (
     <View>
       <ScrollView
@@ -54,6 +46,18 @@ export default function ImageSwipe({img}) {
           />
         ))}
       </ScrollView>
+      <View style={styles.favoriteButtonView}>
+        <RectButton
+          style={styles.favoriteButton}
+          onPress={() => {
+            toggleFavorite();
+          }}>
+          {isFavorite == true 
+            ? (<Ionicon name={'ios-heart'} size={50} color={'#CB2F2F'} />)
+            : (<Ionicon name={'ios-heart-outline'} size={50} color={'#CB2F2F'} />)
+          }
+        </RectButton>
+      </View>
       <View style={styles.pagination}>
         {img.map((i, k) => (
           <Text key={k} style={k === active ? styles.activeDot : styles.dot}>

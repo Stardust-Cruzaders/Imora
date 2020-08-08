@@ -124,6 +124,21 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginHorizontal: 25,
   },
+  favoriteButtonView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 100,
+
+    position: 'absolute',
+    right: 1,
+  },
+  favoriteButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 100,
+    padding: 5,
+    alignSelf: 'center',
+  },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
