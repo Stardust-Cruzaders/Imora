@@ -20,14 +20,18 @@ class UsersController {
                     return response.status(400).send('A user with that email already exists');
                 }
                 else if(error.code === "42601") {
-                    console.log("SQL syntax error position:", error.position);
                     return response.status(500).send("SQL syntax error");
+                }
+                else if(error.code === "42602"){
+                    return response.status(500).send("invalid_name Description: A table or database name has incorrect capitalization, characters or a mixture of both errors.");
+                }
+                else if(error.code === "42622"){
+                    return response.status(500).send("name_too_long Description: The identifier is longer than the 63-byte limit. This applies to names for databases, tables, schema, and other Postgres database object identifier names.");
                 }
                 else{
                     throw error
                 }
             }
-            
             response.status(201).json({status: 'success', message: 'User Added'});
         })
     }
