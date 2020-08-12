@@ -26,6 +26,8 @@ routes.post('/:id/residences', residencesController.create);
 
 routes.get('/residencesType', residenceTypeController.index);
 routes.post('/residencesType',residenceTypeController.create);
+routes.put('/residencesType', residenceTypeController.update);
+routes.delete('/residencesType', residenceTypeController.delete);
 
 routes.get('/residencesPlace', residencePlaceController.index);
 routes.post('/residencesPlace',residencePlaceController.create);

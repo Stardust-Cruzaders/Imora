@@ -24,7 +24,24 @@ class ResidenceTypeController {
         });
     }
     update(req,res){
-
+        const {Id} = req.query;
+        const {Name} = req.body;
+        if(Id != undefined || Id != null){
+            pool.query('UPDATE residencetype SET Name =$1 WHERE Id=$2', [Name,Id], (err,result) => {
+                if(err){
+                    throw err;
+                }
+                else if(result.rowCount === 0){
+                    res.status(404).send(`Residence type with Id ${Id} doesn't exist `)
+                }
+                else {
+                    res.status(201).json({message: 'Residence type updated'})
+                }
+            })
+        }
+        else {
+            res.status(400).send(`Id for updating residence type information is missing`);
+        }
     }
     delete(req,res){
 
