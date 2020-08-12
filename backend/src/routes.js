@@ -19,6 +19,7 @@ routes.get('/', (req,res) => {
 routes.get('/users', usersController.index);
 routes.post('/users', usersController.create);
 routes.put('/users', usersController.update);
+routes.delete('/users', usersController.delete);
 
 routes.get('/:id/residences', residencesController.index);
 routes.post('/:id/residences', residencesController.create);

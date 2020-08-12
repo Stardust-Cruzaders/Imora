@@ -38,7 +38,7 @@ class UsersController {
     update(req,res) {
         const {Name, Email, Avatar,Description, IsHost, Phone} = req.body;
         const {Id} = req.query;
-        if(Id !== null || Id !== undefined){
+        if(Id != null || Id != undefined){
             pool.query('UPDATE users set Name =$1, Avatar =$2, Description =$3, IsHost =$4, Phone =$5 WHERE Id =$6',  
             [Name,Avatar,Description,IsHost, Phone, Id], (error, result) => {
                 if(error){
@@ -70,6 +70,34 @@ class UsersController {
         
     }
     async delete(req,res){
+        const {Id} = req.query;
+        if(Id != undefined || Id != null){
+            pool.query('DELETE FROM users WHERE Id=$1', [Id], (error,result) => {
+                if(error){
+                    if(error.code === "42601") {
+                        return res.status(500).send("SQL syntax error");
+                    }
+                    else if(error.code === "42602"){
+                        return res.status(500).send("invalid_name Description: A table or database name has incorrect capitalization, characters or a mixture of both errors.");
+                    }
+                    else if(error.code === "42622"){
+                        return res.status(500).send("name_too_long Description: The identifier is longer than the 63-byte limit. This applies to names for databases, tables, schema, and other Postgres database object identifier names.");
+                    }
+                    else{
+                        throw error
+                    }
+                }
+                if(result.rowCount === 0){
+                    return res.status(404).send(`User with Id ${Id} doesn't exist :c`);
+                }
+                else {
+                    return res.status(201).json({status: 'success', message: `User with Id ${Id} Deleted XD`});
+                }
+            });
+        }
+        else {
+            res.status(400).send('Id for deleting user information is missing');
+        }
 
     } 
 }
