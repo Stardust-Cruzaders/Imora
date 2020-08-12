@@ -1,4 +1,4 @@
-import {pool} from '../database/config';
+const {pool} = require('../database/config');
 
 class ResidencePlaceController {
 

@@ -43,9 +43,9 @@ CREATE TABLE Residences (
     Street VARCHAR(75) NOT NULL,
     Number VARCHAR(75) NOT NULL,
     ResidenceType INT NOT NULL,
-    CONSTRAINT fk_residenceType FOREIGN KEY(ResidenceType) REFERENCES ResidenceType(Id),
+    CONSTRAINT fk_residenceType FOREIGN KEY(ResidenceType) REFERENCES ResidenceType(Id) ON UPDATE CASCADE ON DELETE CASCADE,
     ResidencePlace INT NOT NULL,
-    CONSTRAINT fk_residencePlace FOREIGN KEY(ResidencePlace) REFERENCES ResidencePlace(Id),
+    CONSTRAINT fk_residencePlace FOREIGN KEY(ResidencePlace) REFERENCES ResidencePlace(Id) ON UPDATE CASCADE ON DELETE CASCADE,
     Price NUMERIC(5,2) NOT NULL,
     AllowSmokers BOOLEAN DEFAULT true,
     AllowPets BOOLEAN DEFAULT true,
@@ -63,7 +63,7 @@ CREATE TABLE Residences (
     ResidentsNow INT NOT NULL,
     MaxResident INT NOT NULL,
     OwnerId INTEGER NOT NULL,
-    CONSTRAINT fk_ResidenceOwner FOREIGN KEY(OwnerId) REFERENCES Users(Id)
+    CONSTRAINT fk_ResidenceOwner FOREIGN KEY(OwnerId) REFERENCES Users(Id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
 INSERT INTO Residences (Name, Description, Images,Available,Zipcode,State,City,Neighborhood,Street,Number,ResidenceType,ResidencePlace,Price,AllowSmokers,AllowPets,Wifi,Kitchen,TV,AC,NotebookWork,Grill,Pool, Parking, NumRooms, NumBathrooms, MinTime, ResidentsNow,MaxResident,OwnerId) VALUES('Casa massa','casa 80m², próxima do bauru shopping, ruas movimentadas, farmácias e mercados próximos','{https://i.pinimg.com/474x/08/cc/66/08cc66ca97282b8adce5f18a8138b9fc.jpg,https://i.pinimg.com/474x/bf/16/08/bf1608b36a16ef90ad59fcfd980f0f40.jpg,https://i.pinimg.com/474x/b4/32/cf/b432cfdab88990d6081a91ce3dfffcf3.jpg,https://i.pinimg.com/474x/b0/ff/19/b0ff19bc04f086c8a9404d889b7bd23a.jpg,https://i.pinimg.com/474x/5f/b5/f7/5fb5f7e3de1cc8fe63b5ce283a7ae775.jpg}',true,'17016345','SP','Bauru','Bairro','RUA','990',3,1,675,false,true,true,true,true,true,true,true,false,true,3,2,72,3,4,1);
