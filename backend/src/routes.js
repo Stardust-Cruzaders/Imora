@@ -16,19 +16,26 @@ routes.get('/', (req,res) => {
     return res.json({ OwO: 'UwU'});
 });
 
+//User 
 routes.get('/users', usersController.index);
 routes.post('/users', usersController.create);
 routes.put('/users', usersController.update);
 routes.delete('/users', usersController.delete);
 
+//Residence 
 routes.get('/:id/residences', residencesController.index);
 routes.post('/:id/residences', residencesController.create);
 
+// Residences Type e.g: Chalé, Apartamento, Casa, etc...
 routes.get('/residencesType', residenceTypeController.index);
 routes.post('/residencesType',residenceTypeController.create);
 routes.put('/residencesType', residenceTypeController.update);
 routes.delete('/residencesType', residenceTypeController.delete);
 
+// Residences Place e.g: Quarto inteiro, espaço inteiro, quarto compartilhado etc
 routes.get('/residencesPlace', residencePlaceController.index);
 routes.post('/residencesPlace',residencePlaceController.create);
+routes.put('/residencesPlace', residencePlaceController.update);
+routes.delete('/residencesPlace', residencePlaceController.delete);
+
 module.exports = routes;
