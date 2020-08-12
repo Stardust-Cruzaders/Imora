@@ -2,10 +2,23 @@ const {pool} = require('../database/config');
 
 class ResidencePlaceController {
 
-    async index(req,res){
+    index(req,res){
+        pool.query('SELECT * FROM residenceplace', (err, result) => {
+            if(err){
+                throw err;
+            }
+            else{
+                res.status(200).send(result.rows);
+            }
+        })
+    }
+    create(req,res){
 
     }
-    async create(req,res){
+    update(req, res){
+
+    }
+    delete(req, res){
 
     }
 }
