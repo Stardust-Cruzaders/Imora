@@ -2,9 +2,13 @@ const express = require('express');
 
 const UsersController = require('./controllers/UsersController');
 const ResidencesController = require('./controllers/ResidencesController');
+const ResidenceTypeController = require('./controllers/ResidenceTypeController');
+const ResidencePlaceController = require('./controllers/ResidencePlaceController');
 
-const residencesController = new ResidencesController();
 const usersController = new UsersController();
+const residencesController = new ResidencesController();
+const residenceTypeController = new ResidenceTypeController();
+const residencePlaceController = new ResidencePlaceController();
 
 const routes = express.Router();
 
@@ -17,4 +21,10 @@ routes.post('/users', usersController.create);
 
 routes.get('/:id/residences', residencesController.index);
 routes.post('/:id/residences', residencesController.create);
+
+routes.get('/residencesType', residenceTypeController.index);
+routes.post('/residencesType',residenceTypeController.create);
+
+routes.get('/residencesPlace', residencePlaceController.index);
+routes.post('/residencesPlace',residencePlaceController.create);
 module.exports = routes;
