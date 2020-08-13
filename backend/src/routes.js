@@ -23,8 +23,8 @@ routes.put('/users', usersController.update);
 routes.delete('/users', usersController.delete);
 
 //Residence 
-routes.get('/:id/residences', residencesController.index);
-routes.post('/:id/residences', residencesController.create);
+routes.get('/users/:id/residences', residencesController.index);
+routes.post('/users/:id/residences', residencesController.create);
 
 // Residences Type e.g: Chalé, Apartamento, Casa, etc...
 routes.get('/residencesType', residenceTypeController.index);
