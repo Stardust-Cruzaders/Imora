@@ -31,7 +31,27 @@ class ResidencesController {
         }
     }
     create(req, res){
-
+        const  {
+                HouseName, Description, Images, Available, 
+                ZipCode, State, City, Neighborhood, Street, 
+                Numberr, ResidenceType, ResidencePlace, Price, 
+                AllowSmokers, AllowPets,Wifi, Kitchen, TV, AC, NotebookWork, 
+                Grill, Pool, Parking, NumRooms, NumBathrooms, MinTime, 
+                ResidentsNow, MaxResident
+               } = req.body;
+        const { Id } = req.params; 
+        pool.query('INSERT INTO Residences (Name, Description, Images,Available,Zipcode,State,City,Neighborhood,Street,Number,ResidenceType,ResidencePlace,Price,AllowSmokers,AllowPets,Wifi,Kitchen,TV,AC,NotebookWork,Grill,Pool, Parking, NumRooms, NumBathrooms, MinTime, ResidentsNow,MaxResident,OwnerId) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29)',
+        [HouseName, Description, Images, Available, ZipCode, State, City, Neighborhood, Street, Numberr,ResidenceType, ResidencePlace, Price,
+         AllowSmokers,AllowPets,Wifi, Kitchen, TV, AC, NotebookWork, Grill, Pool, Parking, NumRooms, NumBathrooms, MinTime, ResidentsNow, MaxResident, Id], (err) => {
+             if(err){
+                 throw err;
+             }
+             else {
+                console.log(req.body, Id);
+                return res.status(201).send('Everything ok');
+                
+             }
+         });
     }
     update(req, res){
 
