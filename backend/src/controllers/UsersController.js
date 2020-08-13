@@ -2,8 +2,8 @@ const {pool} = require('../database/config');
 
 class UsersController {
 
-    async index(req,res){
-        await pool.query('SELECT * FROM users', (error, results) => {
+    index(req,res){
+        pool.query('SELECT * FROM users', (error, results) => {
             if(error){
                 throw error
             }
@@ -11,9 +11,9 @@ class UsersController {
         });
     }
 
-    async create(req, res){
+    create(req, res){
         const {Name, Email, Avatar,Description, IsHost, Phone} = req.body;
-        await pool.query('INSERT INTO users(Name,Email,Avatar,Description,IsHost,Phone) VALUES($1,$2,$3,$4,$5,$6)', 
+        pool.query('INSERT INTO users(Name,Email,Avatar,Description,IsHost,Phone) VALUES($1,$2,$3,$4,$5,$6)', 
         [Name,Email,Avatar,Description,IsHost, Phone], (error) => {
             if(error){
                 if(error.code === '23505'){
@@ -69,7 +69,7 @@ class UsersController {
         }
         
     }
-    async delete(req,res){
+    delete(req,res){
         const {Id} = req.query;
         if(Id != undefined || Id != null){
             pool.query('DELETE FROM users WHERE Id=$1', [Id], (error,result) => {
