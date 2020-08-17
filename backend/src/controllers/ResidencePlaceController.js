@@ -13,21 +13,21 @@ class ResidencePlaceController {
         })
     }
     create(req,res){
-        const {Name} = req.body;
-        pool.query('INSERT INTO residenceplace(Name) VALUES($1)', [Name], (err) => {
+        const {Place} = req.body;
+        pool.query('INSERT INTO residenceplace(Place) VALUES($1)', [Place], (err) => {
             if(err){
                 throw err;
             }
             else {
-                res.status(201).json({message: `Residence Place ${Name} Added`});
+                res.status(201).json({message: `Residence Place ${Place} Added`});
             }
         });
     }
     update(req,res){
         const {Id} = req.query;
-        const {Name} = req.body;
+        const {Place} = req.body;
         if(Id != undefined || Id != null){
-            pool.query('UPDATE residenceplace SET Name =$1 WHERE Id=$2', [Name,Id], (err,result) => {
+            pool.query('UPDATE residenceplace SET Place =$1 WHERE Id=$2', [Place,Id], (err,result) => {
                 if(err){
                     throw err;
                 }
