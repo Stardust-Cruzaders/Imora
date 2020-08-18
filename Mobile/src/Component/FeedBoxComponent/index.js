@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/Feather';
 const newImoraData = [
    {
        "id" : "1",
-       "name" : "Rocha",
+       "name" : "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
        "img" : "https://www.stonerdays.com/wp-content/uploads/2015/11/patrick-star-house-1.jpg",
        "price" : "420,00",
        "stars" : "4,5",
@@ -49,7 +49,7 @@ export default function FeedBoxComponent(){
               <Image source={{uri: item.img}} style={styles.image} />
   
               <View style={styles.starsItem}>
-                <Text style={styles.priceText}>R${item.price}/noite </Text>
+                <Text style={styles.priceText}>R${item.price}/mês </Text>
                 <Text style={styles.starText}>
                   {item.stars} <Icon name="star" size={20} color="#26E07C" />
                   <Text style={styles.subStarsStyle}> ({item.sub_stars})</Text>

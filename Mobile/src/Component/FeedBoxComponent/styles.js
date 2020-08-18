@@ -3,6 +3,8 @@ import {StyleSheet, Dimensions} from 'react-native';
 
 const {width} = Dimensions.get('window');
 
+import textStyles from './../../textStyles';
+
 const styles = StyleSheet.create({
   feedBox: {
     marginTop: 20,
@@ -10,6 +12,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: width - 50,
     alignSelf: 'center',
+    marginBottom: 10
   },
   image: {
     width: '100%',
@@ -37,23 +40,30 @@ const styles = StyleSheet.create({
   titleText: {
     fontFamily: 'Roboto',
     color: '#3F3F3F',
-    fontSize: 20,
+    fontSize: 22,
+    letterSpacing: 0.6
   },
   bottomTextPos: {
     paddingHorizontal: 15,
   },
   localizationText: {
-    fontSize: 14,
+    fontSize: 13  ,
     color: '#8D8D97',
     fontFamily: 'Roboto',
+    letterSpacing: 1,
+    paddingVertical: 7
+
   },
   priceText: {
     fontSize: 16,
     fontWeight: 'bold',
+    letterSpacing: 0.5,
+    marginLeft: 5
   },
   starText: {
     fontWeight: 'bold',
     fontSize: 16,
+
   },
   subStarsStyle: {
     fontSize: 12,
