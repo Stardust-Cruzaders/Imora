@@ -15,7 +15,7 @@ export default function App() {
   return (
     <>
       <StatusBar backgroundColor={'#4D2C91'} />
-      <ResidenceDetailed />
+      <Feed />
     </>
   );
 }
