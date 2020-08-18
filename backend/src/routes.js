@@ -19,8 +19,8 @@ routes.get('/', (req,res) => {
 //User 
 routes.get('/users', usersController.index);
 routes.post('/users', usersController.create);
-routes.put('/users', usersController.update);
-routes.delete('/users', usersController.delete);
+routes.put('/users/:Id', usersController.update);
+routes.delete('/users/:Id', usersController.delete);
 
 //Residence 
 routes.get('/users/:Id/residences', residencesController.index);
