@@ -13,7 +13,7 @@ import CheckboxComponent from '../../../../Component/CheckboxComponent';
 import {RadioButton, TextInput} from 'react-native-paper';
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 
-export default function ResidenceAddConditions() {
+export default function ResidenceAddConditions({navigation}) {
   const [maxResidentNum, setMaxResidentNum] = useState('1');
   const [allowPets, setAllowPets] = useState(false);
   const [allowSmokers, setAllowSmokers] = useState(false);
@@ -102,7 +102,11 @@ export default function ResidenceAddConditions() {
               </View>
             </View>
             <View style={styles.cardFooter}>
-              <BorderlessButton style={styles.button} onPress={() => {}}>
+              <BorderlessButton
+                style={styles.button}
+                onPress={() => {
+                  navigation.goBack();
+                }}>
                 <Icon name={'arrow-left-circle'} color={'#7E57C2'} size={40} />
               </BorderlessButton>
               <Text style={styles.dot}>•</Text>
@@ -110,7 +114,11 @@ export default function ResidenceAddConditions() {
               <Text style={styles.dot}>•</Text>
               <Text style={styles.activeDot}>•</Text>
               <Text style={styles.dot}>•</Text>
-              <BorderlessButton style={styles.button} onPress={() => {}}>
+              <BorderlessButton
+                style={styles.button}
+                onPress={() => {
+                  navigation.navigate('ResidenceAddLocation');
+                }}>
                 <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
               </BorderlessButton>
             </View>

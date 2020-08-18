@@ -17,7 +17,7 @@ import {RadioButton} from 'react-native-paper';
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
-export default function ResidenceAddType() {
+export default function ResidenceAddType({navigation}) {
   const [checked, setChecked] = useState('first');
   const [checkedHouseType, setCheckedHouseType] = useState('house');
   const [description, setDescription] = useState('');
@@ -164,7 +164,11 @@ export default function ResidenceAddType() {
               </View>
 
               <View style={styles.cardFooter}>
-                <BorderlessButton style={styles.button} onPress={() => {}}>
+                <BorderlessButton
+                  style={styles.button}
+                  onPress={() => {
+                    navigation.goBack();
+                  }}>
                   <Icon
                     name={'arrow-left-circle'}
                     color={'#7E57C2'}
@@ -176,7 +180,11 @@ export default function ResidenceAddType() {
                 <Text style={styles.dot}>•</Text>
                 <Text style={styles.dot}>•</Text>
                 <Text style={styles.dot}>•</Text>
-                <BorderlessButton style={styles.button} onPress={() => {}}>
+                <BorderlessButton
+                  style={styles.button}
+                  onPress={() => {
+                    navigation.navigate('ResidenceAddComfort');
+                  }}>
                   <Icon
                     name={'arrow-right-circle'}
                     color={'#7E57C2'}

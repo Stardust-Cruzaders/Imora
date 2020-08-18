@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../../Component/Div';
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 
-export default function ResidenceAddLocation() {
+export default function ResidenceAddLocation({navigation}) {
   const [zipcode, setZipcode] = useState('');
   const [street, setStreet] = useState('');
   const [number, setNumber] = useState('');
@@ -78,7 +78,11 @@ export default function ResidenceAddLocation() {
           </View>
 
           <View style={styles.cardFooter}>
-            <BorderlessButton style={styles.navButton} onPress={() => {}}>
+            <BorderlessButton
+              style={styles.navButton}
+              onPress={() => {
+                navigation.goBack();
+              }}>
               <Icon name={'arrow-left-circle'} color={'#7E57C2'} size={40} />
             </BorderlessButton>
             <Text style={styles.dot}>•</Text>
@@ -86,7 +90,11 @@ export default function ResidenceAddLocation() {
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.activeDot}>•</Text>
-            <BorderlessButton style={styles.navButton} onPress={() => {}}>
+            <BorderlessButton
+              style={styles.navButton}
+              onPress={() => {
+                navigation.navigate('ResidenceEdit');
+              }}>
               <Icon name={'check-circle'} color={'#26E07C'} size={40} />
             </BorderlessButton>
           </View>
