@@ -13,26 +13,26 @@ VALUES('Kauã Steliano','stelianok@gmail.com','https://avatars2.githubuserconten
 
 CREATE TABLE ResidenceType (
     Id SERIAL PRIMARY KEY,
-    Name VARCHAR(100)
+    Type VARCHAR(100)
     );
 
-INSERT INTO  ResidenceType(Name) VALUES('Apartamento');
-INSERT INTO  ResidenceType(Name) VALUES('República');
-INSERT INTO  ResidenceType (Name) VALUES('Casa');
-INSERT INTO  ResidenceType (Name) VALUES('KitNet');
+INSERT INTO  ResidenceType(Type) VALUES('Apartamento');
+INSERT INTO  ResidenceType(Type) VALUES('República');
+INSERT INTO  ResidenceType (Type) VALUES('Casa');
+INSERT INTO  ResidenceType (Type) VALUES('KitNet');
 
 CREATE TABLE ResidencePlace (
     Id SERIAL PRIMARY KEY,
-    Name VARCHAR(100)
+    Place VARCHAR(100)
     );
 
-INSERT INTO  ResidencePlace (Name) VALUES('Espaço Inteiro');
-INSERT INTO  ResidencePlace (Name) VALUES('Quarto inteiro');
-INSERT INTO  ResidencePlace (Name) VALUES('Quarto compartilhado');
+INSERT INTO  ResidencePlace (Place) VALUES('Espaço Inteiro');
+INSERT INTO  ResidencePlace (Place) VALUES('Quarto inteiro');
+INSERT INTO  ResidencePlace (Place) VALUES('Quarto compartilhado');
 
 CREATE TABLE Residences (
     Id SERIAL PRIMARY KEY,
-    Name VARCHAR(255),
+    ResidenceName VARCHAR(255),
     Description VARCHAR(600) NOT NULL,
     Images TEXT[] NOT NULL,
     Available BOOLEAN NOT NULL DEFAULT true,
@@ -66,5 +66,5 @@ CREATE TABLE Residences (
     CONSTRAINT fk_ResidenceOwner FOREIGN KEY(OwnerId) REFERENCES Users(Id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
-INSERT INTO Residences (Name, Description, Images,Available,Zipcode,State,City,Neighborhood,Street,Number,ResidenceType,ResidencePlace,Price,AllowSmokers,AllowPets,Wifi,Kitchen,TV,AC,NotebookWork,Grill,Pool, Parking, NumRooms, NumBathrooms, MinTime, ResidentsNow,MaxResident,OwnerId) VALUES('Casa massa','casa 80m², próxima do bauru shopping, ruas movimentadas, farmácias e mercados próximos','{https://i.pinimg.com/474x/08/cc/66/08cc66ca97282b8adce5f18a8138b9fc.jpg,https://i.pinimg.com/474x/bf/16/08/bf1608b36a16ef90ad59fcfd980f0f40.jpg,https://i.pinimg.com/474x/b4/32/cf/b432cfdab88990d6081a91ce3dfffcf3.jpg,https://i.pinimg.com/474x/b0/ff/19/b0ff19bc04f086c8a9404d889b7bd23a.jpg,https://i.pinimg.com/474x/5f/b5/f7/5fb5f7e3de1cc8fe63b5ce283a7ae775.jpg}',true,'17016345','SP','Bauru','Bairro','RUA','990',3,1,675,false,true,true,true,true,true,true,true,false,true,3,2,72,3,4,1);
+INSERT INTO Residences (ResidenceName, Description, Images,Available,Zipcode,State,City,Neighborhood,Street,Number,ResidenceType,ResidencePlace,Price,AllowSmokers,AllowPets,Wifi,Kitchen,TV,AC,NotebookWork,Grill,Pool, Parking, NumRooms, NumBathrooms, MinTime, ResidentsNow,MaxResident,OwnerId) VALUES('Casa massa','casa 80m², próxima do bauru shopping, ruas movimentadas, farmácias e mercados próximos','{https://i.pinimg.com/474x/08/cc/66/08cc66ca97282b8adce5f18a8138b9fc.jpg,https://i.pinimg.com/474x/bf/16/08/bf1608b36a16ef90ad59fcfd980f0f40.jpg,https://i.pinimg.com/474x/b4/32/cf/b432cfdab88990d6081a91ce3dfffcf3.jpg,https://i.pinimg.com/474x/b0/ff/19/b0ff19bc04f086c8a9404d889b7bd23a.jpg,https://i.pinimg.com/474x/5f/b5/f7/5fb5f7e3de1cc8fe63b5ce283a7ae775.jpg}',true,'17016345','SP','Bauru','Bairro','RUA','990',3,1,675,false,true,true,true,true,true,true,true,false,true,3,2,72,3,4,1);
 

@@ -13,21 +13,21 @@ class ResidenceTypeController {
         });
     }
     create(req,res){
-        const {Name} = req.body;
-        pool.query('INSERT INTO residencetype(Name) VALUES($1)', [Name], (err) => {
+        const {Type} = req.body;
+        pool.query('INSERT INTO residencetype(Type) VALUES($1)', [Type], (err) => {
             if(err){
                 throw err;
             }
             else {
-                res.status(201).json({message: `Residence Type ${Name} Added`});
+                res.status(201).json({message: `Residence Type ${Type} Added`});
             }
         });
     }
     update(req,res){
         const {Id} = req.query;
-        const {Name} = req.body;
+        const {Type} = req.body;
         if(Id != undefined || Id != null){
-            pool.query('UPDATE residencetype SET Name =$1 WHERE Id=$2', [Name,Id], (err,result) => {
+            pool.query('UPDATE residencetype SET Type =$1 WHERE Id=$2', [Type,Id], (err,result) => {
                 if(err){
                     throw err;
                 }
