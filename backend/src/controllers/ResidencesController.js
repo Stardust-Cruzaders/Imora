@@ -79,18 +79,24 @@ class ResidencesController {
          }); 
     }
     delete(req, res){
-        const {Id} = req.query;
-        pool.query('DELETE FROM residences WHERE Id=$1' [Id], (err, result) => {
-            if(err){
-                throw err;
-            }
-            if(result.rowCount === 0){
-                return res.status(404).json({message: `Residence with Id ${Id} doesn't exist :c`});
-            }
-            else {
-                return res.status(204).send();
-            }
-        })
+        const {houseId} = req.params;
+        if(houseId != null || houseId != undefined){
+            pool.query('DELETE FROM residences WHERE Id=$1', [houseId], (err, result) => {
+                if(err){
+                    throw err;
+                }
+                if(result.rowCount === 0){
+                    return res.status(404).json({message: `Residence with Id ${houseId} doesn't exist :c`});
+                }
+                else {
+                    return res.status(204).send();
+                }
+            });
+        }
+        else {
+            return res.status(400).json({message: "Id for deleting residence information is missing"})
+        }
+       
     }
 }
 module.exports = ResidencesController;
