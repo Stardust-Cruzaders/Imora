@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#DDE0E3',
     flex: 1,
-  
   },
   bottomTabNav: {
     backgroundColor: '#7E57C2',
@@ -19,8 +18,7 @@ const styles = StyleSheet.create({
 
     borderTopWidth: 1,
     borderColor: '#7E57C2',
-  }
-
+  },
 });
 
 export default styles;
