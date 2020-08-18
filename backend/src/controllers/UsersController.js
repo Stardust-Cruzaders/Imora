@@ -12,9 +12,9 @@ class UsersController {
     }
 
     create(req, res){
-        const {Name, Email, Avatar,Description, IsHost, Phone} = req.body;
-        pool.query('INSERT INTO users(Name,Email,Avatar,Description,IsHost,Phone) VALUES($1,$2,$3,$4,$5,$6)', 
-        [Name,Email,Avatar,Description,IsHost, Phone], (error) => {
+        const {Name, Email, Avatar,Bio, IsHost, Phone} = req.body;
+        pool.query('INSERT INTO users(Name,Email,Avatar,Bio,IsHost,Phone) VALUES($1,$2,$3,$4,$5,$6)', 
+        [Name,Email,Avatar,Bio,IsHost, Phone], (error) => {
             if(error){
                 if(error.code === '23505'){
                     return res.status(400).send('A user with that email already exists');
@@ -36,11 +36,11 @@ class UsersController {
         })
     }
     update(req,res) {
-        const {Name, Email, Avatar,Description, IsHost, Phone} = req.body;
+        const {Name, Email, Avatar,Bio, IsHost, Phone} = req.body;
         const {Id} = req.query;
         if(Id != null || Id != undefined){
-            pool.query('UPDATE users set Name =$1, Avatar =$2, Description =$3, IsHost =$4, Phone =$5 WHERE Id =$6',  
-            [Name,Avatar,Description,IsHost, Phone, Id], (error, result) => {
+            pool.query('UPDATE users set Name =$1, Avatar =$2, Bio =$3, IsHost =$4, Phone =$5 WHERE Id =$6',  
+            [Name,Avatar,Bio,IsHost, Phone, Id], (error, result) => {
                 if(error){
                     if(error.code === "42601") {
                         return res.status(500).send("SQL syntax error");

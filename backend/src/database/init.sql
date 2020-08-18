@@ -3,12 +3,12 @@ CREATE TABLE Users (
     Name VARCHAR(255) NOT NULL,
     Email VARCHAR(255) NOT NULL UNIQUE,
     Avatar TEXT NOT NULL,
-    Description VARCHAR(600) NOT NULL,
+    Bio VARCHAR(600) NOT NULL,
     Phone VARCHAR(75),
     IsHost BOOLEAN NOT NULL DEFAULT false
     );
 
-INSERT INTO USERS(Name,Email,Avatar,Description,IsHost) 
+INSERT INTO USERS(Name,Email,Avatar,Bio,IsHost) 
 VALUES('Kauã Steliano','stelianok@gmail.com','https://avatars2.githubusercontent.com/u/39469125?s=460&u=97e778a861a7a42bee1b16f6be1c80467c50c1d1&v=4','Espero que seja bem hospedado, tento sempre oferecer o melhor serviço possível',true);
 
 CREATE TABLE ResidenceType (
