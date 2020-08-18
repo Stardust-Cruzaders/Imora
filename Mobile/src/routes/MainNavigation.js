@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Feed from '../screens/Feed';
 import Offers from '../screens/Offers';
 import Chat from '../screens/Chat';
-import ProfileSelf from '../screens/Profile/ProfileSelf';
+import ProfileSelfNavigation from './ProfileSelfNavigation';
 
 const Tab = createMaterialBottomTabNavigator();
 export default function MainNavigation() {
@@ -18,7 +18,7 @@ export default function MainNavigation() {
       <Tab.Navigator
         initialRouteName="Explorar"
         activeColor="#f0edf6"
-        barStyle={{backgroundColor: '#7E57C2'}}
+        barStyle={{backgroundColor: '#7E57C2', paddingVertical: 5}}
         shifting={true}>
         <Tab.Screen
           name="Explorar"
@@ -26,7 +26,7 @@ export default function MainNavigation() {
           options={{
             tabBarLabel: 'Explorar',
             tabBarIcon: () => (
-              <Icon name={'compass'} size={24} color={'#fff'} />
+              <Icon name={'compass'} size={26} color={'#fff'} />
             ),
           }}
         />
@@ -35,7 +35,7 @@ export default function MainNavigation() {
           component={Offers}
           options={{
             tabBarLabel: 'Ofertas',
-            tabBarIcon: () => <Icon name={'zap'} size={24} color={'#FFF'} />,
+            tabBarIcon: () => <Icon name={'zap'} size={26} color={'#FFF'} />,
           }}
         />
         <Tab.Screen
@@ -44,16 +44,16 @@ export default function MainNavigation() {
           options={{
             tabBarLabel: 'Mensagens',
             tabBarIcon: () => (
-              <Icon name={'message-circle'} size={24} color={'#FFF'} />
+              <Icon name={'message-circle'} size={26} color={'#FFF'} />
             ),
           }}
         />
         <Tab.Screen
           name="Perfil"
-          component={ProfileSelf}
+          component={ProfileSelfNavigation}
           options={{
             tabBarLabel: 'Perfil',
-            tabBarIcon: () => <Icon name={'user'} size={24} color={'#FFF'} />,
+            tabBarIcon: () => <Icon name={'user'} size={26} color={'#FFF'} />,
           }}
         />
       </Tab.Navigator>
