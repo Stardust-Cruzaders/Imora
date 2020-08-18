@@ -63,6 +63,7 @@ CREATE TABLE Residences (
     ResidentsNow INT NOT NULL,
     MaxResident INT NOT NULL,
     OwnerId INTEGER NOT NULL,
+    IsFavorite BOOLEAN NOT NULL DEFAULT false,
     CONSTRAINT fk_ResidenceOwner FOREIGN KEY(OwnerId) REFERENCES Users(Id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
