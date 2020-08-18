@@ -11,7 +11,7 @@ import Div from '../../../../Component/Div';
 import CheckboxComponent from '../../../../Component/CheckboxComponent';
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 
-export default function ResidenceAddComfort() {
+export default function ResidenceAddComfort({navigation}) {
   const [hasWifi, setHasWifi] = useState(false);
   const [hasTV, setHasTV] = useState(false);
   const [hasAC, setHasAC] = useState(false);
@@ -72,7 +72,11 @@ export default function ResidenceAddComfort() {
             />
           </View>
           <View style={[styles.cardFooter]}>
-            <BorderlessButton style={styles.button} onPress={() => {}}>
+            <BorderlessButton
+              style={styles.button}
+              onPress={() => {
+                navigation.goBack();
+              }}>
               <Icon name={'arrow-left-circle'} color={'#7E57C2'} size={40} />
             </BorderlessButton>
             <Text style={styles.dot}>•</Text>
@@ -80,7 +84,11 @@ export default function ResidenceAddComfort() {
             <Text style={styles.activeDot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
-            <BorderlessButton style={styles.button} onPress={() => {}}>
+            <BorderlessButton
+              style={styles.button}
+              onPress={() => {
+                navigation.navigate('ResidenceAddConditions');
+              }}>
               <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
             </BorderlessButton>
           </View>
