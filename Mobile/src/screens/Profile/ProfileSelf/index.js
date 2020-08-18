@@ -8,14 +8,17 @@ import textStyles from '../../../textStyles';
 import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../Component/Div';
 
-export default function ProfileSelf() {
+export default function ProfileSelf({navigation}) {
   const width = useWindowDimensions().width;
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.headerView}>
           <View style={[styles.topBar, {width: width}]}>
-            <BorderlessButton onPress={() => {}}>
+            <BorderlessButton
+              onPress={() => {
+                navigation.navigate('ProfileEdit');
+              }}>
               <Icon name={'settings'} size={40} color={'#FFF'} />
             </BorderlessButton>
           </View>
@@ -82,7 +85,11 @@ export default function ProfileSelf() {
             </Text>
             <View>
               <Div threshold={100} />
-              <RectButton style={styles.button} onPress={() => {}}>
+              <RectButton
+                style={styles.button}
+                onPress={() => {
+                  navigation.navigate('Favorites');
+                }}>
                 <View style={styles.iconTextView}>
                   <Icon
                     name={'heart'}
@@ -94,7 +101,11 @@ export default function ProfileSelf() {
                 </View>
               </RectButton>
               <Div threshold={100} />
-              <RectButton style={styles.button} onPress={() => {}}>
+              <RectButton
+                style={styles.button}
+                onPress={() => {
+                  navigation.navigate('MyAds');
+                }}>
                 <View style={styles.iconTextView}>
                   <Icon
                     name={'inbox'}
@@ -106,7 +117,11 @@ export default function ProfileSelf() {
                 </View>
               </RectButton>
               <Div threshold={100} />
-              <RectButton style={styles.button} onPress={() => {}}>
+              <RectButton
+                style={styles.button}
+                onPress={() => {
+                  navigation.navigate('MyResidences');
+                }}>
                 <View style={styles.iconTextView}>
                   <Icon
                     name={'home'}
