@@ -37,7 +37,7 @@ class UsersController {
     }
     update(req,res) {
         const {Name, Email, Avatar,Bio, IsHost, Phone} = req.body;
-        const {Id} = req.query;
+        const {Id} = req.params;
         if(Id != null || Id != undefined){
             pool.query('UPDATE users set Name =$1, Avatar =$2, Bio =$3, IsHost =$4, Phone =$5 WHERE Id =$6',  
             [Name,Avatar,Bio,IsHost, Phone, Id], (error, result) => {
@@ -70,7 +70,7 @@ class UsersController {
         
     }
     delete(req,res){
-        const {Id} = req.query;
+        const {Id} = req.params;
         if(Id != undefined || Id != null){
             pool.query('DELETE FROM users WHERE Id=$1', [Id], (error,result) => {
                 if(error){
