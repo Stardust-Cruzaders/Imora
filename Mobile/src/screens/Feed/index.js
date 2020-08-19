@@ -1,14 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { View, SafeAreaView} from 'react-native';
 
 import styles from './styles';
 import Icon from 'react-native-vector-icons/Feather';
-import FeedBoxComponent from '../../Component/FeedBoxComponent';
 
+import FeedBoxComponent from '../../Component/FeedBoxComponent';
+import SearchBar from '../../Component/SearchBar';
 
 export default function Feed() {
   return (
     <SafeAreaView style={styles.container}>
+      <SearchBar />
+
       <FeedBoxComponent />
 
       <View style={styles.bottomTabNav}>
