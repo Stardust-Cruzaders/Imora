@@ -6,11 +6,18 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import FeedBoxComponent from '../../Component/FeedBoxComponent';
 import SearchBar from '../../Component/SearchBar';
+import FilterComponent from '../../Component/FilterComponent';
 
 export default function Feed() {
   return (
+    
     <SafeAreaView style={styles.container}>
-      <SearchBar />
+      
+      <View style={styles.headerNav}>
+        <SearchBar />
+        <FilterComponent />
+      </View>
+     
 
       <FeedBoxComponent />
 
