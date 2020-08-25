@@ -45,6 +45,14 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 15,
   },
+  iconContainer: {
+    flexDirection: 'row',
+    alignContent: 'space-between',
+  },
+  facebookIcon: {
+    position: 'absolute',
+    right: 125,
+  },
   buttonText: {
     color: '#FFF',
     fontSize: 20,
