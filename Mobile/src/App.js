@@ -4,12 +4,12 @@ import React from 'react';
 import {StatusBar} from 'react-native';
 
 import MainNavigation from './routes/MainNavigation';
-import ResidenceAddNavigation from './routes/ResidenceAddNavigation';
+import LoginNavigation from './routes/LoginNavigation';
 export default function App() {
   return (
     <>
       <StatusBar backgroundColor={'#4D2C91'} />
-      <MainNavigation />
+      <LoginNavigation />
     </>
   );
 }
