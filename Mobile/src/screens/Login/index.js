@@ -13,9 +13,11 @@ import {
 } from 'react-native-fbsdk';
 import {ActivityIndicator} from 'react-native-paper';
 
+// user.picture.data.url
 export default function Login() {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
+  const [accessToken, setAccessToken] = useState('');
   function getUserCallback(error, result) {
     if (error) {
       console.log('getUserError', error);
@@ -50,6 +52,7 @@ export default function Login() {
           const accessData = await AccessToken.getCurrentAccessToken();
           setLoading(true);
           getUserInfo(accessData.accessToken);
+          setAccessToken(accessData.accessToken);
         }
       },
       function (error) {
@@ -70,17 +73,18 @@ export default function Login() {
             Explorar o App
           </Text>
         </RectButton>
-        <View>
+
+        {/*<View>
           {loading && <ActivityIndicator />}
           {user && (
             // eslint-disable-next-line react-native/no-inline-styles
             <View style={{alignItems: 'center', justifyContent: 'center'}}>
               <Text>{user.name} </Text>
               <Text>{user.email} </Text>
-              <Text>{user.picture.data.url} </Text>
+              <Text>{accessToken} </Text>
             </View>
-          )}
-        </View>
+          )
+        </View>*/}
         <RectButton
           onPress={() => {
             handleFacebookAuth();
