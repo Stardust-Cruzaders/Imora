@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, View} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import styles from './styles';
@@ -11,11 +11,35 @@ import {
   GraphRequest,
   GraphRequestManager,
 } from 'react-native-fbsdk';
+import {ActivityIndicator} from 'react-native-paper';
 
 export default function Login() {
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  function getUserCallback(error, result) {
+    if (error) {
+      console.log('getUserError', error);
+    } else {
+      setLoading(false);
+      setUser(result);
+    }
+  }
+  function getUserInfo(token) {
+    const infoRequest = new GraphRequest(
+      '/me',
+      {
+        accessToken: token,
+        parameters: {
+          fields: {string: 'email, name,  picture.type(large)'},
+        },
+      },
+      getUserCallback,
+    );
+    new GraphRequestManager().addRequest(infoRequest).start();
+  }
   function handleFacebookAuth() {
     LoginManager.logInWithPermissions(['public_profile', 'email']).then(
-      function (result) {
+      async function (result) {
         if (result.isCancelled) {
           console.log('Login Cancelled');
         } else {
@@ -23,6 +47,9 @@ export default function Login() {
             'Login success with permissions ' +
               result.grantedPermissions.toString(),
           );
+          const accessData = await AccessToken.getCurrentAccessToken();
+          setLoading(true);
+          getUserInfo(accessData.accessToken);
         }
       },
       function (error) {
@@ -43,7 +70,17 @@ export default function Login() {
             Explorar o App
           </Text>
         </RectButton>
-
+        <View>
+          {loading && <ActivityIndicator />}
+          {user && (
+            // eslint-disable-next-line react-native/no-inline-styles
+            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+              <Text>{user.name} </Text>
+              <Text>{user.email} </Text>
+              <Text>{user.picture.data.url} </Text>
+            </View>
+          )}
+        </View>
         <RectButton
           onPress={() => {
             handleFacebookAuth();
