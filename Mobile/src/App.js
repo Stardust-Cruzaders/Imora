@@ -11,6 +11,7 @@ import ResidenceAddLocation from './screens/Residence/ResidenceAdd/ResidenceAddL
 import ResidenceAddMain from './screens/Residence/ResidenceAdd/ResidenceAddMain';
 import ResidenceAddType from './screens/Residence/ResidenceAdd/ResidenceAddType';
 import Feed from './screens/Feed';
+import FilterScreen from './screens/FilterScreen';
 export default function App() {
   return (
     <>
