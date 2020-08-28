@@ -19,14 +19,14 @@ routes.get('/', (req,res) => {
 //User 
 routes.get('/users', usersController.index);
 routes.post('/users', usersController.create);
-routes.put('/users', usersController.update);
-routes.delete('/users', usersController.delete);
+routes.put('/users/:Id', usersController.update);
+routes.delete('/users/:Id', usersController.delete);
 
 //Residence 
 routes.get('/users/:Id/residences', residencesController.index);
 routes.post('/users/:Id/residences', residencesController.create);
-routes.put('/users/:Id/residences', residencesController.update);
-routes.delete('/users/:Id/residences', residencesController.delete);
+routes.put('/users/:Id/residences/:houseId', residencesController.update);
+routes.delete('/users/:Id/residences/:houseId', residencesController.delete);
 
 // Residences Type e.g: Chalé, Apartamento, Casa, etc...
 routes.get('/residencesType', residenceTypeController.index);

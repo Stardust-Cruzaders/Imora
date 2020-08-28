@@ -10,7 +10,7 @@ import Div from '../../../../Component/Div';
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
-export default function ResidenceAddMain() {
+export default function ResidenceAddMain({navigation}) {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const width = useWindowDimensions().width;
@@ -71,7 +71,11 @@ export default function ResidenceAddMain() {
           </BorderlessButton>
 
           <View style={styles.cardFooter}>
-            <BorderlessButton style={styles.navButton} onPress={() => {}}>
+            <BorderlessButton
+              style={styles.navButton}
+              onPress={() => {
+                navigation.goBack();
+              }}>
               <Icon name={'log-out'} color={'#E03826'} size={40} />
             </BorderlessButton>
             <Text style={styles.activeDot}>•</Text>
@@ -79,7 +83,11 @@ export default function ResidenceAddMain() {
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
-            <BorderlessButton style={styles.navButton} onPress={() => {}}>
+            <BorderlessButton
+              style={styles.navButton}
+              onPress={() => {
+                navigation.navigate('ResidenceAddType');
+              }}>
               <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
             </BorderlessButton>
           </View>
