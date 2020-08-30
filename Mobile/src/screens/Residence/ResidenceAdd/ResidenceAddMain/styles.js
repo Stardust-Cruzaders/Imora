@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
 
     justifyContent: 'center',
-
+    position: 'absolute',
     borderRadius: 10,
     padding: 20,
   },

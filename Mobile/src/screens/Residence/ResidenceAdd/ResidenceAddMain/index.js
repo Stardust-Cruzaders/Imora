@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {Text, View, useWindowDimensions, TextInput} from 'react-native';
+import {
+  Text,
+  View,
+  KeyboardAvoidingView,
+  useWindowDimensions,
+  TextInput,
+} from 'react-native';
 
 import styles from './styles';
 import textStyles from '../../../../textStyles';
@@ -20,7 +26,9 @@ export default function ResidenceAddMain({navigation}) {
     <>
       <ResidenceAddHeader />
       <View style={styles.container}>
-        <View style={[styles.card, {width: width - 55}]}>
+        <KeyboardAvoidingView
+          enabled={false}
+          style={[styles.card, {width: width - 55}]}>
           <Text style={[styles.cardTitle, textStyles.font]}> Introdução </Text>
           <Div threshold={120} height={2} />
           <Text style={[styles.description, textStyles.font]}>
@@ -93,7 +101,7 @@ export default function ResidenceAddMain({navigation}) {
               <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
             </BorderlessButton>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </View>
     </>
   );
