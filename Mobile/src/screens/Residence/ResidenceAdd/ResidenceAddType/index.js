@@ -180,6 +180,7 @@ export default function ResidenceAddType({navigation}) {
                 <Text style={styles.dot}>•</Text>
                 <Text style={styles.dot}>•</Text>
                 <Text style={styles.dot}>•</Text>
+                <Text style={styles.dot}>•</Text>
                 <BorderlessButton
                   style={styles.button}
                   onPress={() => {

@@ -93,6 +93,7 @@ export default function ResidenceAddMain({navigation}) {
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
+            <Text style={styles.dot}>•</Text>
             <BorderlessButton
               style={styles.navButton}
               onPress={() => {
