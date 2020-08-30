@@ -13,6 +13,8 @@ import {BorderlessButton} from 'react-native-gesture-handler';
 export default function ResidenceAddMain({navigation}) {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
+  const [numRooms, setNumRooms] = useState('');
+  const [numBathrooms, setNumBathrooms] = useState('');
   const width = useWindowDimensions().width;
   return (
     <>
@@ -41,15 +43,15 @@ export default function ResidenceAddMain({navigation}) {
             />
             <TextInput
               style={[styles.input, {width: width - 80}]}
-              value={price.toString()}
-              onChangeText={(text) => setPrice(text)}
+              value={numRooms.toString()}
+              onChangeText={(text) => setNumRooms(text)}
               placeholder={'Quantidade de quartos disponíveis '}
               keyboardType={'number-pad'}
             />
             <TextInput
               style={[styles.input, {width: width - 80}]}
-              value={price.toString()}
-              onChangeText={(text) => setPrice(text)}
+              value={numBathrooms.toString()}
+              onChangeText={(text) => setNumBathrooms(text)}
               placeholder={'Quantidade de banheiros disponíveis'}
               keyboardType={'number-pad'}
             />
