@@ -2,15 +2,14 @@ import React, {useState} from 'react';
 import {Text, View, useWindowDimensions, TextInput} from 'react-native';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
-import textStyles from '../../../../textStyles';
+import textStyles from '../../../../../textStyles';
 import styles from './styles';
 
 import Icon from 'react-native-vector-icons/Feather';
-import Div from '../../../../Component/Div';
-import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
+import Div from '../../../../../Component/Div';
+import ResidenceAddHeader from '../../../../../Component/ResidenceAddHeader';
 
-export default function ResidenceAddLocation({navigation}) {
-  const [zipcode, setZipcode] = useState('');
+export default function ResidenceAddLocationAddress({navigation}) {
   const [street, setStreet] = useState('');
   const [number, setNumber] = useState('');
   const [neighborhood, setNeighborhood] = useState('');
@@ -29,13 +28,6 @@ export default function ResidenceAddLocation({navigation}) {
             Aqui você pode definir a Localização da residência.
           </Text>
           <View style={styles.main}>
-            <TextInput
-              style={[styles.input, {width: width - 80}]}
-              value={zipcode}
-              onChangeText={(text) => setZipcode(text)}
-              placeholder={'Cep:'}
-              keyboardType={'numeric'}
-            />
             <TextInput
               style={[styles.input, {width: width - 80}]}
               value={street}
@@ -85,6 +77,7 @@ export default function ResidenceAddLocation({navigation}) {
               }}>
               <Icon name={'arrow-left-circle'} color={'#7E57C2'} size={40} />
             </BorderlessButton>
+            <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
