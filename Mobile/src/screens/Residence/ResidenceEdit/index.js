@@ -20,6 +20,7 @@ import ResidenceAddHeader from '../../../Component/ResidenceAddHeader';
 
 import ImageSwipe from '../../../Component/ImageSwipe';
 
+import {RectButton, BorderlessButton} from 'react-native-gesture-handler';
 export default function ResidenceEdit({navigation}) {
   const width = useWindowDimensions().width;
 
@@ -74,19 +75,13 @@ export default function ResidenceEdit({navigation}) {
             </View>
             <View style={styles.ownerView}>
               <View style={styles.profilePicView}>
-                <TouchableOpacity
-                  style={styles.buttonPic}
-                  onPress={() => {
-                    //Change ProfilePic
-                  }}>
-                  <Image
-                    style={[styles.profilePic, {resizeMode: 'cover'}]}
-                    source={{
-                      uri:
-                        'https://i.pinimg.com/564x/73/72/ca/7372caf9143345b46f5941218af00af2.jpg',
-                    }}
-                  />
-                </TouchableOpacity>
+                <Image
+                  style={[styles.profilePic, {resizeMode: 'cover'}]}
+                  source={{
+                    uri:
+                      'https://i.pinimg.com/564x/73/72/ca/7372caf9143345b46f5941218af00af2.jpg',
+                  }}
+                />
               </View>
               <Text style={[styles.name, textStyles.font]}>لا احتيال</Text>
               <Text style={[styles.subTitle, textStyles.font]}>
@@ -150,7 +145,11 @@ export default function ResidenceEdit({navigation}) {
                     Comodidades
                   </Text>
                 </View>
-                <TouchableOpacity style={styles.editButton} onPress={() => {}}>
+                <TouchableOpacity
+                  style={styles.editButton}
+                  onPress={() => {
+                    navigation.navigate('ResidenceAddComfort');
+                  }}>
                   <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
                 </TouchableOpacity>
               </View>
@@ -229,7 +228,11 @@ export default function ResidenceEdit({navigation}) {
                   <Icon name={'alert-octagon'} size={30} color={'#E03826'} />
                   <Text style={styles.title1}>Condições </Text>
                 </View>
-                <TouchableOpacity style={styles.editButton} onPress={() => {}}>
+                <TouchableOpacity
+                  style={styles.editButton}
+                  onPress={() => {
+                    navigation.navigate('ResidenceAddComfort');
+                  }}>
                   <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
                 </TouchableOpacity>
               </View>
@@ -338,7 +341,11 @@ export default function ResidenceEdit({navigation}) {
                   <Icon name={'map-pin'} size={30} color={'#3F3F3F'} />
                   <Text style={styles.title1}>Localização </Text>
                 </View>
-                <TouchableOpacity style={styles.editButton} onPress={() => {}}>
+                <TouchableOpacity
+                  style={styles.editButton}
+                  onPress={() => {
+                    navigation.navigate('ResidenceAddLocationZipcode');
+                  }}>
                   <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
                 </TouchableOpacity>
               </View>
@@ -356,7 +363,9 @@ export default function ResidenceEdit({navigation}) {
             styles.button,
             {backgroundColor: '#26E07C', width: width - 245},
           ]}
-          onPress={() => {}}>
+          onPress={() => {
+            navigation.navigate('ResidenceAddLocationAddress');
+          }}>
           <View style={{flexDirection: 'row'}}>
             <Text style={styles.buttonText}>Voltar</Text>
           </View>
