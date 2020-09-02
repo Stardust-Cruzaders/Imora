@@ -20,48 +20,64 @@ const styles = StyleSheet.create({
     fontSize: 25,
     alignSelf: 'center',
     fontFamily: 'Roboto',
-    color: '#3F3F3F',
-  },
 
-  cardText: {
-    fontSize: 18,
-    fontFamily: 'Roboto',
     color: '#3F3F3F',
   },
 
   description: {
     color: '#8D8D97',
     fontSize: 16,
-    fontFamily: 'Roboto',
+
     left: 12,
     marginBottom: 20,
-  },
-  checklist: {
-    marginHorizontal: 10,
-    marginRight: 25,
-  },
-  preferenceView: {
-    marginTop: 10,
-  },
-  cardFooter: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
 
-    marginTop: 10,
+    fontFamily: 'Roboto',
+  },
+  main: {
+    marginHorizontal: 10,
+  },
+  cardText: {
+    fontSize: 18,
+    fontFamily: 'Roboto',
+    color: '#3F3F3F',
   },
   input: {
     borderRadius: 5,
     paddingLeft: 15,
-
-    marginVertical: 5,
     color: '#3F3F3F',
+    marginVertical: 5,
+
+    alignSelf: 'center',
+  },
+  cardFooter: {
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  button: {
+    marginVertical: 25,
+    backgroundColor: '#DDE0E3',
+
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+
     alignSelf: 'center',
 
-    textAlignVertical: 'top',
+    padding: 10,
+
+    borderRadius: 6,
+
+    paddingBottom: 10,
+  },
+  buttonText: {
+    color: '#3F3F3F',
+    fontSize: 20,
+    fontFamily: 'Roboto',
+    marginLeft: 5,
+  },
+  navButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   dot: {
     color: '#888',
@@ -70,10 +86,6 @@ const styles = StyleSheet.create({
   activeDot: {
     color: '#26E07C',
     fontSize: 50,
-  },
-  spaceType: {},
-  residenceType: {
-    marginTop: 15,
   },
 });
 

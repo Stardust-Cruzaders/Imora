@@ -127,10 +127,11 @@ export default function ResidenceAddConditions({navigation}) {
               <Text style={styles.dot}>•</Text>
               <Text style={styles.activeDot}>•</Text>
               <Text style={styles.dot}>•</Text>
+              <Text style={styles.dot}>•</Text>
               <BorderlessButton
                 style={styles.button}
                 onPress={() => {
-                  navigation.navigate('ResidenceAddLocation');
+                  navigation.navigate('ResidenceAddLocationZipcode');
                 }}>
                 <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
               </BorderlessButton>

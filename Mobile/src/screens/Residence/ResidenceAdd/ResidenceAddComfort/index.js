@@ -84,6 +84,7 @@ export default function ResidenceAddComfort({navigation}) {
             <Text style={styles.activeDot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
+            <Text style={styles.dot}>•</Text>
             <BorderlessButton
               style={styles.button}
               onPress={() => {
