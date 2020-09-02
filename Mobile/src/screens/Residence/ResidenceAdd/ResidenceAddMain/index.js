@@ -4,7 +4,6 @@ import {
   View,
   KeyboardAvoidingView,
   useWindowDimensions,
-  TextInput,
 } from 'react-native';
 
 import styles from './styles';
@@ -16,6 +15,7 @@ import Div from '../../../../Component/Div';
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
+import {TextInput} from 'react-native-paper';
 export default function ResidenceAddMain({navigation}) {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');

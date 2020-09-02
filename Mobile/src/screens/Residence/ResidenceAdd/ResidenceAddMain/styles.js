@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderColor: 'black',
-    borderWidth: 2,
+
     borderRadius: 5,
     paddingLeft: 15,
     color: '#3F3F3F',

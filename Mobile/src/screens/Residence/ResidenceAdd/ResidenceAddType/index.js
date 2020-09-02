@@ -1,18 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {
-  Text,
-  TextInput,
-  View,
-  useWindowDimensions,
-  ScrollView,
-} from 'react-native';
+import {Text, View, useWindowDimensions, ScrollView} from 'react-native';
 import styles from './styles';
 import textStyles from '../../../../textStyles';
 import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../../Component/Div';
 
-import {RadioButton} from 'react-native-paper';
+import {RadioButton, TextInput} from 'react-native-paper';
 
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 import {BorderlessButton} from 'react-native-gesture-handler';

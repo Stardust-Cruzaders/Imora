@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, useWindowDimensions, TextInput} from 'react-native';
+import {Text, View, useWindowDimensions} from 'react-native';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
 import textStyles from '../../../../../textStyles';
@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../../../Component/Div';
 import ResidenceAddHeader from '../../../../../Component/ResidenceAddHeader';
 
+import {TextInput} from 'react-native-paper';
 export default function ResidenceAddLocationZipcode({navigation}) {
   const [zipcode, setZipcode] = useState('');
 
@@ -21,7 +22,8 @@ export default function ResidenceAddLocationZipcode({navigation}) {
           <Text style={[styles.cardTitle, textStyles.font]}> Localização </Text>
           <Div threshold={120} height={2} />
           <Text style={styles.description}>
-            Aqui você pode definir a Localização da residência.
+            Aqui você pode definir o seu CEP, que será utilizado para definir o
+            seu endereço completo.
           </Text>
           <View style={styles.main}>
             <TextInput

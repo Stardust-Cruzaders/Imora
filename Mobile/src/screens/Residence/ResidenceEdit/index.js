@@ -20,7 +20,7 @@ import ResidenceAddHeader from '../../../Component/ResidenceAddHeader';
 
 import ImageSwipe from '../../../Component/ImageSwipe';
 
-export default function ResidenceEdit() {
+export default function ResidenceEdit({navigation}) {
   const width = useWindowDimensions().width;
 
   const [available, setAvailable] = useState(true);
@@ -48,7 +48,11 @@ export default function ResidenceEdit() {
             <View style={styles.basicInfoView}>
               <View style={[styles.titleWithEditOption, {width: width - 100}]}>
                 <Text style={[styles.mainTitle, textStyles.font]}>Título </Text>
-                <TouchableOpacity style={styles.editButton} onPress={() => {}}>
+                <TouchableOpacity
+                  style={styles.editButton}
+                  onPress={() => {
+                    navigation.navigate('ResidenceAddMain');
+                  }}>
                   <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
                 </TouchableOpacity>
               </View>
@@ -70,7 +74,11 @@ export default function ResidenceEdit() {
             </View>
             <View style={styles.ownerView}>
               <View style={styles.profilePicView}>
-                <TouchableOpacity style={styles.buttonPic} onPress={() => {}}>
+                <TouchableOpacity
+                  style={styles.buttonPic}
+                  onPress={() => {
+                    //Change ProfilePic
+                  }}>
                   <Image
                     style={[styles.profilePic, {resizeMode: 'cover'}]}
                     source={{
@@ -92,7 +100,11 @@ export default function ResidenceEdit() {
                   <Icon name={'home'} size={30} color={'#3F3F3F'} />
                   <Text style={[styles.title1, textStyles.font]}>Mansão</Text>
                 </View>
-                <TouchableOpacity style={styles.editButton} onPress={() => {}}>
+                <TouchableOpacity
+                  style={styles.editButton}
+                  onPress={() => {
+                    navigation.navigate('ResidenceAddType');
+                  }}>
                   <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
                 </TouchableOpacity>
               </View>

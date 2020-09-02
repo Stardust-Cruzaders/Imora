@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, useWindowDimensions, TextInput} from 'react-native';
+import {Text, View, useWindowDimensions} from 'react-native';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
 import textStyles from '../../../../../textStyles';
@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../../../Component/Div';
 import ResidenceAddHeader from '../../../../../Component/ResidenceAddHeader';
 
+import {TextInput} from 'react-native-paper';
 export default function ResidenceAddLocationAddress({navigation}) {
   const [street, setStreet] = useState('');
   const [number, setNumber] = useState('');
