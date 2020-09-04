@@ -3,6 +3,8 @@ import React from 'react';
 
 import {StatusBar} from 'react-native';
 
+import ResidenceDetailed from './screens/Residence/ResidenceDetailed';
+
 import MainNavigation from './routes/MainNavigation';
 import LoginNavigation from './routes/LoginNavigation';
 export default function App() {

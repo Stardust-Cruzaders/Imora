@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: width - 50,
     alignSelf: 'center',
-    marginBottom: 10
+    marginBottom: 10,
+    flex:1
   },
   image: {
     width: '100%',

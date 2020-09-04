@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {Text, View, useWindowDimensions} from 'react-native';
 
@@ -69,7 +70,11 @@ export default function ResidenceAddConditions({navigation}) {
                 ]}>
                 Preferência de Residentes:{' '}
               </Text>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
                 <RadioButton
                   value="first"
                   status={checked === 'first' ? 'checked' : 'unchecked'}
@@ -80,7 +85,11 @@ export default function ResidenceAddConditions({navigation}) {
                   Masculino
                 </Text>
               </View>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
                 <RadioButton
                   value="second"
                   status={checked === 'second' ? 'checked' : 'unchecked'}
@@ -89,7 +98,11 @@ export default function ResidenceAddConditions({navigation}) {
                 />
                 <Text style={[styles.cardText, textStyles.font]}>Feminino</Text>
               </View>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
                 <RadioButton
                   value="third"
                   status={checked === 'third' ? 'checked' : 'unchecked'}
@@ -114,10 +127,11 @@ export default function ResidenceAddConditions({navigation}) {
               <Text style={styles.dot}>•</Text>
               <Text style={styles.activeDot}>•</Text>
               <Text style={styles.dot}>•</Text>
+              <Text style={styles.dot}>•</Text>
               <BorderlessButton
                 style={styles.button}
                 onPress={() => {
-                  navigation.navigate('ResidenceAddLocation');
+                  navigation.navigate('ResidenceAddLocationZipcode');
                 }}>
                 <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
               </BorderlessButton>

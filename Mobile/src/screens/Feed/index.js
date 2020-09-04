@@ -1,8 +1,12 @@
 import React from 'react';
-import {SafeAreaView, FlatList} from 'react-native';
+import {View, SafeAreaView, FlatList} from 'react-native';
 
 import styles from './styles';
+import Icon from 'react-native-vector-icons/Feather';
+
 import FeedBoxComponent from '../../Component/FeedBoxComponent';
+import SearchBar from '../../Component/SearchBar';
+import FilterComponent from '../../Component/FilterComponent';
 
 export default function Feed() {
   const newImoraData = [
@@ -39,6 +43,12 @@ export default function Feed() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.headerNav}>
+        <SearchBar />
+        <FilterComponent />
+      </View>
+
+      <FeedBoxComponent />
       <FlatList
         data={newImoraData}
         renderItem={({item}) => (

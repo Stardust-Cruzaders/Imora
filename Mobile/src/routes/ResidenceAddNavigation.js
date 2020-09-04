@@ -5,7 +5,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import ResidenceAddMain from '../screens/Residence/ResidenceAdd/ResidenceAddMain';
 import ResidenceAddComfort from '../screens/Residence/ResidenceAdd/ResidenceAddComfort';
-import ResidenceAddLocation from '../screens/Residence/ResidenceAdd/ResidenceAddLocation';
+import ResidenceAddLocationZipcode from '../screens/Residence/ResidenceAdd/ResidenceAddLocation/ResidenceAddLocationZipcode';
+import ResidenceAddLocationAddress from '../screens/Residence/ResidenceAdd/ResidenceAddLocation/ResidenceAddLocationAddress';
 import ResidenceAddConditions from '../screens/Residence/ResidenceAdd/ResidenceAddConditions';
 import ResidenceAddType from '../screens/Residence/ResidenceAdd/ResidenceAddType';
 
@@ -28,8 +29,12 @@ export default function ResidenceAddNavigation() {
           component={ResidenceAddConditions}
         />
         <Stack.Screen
-          name={'ResidenceAddLocation'}
-          component={ResidenceAddLocation}
+          name={'ResidenceAddLocationZipcode'}
+          component={ResidenceAddLocationZipcode}
+        />
+        <Stack.Screen
+          name={'ResidenceAddLocationAddress'}
+          component={ResidenceAddLocationAddress}
         />
         <Stack.Screen name={'ResidenceEdit'} component={ResidenceEdit} />
       </Stack.Navigator>

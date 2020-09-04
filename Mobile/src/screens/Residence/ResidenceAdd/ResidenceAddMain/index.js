@@ -1,5 +1,10 @@
 import React, {useState} from 'react';
-import {Text, View, useWindowDimensions, TextInput} from 'react-native';
+import {
+  Text,
+  View,
+  KeyboardAvoidingView,
+  useWindowDimensions,
+} from 'react-native';
 
 import styles from './styles';
 import textStyles from '../../../../textStyles';
@@ -10,15 +15,20 @@ import Div from '../../../../Component/Div';
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
+import {TextInput} from 'react-native-paper';
 export default function ResidenceAddMain({navigation}) {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
+  const [numRooms, setNumRooms] = useState('');
+  const [numBathrooms, setNumBathrooms] = useState('');
   const width = useWindowDimensions().width;
   return (
     <>
       <ResidenceAddHeader />
       <View style={styles.container}>
-        <View style={[styles.card, {width: width - 55}]}>
+        <KeyboardAvoidingView
+          enabled={false}
+          style={[styles.card, {width: width - 55}]}>
           <Text style={[styles.cardTitle, textStyles.font]}> Introdução </Text>
           <Div threshold={120} height={2} />
           <Text style={[styles.description, textStyles.font]}>
@@ -41,15 +51,15 @@ export default function ResidenceAddMain({navigation}) {
             />
             <TextInput
               style={[styles.input, {width: width - 80}]}
-              value={price.toString()}
-              onChangeText={(text) => setPrice(text)}
+              value={numRooms.toString()}
+              onChangeText={(text) => setNumRooms(text)}
               placeholder={'Quantidade de quartos disponíveis '}
               keyboardType={'number-pad'}
             />
             <TextInput
               style={[styles.input, {width: width - 80}]}
-              value={price.toString()}
-              onChangeText={(text) => setPrice(text)}
+              value={numBathrooms.toString()}
+              onChangeText={(text) => setNumBathrooms(text)}
               placeholder={'Quantidade de banheiros disponíveis'}
               keyboardType={'number-pad'}
             />
@@ -83,6 +93,7 @@ export default function ResidenceAddMain({navigation}) {
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
             <Text style={styles.dot}>•</Text>
+            <Text style={styles.dot}>•</Text>
             <BorderlessButton
               style={styles.navButton}
               onPress={() => {
@@ -91,7 +102,7 @@ export default function ResidenceAddMain({navigation}) {
               <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
             </BorderlessButton>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </View>
     </>
   );
