@@ -58,8 +58,22 @@ const styles = StyleSheet.create({
   icon: {
     position: 'absolute',
   },
-  button: {},
-  buttonText: {},
+  button: {
+    backgroundColor: '#26E07C',
+
+    marginTop: 25,
+
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    paddingVertical: 10,
+
+    borderRadius: 4,
+  },
+  buttonText: {
+    fontSize: 24,
+    color: '#FFF',
+  },
 });
 
 export default styles;
