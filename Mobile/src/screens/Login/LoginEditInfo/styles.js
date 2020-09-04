@@ -54,6 +54,8 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
     paddingVertical: 15,
     textAlign: 'left',
+
+    color: '#8D8D97',
   },
   icon: {
     position: 'absolute',
