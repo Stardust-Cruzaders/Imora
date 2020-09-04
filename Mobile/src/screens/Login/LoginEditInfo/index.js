@@ -51,6 +51,7 @@ export default function LoginEditInfo() {
                 onChangeText={(text) => setName(text)}
                 value={name}
                 placeholder={'Nome completo'}
+                editable={false}
                 underlineColorAndroid={'#3F3F3F'}
               />
             </View>
