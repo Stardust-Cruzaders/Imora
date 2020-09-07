@@ -11,10 +11,16 @@ import {RadioButton, TextInput} from 'react-native-paper';
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
+import {useResidenceAdd} from '../../../../contexts/residenceAdd';
 export default function ResidenceAddType({navigation}) {
-  const [checked, setChecked] = useState('first');
-  const [checkedHouseType, setCheckedHouseType] = useState('house');
-  const [description, setDescription] = useState('');
+  const {
+    checked,
+    setChecked,
+    checkedHouseType,
+    setCheckedHouseType,
+    description,
+    setDescription,
+  } = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
     <>
