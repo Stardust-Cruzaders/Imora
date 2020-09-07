@@ -17,7 +17,7 @@ export function AuthProvider({children}) {
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(true);
   const [accessToken, setAccessToken] = useState('');
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(true);
   // useEffect(() => {}, []);
   function getUserCallback(error, result) {
     if (error) {
