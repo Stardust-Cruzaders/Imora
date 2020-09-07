@@ -12,7 +12,7 @@ import styles from './styles';
 import textStyles from '../../../textStyles';
 import Icon from 'react-native-vector-icons/Feather';
 
-export default function LoginEditInfo() {
+export default function LoginEditInfo({navigation}) {
   const [name, setName] = useState('Carlos oliveira martins');
   const [phone, setPhone] = useState('(14) 99233-1234');
   const [avatar, setAvatar] = useState(
@@ -72,7 +72,11 @@ export default function LoginEditInfo() {
               />
             </View>
           </View>
-          <RectButton style={[styles.button, {width: width - 150}]}>
+          <RectButton
+            style={[styles.button, {width: width - 150}]}
+            onPress={() => {
+              navigation.navigate('LoginOK');
+            }}>
             <Text style={[styles.buttonText, textStyles.font]}>
               Tudo pronto!
             </Text>
