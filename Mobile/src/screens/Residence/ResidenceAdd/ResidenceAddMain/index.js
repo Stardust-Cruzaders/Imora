@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   Text,
   View,
@@ -16,11 +16,18 @@ import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
 import {TextInput} from 'react-native-paper';
+import {useResidenceAdd} from '../../../../contexts/residenceAdd';
 export default function ResidenceAddMain({navigation}) {
-  const [title, setTitle] = useState('');
-  const [price, setPrice] = useState('');
-  const [numRooms, setNumRooms] = useState('');
-  const [numBathrooms, setNumBathrooms] = useState('');
+  const {
+    title,
+    setTitle,
+    price,
+    setPrice,
+    numRooms,
+    setNumRooms,
+    numBathrooms,
+    setNumBathrooms,
+  } = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
     <>
