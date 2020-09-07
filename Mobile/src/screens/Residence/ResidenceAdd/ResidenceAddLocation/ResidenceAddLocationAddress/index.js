@@ -10,13 +10,23 @@ import Div from '../../../../../Component/Div';
 import ResidenceAddHeader from '../../../../../Component/ResidenceAddHeader';
 
 import {TextInput} from 'react-native-paper';
+import {useResidenceAdd} from '../../../../../contexts/residenceAdd';
+
 export default function ResidenceAddLocationAddress({navigation}) {
-  const [street, setStreet] = useState('');
-  const [number, setNumber] = useState('');
-  const [neighborhood, setNeighborhood] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [proximity, setProximity] = useState('');
+  const {
+    street,
+    setStreet,
+    number,
+    setNumber,
+    neighborhood,
+    setNeighborhood,
+    city,
+    setCity,
+    state,
+    setState,
+    proximity,
+    setProximity,
+  } = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
     <>
