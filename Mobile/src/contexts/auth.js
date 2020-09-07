@@ -60,7 +60,11 @@ export function AuthProvider({children}) {
       },
     );
   }
-  function FacebookSignOut() {}
+  function FacebookSignOut() {
+    LoginManager.logOut();
+    setUser(null);
+    setAccessToken(null);
+  }
   return (
     <AuthContext.Provider
       value={{signed: !!user, user, FacebookSignIn, loading, FacebookSignOut}}>
