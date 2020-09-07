@@ -5,7 +5,11 @@ import LoginNavigation from './LoginNavigation';
 import MainNavigation from './MainNavigation';
 import {useAuth} from '../contexts/auth';
 export default function Routes() {
-  const {signed} = useAuth();
+  const {signed, isRegistered} = useAuth();
   console.log(signed);
-  return signed ? <MainNavigation /> : <LoginNavigation />;
+  return signed === true && isRegistered === true ? (
+    <MainNavigation />
+  ) : (
+    <LoginNavigation />
+  );
 }

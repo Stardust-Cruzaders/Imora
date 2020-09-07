@@ -45,6 +45,7 @@ export default function Login({navigation}) {
         <RectButton
           onPress={() => {
             FacebookSignIn();
+            navigation.navigate('LoginEditInfo');
           }}
           style={styles.facebookButton}>
           <View style={styles.iconContainer}>

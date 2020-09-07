@@ -14,8 +14,10 @@ const AuthContext = createContext();
 
 export function AuthProvider({children}) {
   const [user, setUser] = useState(null);
+  const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(true);
   const [accessToken, setAccessToken] = useState('');
+  const [isRegistered, setIsRegistered] = useState(false);
   // useEffect(() => {}, []);
   function getUserCallback(error, result) {
     if (error) {
@@ -67,7 +69,16 @@ export function AuthProvider({children}) {
   }
   return (
     <AuthContext.Provider
-      value={{signed: !!user, user, FacebookSignIn, loading, FacebookSignOut}}>
+      value={{
+        signed: !!user,
+        isRegistered,
+        user,
+        phone,
+        setPhone,
+        FacebookSignIn,
+        loading,
+        FacebookSignOut,
+      }}>
       {children}
     </AuthContext.Provider>
   );

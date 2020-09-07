@@ -11,13 +11,11 @@ import {RectButton, BorderlessButton} from 'react-native-gesture-handler';
 import styles from './styles';
 import textStyles from '../../../textStyles';
 import Icon from 'react-native-vector-icons/Feather';
+import {useAuth} from '../../../contexts/auth';
 
 export default function LoginEditInfo({navigation}) {
-  const [name, setName] = useState('Carlos oliveira martins');
-  const [phone, setPhone] = useState('(14) 99233-1234');
-  const [avatar, setAvatar] = useState(
-    'https://i.pinimg.com/564x/c1/a3/76/c1a3762670a1ae7dbb664cda08be04fc.jpg',
-  );
+  const {user, phone, setPhone} = useAuth();
+
   const width = useWindowDimensions().width;
   return (
     <View style={styles.container}>
@@ -29,7 +27,10 @@ export default function LoginEditInfo({navigation}) {
           <BorderlessButton>
             <Image
               source={{
-                uri: avatar,
+                uri:
+                  user != undefined || null
+                    ? user.picture.data.url
+                    : 'https://i.pinimg.com/564x/c5/69/99/c569990f2af94daa7a4543d9a726d01b.jpg',
               }}
               style={styles.avatar}
             />
@@ -48,8 +49,7 @@ export default function LoginEditInfo({navigation}) {
               />
               <TextInput
                 style={[styles.input, {width: width - 150}]}
-                onChangeText={(text) => setName(text)}
-                value={name}
+                value={user != undefined || null ? user.name : 'Nome completo'}
                 placeholder={'Nome completo'}
                 editable={false}
                 underlineColorAndroid={'#3F3F3F'}
@@ -65,7 +65,7 @@ export default function LoginEditInfo({navigation}) {
               <TextInput
                 style={[styles.input]}
                 onChangeText={(text) => setPhone(text)}
-                value={phone}
+                value={phone != undefined || null ? phone : '(XX) XXXXX-XXXX'}
                 placeholder={'Telefone (Opcional)               '}
                 underlineColorAndroid={'#000'}
                 keyboardType={'phone-pad'}
