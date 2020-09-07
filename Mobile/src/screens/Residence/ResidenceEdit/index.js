@@ -21,6 +21,9 @@ import ResidenceAddHeader from '../../../Component/ResidenceAddHeader';
 import ImageSwipe from '../../../Component/ImageSwipe';
 
 import {RectButton, BorderlessButton} from 'react-native-gesture-handler';
+
+import {useResidenceAdd} from '../../../contexts/residenceAdd';
+
 export default function ResidenceEdit({navigation}) {
   const width = useWindowDimensions().width;
 
@@ -34,6 +37,34 @@ export default function ResidenceEdit({navigation}) {
     'https://i.pinimg.com/236x/0d/a7/3b/0da73b6592ba04b63385c12280d1bf6a.jpg',
   ];
 
+  const {
+    title,
+    price,
+    numRooms,
+    numBathrooms,
+    checked,
+    checkedHouseType,
+    description,
+    hasWifi,
+    hasTV,
+    hasAC,
+    hasNotebookWork,
+    hasKitchen,
+    hasGrill,
+    hasPool,
+    hasParkingLot,
+    maxResidentNum,
+    allowPets,
+    allowSmokers,
+    checked2,
+    zipcode,
+    street,
+    number,
+    neighborhood,
+    city,
+    state,
+    proximity,
+  } = useResidenceAdd();
   return (
     <>
       <ResidenceAddHeader
