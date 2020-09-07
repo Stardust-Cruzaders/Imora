@@ -40,25 +40,27 @@ export default function Login() {
     new GraphRequestManager().addRequest(infoRequest).start();
   }
   function handleFacebookAuth() {
-    LoginManager.logInWithPermissions(['public_profile', 'email']).then(
-      async function (result) {
-        if (result.isCancelled) {
-          console.log('Login Cancelled');
-        } else {
-          console.log(
-            'Login success with permissions ' +
-              result.grantedPermissions.toString(),
-          );
-          const accessData = await AccessToken.getCurrentAccessToken();
-          setLoading(true);
-          getUserInfo(accessData.accessToken);
-          setAccessToken(accessData.accessToken);
-        }
-      },
-      function (error) {
-        console.log('Login fail with error: ' + error);
-      },
-    );
+    LoginManager.setLoginBehavior('web_only')
+      .logInWithPermissions(['public_profile', 'email'])
+      .then(
+        async function (result) {
+          if (result.isCancelled) {
+            console.log('Login Cancelled');
+          } else {
+            console.log(
+              'Login success with permissions ' +
+                result.grantedPermissions.toString(),
+            );
+            const accessData = await AccessToken.getCurrentAccessToken();
+            setLoading(true);
+            getUserInfo(accessData.accessToken);
+            setAccessToken(accessData.accessToken);
+          }
+        },
+        function (error) {
+          console.log('Login fail with error: ' + error);
+        },
+      );
   }
   return (
     <View style={styles.container}>
