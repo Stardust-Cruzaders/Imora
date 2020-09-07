@@ -14,12 +14,19 @@ import CheckboxComponent from '../../../../Component/CheckboxComponent';
 import {RadioButton, TextInput} from 'react-native-paper';
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 
-export default function ResidenceAddConditions({navigation}) {
-  const [maxResidentNum, setMaxResidentNum] = useState('1');
-  const [allowPets, setAllowPets] = useState(false);
-  const [allowSmokers, setAllowSmokers] = useState(false);
+import {useResidenceAdd} from '../../../../contexts/residenceAdd';
 
-  const [checked, setChecked] = useState('first');
+export default function ResidenceAddConditions({navigation}) {
+  const {
+    maxResidentNum,
+    setMaxResidentNum,
+    allowPets,
+    setAllowPets,
+    allowSmokers,
+    setAllowSmokers,
+    checked2,
+    setChecked2,
+  } = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
     <>
@@ -77,8 +84,8 @@ export default function ResidenceAddConditions({navigation}) {
                 }}>
                 <RadioButton
                   value="first"
-                  status={checked === 'first' ? 'checked' : 'unchecked'}
-                  onPress={() => setChecked('first')}
+                  status={checked2 === 'first' ? 'checked' : 'unchecked'}
+                  onPress={() => setChecked2('first')}
                   color={'#7E57C2'}
                 />
                 <Text style={[styles.cardText, textStyles.font]}>
@@ -92,8 +99,8 @@ export default function ResidenceAddConditions({navigation}) {
                 }}>
                 <RadioButton
                   value="second"
-                  status={checked === 'second' ? 'checked' : 'unchecked'}
-                  onPress={() => setChecked('second')}
+                  status={checked2 === 'second' ? 'checked' : 'unchecked'}
+                  onPress={() => setChecked2('second')}
                   color={'#7E57C2'}
                 />
                 <Text style={[styles.cardText, textStyles.font]}>Feminino</Text>
@@ -105,8 +112,8 @@ export default function ResidenceAddConditions({navigation}) {
                 }}>
                 <RadioButton
                   value="third"
-                  status={checked === 'third' ? 'checked' : 'unchecked'}
-                  onPress={() => setChecked('third')}
+                  status={checked2 === 'third' ? 'checked' : 'unchecked'}
+                  onPress={() => setChecked2('third')}
                   color={'#7E57C2'}
                 />
                 <Text style={[styles.cardText, textStyles.font]}>
