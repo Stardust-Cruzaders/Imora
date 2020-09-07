@@ -91,38 +91,6 @@ export default function ProfileSelf({navigation}) {
               <RectButton
                 style={styles.button}
                 onPress={() => {
-                  navigation.navigate('Favorites');
-                }}>
-                <View style={styles.iconTextView}>
-                  <Icon
-                    name={'heart'}
-                    size={24}
-                    color={'#3F3F3F'}
-                    style={styles.icon}
-                  />
-                  <Text style={styles.buttonText}> Favoritos </Text>
-                </View>
-              </RectButton>
-              <Div threshold={100} />
-              <RectButton
-                style={styles.button}
-                onPress={() => {
-                  navigation.navigate('MyAds');
-                }}>
-                <View style={styles.iconTextView}>
-                  <Icon
-                    name={'inbox'}
-                    size={24}
-                    color={'#3F3F3F'}
-                    style={styles.icon}
-                  />
-                  <Text style={styles.buttonText}> Meus Anúncios </Text>
-                </View>
-              </RectButton>
-              <Div threshold={100} />
-              <RectButton
-                style={styles.button}
-                onPress={() => {
                   navigation.navigate('MyResidences');
                 }}>
                 <View style={styles.iconTextView}>

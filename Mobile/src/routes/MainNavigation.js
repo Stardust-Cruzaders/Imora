@@ -7,7 +7,7 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import Icon from 'react-native-vector-icons/Feather';
 
 import Feed from '../screens/Feed';
-import Offers from '../screens/Offers';
+import Favorites from '../screens/Favorites';
 import Chat from '../screens/Chat';
 import ProfileSelfNavigation from './ProfileSelfNavigation';
 
@@ -17,22 +17,25 @@ export default function MainNavigation() {
     <Tab.Navigator
       initialRouteName="Explorar"
       activeColor="#f0edf6"
-      barStyle={{backgroundColor: '#7E57C2', paddingVertical: 5}}
+      barStyle={{
+        backgroundColor: '#7E57C2',
+        paddingVertical: 5,
+      }}
       shifting={true}>
       <Tab.Screen
         name="Explorar"
         component={Feed}
         options={{
           tabBarLabel: 'Explorar',
-          tabBarIcon: () => <Icon name={'compass'} size={26} color={'#fff'} />,
+          tabBarIcon: () => <Icon name={'compass'} size={24} color={'#fff'} />,
         }}
       />
       <Tab.Screen
-        name="Ofertas"
-        component={Offers}
+        name="Favoritos"
+        component={Favorites}
         options={{
-          tabBarLabel: 'Ofertas',
-          tabBarIcon: () => <Icon name={'zap'} size={26} color={'#FFF'} />,
+          tabBarLabel: 'Favoritos',
+          tabBarIcon: () => <Icon name={'heart'} size={24} color={'#FFF'} />,
         }}
       />
       <Tab.Screen
@@ -41,7 +44,7 @@ export default function MainNavigation() {
         options={{
           tabBarLabel: 'Mensagens',
           tabBarIcon: () => (
-            <Icon name={'message-circle'} size={26} color={'#FFF'} />
+            <Icon name={'message-circle'} size={24} color={'#FFF'} />
           ),
         }}
       />
@@ -50,7 +53,7 @@ export default function MainNavigation() {
         component={ProfileSelfNavigation}
         options={{
           tabBarLabel: 'Perfil',
-          tabBarIcon: () => <Icon name={'user'} size={26} color={'#FFF'} />,
+          tabBarIcon: () => <Icon name={'user'} size={24} color={'#FFF'} />,
         }}
       />
     </Tab.Navigator>
