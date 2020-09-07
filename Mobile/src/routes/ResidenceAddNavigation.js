@@ -11,10 +11,11 @@ import ResidenceAddConditions from '../screens/Residence/ResidenceAdd/ResidenceA
 import ResidenceAddType from '../screens/Residence/ResidenceAdd/ResidenceAddType';
 
 import ResidenceEdit from '../screens/Residence/ResidenceEdit';
+import ResidenceAddProvider from '../contexts/residenceAdd';
 const Stack = createStackNavigator();
 export default function ResidenceAddNavigation() {
   return (
-    <NavigationContainer>
+    <ResidenceAddProvider>
       <Stack.Navigator
         screenOptions={{headerShown: false}}
         initialRouteName={'ResidenceAddMain'}>
@@ -38,6 +39,6 @@ export default function ResidenceAddNavigation() {
         />
         <Stack.Screen name={'ResidenceEdit'} component={ResidenceEdit} />
       </Stack.Navigator>
-    </NavigationContainer>
+    </ResidenceAddProvider>
   );
 }
