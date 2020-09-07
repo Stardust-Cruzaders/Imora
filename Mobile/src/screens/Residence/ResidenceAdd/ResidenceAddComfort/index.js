@@ -11,17 +11,26 @@ import Div from '../../../../Component/Div';
 import CheckboxComponent from '../../../../Component/CheckboxComponent';
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 
+import {useResidenceAdd} from '../../../../contexts/residenceAdd';
 export default function ResidenceAddComfort({navigation}) {
-  const [hasWifi, setHasWifi] = useState(false);
-  const [hasTV, setHasTV] = useState(false);
-  const [hasAC, setHasAC] = useState(false);
-  const [hasNotebookWork, setHasNotebookWork] = useState(false);
-  const [hasKitchen, setHasKitchen] = useState(false);
-  const [hasGrill, setHasGrill] = useState(false);
-
-  const [hasPool, setHasPool] = useState(false);
-  const [hasParkingLot, setHasParkingLot] = useState(false);
-
+  const {
+    hasWifi,
+    setHasWifi,
+    hasTV,
+    setHasTV,
+    hasAC,
+    setHasAC,
+    hasNotebookWork,
+    setHasNotebookWork,
+    hasKitchen,
+    setHasKitchen,
+    hasGrill,
+    setHasGrill,
+    hasPool,
+    setHasPool,
+    hasParkingLot,
+    setHasParkingLot,
+  } = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
     <>
