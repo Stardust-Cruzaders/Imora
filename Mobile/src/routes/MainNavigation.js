@@ -14,49 +14,45 @@ import ProfileSelfNavigation from './ProfileSelfNavigation';
 const Tab = createMaterialBottomTabNavigator();
 export default function MainNavigation() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Explorar"
-        activeColor="#f0edf6"
-        barStyle={{backgroundColor: '#7E57C2', paddingVertical: 5}}
-        shifting={true}>
-        <Tab.Screen
-          name="Explorar"
-          component={Feed}
-          options={{
-            tabBarLabel: 'Explorar',
-            tabBarIcon: () => (
-              <Icon name={'compass'} size={26} color={'#fff'} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Ofertas"
-          component={Offers}
-          options={{
-            tabBarLabel: 'Ofertas',
-            tabBarIcon: () => <Icon name={'zap'} size={26} color={'#FFF'} />,
-          }}
-        />
-        <Tab.Screen
-          name="Chat"
-          component={Chat}
-          options={{
-            tabBarLabel: 'Mensagens',
-            tabBarIcon: () => (
-              <Icon name={'message-circle'} size={26} color={'#FFF'} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Perfil"
-          component={ProfileSelfNavigation}
-          options={{
-            tabBarLabel: 'Perfil',
-            tabBarIcon: () => <Icon name={'user'} size={26} color={'#FFF'} />,
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator
+      initialRouteName="Explorar"
+      activeColor="#f0edf6"
+      barStyle={{backgroundColor: '#7E57C2', paddingVertical: 5}}
+      shifting={true}>
+      <Tab.Screen
+        name="Explorar"
+        component={Feed}
+        options={{
+          tabBarLabel: 'Explorar',
+          tabBarIcon: () => <Icon name={'compass'} size={26} color={'#fff'} />,
+        }}
+      />
+      <Tab.Screen
+        name="Ofertas"
+        component={Offers}
+        options={{
+          tabBarLabel: 'Ofertas',
+          tabBarIcon: () => <Icon name={'zap'} size={26} color={'#FFF'} />,
+        }}
+      />
+      <Tab.Screen
+        name="Chat"
+        component={Chat}
+        options={{
+          tabBarLabel: 'Mensagens',
+          tabBarIcon: () => (
+            <Icon name={'message-circle'} size={26} color={'#FFF'} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Perfil"
+        component={ProfileSelfNavigation}
+        options={{
+          tabBarLabel: 'Perfil',
+          tabBarIcon: () => <Icon name={'user'} size={26} color={'#FFF'} />,
+        }}
+      />
+    </Tab.Navigator>
   );
 }

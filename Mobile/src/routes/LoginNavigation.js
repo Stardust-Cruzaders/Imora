@@ -12,15 +12,13 @@ import MainNavigation from './MainNavigation';
 const Stack = createStackNavigator();
 export default function LoginNavigation() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName={'Login'}
-        screenOptions={{headerShown: false}}>
-        <Stack.Screen name={'Login'} component={Login} />
-        <Stack.Screen name={'LoginEditInfo'} component={LoginEditInfo} />
-        <Stack.Screen name={'LoginOK'} component={LoginOK} />
-        <Stack.Screen name={'MainNavigation'} component={MainNavigation} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator
+      initialRouteName={'Login'}
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name={'Login'} component={Login} />
+      <Stack.Screen name={'LoginEditInfo'} component={LoginEditInfo} />
+      <Stack.Screen name={'LoginOK'} component={LoginOK} />
+      <Stack.Screen name={'MainNavigation'} component={MainNavigation} />
+    </Stack.Navigator>
   );
 }
