@@ -12,56 +12,11 @@ import {
   GraphRequestManager,
 } from 'react-native-fbsdk';
 import {ActivityIndicator} from 'react-native-paper';
+import {useAuth} from '../../contexts/auth';
 
 // user.picture.data.url
-export default function Login() {
-  const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null);
-  const [accessToken, setAccessToken] = useState('');
-  function getUserCallback(error, result) {
-    if (error) {
-      console.log('getUserError', error);
-    } else {
-      setLoading(false);
-      setUser(result);
-    }
-  }
-  function getUserInfo(token) {
-    const infoRequest = new GraphRequest(
-      '/me',
-      {
-        accessToken: token,
-        parameters: {
-          fields: {string: 'email, name,  picture.type(large)'},
-        },
-      },
-      getUserCallback,
-    );
-    new GraphRequestManager().addRequest(infoRequest).start();
-  }
-  function handleFacebookAuth() {
-    LoginManager.setLoginBehavior('web_only')
-      .logInWithPermissions(['public_profile', 'email'])
-      .then(
-        async function (result) {
-          if (result.isCancelled) {
-            console.log('Login Cancelled');
-          } else {
-            console.log(
-              'Login success with permissions ' +
-                result.grantedPermissions.toString(),
-            );
-            const accessData = await AccessToken.getCurrentAccessToken();
-            setLoading(true);
-            getUserInfo(accessData.accessToken);
-            setAccessToken(accessData.accessToken);
-          }
-        },
-        function (error) {
-          console.log('Login fail with error: ' + error);
-        },
-      );
-  }
+export default function Login({navigation}) {
+  const {FacebookSignIn} = useAuth();
   return (
     <View style={styles.container}>
       <View style={styles.headerAlign}>
@@ -89,7 +44,7 @@ export default function Login() {
         </View>*/}
         <RectButton
           onPress={() => {
-            handleFacebookAuth();
+            FacebookSignIn();
           }}
           style={styles.facebookButton}>
           <View style={styles.iconContainer}>
