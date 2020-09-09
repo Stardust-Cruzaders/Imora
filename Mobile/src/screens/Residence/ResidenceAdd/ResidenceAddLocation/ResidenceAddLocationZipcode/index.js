@@ -10,9 +10,10 @@ import Div from '../../../../../Component/Div';
 import ResidenceAddHeader from '../../../../../Component/ResidenceAddHeader';
 
 import {TextInput} from 'react-native-paper';
-export default function ResidenceAddLocationZipcode({navigation}) {
-  const [zipcode, setZipcode] = useState('');
+import {useResidenceAdd} from '../../../../../contexts/residenceAdd';
 
+export default function ResidenceAddLocationZipcode({navigation}) {
+  const {zipcode, setZipcode} = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
     <>

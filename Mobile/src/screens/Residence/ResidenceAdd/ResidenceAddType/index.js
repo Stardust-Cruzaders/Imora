@@ -11,10 +11,16 @@ import {RadioButton, TextInput} from 'react-native-paper';
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
+import {useResidenceAdd} from '../../../../contexts/residenceAdd';
 export default function ResidenceAddType({navigation}) {
-  const [checked, setChecked] = useState('first');
-  const [checkedHouseType, setCheckedHouseType] = useState('house');
-  const [description, setDescription] = useState('');
+  const {
+    locationType,
+    setLocationType,
+    checkedHouseType,
+    setCheckedHouseType,
+    description,
+    setDescription,
+  } = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
     <>
@@ -33,9 +39,13 @@ export default function ResidenceAddType({navigation}) {
               <View style={styles.spaceType}>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <RadioButton
-                    value="first"
-                    status={checked === 'first' ? 'checked' : 'unchecked'}
-                    onPress={() => setChecked('first')}
+                    value="Espaço inteiro"
+                    status={
+                      locationType === 'Espaço inteiro'
+                        ? 'checked'
+                        : 'unchecked'
+                    }
+                    onPress={() => setLocationType('Espaço inteiro')}
                     color={'#7E57C2'}
                   />
                   <Text style={[styles.cardText, textStyles.font]}>
@@ -47,9 +57,13 @@ export default function ResidenceAddType({navigation}) {
                 </Text>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <RadioButton
-                    value="second"
-                    status={checked === 'second' ? 'checked' : 'unchecked'}
-                    onPress={() => setChecked('second')}
+                    value="Quarto inteiro"
+                    status={
+                      locationType === 'Quarto inteiro'
+                        ? 'checked'
+                        : 'unchecked'
+                    }
+                    onPress={() => setLocationType('Quarto inteiro')}
                     color={'#7E57C2'}
                   />
                   <Text style={[styles.cardText, textStyles.font]}>
@@ -62,9 +76,13 @@ export default function ResidenceAddType({navigation}) {
                 </Text>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <RadioButton
-                    value="third"
-                    status={checked === 'third' ? 'checked' : 'unchecked'}
-                    onPress={() => setChecked('third')}
+                    value="Quarto Compartilhadod"
+                    status={
+                      locationType === 'Quarto Compartilhado'
+                        ? 'checked'
+                        : 'unchecked'
+                    }
+                    onPress={() => setLocationType('Quarto Compartilhado')}
                     color={'#7E57C2'}
                   />
                   <Text style={[styles.cardText, textStyles.font]}>
@@ -98,11 +116,11 @@ export default function ResidenceAddType({navigation}) {
                 </Text>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <RadioButton
-                    value="home"
+                    value="Casa"
                     status={
-                      checkedHouseType === 'home' ? 'checked' : 'unchecked'
+                      checkedHouseType === 'Casa' ? 'checked' : 'unchecked'
                     }
-                    onPress={() => setCheckedHouseType('home')}
+                    onPress={() => setCheckedHouseType('Casa')}
                     color={'#7E57C2'}
                   />
                   <Text style={styles.cardText}>Casa</Text>
@@ -114,11 +132,13 @@ export default function ResidenceAddType({navigation}) {
                     marginVertical: 5,
                   }}>
                   <RadioButton
-                    value="apartment"
+                    value="Apartamento"
                     status={
-                      checkedHouseType === 'apartment' ? 'checked' : 'unchecked'
+                      checkedHouseType === 'Apartamento'
+                        ? 'checked'
+                        : 'unchecked'
                     }
-                    onPress={() => setCheckedHouseType('apartment')}
+                    onPress={() => setCheckedHouseType('Apartamento')}
                     color={'#7E57C2'}
                   />
                   <Text style={styles.cardText}>Apartamento</Text>
@@ -130,11 +150,11 @@ export default function ResidenceAddType({navigation}) {
                     marginVertical: 5,
                   }}>
                   <RadioButton
-                    value="kitnet"
+                    value="KitNet"
                     status={
-                      checkedHouseType === 'kitnet' ? 'checked' : 'unchecked'
+                      checkedHouseType === 'KitNet' ? 'checked' : 'unchecked'
                     }
-                    onPress={() => setCheckedHouseType('kitnet')}
+                    onPress={() => setCheckedHouseType('KitNet')}
                     color={'#7E57C2'}
                   />
                   <Text style={styles.cardText}>Kitnet</Text>
@@ -146,11 +166,11 @@ export default function ResidenceAddType({navigation}) {
                     marginTop: 5,
                   }}>
                   <RadioButton
-                    value="rep"
+                    value="República"
                     status={
-                      checkedHouseType === 'rep' ? 'checked' : 'unchecked'
+                      checkedHouseType === 'República' ? 'checked' : 'unchecked'
                     }
-                    onPress={() => setCheckedHouseType('rep')}
+                    onPress={() => setCheckedHouseType('República')}
                     color={'#7E57C2'}
                   />
                   <Text style={styles.cardText}>República</Text>

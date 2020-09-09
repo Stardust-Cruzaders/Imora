@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, View, useWindowDimensions} from 'react-native';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
@@ -11,17 +11,27 @@ import Div from '../../../../Component/Div';
 import CheckboxComponent from '../../../../Component/CheckboxComponent';
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 
+import {useResidenceAdd} from '../../../../contexts/residenceAdd';
 export default function ResidenceAddComfort({navigation}) {
-  const [hasWifi, setHasWifi] = useState(false);
-  const [hasTV, setHasTV] = useState(false);
-  const [hasAC, setHasAC] = useState(false);
-  const [hasNotebookWork, setHasNotebookWork] = useState(false);
-  const [hasKitchen, setHasKitchen] = useState(false);
-  const [hasGrill, setHasGrill] = useState(false);
-
-  const [hasPool, setHasPool] = useState(false);
-  const [hasParkingLot, setHasParkingLot] = useState(false);
-
+  const {
+    hasWifi,
+    setHasWifi,
+    hasTV,
+    setHasTV,
+    hasAC,
+    setHasAC,
+    hasNotebookWork,
+    setHasNotebookWork,
+    hasKitchen,
+    setHasKitchen,
+    hasGrill,
+    setHasGrill,
+    hasPool,
+    setHasPool,
+    hasParkingLot,
+    setHasParkingLot,
+    setComforts,
+  } = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
     <>
@@ -88,6 +98,31 @@ export default function ResidenceAddComfort({navigation}) {
             <BorderlessButton
               style={styles.button}
               onPress={() => {
+                setComforts(
+                  [
+                    {id: 'Wifi', value: hasWifi, icon: 'wifi'},
+                    {id: 'Televisão', value: hasTV, icon: 'youtube-tv'},
+                    {
+                      id: 'Ar-condicionado',
+                      value: hasAC,
+                      icon: 'weather-windy',
+                    },
+                    {
+                      id: 'Lugar de trabalho adequado para notebook',
+                      value: hasNotebookWork,
+                      icon: 'laptop-windows',
+                    },
+                    {id: 'Cozinha', value: hasKitchen, icon: 'food-fork-drink'},
+                    {id: 'Churrasqueira', value: hasGrill, icon: 'food-steak'},
+                    {id: 'Piscina', value: hasPool, icon: 'pool'},
+                    {
+                      id: 'Estacionamento',
+                      value: hasParkingLot,
+                      icon: 'car-side',
+                    },
+                  ].filter((comfort) => comfort.value === true),
+                );
+
                 navigation.navigate('ResidenceAddConditions');
               }}>
               <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />

@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, View, useWindowDimensions} from 'react-native';
 
 import textStyles from '../../../../textStyles';
@@ -14,12 +14,20 @@ import CheckboxComponent from '../../../../Component/CheckboxComponent';
 import {RadioButton, TextInput} from 'react-native-paper';
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
 
-export default function ResidenceAddConditions({navigation}) {
-  const [maxResidentNum, setMaxResidentNum] = useState('1');
-  const [allowPets, setAllowPets] = useState(false);
-  const [allowSmokers, setAllowSmokers] = useState(false);
+import {useResidenceAdd} from '../../../../contexts/residenceAdd';
 
-  const [checked, setChecked] = useState('first');
+export default function ResidenceAddConditions({navigation}) {
+  const {
+    maxResidentNum,
+    setMaxResidentNum,
+    allowPets,
+    setAllowPets,
+    allowSmokers,
+    setAllowSmokers,
+    genderPreference,
+    setGenderPreference,
+    setConditions,
+  } = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
     <>
@@ -29,7 +37,8 @@ export default function ResidenceAddConditions({navigation}) {
           <Text style={[styles.cardTitle, textStyles.font]}> Condições </Text>
           <Div threshold={120} height={2} />
           <Text style={[styles.description, textStyles.font]}>
-            Cheque todos os itens que serão proibidos na residência.
+            Aqui você pode definir diferentes tipos de restrições para sua
+            residência
           </Text>
           <View style={styles.checklist}>
             <View
@@ -76,9 +85,11 @@ export default function ResidenceAddConditions({navigation}) {
                   alignItems: 'center',
                 }}>
                 <RadioButton
-                  value="first"
-                  status={checked === 'first' ? 'checked' : 'unchecked'}
-                  onPress={() => setChecked('first')}
+                  value="Masculino"
+                  status={
+                    genderPreference === 'Masculino' ? 'checked' : 'unchecked'
+                  }
+                  onPress={() => setGenderPreference('Masculino')}
                   color={'#7E57C2'}
                 />
                 <Text style={[styles.cardText, textStyles.font]}>
@@ -91,9 +102,11 @@ export default function ResidenceAddConditions({navigation}) {
                   alignItems: 'center',
                 }}>
                 <RadioButton
-                  value="second"
-                  status={checked === 'second' ? 'checked' : 'unchecked'}
-                  onPress={() => setChecked('second')}
+                  value="Feminino"
+                  status={
+                    genderPreference === 'Feminino' ? 'checked' : 'unchecked'
+                  }
+                  onPress={() => setGenderPreference('Feminino')}
                   color={'#7E57C2'}
                 />
                 <Text style={[styles.cardText, textStyles.font]}>Feminino</Text>
@@ -104,9 +117,11 @@ export default function ResidenceAddConditions({navigation}) {
                   alignItems: 'center',
                 }}>
                 <RadioButton
-                  value="third"
-                  status={checked === 'third' ? 'checked' : 'unchecked'}
-                  onPress={() => setChecked('third')}
+                  value="Indiferente"
+                  status={
+                    genderPreference === 'Indiferente' ? 'checked' : 'unchecked'
+                  }
+                  onPress={() => setGenderPreference('Indiferente')}
                   color={'#7E57C2'}
                 />
                 <Text style={[styles.cardText, textStyles.font]}>
@@ -131,6 +146,20 @@ export default function ResidenceAddConditions({navigation}) {
               <BorderlessButton
                 style={styles.button}
                 onPress={() => {
+                  setConditions(
+                    [
+                      {
+                        id: 'Animais de estimação',
+                        value: allowPets,
+                        icon: 'pets',
+                      },
+                      {
+                        id: 'Fumar dentro da residência',
+                        value: allowSmokers,
+                        icon: 'smoking-rooms',
+                      },
+                    ].filter((condition) => condition.value === true),
+                  );
                   navigation.navigate('ResidenceAddLocationZipcode');
                 }}>
                 <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
