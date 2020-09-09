@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, View, useWindowDimensions} from 'react-native';
 
 import textStyles from '../../../../textStyles';
@@ -26,6 +26,7 @@ export default function ResidenceAddConditions({navigation}) {
     setAllowSmokers,
     genderPreference,
     setGenderPreference,
+    setConditions,
   } = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
@@ -145,6 +146,20 @@ export default function ResidenceAddConditions({navigation}) {
               <BorderlessButton
                 style={styles.button}
                 onPress={() => {
+                  setConditions(
+                    [
+                      {
+                        id: 'Animais de estimação',
+                        value: allowPets,
+                        icon: 'pets',
+                      },
+                      {
+                        id: 'Fumar dentro da residência',
+                        value: allowSmokers,
+                        icon: 'smoking-rooms',
+                      },
+                    ].filter((condition) => condition.value === true),
+                  );
                   navigation.navigate('ResidenceAddLocationZipcode');
                 }}>
                 <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />

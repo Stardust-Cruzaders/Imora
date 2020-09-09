@@ -42,28 +42,19 @@ export default function ResidenceEdit({navigation}) {
     price,
     numRooms,
     numBathrooms,
-    checked,
+    locationType,
     checkedHouseType,
     description,
-    hasWifi,
-    hasTV,
-    hasAC,
-    hasNotebookWork,
-    hasKitchen,
-    hasGrill,
-    hasPool,
-    hasParkingLot,
     maxResidentNum,
-    allowPets,
-    allowSmokers,
-    checked2,
-    zipcode,
+    genderPreference,
     street,
     number,
     neighborhood,
     city,
     state,
     proximity,
+    comforts,
+    conditions,
   } = useResidenceAdd();
   return (
     <>
@@ -79,7 +70,9 @@ export default function ResidenceEdit({navigation}) {
           <View style={[styles.bodyView, {width: width - 50}]}>
             <View style={styles.basicInfoView}>
               <View style={[styles.titleWithEditOption, {width: width - 100}]}>
-                <Text style={[styles.mainTitle, textStyles.font]}>Título </Text>
+                <Text style={[styles.mainTitle, textStyles.font]}>
+                  {title}{' '}
+                </Text>
                 <TouchableOpacity
                   style={styles.editButton}
                   onPress={() => {
@@ -89,7 +82,7 @@ export default function ResidenceEdit({navigation}) {
                 </TouchableOpacity>
               </View>
               <Text style={[styles.location, textStyles.font]}>
-                Localização,Localização
+                {state},{city}
               </Text>
               <Text style={[styles.location, textStyles.font]}>
                 Disponibilidade:{' '}
@@ -102,7 +95,9 @@ export default function ResidenceEdit({navigation}) {
                 </Text>
               </Text>
 
-              <Text style={[styles.price, textStyles.font]}>R$23,00/Mês </Text>
+              <Text style={[styles.price, textStyles.font]}>
+                R${price}/Mês{' '}
+              </Text>
             </View>
             <View style={styles.ownerView}>
               <View style={styles.profilePicView}>
@@ -124,7 +119,9 @@ export default function ResidenceEdit({navigation}) {
               <View style={[styles.titleWithEditOption, {width: width - 80}]}>
                 <View style={styles.titleWithIconView}>
                   <Icon name={'home'} size={30} color={'#3F3F3F'} />
-                  <Text style={[styles.title1, textStyles.font]}>Mansão</Text>
+                  <Text style={[styles.title1, textStyles.font]}>
+                    {checkedHouseType}
+                  </Text>
                 </View>
                 <TouchableOpacity
                   style={styles.editButton}
@@ -135,12 +132,10 @@ export default function ResidenceEdit({navigation}) {
                 </TouchableOpacity>
               </View>
               <Text style={[styles.description, textStyles.font]}>
-                A casa toda pra você
+                {locationType}
               </Text>
               <Text style={[styles.description, textStyles.font]}>
-                Essa é uma descrição legal demais cara olha que casa legal oloco
-                mano top demais tem tanta coisa um monte de coisa olha isso que
-                top.
+                {description}
               </Text>
               <View style={styles.titleWithIconView}>
                 <Text style={[textStyles.font, {fontSize: 30}]}>•</Text>
@@ -150,7 +145,7 @@ export default function ResidenceEdit({navigation}) {
                   color={'#3F3F3F'}
                 />
                 <Text style={[styles.descriptionList, textStyles.font]}>
-                  Quantidade de banheiros: 72
+                  Quantidade de banheiros: {numBathrooms}
                 </Text>
               </View>
               <View style={styles.titleWithIconView}>
@@ -163,7 +158,7 @@ export default function ResidenceEdit({navigation}) {
                   color={'#3F3F3F'}
                 />
                 <Text style={[styles.descriptionList, textStyles.font]}>
-                  Quantidade de quartos: 2
+                  Quantidade de quartos: {numRooms}
                 </Text>
               </View>
             </View>
@@ -184,73 +179,24 @@ export default function ResidenceEdit({navigation}) {
                   <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
                 </TouchableOpacity>
               </View>
-              <View style={styles.titleWithIconView}>
-                <Text style={[{fontSize: 30, marginRight: 5}, textStyles.font]}>
-                  •
-                </Text>
-                <Icon name={'wifi'} size={25} color={'#3F3F3F'} />
-                <Text style={[styles.descriptionList, textStyles.font]}>
-                  Wifi
-                </Text>
-              </View>
-              <View style={styles.titleWithIconView}>
-                <Text style={[{fontSize: 30, marginRight: 5}, textStyles.font]}>
-                  •
-                </Text>
-                <MaterialCommunityIcon
-                  name={'food-fork-drink'}
-                  size={25}
-                  color={'#3F3F3F'}
-                />
-                <Text style={[styles.descriptionList, textStyles.font]}>
-                  Cozinha
-                </Text>
-              </View>
-              <View style={styles.titleWithIconView}>
-                <Text style={[{fontSize: 30, marginRight: 5}, textStyles.font]}>
-                  •
-                </Text>
-                <MaterialCommunityIcon
-                  name={'pool'}
-                  size={25}
-                  color={'#3F3F3F'}
-                />
-                <Text style={[styles.descriptionList, textStyles.font]}>
-                  Piscina
-                </Text>
-              </View>
-              <View style={styles.titleWithIconView}>
-                <Text style={[{fontSize: 30, marginRight: 5}, textStyles.font]}>
-                  •
-                </Text>
-                <MaterialCommunityIcon
-                  name={'food-steak'}
-                  size={25}
-                  color={'#3F3F3F'}
-                />
-                <Text style={[styles.descriptionList, textStyles.font]}>
-                  Churrasqueira
-                </Text>
-              </View>
-              <View style={styles.titleWithIconView}>
-                <Text style={[{fontSize: 30, marginRight: 5}, textStyles.font]}>
-                  •
-                </Text>
-                <Icon name={'tv'} size={25} color={'#3F3F3F'} />
-                <Text
-                  style={[styles.descriptionList, textStyles.font, {top: 10}]}>
-                  Televisão
-                </Text>
-              </View>
-              <View style={styles.titleWithIconView}>
-                <Text style={[{fontSize: 30, marginRight: 5}, textStyles.font]}>
-                  •
-                </Text>
-                <MaterialIcon name={'computer'} size={25} color={'#3F3F3F'} />
-                <Text style={[styles.descriptionList, textStyles.font]}>
-                  Lugar para trabalhar com notebook
-                </Text>
-              </View>
+              {comforts.map((comfort) => {
+                return (
+                  <View key={comfort.id} style={styles.titleWithIconView}>
+                    <Text
+                      style={[{fontSize: 30, marginRight: 5}, textStyles.font]}>
+                      •
+                    </Text>
+                    <MaterialCommunityIcon
+                      name={comfort.icon}
+                      size={25}
+                      color={'#3F3F3F'}
+                    />
+                    <Text style={[styles.descriptionList, textStyles.font]}>
+                      {comfort.id}
+                    </Text>
+                  </View>
+                );
+              })}
             </View>
             <Div threshold={100} />
             <View style={styles.conditionView}>
@@ -281,8 +227,7 @@ export default function ResidenceEdit({navigation}) {
                       textStyles.font,
                       {fontWeight: 'normal', top: 10},
                     ]}>
-                    {' '}
-                    8
+                    {maxResidentNum}
                   </Text>
                 </Text>
               </View>
@@ -300,8 +245,7 @@ export default function ResidenceEdit({navigation}) {
                       textStyles.font,
                       {fontWeight: 'normal', top: 10},
                     ]}>
-                    {' '}
-                    15
+                    {0}
                   </Text>
                 </Text>
               </View>
@@ -320,7 +264,7 @@ export default function ResidenceEdit({navigation}) {
                       {fontWeight: 'normal', top: 10},
                     ]}>
                     {' '}
-                    Indiferente
+                    {genderPreference}
                   </Text>
                 </Text>
               </View>
@@ -332,38 +276,26 @@ export default function ResidenceEdit({navigation}) {
                 ]}>
                 Não são permitidos:
               </Text>
-              <View style={styles.titleWithIconView}>
-                <Text style={{fontSize: 30, marginRight: 5}}>•</Text>
-                <MaterialIcon name={'pets'} size={25} color={'#3F3F3F'} />
-                <Text
-                  style={[styles.descriptionList, textStyles.font, {top: 10}]}>
-                  Animais de estimação
-                </Text>
-              </View>
-              <View style={styles.titleWithIconView}>
-                <Text style={{fontSize: 30, marginRight: 5}}>•</Text>
-                <MaterialIcon
-                  name={'smoking-rooms'}
-                  size={25}
-                  color={'#3F3F3F'}
-                />
-                <Text
-                  style={[styles.descriptionList, textStyles.font, {top: 10}]}>
-                  Fumantes dentro de casa
-                </Text>
-              </View>
-              <View style={styles.titleWithIconView}>
-                <Text style={{fontSize: 30, marginRight: 5}}>•</Text>
-                <MaterialCommunityIcon
-                  name={'crown'}
-                  size={25}
-                  color={'#3F3F3F'}
-                />
-                <Text
-                  style={[styles.descriptionList, textStyles.font, {top: 8}]}>
-                  Kaua
-                </Text>
-              </View>
+              {conditions.map((condition) => {
+                return (
+                  <View key={condition.id} style={styles.titleWithIconView}>
+                    <Text style={{fontSize: 30, marginRight: 5}}>•</Text>
+                    <MaterialIcon
+                      name={condition.icon}
+                      size={25}
+                      color={'#3F3F3F'}
+                    />
+                    <Text
+                      style={[
+                        styles.descriptionList,
+                        textStyles.font,
+                        {top: 10},
+                      ]}>
+                      {condition.id}
+                    </Text>
+                  </View>
+                );
+              })}
             </View>
             <Div threshold={100} />
             <View style={styles.locationView}>
@@ -382,7 +314,7 @@ export default function ResidenceEdit({navigation}) {
               </View>
 
               <Text style={[styles.description, {marginBottom: 25}]}>
-                Rua jorge de almeida bairro do limoeiro 7-85
+                {street} {neighborhood} {number}
               </Text>
             </View>
           </View>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, View, useWindowDimensions} from 'react-native';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
@@ -30,6 +30,7 @@ export default function ResidenceAddComfort({navigation}) {
     setHasPool,
     hasParkingLot,
     setHasParkingLot,
+    setComforts,
   } = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
@@ -97,6 +98,31 @@ export default function ResidenceAddComfort({navigation}) {
             <BorderlessButton
               style={styles.button}
               onPress={() => {
+                setComforts(
+                  [
+                    {id: 'Wifi', value: hasWifi, icon: 'wifi'},
+                    {id: 'Televisão', value: hasTV, icon: 'youtube-tv'},
+                    {
+                      id: 'Ar-condicionado',
+                      value: hasAC,
+                      icon: 'weather-windy',
+                    },
+                    {
+                      id: 'Lugar de trabalho adequado para notebook',
+                      value: hasNotebookWork,
+                      icon: 'laptop-windows',
+                    },
+                    {id: 'Cozinha', value: hasKitchen, icon: 'food-fork-drink'},
+                    {id: 'Churrasqueira', value: hasGrill, icon: 'food-steak'},
+                    {id: 'Piscina', value: hasPool, icon: 'pool'},
+                    {
+                      id: 'Estacionamento',
+                      value: hasParkingLot,
+                      icon: 'car-side',
+                    },
+                  ].filter((comfort) => comfort.value === true),
+                );
+
                 navigation.navigate('ResidenceAddConditions');
               }}>
               <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />

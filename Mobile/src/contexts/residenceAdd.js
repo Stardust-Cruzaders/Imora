@@ -28,11 +28,37 @@ export default function ResidenceAddProvider({children}){
   const [hasPool, setHasPool] = useState(false);
   const [hasParkingLot, setHasParkingLot] = useState(false);
 
+  const [comforts, setComforts] = useState([
+                    {id: 'Wifi', value: hasWifi, icon: 'wifi'},
+                    {id: 'Televisão', value: hasTV, icon: 'youtube-tv'},
+                    {
+                      id: 'Ar-condicionado',
+                      value: hasAC,
+                      icon: 'weather-windy',
+                    },
+                    {
+                      id: 'Lugar de trabalho adequado para notebook',
+                      value: hasNotebookWork,
+                      icon: 'laptop-windows',
+                    },
+                    {id: 'Cozinha', value: hasKitchen, icon: 'food-fork-drink'},
+                    {id: 'Churrasqueira', value: hasGrill, icon: 'food-steak'},
+                    {id: 'Piscina', value: hasPool, icon: 'pool'},
+                    {
+                      id: 'Estacionamento',
+                      value: hasParkingLot,
+                      icon: 'car-side',
+                    },
+  ]);
   //Residence Conditions
   const [maxResidentNum, setMaxResidentNum] = useState('1');
   const [allowPets, setAllowPets] = useState(false);
   const [allowSmokers, setAllowSmokers] = useState(false);
 
+  const [conditions, setConditions] = useState([
+    {id: 'Animais de estimação', valufeate: allowPets,  icon: 'pets'},
+    {id: 'Fumar dentro da residência', value: allowSmokers,  icon: 'smoking-rooms'},
+  ]);
   const [genderPreference, setGenderPreference] = useState('Indiferente');
 
   //Residence Zipcode
@@ -75,6 +101,8 @@ export default function ResidenceAddProvider({children}){
         city, setCity,
         state, setState,
         proximity, setProximity,
+        comforts,setComforts,
+        conditions, setConditions,
       }}>
       {children}
       </ResidenceAddContext.Provider>
