@@ -24,8 +24,6 @@ export default function ResidenceAddLocationAddress({navigation}) {
     setCity,
     state,
     setState,
-    proximity,
-    setProximity,
   } = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
@@ -71,12 +69,6 @@ export default function ResidenceAddLocationAddress({navigation}) {
               value={state}
               onChangeText={(text) => setState(text)}
               placeholder={'Estado'}
-            />
-            <TextInput
-              style={[styles.input, {width: width - 80}]}
-              value={proximity}
-              onChangeText={(text) => setProximity(text)}
-              placeholder={'Proximidades'}
             />
           </View>
 

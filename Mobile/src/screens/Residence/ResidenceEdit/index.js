@@ -52,7 +52,6 @@ export default function ResidenceEdit({navigation}) {
     neighborhood,
     city,
     state,
-    proximity,
     comforts,
     conditions,
   } = useResidenceAdd();

@@ -70,7 +70,7 @@ export default function ResidenceAddProvider({children}){
   const [neighborhood, setNeighborhood] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
-  const [proximity, setProximity] = useState('');
+
 
   return (
     <ResidenceAddContext.Provider
@@ -100,7 +100,6 @@ export default function ResidenceAddProvider({children}){
         neighborhood, setNeighborhood,
         city, setCity,
         state, setState,
-        proximity, setProximity,
         comforts,setComforts,
         conditions, setConditions,
       }}>
