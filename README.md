@@ -1,6 +1,6 @@
 <h1 align="center"> Imora </h1>
 <p align="center">
-<img src="https://i.imgur.com/xgrFFRI.png" align="center" width="600" height="400"></img>
+<img src="https://i.imgur.com/mnAp4ts.png" align="center" width="400" height="400"></img>
 </p>
 
 
