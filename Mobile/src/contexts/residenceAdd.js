@@ -13,8 +13,8 @@ export default function ResidenceAddProvider({children}){
   const [numBathrooms, setNumBathrooms] = useState('');
 
   //Residence Type
-  const [checked, setChecked] = useState('first');
-  const [checkedHouseType, setCheckedHouseType] = useState('house');
+  const [locationType, setLocationType] = useState('Espaço inteiro');
+  const [checkedHouseType, setCheckedHouseType] = useState('Casa');
   const [description, setDescription] = useState('');
 
   //Residence Comforts
@@ -33,7 +33,7 @@ export default function ResidenceAddProvider({children}){
   const [allowPets, setAllowPets] = useState(false);
   const [allowSmokers, setAllowSmokers] = useState(false);
 
-  const [checked2, setChecked2] = useState('first');
+  const [genderPreference, setGenderPreference] = useState('Indiferente');
 
   //Residence Zipcode
   const [zipcode, setZipcode] = useState('');
@@ -53,7 +53,7 @@ export default function ResidenceAddProvider({children}){
         price,setPrice,
         numRooms, setNumRooms,
         numBathrooms,setNumBathrooms,
-        checked,setChecked,
+        locationType,setLocationType,
         checkedHouseType, setCheckedHouseType,
         description,setDescription,
         hasWifi, setHasWifi,
@@ -67,7 +67,7 @@ export default function ResidenceAddProvider({children}){
         maxResidentNum, setMaxResidentNum,
         allowPets, setAllowPets,
         allowSmokers, setAllowSmokers,
-        checked2, setChecked2,
+        genderPreference, setGenderPreference,
         zipcode, setZipcode,
         street, setStreet,
         number, setNumber,

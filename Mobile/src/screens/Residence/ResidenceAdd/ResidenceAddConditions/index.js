@@ -24,8 +24,8 @@ export default function ResidenceAddConditions({navigation}) {
     setAllowPets,
     allowSmokers,
     setAllowSmokers,
-    checked2,
-    setChecked2,
+    genderPreference,
+    setGenderPreference,
   } = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
@@ -36,7 +36,8 @@ export default function ResidenceAddConditions({navigation}) {
           <Text style={[styles.cardTitle, textStyles.font]}> Condições </Text>
           <Div threshold={120} height={2} />
           <Text style={[styles.description, textStyles.font]}>
-            Cheque todos os itens que serão proibidos na residência.
+            Aqui você pode definir diferentes tipos de restrições para sua
+            residência
           </Text>
           <View style={styles.checklist}>
             <View
@@ -83,9 +84,11 @@ export default function ResidenceAddConditions({navigation}) {
                   alignItems: 'center',
                 }}>
                 <RadioButton
-                  value="first"
-                  status={checked2 === 'first' ? 'checked' : 'unchecked'}
-                  onPress={() => setChecked2('first')}
+                  value="Masculino"
+                  status={
+                    genderPreference === 'Masculino' ? 'checked' : 'unchecked'
+                  }
+                  onPress={() => setGenderPreference('Masculino')}
                   color={'#7E57C2'}
                 />
                 <Text style={[styles.cardText, textStyles.font]}>
@@ -98,9 +101,11 @@ export default function ResidenceAddConditions({navigation}) {
                   alignItems: 'center',
                 }}>
                 <RadioButton
-                  value="second"
-                  status={checked2 === 'second' ? 'checked' : 'unchecked'}
-                  onPress={() => setChecked2('second')}
+                  value="Feminino"
+                  status={
+                    genderPreference === 'Feminino' ? 'checked' : 'unchecked'
+                  }
+                  onPress={() => setGenderPreference('Feminino')}
                   color={'#7E57C2'}
                 />
                 <Text style={[styles.cardText, textStyles.font]}>Feminino</Text>
@@ -111,9 +116,11 @@ export default function ResidenceAddConditions({navigation}) {
                   alignItems: 'center',
                 }}>
                 <RadioButton
-                  value="third"
-                  status={checked2 === 'third' ? 'checked' : 'unchecked'}
-                  onPress={() => setChecked2('third')}
+                  value="Indiferente"
+                  status={
+                    genderPreference === 'Indiferente' ? 'checked' : 'unchecked'
+                  }
+                  onPress={() => setGenderPreference('Indiferente')}
                   color={'#7E57C2'}
                 />
                 <Text style={[styles.cardText, textStyles.font]}>
