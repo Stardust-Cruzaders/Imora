@@ -6,60 +6,45 @@
 
  We're still working on the readme :)
  
+---
+
 ## Technologies :rocket: 
 ### This project was developed with the following technologies
 
-- [React](https://reactjs.org)
-- [React Native](https://facebook.github.io/react-native/)
+- ReactJS
+- React Native
+- NodeJS
+- Express
+- PostgreSQL
+- Firebase
 
 ---
 
 ## Table of Contents 🛰
 
-- [About 📖](#About)
-- [Installation 👷‍♂️](#Installation)
-- [Features 🛠✨](#Features)
-- [Contributing 🤗](#Contributing)
-- [Team 👨‍💻](#Team)
-- [Contact 💼](#Contact)
+- [Sobre 📖](#Sobre)
+- [Instalação 👷‍♂️](#Instalação)
+- [Funcionalidades 🛠✨](#Funcionalidades)
+- [Contribuindo 🤗](#Contribuindo)
+- [Time 👨‍💻](#Time)
+- [Contato 💼](#Contribuibndo)
 
 ---
 
-## Installation 👷‍♂️
+## Instalação 👷‍♂️
 
-### Installing dependencies
-inside the folder mobile, run:
-`yarn` or `npm install`
-### Running the app on Android, in development mode:
-`yarn run android` or `react-native run-android`
-### Starting the development server
-`yarn start` or `react-native start`
-
----
-
-## Contributing 🤗
-
-> To get started...
-
-### Step 1
-
-- **Option 1**
-    - 🍴 Fork this repo!
-
-- **Option 2**
-    - 👯 Clone this repo to your local machine using `https://github.com/Stardust-Cruzaders/improved-waffle.git`
-
-### Step 2
-
-- **HACK AWAY!** 🔨🔨🔨
-
-### Step 3
-- 🐱‍💻 Create a branch called feature/yourFeatureName
-- 🔃 Create a new pull request using <a href="https://github.com/Stardust-Cruzaders/improved-waffle.git" target="_blank">`https://github.com/Stardust-Cruzaders/improved-waffle.git`</a>.
+### Instalando dependências
+utilize esses comandos para instalar as dependências
+`yarn` ou `npm install`
+Rodando o app em modo de desenvolvimento
+`yarn run android` ou `react-native run-android`
+### Começando o servidor de desenvolvimento
+`yarn start` ou `react-native start`
 
 ---
 
-## Team 👨‍💻
+
+## Time 👨‍💻
 | <a href="https://github.com/stelianok" target="_blank">**Kauã Steliano**</a> | <a href="https://github.com/GabrielIshibashi" target="_blank">**Gabriel Ishibashi**</a>
 | :---: |:---:|
 | [![Kauã Steliano](https://avatars0.githubusercontent.com/u/39469125?s=460&u=ffe5b02120cf0c761931731569682b9ce1514102&v=4?v=3&s=200)](https://github.com/stelianok)    | [![Gabriel Ishibashi](https://avatars3.githubusercontent.com/u/58631378?s=800&u=d1fea05f883cca3019fa8ac04aac8b4b6390279a&v=4?)](https://github.com/GabrielIshibashi)
@@ -72,6 +57,11 @@ inside the folder mobile, run:
 
 Github: 
 [Gabriel Ishibashi](https://github.com/GabrielIshibashi)
+Linkedn: 
+[Gabriel Ishibashi](https://www.linkedin.com/in/gabriel-ishibashi-0935641b5/)
+
+E-mail:
+gabriel.ishibashi@outlook.com
 
 ### Kauã Steliano
 
