@@ -7,14 +7,7 @@ const ResidenceAddContext = createContext();
 export default function ResidenceAddProvider({children}){
 
 
-  function checkIfEmpty(array){
-    if (array.length < 1){
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
+
   //Residence Main
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
@@ -80,7 +73,28 @@ export default function ResidenceAddProvider({children}){
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
 
-
+  const [locationTypeMessage, setLocationTypeMessage] = useState('');
+  function checkIfEmpty(array){
+    if (array.length < 1){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  function CreateLocationTypeMessage(typeOfLocation){
+    switch (typeOfLocation){
+      case 'Espaço inteiro':
+        return setLocationTypeMessage('Você terá o espaço todo só para você');
+      case 'Quarto inteiro':
+        return setLocationTypeMessage('Você terá um quarto seu, mas também dividirá o espaço com outras pessoas');
+      case 'Quarto compartilhado':
+        return setLocationTypeMessage('Você terá que compartilhar um dormitório, assim como o espaço com outras pessoas');
+      default:
+        setLocationTypeMessage('Sla kk');
+        break;
+    }
+  }
   return (
     <ResidenceAddContext.Provider
       value={{
@@ -111,7 +125,8 @@ export default function ResidenceAddProvider({children}){
         state, setState,
         comforts,setComforts,
         conditions, setConditions,
-        checkIfEmpty,
+        checkIfEmpty, CreateLocationTypeMessage,
+        locationTypeMessage, setLocationTypeMessage,
       }}>
       {children}
       </ResidenceAddContext.Provider>

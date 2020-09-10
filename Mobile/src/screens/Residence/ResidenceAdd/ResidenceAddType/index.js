@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, View, useWindowDimensions, ScrollView} from 'react-native';
 import styles from './styles';
 import textStyles from '../../../../textStyles';
@@ -20,6 +20,7 @@ export default function ResidenceAddType({navigation}) {
     setCheckedHouseType,
     description,
     setDescription,
+    CreateLocationTypeMessage,
   } = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
@@ -76,22 +77,22 @@ export default function ResidenceAddType({navigation}) {
                 </Text>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <RadioButton
-                    value="Quarto Compartilhadod"
+                    value="Quarto compartilhado"
                     status={
-                      locationType === 'Quarto Compartilhado'
+                      locationType === 'Quarto compartilhado'
                         ? 'checked'
                         : 'unchecked'
                     }
-                    onPress={() => setLocationType('Quarto Compartilhado')}
+                    onPress={() => setLocationType('Quarto compartilhado')}
                     color={'#7E57C2'}
                   />
                   <Text style={[styles.cardText, textStyles.font]}>
-                    Quarto Compartilhado
+                    Quarto compartilhado
                   </Text>
                 </View>
                 <Text style={[styles.description, textStyles.font]}>
-                  O usuário terá que compartilhar um quarto com outros
-                  residentes.
+                  O usuário terá que compartilhar um dormitório e espaço com
+                  outros residentes.
                 </Text>
               </View>
               <TextInput
@@ -198,6 +199,7 @@ export default function ResidenceAddType({navigation}) {
                 <BorderlessButton
                   style={styles.button}
                   onPress={() => {
+                    CreateLocationTypeMessage(locationType);
                     navigation.navigate('ResidenceAddComfort');
                   }}>
                   <Icon

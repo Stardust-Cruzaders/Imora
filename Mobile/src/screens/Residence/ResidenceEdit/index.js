@@ -42,7 +42,7 @@ export default function ResidenceEdit({navigation}) {
     price,
     numRooms,
     numBathrooms,
-    locationType,
+    locationTypeMessage,
     checkedHouseType,
     description,
     maxResidentNum,
@@ -132,7 +132,7 @@ export default function ResidenceEdit({navigation}) {
                 </TouchableOpacity>
               </View>
               <Text style={[styles.description, textStyles.font]}>
-                {locationType}
+                {locationTypeMessage}
               </Text>
               <Text style={[styles.description, textStyles.font]}>
                 {description}
