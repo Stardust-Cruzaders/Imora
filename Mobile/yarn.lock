@@ -5501,6 +5501,11 @@ plugin-error@^0.1.2:
     arr-union "^2.0.1"
     extend-shallow "^1.1.2"
 
+popup-ui@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/popup-ui/-/popup-ui-1.1.1.tgz#a03c4664f66be453dccae144886fd24109bf0bd7"
+  integrity sha512-gZ1MQlq/SHI1pDvzrd3zfJXPUqHWxCqwz0LbXkrYcy1bH+/TuymvpvSbuG4BEWLrQ4tkm6obzcBkTn8yYBWPDw==
+
 posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
