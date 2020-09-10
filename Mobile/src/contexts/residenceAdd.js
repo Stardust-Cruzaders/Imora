@@ -6,6 +6,15 @@ import {createContext, useState, useContext} from 'react';
 const ResidenceAddContext = createContext();
 export default function ResidenceAddProvider({children}){
 
+
+  function checkIfEmpty(array){
+    if (array.length < 1){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
   //Residence Main
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
@@ -102,6 +111,7 @@ export default function ResidenceAddProvider({children}){
         state, setState,
         comforts,setComforts,
         conditions, setConditions,
+        checkIfEmpty,
       }}>
       {children}
       </ResidenceAddContext.Provider>

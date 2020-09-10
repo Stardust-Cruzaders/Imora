@@ -54,6 +54,7 @@ export default function ResidenceEdit({navigation}) {
     state,
     comforts,
     conditions,
+    checkIfEmpty,
   } = useResidenceAdd();
   return (
     <>
@@ -161,42 +162,51 @@ export default function ResidenceEdit({navigation}) {
                 </Text>
               </View>
             </View>
-            <Div threshold={100} />
-            <View styles={styles.comfortView}>
-              <View style={[styles.titleWithEditOption, {width: width - 75}]}>
-                <View style={styles.titleWithIconView}>
-                  <Icon name={'coffee'} size={30} color={'#3F3F3F'} />
-                  <Text style={[styles.title1, textStyles.font]}>
-                    Comodidades
-                  </Text>
-                </View>
-                <TouchableOpacity
-                  style={styles.editButton}
-                  onPress={() => {
-                    navigation.navigate('ResidenceAddComfort');
-                  }}>
-                  <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
-                </TouchableOpacity>
-              </View>
-              {comforts.map((comfort) => {
-                return (
-                  <View key={comfort.id} style={styles.titleWithIconView}>
-                    <Text
-                      style={[{fontSize: 30, marginRight: 5}, textStyles.font]}>
-                      •
-                    </Text>
-                    <MaterialCommunityIcon
-                      name={comfort.icon}
-                      size={25}
-                      color={'#3F3F3F'}
-                    />
-                    <Text style={[styles.descriptionList, textStyles.font]}>
-                      {comfort.id}
-                    </Text>
+            {checkIfEmpty(comforts) === false && (
+              <>
+                <Div threshold={100} />
+                <View styles={styles.comfortView}>
+                  <View
+                    style={[styles.titleWithEditOption, {width: width - 75}]}>
+                    <View style={styles.titleWithIconView}>
+                      <Icon name={'coffee'} size={30} color={'#3F3F3F'} />
+                      <Text style={[styles.title1, textStyles.font]}>
+                        Comodidades
+                      </Text>
+                    </View>
+                    <TouchableOpacity
+                      style={styles.editButton}
+                      onPress={() => {
+                        navigation.navigate('ResidenceAddComfort');
+                      }}>
+                      <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
+                    </TouchableOpacity>
                   </View>
-                );
-              })}
-            </View>
+                  {comforts.map((comfort) => {
+                    return (
+                      <View key={comfort.id} style={styles.titleWithIconView}>
+                        <Text
+                          style={[
+                            {fontSize: 30, marginRight: 5},
+                            textStyles.font,
+                          ]}>
+                          •
+                        </Text>
+                        <MaterialCommunityIcon
+                          name={comfort.icon}
+                          size={25}
+                          color={'#3F3F3F'}
+                        />
+                        <Text style={[styles.descriptionList, textStyles.font]}>
+                          {comfort.id}
+                        </Text>
+                      </View>
+                    );
+                  })}
+                </View>
+              </>
+            )}
+
             <Div threshold={100} />
             <View style={styles.conditionView}>
               <View style={[styles.titleWithEditOption, {width: width - 80}]}>
@@ -267,14 +277,16 @@ export default function ResidenceEdit({navigation}) {
                   </Text>
                 </Text>
               </View>
-              <Text
-                style={[
-                  styles.descriptionList,
-                  textStyles.font,
-                  {top: 10, marginLeft: 25, fontWeight: 'bold'},
-                ]}>
-                Não são permitidos:
-              </Text>
+              {checkIfEmpty(conditions) === false && (
+                <Text
+                  style={[
+                    styles.descriptionList,
+                    textStyles.font,
+                    {top: 10, marginLeft: 25, fontWeight: 'bold'},
+                  ]}>
+                  Não são permitidos:
+                </Text>
+              )}
               {conditions.map((condition) => {
                 return (
                   <View key={condition.id} style={styles.titleWithIconView}>
