@@ -1,13 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
-import {
-  Text,
-  View,
-  useWindowDimensions,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import React from 'react';
+import {Text, View, useWindowDimensions, Image, ScrollView} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -26,8 +19,6 @@ import {useResidenceAdd} from '../../../contexts/residenceAdd';
 
 export default function ResidenceEdit({navigation}) {
   const width = useWindowDimensions().width;
-
-  const [available, setAvailable] = useState(true);
 
   const images = [
     'https://i.pinimg.com/236x/09/66/4f/09664f3441de659f26bf604a2f1f8f43.jpg',
@@ -73,26 +64,19 @@ export default function ResidenceEdit({navigation}) {
                 <Text style={[styles.mainTitle, textStyles.font]}>
                   {title}{' '}
                 </Text>
-                <TouchableOpacity
+                <BorderlessButton
                   style={styles.editButton}
                   onPress={() => {
                     navigation.navigate('ResidenceAddMain');
                   }}>
                   <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
-                </TouchableOpacity>
+                </BorderlessButton>
               </View>
               <Text style={[styles.location, textStyles.font]}>
                 {state},{city}
               </Text>
               <Text style={[styles.location, textStyles.font]}>
                 Disponibilidade:{' '}
-                <Text
-                  style={[
-                    available ? styles.availableText : styles.unavailableText,
-                    textStyles.font,
-                  ]}>
-                  {available ? 'Disponível' : 'Indisponível'}
-                </Text>
               </Text>
 
               <Text style={[styles.price, textStyles.font]}>
@@ -123,13 +107,13 @@ export default function ResidenceEdit({navigation}) {
                     {checkedHouseType}
                   </Text>
                 </View>
-                <TouchableOpacity
+                <BorderlessButton
                   style={styles.editButton}
                   onPress={() => {
                     navigation.navigate('ResidenceAddType');
                   }}>
                   <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
-                </TouchableOpacity>
+                </BorderlessButton>
               </View>
               <Text style={[styles.description, textStyles.font]}>
                 {locationTypeMessage}
@@ -174,13 +158,13 @@ export default function ResidenceEdit({navigation}) {
                         Comodidades
                       </Text>
                     </View>
-                    <TouchableOpacity
+                    <BorderlessButton
                       style={styles.editButton}
                       onPress={() => {
                         navigation.navigate('ResidenceAddComfort');
                       }}>
                       <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
-                    </TouchableOpacity>
+                    </BorderlessButton>
                   </View>
                   {comforts.map((comfort) => {
                     return (
@@ -214,13 +198,13 @@ export default function ResidenceEdit({navigation}) {
                   <Icon name={'alert-octagon'} size={30} color={'#E03826'} />
                   <Text style={styles.title1}>Condições </Text>
                 </View>
-                <TouchableOpacity
+                <BorderlessButton
                   style={styles.editButton}
                   onPress={() => {
                     navigation.navigate('ResidenceAddComfort');
                   }}>
                   <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
-                </TouchableOpacity>
+                </BorderlessButton>
               </View>
               <View style={styles.titleWithIconView}>
                 <Text
@@ -315,13 +299,13 @@ export default function ResidenceEdit({navigation}) {
                   <Icon name={'map-pin'} size={30} color={'#3F3F3F'} />
                   <Text style={styles.title1}>Localização </Text>
                 </View>
-                <TouchableOpacity
+                <BorderlessButton
                   style={styles.editButton}
                   onPress={() => {
                     navigation.navigate('ResidenceAddLocationZipcode');
                   }}>
                   <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
-                </TouchableOpacity>
+                </BorderlessButton>
               </View>
 
               <Text style={[styles.description, {marginBottom: 25}]}>
@@ -332,7 +316,7 @@ export default function ResidenceEdit({navigation}) {
         </View>
       </ScrollView>
       <View style={styles.footerView}>
-        <TouchableOpacity
+        <RectButton
           style={[
             styles.button,
             {backgroundColor: '#26E07C', width: width - 245},
@@ -343,15 +327,15 @@ export default function ResidenceEdit({navigation}) {
           <View style={{flexDirection: 'row'}}>
             <Text style={styles.buttonText}>Voltar</Text>
           </View>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </RectButton>
+        <RectButton
           style={[
             styles.button,
             {backgroundColor: '#7E57C2', width: width - 245},
           ]}
           onPress={() => {}}>
           <Text style={styles.buttonText}>Publicar</Text>
-        </TouchableOpacity>
+        </RectButton>
       </View>
     </>
   );
