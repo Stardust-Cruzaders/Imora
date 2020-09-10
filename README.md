@@ -3,13 +3,10 @@
 <img src="https://i.imgur.com/mnAp4ts.png" align="center" width="400" height="400"></img>
 </p>
 
-
- We're still working on the readme :)
  
----
 
-## Technologies :rocket: 
-### This project was developed with the following technologies
+## Tecnologias :rocket: 
+### Esse projeto foi desenvolvido comm as seguintes tecnologias
 
 - ReactJS
 - React Native
@@ -20,16 +17,35 @@
 
 ---
 
-## Table of Contents 🛰
+## Sumário 🛰
 
 - [Sobre 📖](#Sobre)
 - [Instalação 👷‍♂️](#Instalação)
-- [Funcionalidades 🛠✨](#Funcionalidades)
+- [Principais funcionalidades 🛠✨](#Funcionalidades)
 - [Contribuindo 🤗](#Contribuindo)
 - [Time 👨‍💻](#Time)
 - [Contato 💼](#Contribuibndo)
 
 ---
+
+## Sobre 📖
+
+### Descrição
+
+O Aplicativo Imora foi projetado para conectar estudantes que querem cursar faculdade em outra cidade  com repúblicas universitárias que aceitam estudantes ou pessoas com imóveis ou quartos  disponíveis para alugar. O Imora busca reunir oferta e procura em um único local, diminuindo o tempo que um estudante passaria procurando uma moradia ou o tempo que um locador  gastaria tentando alugar seu imóvel. 
+
+### Objetivo
+
+O projeto está sendo desenvolvido como Trabalho de conclusão de curso do 3º Ano do ensino médio integrado ao técnico na ETEC Rodrigues de abreu.
+
+---
+
+# Funcionalidades  🛠✨
+
+- Sistema de autenticação com facebook  ou google
+- Usuário pode ver anúncios de imóveis disponíveis
+- Usuário pode entrar em contato com outras pessoas do aplicativo através de nosso próprio sistema de mensagens instantâneas.
+- Usuário pode visualizar o perfil de outras pessoas.
 
 ## Instalação 👷‍♂️
 
@@ -51,7 +67,7 @@ Rodando o app em modo de desenvolvimento
 
 ---
 
-## Contact 💼
+## Contato 💼
 
 ### Gabriel Ishibashi
 
