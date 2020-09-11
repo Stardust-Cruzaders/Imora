@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {createContext, useState, useContext} from 'react';
-
+import cep from 'cep-promise';
 
 const ResidenceAddContext = createContext();
 export default function ResidenceAddProvider({children}){
@@ -53,7 +53,7 @@ export default function ResidenceAddProvider({children}){
                     },
   ]);
   //Residence Conditions
-  const [maxResidentNum, setMaxResidentNum] = useState('1');
+  const [maxResidentNum, setMaxResidentNum] = useState('');
   const [allowPets, setAllowPets] = useState(false);
   const [allowSmokers, setAllowSmokers] = useState(false);
 
@@ -95,6 +95,19 @@ export default function ResidenceAddProvider({children}){
         break;
     }
   }
+  function GetAddress(zipcode){
+    console.log(zipcode);
+    cep(zipcode)
+    .then(function(result){
+      setState(result.state);
+      setCity(result.city);
+      setNeighborhood(result.neighborhood);
+      setStreet(result.street);
+  })
+    .catch(function(err){
+      throw err;
+    });
+  }
   return (
     <ResidenceAddContext.Provider
       value={{
@@ -127,6 +140,7 @@ export default function ResidenceAddProvider({children}){
         conditions, setConditions,
         checkIfEmpty, CreateLocationTypeMessage,
         locationTypeMessage, setLocationTypeMessage,
+        GetAddress,
       }}>
       {children}
       </ResidenceAddContext.Provider>

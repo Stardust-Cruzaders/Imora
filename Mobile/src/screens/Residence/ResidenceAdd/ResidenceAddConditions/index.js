@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, View, useWindowDimensions} from 'react-native';
 
 import textStyles from '../../../../textStyles';
@@ -32,10 +32,10 @@ export default function ResidenceAddConditions({navigation}) {
   const width = useWindowDimensions().width;
 
   function VerifyFields() {
-    if (maxResidentNum != '' || maxResidentNum != '0') {
-      return true;
-    } else {
+    if (maxResidentNum === '' || maxResidentNum === '0') {
       return false;
+    } else {
+      return true;
     }
   }
   return (
@@ -67,7 +67,7 @@ export default function ResidenceAddConditions({navigation}) {
                   value={maxResidentNum}
                   onChangeText={(text) => setMaxResidentNum(text)}
                   keyboardType={'number-pad'}
-                  placeholder={'1'}
+                  placeholder={'0'}
                 />
               </View>
               <CheckboxComponent
@@ -183,9 +183,10 @@ export default function ResidenceAddConditions({navigation}) {
                     } else {
                       Popup.show({
                         type: 'Danger',
-                        title: 'Campos não preenchidos',
+                        title: 'Número máximo de ocupantes',
                         button: true,
-                        textBody: 'Campos obrigatórios não foram preenchidos',
+                        textBody:
+                          'Número máximo de ocupantes não pode ser vazio ou igual a 0',
                         buttontext: 'OK',
                         callback: () => Popup.hide(),
                       });
