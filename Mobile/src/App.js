@@ -14,7 +14,7 @@ export default function App() {
       <StatusBar backgroundColor={'#4D2C91'} />
       <NavigationContainer>
         <AuthProvider>
-          <ResidenceAddNavigation />
+          <Routes />
         </AuthProvider>
       </NavigationContainer>
     </>

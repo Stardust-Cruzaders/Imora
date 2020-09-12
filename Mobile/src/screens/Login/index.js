@@ -5,13 +5,6 @@ import styles from './styles';
 import textStyles from '../../textStyles';
 import Icon from 'react-native-vector-icons/Feather';
 
-import {
-  LoginManager,
-  AccessToken,
-  GraphRequest,
-  GraphRequestManager,
-} from 'react-native-fbsdk';
-import {ActivityIndicator} from 'react-native-paper';
 import {useAuth} from '../../contexts/auth';
 
 // user.picture.data.url
