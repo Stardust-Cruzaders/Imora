@@ -78,6 +78,13 @@ export default function ResidenceAddMain({navigation}) {
       return false;
     }
   }
+  function VerifyPhotos() {
+    if (resourcePath.length >= 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   function DeleteImg(item) {
     setResourcePath(
       resourcePath.filter((img) => {
@@ -212,7 +219,19 @@ export default function ResidenceAddMain({navigation}) {
                 style={styles.navButton}
                 onPress={() => {
                   if (VerifyFields()) {
-                    navigation.navigate('ResidenceAddType');
+                    if (VerifyPhotos()) {
+                      navigation.navigate('ResidenceAddType');
+                    } else {
+                      Popup.show({
+                        type: 'Warning',
+                        title: 'Nenhuma foto encontrada',
+                        button: true,
+                        textBody:
+                          'Você precisa fornecer no mínimo uma foto da sua residência',
+                        buttontext: 'OK',
+                        callback: () => Popup.hide(),
+                      });
+                    }
                   } else {
                     Popup.show({
                       type: 'Danger',
@@ -223,6 +242,7 @@ export default function ResidenceAddMain({navigation}) {
                       callback: () => Popup.hide(),
                     });
                   }
+
                   //
                 }}>
                 <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
