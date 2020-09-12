@@ -59,11 +59,8 @@ export default function ResidenceAddMain({navigation}) {
 
     ImagePicker.showImagePicker(options, (res) => {
       if (res.didCancel) {
-        console.log('User cancelled image picker');
       } else if (res.error) {
-        console.log('ImagePicker Error: ', res.error);
       } else if (res.customButton) {
-        console.log('User tapped custom button: ', res.customButton);
         alert(res.customButton);
       } else {
         let source = res;
@@ -71,8 +68,6 @@ export default function ResidenceAddMain({navigation}) {
         //const newArr = resourcePath.split();
 
         setResourcePath([...resourcePath, source]);
-
-        console.log(resourcePath.length);
       }
     });
   };
@@ -84,7 +79,6 @@ export default function ResidenceAddMain({navigation}) {
     }
   }
   function DeleteImg(item) {
-    console.log(item.fileName);
     setResourcePath(
       resourcePath.filter((img) => {
         return img.fileName !== item.fileName;
@@ -185,8 +179,6 @@ export default function ResidenceAddMain({navigation}) {
                             style={{width: 100, height: 100}}
                             onPress={() => {
                               DeleteImageConfirmation(item);
-                              console.log(resourcePath);
-                              console.log(resourcePath.length);
                             }}>
                             <Image
                               source={{
