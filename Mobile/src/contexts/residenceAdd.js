@@ -13,6 +13,7 @@ export default function ResidenceAddProvider({children}){
   const [price, setPrice] = useState('');
   const [numRooms, setNumRooms] = useState('');
   const [numBathrooms, setNumBathrooms] = useState('');
+  const [resourcePath, setResourcePath] = useState([]);
 
   //Residence Type
   const [locationType, setLocationType] = useState('Espaço inteiro');
@@ -115,6 +116,7 @@ export default function ResidenceAddProvider({children}){
         price,setPrice,
         numRooms, setNumRooms,
         numBathrooms,setNumBathrooms,
+        resourcePath, setResourcePath,
         locationType,setLocationType,
         checkedHouseType, setCheckedHouseType,
         description,setDescription,

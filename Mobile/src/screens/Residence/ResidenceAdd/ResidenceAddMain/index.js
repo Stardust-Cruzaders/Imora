@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
+  Image,
   Text,
   View,
   KeyboardAvoidingView,
   useWindowDimensions,
+  Alert,
 } from 'react-native';
 
 import styles from './styles';
@@ -12,8 +14,17 @@ import textStyles from '../../../../textStyles';
 import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../../Component/Div';
 
+import ImagePicker from 'react-native-image-picker';
+import 'react-native-get-random-values';
+import {nanoid} from 'nanoid';
+
 import ResidenceAddHeader from '../../../../Component/ResidenceAddHeader';
-import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
+import {
+  BorderlessButton,
+  FlatList,
+  RectButton,
+  ScrollView,
+} from 'react-native-gesture-handler';
 
 import {TextInput} from 'react-native-paper';
 import {Root, Popup} from 'popup-ui';
@@ -29,9 +40,42 @@ export default function ResidenceAddMain({navigation}) {
     setNumRooms,
     numBathrooms,
     setNumBathrooms,
+    resourcePath,
+    setResourcePath,
   } = useResidenceAdd();
+
   const width = useWindowDimensions().width;
 
+  const selectFile = () => {
+    var options = {
+      title: 'Selecionar imagem',
+      takePhotoButtonTitle: 'Tirar uma foto',
+      chooseFromLibraryButtonTitle: 'Escolher da galeria',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+
+    ImagePicker.showImagePicker(options, (res) => {
+      if (res.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (res.error) {
+        console.log('ImagePicker Error: ', res.error);
+      } else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton);
+        alert(res.customButton);
+      } else {
+        let source = res;
+
+        //const newArr = resourcePath.split();
+
+        setResourcePath([...resourcePath, source]);
+
+        console.log(resourcePath.length);
+      }
+    });
+  };
   function VerifyFields() {
     if (title != '' && price != '' && numRooms != '' && numBathrooms != '') {
       return true;
@@ -39,6 +83,27 @@ export default function ResidenceAddMain({navigation}) {
       return false;
     }
   }
+  function DeleteImg() {
+    console.log('deletado');
+  }
+  const DeleteImageConfirmation = () => {
+    Alert.alert(
+      'Confirmação de exclusão',
+      'Você deseja excluir essa imagem?',
+      [
+        {
+          text: 'Não',
+          style: 'cancel',
+        },
+        {
+          text: 'Sim',
+          onPress: () => DeleteImg(),
+          style: 'destructive',
+        },
+      ],
+      {cancelable: false},
+    );
+  };
   return (
     <>
       <Root>
@@ -85,22 +150,53 @@ export default function ResidenceAddMain({navigation}) {
                 keyboardType={'number-pad'}
               />
             </View>
-
-            <BorderlessButton
-              style={[styles.button, {width: width - 80}]}
-              onPress={() => {}}>
-              <View style={{flexDirection: 'row'}}>
-                <Icon name={'paperclip'} color={'#3F3F3F'} size={24} />
-                <Text style={styles.buttonText}>Anexar Foto </Text>
-                <Icon
-                  name={'chevron-right'}
-                  color={'#3F3F3F'}
-                  size={24}
-                  style={{position: 'absolute', left: 290}}
-                />
+            <View>
+              <RectButton
+                style={[styles.button, {width: width - 80}]}
+                onPress={() => {
+                  selectFile();
+                }}>
+                <View style={{flexDirection: 'row'}}>
+                  <Icon name={'paperclip'} color={'#3F3F3F'} size={24} />
+                  <Text style={styles.buttonText}>Anexar Foto </Text>
+                  <Icon
+                    name={'chevron-right'}
+                    color={'#3F3F3F'}
+                    size={24}
+                    style={{position: 'absolute', left: 290}}
+                  />
+                </View>
+              </RectButton>
+              <View style={styles.imageView}>
+                {resourcePath != undefined && (
+                  <FlatList
+                    horizontal
+                    data={resourcePath}
+                    keyExtractor={() => nanoid(9)}
+                    renderItem={({item}) => {
+                      return (
+                        <View style={styles.imageComponent}>
+                          <BorderlessButton
+                            style={{width: 100, height: 100}}
+                            onPress={() => {
+                              DeleteImageConfirmation();
+                              console.log(resourcePath);
+                              console.log(resourcePath.length);
+                            }}>
+                            <Image
+                              source={{
+                                uri: 'data:image/jpeg;base64,' + item.data,
+                              }}
+                              style={{width: 100, height: 100}}
+                            />
+                          </BorderlessButton>
+                        </View>
+                      );
+                    }}
+                  />
+                )}
               </View>
-            </BorderlessButton>
-
+            </View>
             <View style={styles.cardFooter}>
               <BorderlessButton
                 style={styles.navButton}
