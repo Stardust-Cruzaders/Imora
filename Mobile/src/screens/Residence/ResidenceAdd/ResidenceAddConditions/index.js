@@ -28,6 +28,8 @@ export default function ResidenceAddConditions({navigation}) {
     genderPreference,
     setGenderPreference,
     setConditions,
+    currentResidents,
+    setCurrentResidents,
   } = useResidenceAdd();
   const width = useWindowDimensions().width;
 
@@ -66,6 +68,25 @@ export default function ResidenceAddConditions({navigation}) {
                   style={[styles.input]}
                   value={maxResidentNum}
                   onChangeText={(text) => setMaxResidentNum(text)}
+                  keyboardType={'number-pad'}
+                  placeholder={'0'}
+                />
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+
+                  marginBottom: 20,
+                }}>
+                <Text style={[styles.cardText, textStyles.font]}>
+                  Número máximo de ocupantes:
+                </Text>
+                <TextInput
+                  style={[styles.input]}
+                  value={currentResidents}
+                  onChangeText={(text) => setCurrentResidents(text)}
                   keyboardType={'number-pad'}
                   placeholder={'0'}
                 />

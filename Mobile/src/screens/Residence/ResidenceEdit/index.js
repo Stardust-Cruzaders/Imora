@@ -47,6 +47,7 @@ export default function ResidenceEdit({navigation}) {
     conditions,
     checkIfEmpty,
     resourcePath,
+    currentResidents,
   } = useResidenceAdd();
   return (
     <>
@@ -75,9 +76,6 @@ export default function ResidenceEdit({navigation}) {
               </View>
               <Text style={[styles.location, textStyles.font]}>
                 {state},{city}
-              </Text>
-              <Text style={[styles.location, textStyles.font]}>
-                Disponibilidade:{' '}
               </Text>
 
               <Text style={[styles.price, textStyles.font]}>
@@ -202,7 +200,7 @@ export default function ResidenceEdit({navigation}) {
                 <BorderlessButton
                   style={styles.editButton}
                   onPress={() => {
-                    navigation.navigate('ResidenceAddComfort');
+                    navigation.navigate('ResidenceAddConditions');
                   }}>
                   <Icon name={'edit-2'} size={30} color={'#7E57C2'} />
                 </BorderlessButton>
@@ -221,6 +219,7 @@ export default function ResidenceEdit({navigation}) {
                       textStyles.font,
                       {fontWeight: 'normal', top: 10},
                     ]}>
+                    {' '}
                     {maxResidentNum}
                   </Text>
                 </Text>
@@ -239,7 +238,8 @@ export default function ResidenceEdit({navigation}) {
                       textStyles.font,
                       {fontWeight: 'normal', top: 10},
                     ]}>
-                    {0}
+                    {' '}
+                    {currentResidents}
                   </Text>
                 </Text>
               </View>

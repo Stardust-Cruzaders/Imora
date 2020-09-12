@@ -55,6 +55,7 @@ export default function ResidenceAddProvider({children}){
   ]);
   //Residence Conditions
   const [maxResidentNum, setMaxResidentNum] = useState('');
+  const [currentResidents, setCurrentResidents] = useState('0');
   const [allowPets, setAllowPets] = useState(false);
   const [allowSmokers, setAllowSmokers] = useState(false);
 
@@ -97,7 +98,6 @@ export default function ResidenceAddProvider({children}){
     }
   }
   function GetAddress(zipcode){
-    console.log(zipcode);
     cep(zipcode)
     .then(function(result){
       setState(result.state);
@@ -129,6 +129,7 @@ export default function ResidenceAddProvider({children}){
         hasPool, setHasPool,
         hasParkingLot, setHasParkingLot,
         maxResidentNum, setMaxResidentNum,
+        currentResidents,setCurrentResidents,
         allowPets, setAllowPets,
         allowSmokers, setAllowSmokers,
         genderPreference, setGenderPreference,
