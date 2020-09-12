@@ -83,10 +83,15 @@ export default function ResidenceAddMain({navigation}) {
       return false;
     }
   }
-  function DeleteImg() {
-    console.log('deletado');
+  function DeleteImg(item) {
+    console.log(item.fileName);
+    setResourcePath(
+      resourcePath.filter((img) => {
+        return img.fileName !== item.fileName;
+      }),
+    );
   }
-  const DeleteImageConfirmation = () => {
+  const DeleteImageConfirmation = (item) => {
     Alert.alert(
       'Confirmação de exclusão',
       'Você deseja excluir essa imagem?',
@@ -97,7 +102,7 @@ export default function ResidenceAddMain({navigation}) {
         },
         {
           text: 'Sim',
-          onPress: () => DeleteImg(),
+          onPress: () => DeleteImg(item),
           style: 'destructive',
         },
       ],
@@ -179,7 +184,7 @@ export default function ResidenceAddMain({navigation}) {
                           <BorderlessButton
                             style={{width: 100, height: 100}}
                             onPress={() => {
-                              DeleteImageConfirmation();
+                              DeleteImageConfirmation(item);
                               console.log(resourcePath);
                               console.log(resourcePath.length);
                             }}>
