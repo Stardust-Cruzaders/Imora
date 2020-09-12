@@ -88,6 +88,12 @@ const styles = StyleSheet.create({
     color: '#26E07C',
     fontSize: 50,
   },
+  imageComponent: {
+    marginHorizontal: 5,
+  },
+  imageView: {
+    flexDirection: 'row',
+  },
 });
 
 export default styles;

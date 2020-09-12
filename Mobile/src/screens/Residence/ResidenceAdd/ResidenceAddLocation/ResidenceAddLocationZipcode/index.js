@@ -13,7 +13,7 @@ import {TextInput} from 'react-native-paper';
 import {useResidenceAdd} from '../../../../../contexts/residenceAdd';
 
 export default function ResidenceAddLocationZipcode({navigation}) {
-  const {zipcode, setZipcode} = useResidenceAdd();
+  const {zipcode, setZipcode, GetAddress} = useResidenceAdd();
   const width = useWindowDimensions().width;
   return (
     <>
@@ -33,6 +33,7 @@ export default function ResidenceAddLocationZipcode({navigation}) {
               onChangeText={(text) => setZipcode(text)}
               placeholder={'Cep:'}
               keyboardType={'numeric'}
+              maxLength={8}
             />
           </View>
 
@@ -52,7 +53,8 @@ export default function ResidenceAddLocationZipcode({navigation}) {
             <Text style={styles.dot}>•</Text>
             <BorderlessButton
               style={styles.navButton}
-              onPress={() => {
+              onPress={async () => {
+                await GetAddress(zipcode);
                 navigation.navigate('ResidenceAddLocationAddress');
               }}>
               <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />

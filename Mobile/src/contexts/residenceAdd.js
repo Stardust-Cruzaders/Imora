@@ -1,16 +1,19 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {createContext, useState, useContext} from 'react';
-
+import cep from 'cep-promise';
 
 const ResidenceAddContext = createContext();
 export default function ResidenceAddProvider({children}){
+
+
 
   //Residence Main
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [numRooms, setNumRooms] = useState('');
   const [numBathrooms, setNumBathrooms] = useState('');
+  const [resourcePath, setResourcePath] = useState([]);
 
   //Residence Type
   const [locationType, setLocationType] = useState('Espaço inteiro');
@@ -51,7 +54,8 @@ export default function ResidenceAddProvider({children}){
                     },
   ]);
   //Residence Conditions
-  const [maxResidentNum, setMaxResidentNum] = useState('1');
+  const [maxResidentNum, setMaxResidentNum] = useState('');
+  const [currentResidents, setCurrentResidents] = useState('0');
   const [allowPets, setAllowPets] = useState(false);
   const [allowSmokers, setAllowSmokers] = useState(false);
 
@@ -71,7 +75,40 @@ export default function ResidenceAddProvider({children}){
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
 
-
+  const [locationTypeMessage, setLocationTypeMessage] = useState('');
+  function checkIfEmpty(array){
+    if (array.length < 1){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  function CreateLocationTypeMessage(typeOfLocation){
+    switch (typeOfLocation){
+      case 'Espaço inteiro':
+        return setLocationTypeMessage('Você terá o espaço todo só para você');
+      case 'Quarto inteiro':
+        return setLocationTypeMessage('Você terá um quarto seu, mas também dividirá o espaço com outras pessoas');
+      case 'Quarto compartilhado':
+        return setLocationTypeMessage('Você terá que compartilhar um dormitório, assim como o espaço com outras pessoas');
+      default:
+        setLocationTypeMessage('Sla kk');
+        break;
+    }
+  }
+  function GetAddress(zipcode){
+    cep(zipcode)
+    .then(function(result){
+      setState(result.state);
+      setCity(result.city);
+      setNeighborhood(result.neighborhood);
+      setStreet(result.street);
+  })
+    .catch(function(err){
+      throw err;
+    });
+  }
   return (
     <ResidenceAddContext.Provider
       value={{
@@ -79,6 +116,7 @@ export default function ResidenceAddProvider({children}){
         price,setPrice,
         numRooms, setNumRooms,
         numBathrooms,setNumBathrooms,
+        resourcePath, setResourcePath,
         locationType,setLocationType,
         checkedHouseType, setCheckedHouseType,
         description,setDescription,
@@ -91,6 +129,7 @@ export default function ResidenceAddProvider({children}){
         hasPool, setHasPool,
         hasParkingLot, setHasParkingLot,
         maxResidentNum, setMaxResidentNum,
+        currentResidents,setCurrentResidents,
         allowPets, setAllowPets,
         allowSmokers, setAllowSmokers,
         genderPreference, setGenderPreference,
@@ -102,6 +141,9 @@ export default function ResidenceAddProvider({children}){
         state, setState,
         comforts,setComforts,
         conditions, setConditions,
+        checkIfEmpty, CreateLocationTypeMessage,
+        locationTypeMessage, setLocationTypeMessage,
+        GetAddress,
       }}>
       {children}
       </ResidenceAddContext.Provider>
