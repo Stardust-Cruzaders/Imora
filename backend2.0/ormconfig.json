@@ -4,5 +4,11 @@
   "port": 5434,
   "username": "postgres",
   "password": "docker",
-  "database": "imora"
+  "database": "imora",
+  "migrations": [
+    "./src/database/migrations/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "./src/database/migrations/"
+  }
 }
