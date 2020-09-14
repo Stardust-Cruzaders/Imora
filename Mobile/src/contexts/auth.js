@@ -8,7 +8,6 @@ import {
   GraphRequestManager,
 } from 'react-native-fbsdk';
 import AsyncStorage from '@react-native-community/async-storage';
-import {View, ActivityIndicator} from 'react-native';
 
 //import * from as auth from '../services/auth';
 //import api from '../services/api';

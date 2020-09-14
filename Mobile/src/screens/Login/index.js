@@ -24,17 +24,6 @@ export default function Login({navigation}) {
           </Text>
         </RectButton>
 
-        {/*<View>
-          {loading && <ActivityIndicator />}
-          {user && (
-            // eslint-disable-next-line react-native/no-inline-styles
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
-              <Text>{user.name} </Text>
-              <Text>{user.email} </Text>
-              <Text>{accessToken} </Text>
-            </View>
-          )
-        </View>*/}
         <RectButton
           onPress={() => {
             FacebookSignIn();
