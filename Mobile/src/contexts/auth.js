@@ -8,6 +8,7 @@ import {
   GraphRequestManager,
 } from 'react-native-fbsdk';
 import AsyncStorage from '@react-native-community/async-storage';
+import {View, ActivityIndicator} from 'react-native';
 
 //import * from as auth from '../services/auth';
 //import api from '../services/api';
@@ -19,13 +20,15 @@ export function AuthProvider({children}) {
   const [loading, setLoading] = useState(true);
   const [accessToken, setAccessToken] = useState('');
   const [isRegistered, setIsRegistered] = useState(true);
-
   useEffect(() => {
     async function loadStoragedData() {
       const storagedUser = await AsyncStorage.getItem('@RNAuth:user');
       const storagedToken = await AsyncStorage.getItem('@RNAuth:token');
-
-      if (storagedUser && storagedToken) {
+      const wasSigned = await AsyncStorage.getItem('@RNAuth:wasSigned');
+      console.log(wasSigned);
+      if (wasSigned == null) {
+        setLoading(false);
+      } else if (storagedUser && storagedToken) {
         setUser(storagedUser);
         setAccessToken(storagedToken);
         setLoading(false);
@@ -40,8 +43,8 @@ export function AuthProvider({children}) {
     } else {
       setLoading(false);
       setUser(result);
-
       await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(result));
+      await AsyncStorage.setItem('@RNAuth:wasSigned', JSON.stringify(true));
     }
   }
   function getUserInfo(token) {
@@ -86,6 +89,7 @@ export function AuthProvider({children}) {
       setAccessToken(null);
     });
   }
+
   return (
     <AuthContext.Provider
       value={{
