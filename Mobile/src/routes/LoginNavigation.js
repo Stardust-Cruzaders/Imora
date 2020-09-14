@@ -10,10 +10,10 @@ import LoginOK from '../screens/Login/LoginOK';
 import MainNavigation from './MainNavigation';
 
 const Stack = createStackNavigator();
-export default function LoginNavigation() {
+export default function LoginNavigation({isRegistered}) {
   return (
     <Stack.Navigator
-      initialRouteName={'Login'}
+      initialRouteName={isRegistered ? 'Login' : 'LoginEditInfo'}
       screenOptions={{headerShown: false}}>
       <Stack.Screen name={'Login'} component={Login} />
       <Stack.Screen name={'LoginEditInfo'} component={LoginEditInfo} />

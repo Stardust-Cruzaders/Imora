@@ -19,6 +19,6 @@ export default function Routes() {
   return signed === true && isRegistered === true ? (
     <MainNavigation />
   ) : (
-    <LoginNavigation />
+    <LoginNavigation isRegistered={isRegistered} />
   );
 }

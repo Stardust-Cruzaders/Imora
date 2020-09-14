@@ -42,6 +42,7 @@ export function AuthProvider({children}) {
     } else {
       setLoading(false);
       setUser(result);
+      setIsRegistered(false);
       await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(result));
       await AsyncStorage.setItem('@RNAuth:wasSigned', JSON.stringify(true));
     }
@@ -94,6 +95,7 @@ export function AuthProvider({children}) {
       value={{
         signed: !!user,
         isRegistered,
+        setIsRegistered,
         user,
         phone,
         setPhone,

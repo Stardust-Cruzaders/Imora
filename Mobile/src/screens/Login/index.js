@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, View} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import styles from './styles';
@@ -9,7 +9,7 @@ import {useAuth} from '../../contexts/auth';
 
 // user.picture.data.url
 export default function Login({navigation}) {
-  const {FacebookSignIn} = useAuth();
+  const {FacebookSignIn, isRegistered} = useAuth();
   return (
     <View style={styles.container}>
       <View style={styles.headerAlign}>
@@ -27,7 +27,9 @@ export default function Login({navigation}) {
         <RectButton
           onPress={() => {
             FacebookSignIn();
-            navigation.navigate('LoginEditInfo');
+            if (isRegistered == false) {
+              navigation.navigate('LoginEditInfo');
+            }
           }}
           style={styles.facebookButton}>
           <View style={styles.iconContainer}>
