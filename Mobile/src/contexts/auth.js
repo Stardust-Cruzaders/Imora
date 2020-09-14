@@ -7,6 +7,7 @@ import {
   GraphRequest,
   GraphRequestManager,
 } from 'react-native-fbsdk';
+import AsyncStorage from '@react-native-community/async-storage';
 
 //import * from as auth from '../services/auth';
 //import api from '../services/api';
@@ -17,14 +18,33 @@ export function AuthProvider({children}) {
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(true);
   const [accessToken, setAccessToken] = useState('');
-  const [isRegistered, setIsRegistered] = useState(false);
-  // useEffect(() => {}, []);
-  function getUserCallback(error, result) {
+  const [isRegistered, setIsRegistered] = useState(true);
+  useEffect(() => {
+    async function loadStoragedData() {
+      const storagedUser = await AsyncStorage.getItem('@RNAuth:user');
+      const storagedToken = await AsyncStorage.getItem('@RNAuth:token');
+      const wasSigned = await AsyncStorage.getItem('@RNAuth:wasSigned');
+      console.log(wasSigned);
+      if (wasSigned == null) {
+        setLoading(false);
+      } else if (storagedUser && storagedToken) {
+        setUser(storagedUser);
+        setAccessToken(storagedToken);
+        setLoading(false);
+      }
+    }
+
+    loadStoragedData();
+  }, []);
+  async function getUserCallback(error, result) {
     if (error) {
       console.log('getUserError', error);
     } else {
       setLoading(false);
       setUser(result);
+      setIsRegistered(false);
+      await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(result));
+      await AsyncStorage.setItem('@RNAuth:wasSigned', JSON.stringify(true));
     }
   }
   function getUserInfo(token) {
@@ -51,10 +71,10 @@ export function AuthProvider({children}) {
               result.grantedPermissions.toString(),
           );
           const accessData = await AccessToken.getCurrentAccessToken();
-          setLoading(true);
+
           getUserInfo(accessData.accessToken);
           setAccessToken(accessData.accessToken);
-          //console.log(accessToken, user);
+          await AsyncStorage.setItem('@RNAuth:token', accessData.accessToken);
         }
       },
       function (error) {
@@ -63,15 +83,19 @@ export function AuthProvider({children}) {
     );
   }
   function FacebookSignOut() {
-    LoginManager.logOut();
-    setUser(null);
-    setAccessToken(null);
+    AsyncStorage.clear().then(() => {
+      LoginManager.logOut();
+      setUser(null);
+      setAccessToken(null);
+    });
   }
+
   return (
     <AuthContext.Provider
       value={{
         signed: !!user,
         isRegistered,
+        setIsRegistered,
         user,
         phone,
         setPhone,

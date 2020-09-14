@@ -1,22 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, View} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import styles from './styles';
 import textStyles from '../../textStyles';
 import Icon from 'react-native-vector-icons/Feather';
 
-import {
-  LoginManager,
-  AccessToken,
-  GraphRequest,
-  GraphRequestManager,
-} from 'react-native-fbsdk';
-import {ActivityIndicator} from 'react-native-paper';
 import {useAuth} from '../../contexts/auth';
 
 // user.picture.data.url
 export default function Login({navigation}) {
-  const {FacebookSignIn} = useAuth();
+  const {FacebookSignIn, isRegistered} = useAuth();
   return (
     <View style={styles.container}>
       <View style={styles.headerAlign}>
@@ -31,21 +24,12 @@ export default function Login({navigation}) {
           </Text>
         </RectButton>
 
-        {/*<View>
-          {loading && <ActivityIndicator />}
-          {user && (
-            // eslint-disable-next-line react-native/no-inline-styles
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
-              <Text>{user.name} </Text>
-              <Text>{user.email} </Text>
-              <Text>{accessToken} </Text>
-            </View>
-          )
-        </View>*/}
         <RectButton
           onPress={() => {
             FacebookSignIn();
-            navigation.navigate('LoginEditInfo');
+            if (isRegistered == false) {
+              navigation.navigate('LoginEditInfo');
+            }
           }}
           style={styles.facebookButton}>
           <View style={styles.iconContainer}>
