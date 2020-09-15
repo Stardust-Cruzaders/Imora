@@ -5,6 +5,9 @@
   "username": "postgres",
   "password": "docker",
   "database": "imora",
+  "entities": [
+		"./src/models/*.ts"
+	],
   "migrations": [
     "./src/database/migrations/*.ts"
   ],
