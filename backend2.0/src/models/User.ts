@@ -27,6 +27,9 @@ class User {
   @Column('bool')
   is_host: boolean;
 
+  @Column()
+  phone: string;
+
   @CreateDateColumn()
   created_at: Date;
 
