@@ -30,6 +30,9 @@ class User {
   @Column()
   phone: string;
 
+  @Column('varchar', { array: true })
+  favorites: string;
+
   @CreateDateColumn()
   created_at: Date;
 

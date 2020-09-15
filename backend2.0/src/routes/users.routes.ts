@@ -19,4 +19,17 @@ usersRouter.post('/', async (request, response) => {
 
   return response.json(user);
 });
+
+// usersRouter.patch('/:user_id/favorite', (request, response) => {
+// const { residence_id } = request.body;
+// const { user_id } = request.params;
+/**
+ * Pegar o id da residência que vai ser favoritada.
+ * Pegar o id do usuário que está favoritando.
+ * Verificar se a residência está favoritada.
+ * Se não estiver, Favoritar.
+ * Se estiver, Deletar dos favoritos.
+ */
+// });
+
 export default usersRouter;
