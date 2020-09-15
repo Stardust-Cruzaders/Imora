@@ -13,6 +13,11 @@ export default class CreateUsers1600111815965 implements MigrationInterface {
             generationStrategy: 'uuid',
           },
           {
+            name: 'name',
+            type: 'varchar',
+            isNullable: false,
+          },
+          {
             name: 'email',
             type: 'varchar',
             isNullable: false,
