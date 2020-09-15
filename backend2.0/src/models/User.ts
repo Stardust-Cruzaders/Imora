@@ -28,7 +28,7 @@ class User {
   is_host: boolean;
 
   @Column()
-  phone: string;
+  phone: string | null;
 
   @CreateDateColumn()
   created_at: Date;

@@ -7,7 +7,7 @@ interface Request {
   email: string;
   bio: string;
   is_host: boolean;
-  phone: string;
+  phone: string | null;
 }
 export default class CreateUserService {
   public async execute({
@@ -18,7 +18,7 @@ export default class CreateUserService {
     phone,
   }: Request): Promise<User> {
     const usersRepository = getRepository(User);
-
+    let newBio = '';
     const checkUserExists = await usersRepository.findOne({
       where: { email },
     });
@@ -27,13 +27,17 @@ export default class CreateUserService {
       throw new AppError('Email address already used');
     }
 
+    if (bio === '') {
+      newBio = 'Usuário sem descrição';
+    }
     const user = usersRepository.create({
       name,
       email,
-      bio,
+      bio: newBio,
       is_host,
       phone,
     });
+
     await usersRepository.save(user);
     return user;
   }
