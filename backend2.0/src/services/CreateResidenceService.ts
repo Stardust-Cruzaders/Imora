@@ -70,13 +70,16 @@ class CreateResidenceService {
     max_residents,
     owner_id,
   }: Request): Promise<Residence> {
-    const residenceRepository = getRepository(Residence);
+    const residenceRepository = getCustomRepository(ResidenceRepository);
     const userRepository = getRepository(User);
 
     const checkIfUserExists = await userRepository.findOne({ id: owner_id });
-
+    const checkAddress = await residenceRepository.findOne({ street, numberr });
     if (!checkIfUserExists) {
       throw new AppError("User doesn't exist", 404);
+    }
+    if (checkAddress) {
+      throw new AppError('This address is already being used', 400);
     }
     const residence = residenceRepository.create({
       residence_name,
