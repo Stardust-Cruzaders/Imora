@@ -17,6 +17,7 @@ export default class CreateResidence1600115326166
             type: 'varchar',
             isPrimary: true,
             generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
           },
           {
             name: 'residence_name',

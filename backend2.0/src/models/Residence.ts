@@ -96,9 +96,12 @@ class Residence {
   @Column('integer')
   max_residents: number;
 
+  @Column()
+  owner_id: string;
+
   @ManyToOne(() => User)
   @JoinColumn({ name: 'owner_id' })
-  owner_id: number;
+  owner: User;
 
   @CreateDateColumn()
   created_at: Date;
