@@ -21,7 +21,7 @@ class Residence {
   @Column()
   description: string;
 
-  @Column('array')
+  @Column('varchar', { array: true })
   images: string;
 
   @Column('boolean')

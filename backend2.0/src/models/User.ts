@@ -19,13 +19,19 @@ class User {
   email: string;
 
   @Column()
-  description: string;
+  bio: string;
 
   @Column()
   avatar: string;
 
   @Column('bool')
-  isHost: boolean;
+  is_host: boolean;
+
+  @Column()
+  phone: string;
+
+  @Column('varchar', { array: true })
+  favorites: string;
 
   @CreateDateColumn()
   created_at: Date;

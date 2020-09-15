@@ -191,6 +191,5 @@ export default class CreateResidence1600115326166
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable('residences');
-    await queryRunner.dropForeignKey('residences', 'ResidenceOwner');
   }
 }
