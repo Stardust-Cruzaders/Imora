@@ -6,6 +6,7 @@ interface Request {
   name: string;
   email: string;
   bio?: string;
+  avatar: string;
   is_host: boolean;
   phone?: string;
 }
@@ -13,6 +14,7 @@ export default class CreateUserService {
   public async execute({
     name,
     email,
+    avatar,
     bio,
     is_host,
     phone,
@@ -31,6 +33,7 @@ export default class CreateUserService {
     const user = await usersRepository.create({
       name,
       email,
+      avatar,
       bio,
       is_host,
       phone,
