@@ -19,13 +19,13 @@ class User {
   email: string;
 
   @Column()
-  description: string;
+  bio: string;
 
   @Column()
   avatar: string;
 
   @Column('bool')
-  isHost: boolean;
+  is_host: boolean;
 
   @CreateDateColumn()
   created_at: Date;

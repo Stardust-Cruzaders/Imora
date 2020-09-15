@@ -5,16 +5,11 @@ import AppError from '../errors/AppError';
 interface Request {
   name: string;
   email: string;
-  description: string;
-  isHost: boolean;
+  bio: string;
+  is_host: boolean;
 }
-class CreateUserService {
-  public async execute({
-    name,
-    email,
-    description,
-    isHost,
-  }: Request): Promise<User> {
+export default class CreateUserService {
+  public async execute({ name, email, bio, is_host }: Request): Promise<User> {
     const usersRepository = getRepository(User);
 
     const checkUserExists = await usersRepository.findOne({
@@ -28,8 +23,8 @@ class CreateUserService {
     const user = usersRepository.create({
       name,
       email,
-      description,
-      isHost,
+      bio,
+      is_host,
     });
     await usersRepository.save(user);
     return user;

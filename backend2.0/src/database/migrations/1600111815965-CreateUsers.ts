@@ -21,15 +21,15 @@ export default class CreateUsers1600111815965 implements MigrationInterface {
           {
             name: 'avatar',
             type: 'varchar',
-            isNullable: false,
+            isNullable: true,
           },
           {
-            name: 'description',
+            name: 'bio',
             type: 'varchar',
             isNullable: true,
           },
           {
-            name: 'isHost',
+            name: 'is_host',
             type: 'boolean',
             default: false,
           },
