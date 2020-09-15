@@ -5,9 +5,9 @@ import AppError from '../errors/AppError';
 interface Request {
   name: string;
   email: string;
-  bio: string;
+  bio?: string;
   is_host: boolean;
-  phone: string | null;
+  phone?: string;
 }
 export default class CreateUserService {
   public async execute({
@@ -18,7 +18,6 @@ export default class CreateUserService {
     phone,
   }: Request): Promise<User> {
     const usersRepository = getRepository(User);
-    let newBio = '';
     const checkUserExists = await usersRepository.findOne({
       where: { email },
     });
@@ -26,14 +25,13 @@ export default class CreateUserService {
     if (checkUserExists) {
       throw new AppError('Email address already used');
     }
-
-    if (bio === '') {
-      newBio = 'Usuário sem descrição';
+    if (bio === null) {
+      bio = 'sem descrição disponível';
     }
-    const user = usersRepository.create({
+    const user = await usersRepository.create({
       name,
       email,
-      bio: newBio,
+      bio,
       is_host,
       phone,
     });
