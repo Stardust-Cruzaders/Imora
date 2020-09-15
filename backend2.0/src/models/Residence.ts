@@ -16,7 +16,7 @@ class Residence {
   id: string;
 
   @Column()
-  name: string;
+  residence_name: string;
 
   @Column()
   description: string;
@@ -43,7 +43,7 @@ class Residence {
   street: string;
 
   @Column()
-  number: string;
+  numberr: string;
 
   @Column()
   residence_type: string;

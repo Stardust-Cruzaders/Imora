@@ -65,7 +65,7 @@ export default class CreateResidence1600115326166
             isNullable: false,
           },
           {
-            name: 'number',
+            name: 'numberr',
             type: 'varchar',
             isNullable: false,
           },
