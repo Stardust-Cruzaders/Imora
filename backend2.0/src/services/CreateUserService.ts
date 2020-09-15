@@ -7,9 +7,16 @@ interface Request {
   email: string;
   bio: string;
   is_host: boolean;
+  phone: string;
 }
 export default class CreateUserService {
-  public async execute({ name, email, bio, is_host }: Request): Promise<User> {
+  public async execute({
+    name,
+    email,
+    bio,
+    is_host,
+    phone,
+  }: Request): Promise<User> {
     const usersRepository = getRepository(User);
 
     const checkUserExists = await usersRepository.findOne({
@@ -25,6 +32,7 @@ export default class CreateUserService {
       email,
       bio,
       is_host,
+      phone,
     });
     await usersRepository.save(user);
     return user;
