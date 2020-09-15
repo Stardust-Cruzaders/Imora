@@ -5,18 +5,21 @@ import AppError from '../errors/AppError';
 interface Request {
   name: string;
   email: string;
-  description: string;
-  isHost: boolean;
+  bio?: string;
+  avatar: string;
+  is_host: boolean;
+  phone?: string;
 }
-class CreateUserService {
+export default class CreateUserService {
   public async execute({
     name,
     email,
-    description,
-    isHost,
+    avatar,
+    bio,
+    is_host,
+    phone,
   }: Request): Promise<User> {
     const usersRepository = getRepository(User);
-
     const checkUserExists = await usersRepository.findOne({
       where: { email },
     });
@@ -24,13 +27,18 @@ class CreateUserService {
     if (checkUserExists) {
       throw new AppError('Email address already used');
     }
-
-    const user = usersRepository.create({
+    if (bio === null) {
+      bio = 'sem descrição disponível';
+    }
+    const user = await usersRepository.create({
       name,
       email,
-      description,
-      isHost,
+      avatar,
+      bio,
+      is_host,
+      phone,
     });
+
     await usersRepository.save(user);
     return user;
   }
