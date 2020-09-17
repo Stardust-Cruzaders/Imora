@@ -30,7 +30,7 @@ usersRouter.post('/find', async (request, response) => {
 
   const result = await findUser.execute({ email });
 
-  return response.json({ isRegistered: result });
+  return response.json({ is_registered: result });
 });
 
 usersRouter.put('/:user_id', async (request, response) => {
