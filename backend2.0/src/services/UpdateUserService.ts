@@ -14,16 +14,17 @@ export default class UpdateUserService {
 
     const user = await usersRepository.findOne(id);
 
-    if (!user) {
-      throw new AppError("User doesn't exist", 404);
+    if (user === undefined) {
+      throw new AppError("user doesn't exist", 401);
     }
 
     if (bio === null) {
       bio = 'sem descrição disponível';
     }
+
     user.bio = bio;
     user.phone = phone;
-    console.log(user.bio, bio);
+
     const newUser = await usersRepository.save(user);
     return newUser;
   }

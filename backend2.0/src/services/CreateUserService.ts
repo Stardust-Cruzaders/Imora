@@ -20,11 +20,9 @@ export default class CreateUserService {
     phone,
   }: Request): Promise<User> {
     const usersRepository = getRepository(User);
-    const checkUserExists = await usersRepository.findOne({
-      where: { email },
-    });
+    const checkIfUserExists = await usersRepository.findOne({ email });
 
-    if (checkUserExists) {
+    if (checkIfUserExists) {
       throw new AppError('Email address already used');
     }
     if (bio === null) {

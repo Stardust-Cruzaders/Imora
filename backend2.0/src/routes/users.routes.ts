@@ -1,9 +1,20 @@
 import { Router } from 'express';
+
+import FindUserService from '../services/FindUserService';
 import CreateUserService from '../services/CreateUserService';
 import UpdateUserService from '../services/UpdateUserService';
 
 const usersRouter = Router();
 
+usersRouter.post('/find', async (request, response) => {
+  const { email } = request.body;
+
+  const findUser = new FindUserService();
+
+  const result = await findUser.execute({ email });
+
+  return response.json({ isRegistered: result });
+});
 usersRouter.post('/', async (request, response) => {
   const { name, email, avatar, bio, is_host, phone } = request.body;
 
