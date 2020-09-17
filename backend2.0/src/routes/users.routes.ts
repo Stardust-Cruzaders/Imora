@@ -6,15 +6,6 @@ import UpdateUserService from '../services/UpdateUserService';
 
 const usersRouter = Router();
 
-usersRouter.post('/find', async (request, response) => {
-  const { email } = request.body;
-
-  const findUser = new FindUserService();
-
-  const result = await findUser.execute({ email });
-
-  return response.json({ isRegistered: result });
-});
 usersRouter.post('/', async (request, response) => {
   const { name, email, avatar, bio, is_host, phone } = request.body;
 
@@ -30,6 +21,16 @@ usersRouter.post('/', async (request, response) => {
   });
 
   return response.json(user);
+});
+
+usersRouter.post('/find', async (request, response) => {
+  const { email } = request.body;
+
+  const findUser = new FindUserService();
+
+  const result = await findUser.execute({ email });
+
+  return response.json({ isRegistered: result });
 });
 
 usersRouter.put('/:user_id', async (request, response) => {
