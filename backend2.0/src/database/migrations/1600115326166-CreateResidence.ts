@@ -17,9 +17,10 @@ export default class CreateResidence1600115326166
             type: 'varchar',
             isPrimary: true,
             generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
           },
           {
-            name: 'name',
+            name: 'residence_name',
             type: 'varchar',
             isNullable: false,
           },
@@ -65,7 +66,7 @@ export default class CreateResidence1600115326166
             isNullable: false,
           },
           {
-            name: 'number',
+            name: 'numberr',
             type: 'varchar',
             isNullable: false,
           },

@@ -16,7 +16,7 @@ class Residence {
   id: string;
 
   @Column()
-  name: string;
+  residence_name: string;
 
   @Column()
   description: string;
@@ -43,7 +43,7 @@ class Residence {
   street: string;
 
   @Column()
-  number: string;
+  numberr: string;
 
   @Column()
   residence_type: string;
@@ -96,9 +96,12 @@ class Residence {
   @Column('integer')
   max_residents: number;
 
+  @Column()
+  owner_id: string;
+
   @ManyToOne(() => User)
   @JoinColumn({ name: 'owner_id' })
-  owner_id: number;
+  owner: User;
 
   @CreateDateColumn()
   created_at: Date;
