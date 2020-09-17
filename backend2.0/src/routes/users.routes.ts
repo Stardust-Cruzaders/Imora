@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import CreateUserService from '../services/CreateUserService';
+import UpdateUserService from '../services/UpdateUserService';
 
 const usersRouter = Router();
 
@@ -20,9 +21,19 @@ usersRouter.post('/', async (request, response) => {
   return response.json(user);
 });
 
-usersRouter.put('/:user_id', (request, response) => {
+usersRouter.put('/:user_id', async (request, response) => {
   const { user_id } = request.params;
   const { bio, phone } = request.body;
+
+  const updateUser = new UpdateUserService();
+
+  const user = await updateUser.execute({
+    id: user_id,
+    bio,
+    phone,
+  });
+
+  return response.json(user);
 });
 // usersRouter.patch('/:user_id/favorite', (request, response) => {
 // const { residence_id } = request.body;
