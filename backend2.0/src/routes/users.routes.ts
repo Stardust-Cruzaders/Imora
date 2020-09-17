@@ -3,6 +3,7 @@ import { Router } from 'express';
 import FindUserService from '../services/FindUserService';
 import CreateUserService from '../services/CreateUserService';
 import UpdateUserService from '../services/UpdateUserService';
+import FavoriteResidenceService from '../services/FavoriteResidenceService';
 
 const usersRouter = Router();
 
@@ -47,16 +48,22 @@ usersRouter.put('/:user_id', async (request, response) => {
 
   return response.json(user);
 });
-// usersRouter.patch('/:user_id/favorite', (request, response) => {
-// const { residence_id } = request.body;
-// const { user_id } = request.params;
-/**
- * Pegar o id da residência que vai ser favoritada.
- * Pegar o id do usuário que está favoritando.
- * Verificar se a residência está favoritada.
- * Se não estiver, Favoritar.
- * Se estiver, Deletar dos favoritos.
- */
-// });
+usersRouter.patch('/:user_id/favorite', async (request, response) => {
+  const { residence_id } = request.body;
+  const { user_id } = request.params;
+
+  const toggleFavorite = new FavoriteResidenceService();
+
+  const user = await toggleFavorite.execute({ residence_id, user_id });
+
+  return response.json(user);
+  /**
+   * Pegar o id da residência que vai ser favoritada.
+   * Pegar o id do usuário que está favoritando.
+   * Verificar se a residência está favoritada.
+   * Se não estiver, Favoritar.
+   * Se estiver, Deletar dos favoritos.
+   */
+});
 
 export default usersRouter;
