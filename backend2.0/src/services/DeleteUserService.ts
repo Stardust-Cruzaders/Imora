@@ -11,7 +11,7 @@ export default class DeleteUserService {
     const usersRepository = getRepository(User);
 
     const checkIfExists = await usersRepository.findOne(id);
-    if (checkIfExists == undefined) {
+    if (checkIfExists === undefined) {
       throw new AppError("User doesn't exist", 404);
     }
 
