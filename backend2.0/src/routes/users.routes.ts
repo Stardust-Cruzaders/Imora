@@ -20,6 +20,10 @@ usersRouter.post('/', async (request, response) => {
   return response.json(user);
 });
 
+usersRouter.put('/:user_id', (request, response) => {
+  const { user_id } = request.params;
+  const { bio, phone } = request.body;
+});
 // usersRouter.patch('/:user_id/favorite', (request, response) => {
 // const { residence_id } = request.body;
 // const { user_id } = request.params;
