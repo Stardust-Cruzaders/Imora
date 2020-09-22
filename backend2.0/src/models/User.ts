@@ -31,7 +31,7 @@ class User {
   phone: string;
 
   @Column('varchar', { array: true })
-  favorites: string;
+  favorites: Array<string>;
 
   @CreateDateColumn()
   created_at: Date;

@@ -9,7 +9,7 @@ export default class AddFavoritesColumn1600185687712
         name: 'favorites',
         type: 'varchar',
         isArray: true,
-        isNullable: true,
+        isNullable: false,
       }),
     );
   }
