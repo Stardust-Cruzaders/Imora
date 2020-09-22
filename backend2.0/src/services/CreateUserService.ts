@@ -9,6 +9,7 @@ interface Request {
   avatar: string;
   is_host: boolean;
   phone?: string;
+  favorites: Array<string>;
 }
 export default class CreateUserService {
   public async execute({
@@ -18,6 +19,7 @@ export default class CreateUserService {
     bio,
     is_host,
     phone,
+    favorites,
   }: Request): Promise<User> {
     const usersRepository = getRepository(User);
     const checkIfUserExists = await usersRepository.findOne({ email });
@@ -28,6 +30,7 @@ export default class CreateUserService {
     if (bio === null) {
       bio = 'sem descrição disponível';
     }
+
     const user = await usersRepository.create({
       name,
       email,
@@ -35,6 +38,7 @@ export default class CreateUserService {
       bio,
       is_host,
       phone,
+      favorites,
     });
 
     await usersRepository.save(user);
