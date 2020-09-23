@@ -6,6 +6,7 @@ import CreateResidenceService from '../services/CreateResidenceService';
 import ListFavoriteResidencesService from '../services/ListFavoriteResidencesService';
 import ListUserResidenceService from '../services/ListUserResidenceService';
 import ChangeResidenceAvailabilityService from '../services/ChangeResidenceAvailabilityService';
+import DeleteResidenceService from '../services/DeleteResidenceService';
 
 const residencesRouter = Router();
 
@@ -147,4 +148,13 @@ residencesRouter.patch(
     return response.json(residence);
   },
 );
+residencesRouter.delete('/:residence_id', async (request, response) => {
+  const { residence_id } = request.params;
+
+  const deleteResidence = new DeleteResidenceService();
+
+  const result = await deleteResidence.execute({ id: residence_id });
+
+  return response.json(result);
+});
 export default residencesRouter;
