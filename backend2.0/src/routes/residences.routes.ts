@@ -1,13 +1,59 @@
 import { Router } from 'express';
+import { getRepository, LessThanOrEqual, Not } from 'typeorm';
+import Residence from '../models/Residence';
 
 import CreateResidenceService from '../services/CreateResidenceService';
+import ListUserResidenceService from '../services/ListUserResidenceService';
 
 const residencesRouter = Router();
 
 residencesRouter.get('/', async (request, response) => {
-  return response.json({ message: 'ok' });
+  const residenceRepository = getRepository(Residence);
+  const {
+    price,
+    residence_place,
+    residence_type,
+    allow_pets,
+    allow_smokers,
+    wifi,
+    kitchen,
+    tv,
+    ac,
+    notebook_work,
+    pool,
+    parking,
+    grill,
+    city,
+  } = request.query;
+  const residences = await residenceRepository.find({
+    where: {
+      available: true,
+      price: Not(LessThanOrEqual(Number(price) - 1)),
+      residence_place,
+      residence_type,
+      allow_pets,
+      allow_smokers,
+      wifi,
+      kitchen,
+      tv,
+      ac,
+      notebook_work,
+      pool,
+      parking,
+      grill,
+      city,
+    },
+  });
+  return response.json(residences);
 });
+residencesRouter.get('/:owner_id', async (request, response) => {
+  const { owner_id } = request.params;
 
+  const listUserResidenceService = new ListUserResidenceService();
+
+  const residences = await listUserResidenceService.execute({ owner_id });
+  return response.json(residences);
+});
 residencesRouter.post('/:owner_id', async (request, response) => {
   const { owner_id } = request.params;
   const {
