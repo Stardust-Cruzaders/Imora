@@ -3,6 +3,7 @@ import { getRepository, LessThanOrEqual, Not } from 'typeorm';
 import Residence from '../models/Residence';
 
 import CreateResidenceService from '../services/CreateResidenceService';
+import ListFavoriteResidencesService from '../services/ListFavoriteResidencesService';
 import ListUserResidenceService from '../services/ListUserResidenceService';
 
 const residencesRouter = Router();
@@ -52,6 +53,16 @@ residencesRouter.get('/:owner_id', async (request, response) => {
   const listUserResidenceService = new ListUserResidenceService();
 
   const residences = await listUserResidenceService.execute({ owner_id });
+  return response.json(residences);
+});
+residencesRouter.get('/:owner_id/favorites', async (request, response) => {
+  const { owner_id } = request.params;
+
+  const listFavoriteResidencesService = new ListFavoriteResidencesService();
+
+  const residences = await listFavoriteResidencesService.execute({
+    id: owner_id,
+  });
   return response.json(residences);
 });
 residencesRouter.post('/:owner_id', async (request, response) => {
