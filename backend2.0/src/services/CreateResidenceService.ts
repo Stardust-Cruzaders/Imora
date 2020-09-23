@@ -112,6 +112,8 @@ class CreateResidenceService {
       owner_id,
     });
     await residenceRepository.save(residence);
+    checkIfUserExists.is_host = true;
+    await userRepository.save(checkIfUserExists);
     return residence;
   }
 }
