@@ -5,6 +5,7 @@ import Residence from '../models/Residence';
 import CreateResidenceService from '../services/CreateResidenceService';
 import ListFavoriteResidencesService from '../services/ListFavoriteResidencesService';
 import ListUserResidenceService from '../services/ListUserResidenceService';
+import ChangeResidenceAvailabilityService from '../services/ChangeResidenceAvailabilityService';
 
 const residencesRouter = Router();
 
@@ -131,4 +132,19 @@ residencesRouter.post('/:owner_id', async (request, response) => {
   });
   return response.json(residence);
 });
+residencesRouter.patch(
+  '/:residence_id/available',
+  async (request, response) => {
+    const { available } = request.body;
+    const { residence_id } = request.params;
+
+    const changeResidenceAvailabilityService = new ChangeResidenceAvailabilityService();
+
+    const residence = await changeResidenceAvailabilityService.execute({
+      residence_id,
+      available,
+    });
+    return response.json(residence);
+  },
+);
 export default residencesRouter;
