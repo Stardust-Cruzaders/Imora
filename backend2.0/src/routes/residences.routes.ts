@@ -7,6 +7,7 @@ import ListFavoriteResidencesService from '../services/ListFavoriteResidencesSer
 import ListUserResidenceService from '../services/ListUserResidenceService';
 import ChangeResidenceAvailabilityService from '../services/ChangeResidenceAvailabilityService';
 import DeleteResidenceService from '../services/DeleteResidenceService';
+import UpdateResidenceService from '../services/UpdateResidenceService';
 
 const residencesRouter = Router();
 
@@ -130,6 +131,72 @@ residencesRouter.post('/:owner_id', async (request, response) => {
     current_residents,
     max_residents,
     owner_id,
+  });
+  return response.json(residence);
+});
+residencesRouter.put('/:residence_id', async (request, response) => {
+  const { residence_id } = request.params;
+  const {
+    residence_name,
+    description,
+    images,
+    available,
+    zipcode,
+    state,
+    city,
+    neighborhood,
+    street,
+    numberr,
+    residence_type,
+    residence_place,
+    price,
+    allow_pets,
+    allow_smokers,
+    wifi,
+    kitchen,
+    tv,
+    ac,
+    notebook_work,
+    grill,
+    pool,
+    parking,
+    num_rooms,
+    num_bathrooms,
+    current_residents,
+    max_residents,
+  } = request.body;
+
+  const updateResidenceService = new UpdateResidenceService();
+
+  const residence = await updateResidenceService.execute({
+    residence_id,
+    residence_name,
+    description,
+    images,
+    available,
+    zipcode,
+    state,
+    city,
+    neighborhood,
+    street,
+    numberr,
+    residence_type,
+    residence_place,
+    price,
+    allow_smokers,
+    allow_pets,
+    wifi,
+    kitchen,
+    tv,
+    ac,
+    notebook_work,
+    grill,
+    pool,
+    parking,
+    num_rooms,
+    num_bathrooms,
+    current_residents,
+    max_residents,
   });
   return response.json(residence);
 });
