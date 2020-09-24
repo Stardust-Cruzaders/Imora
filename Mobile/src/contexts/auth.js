@@ -10,7 +10,7 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 
 //import * from as auth from '../services/auth';
-//import api from '../services/api';
+import api from '../services/api';
 const AuthContext = createContext();
 
 export function AuthProvider({children}) {
@@ -19,6 +19,22 @@ export function AuthProvider({children}) {
   const [loading, setLoading] = useState(true);
   const [accessToken, setAccessToken] = useState('');
   const [isRegistered, setIsRegistered] = useState(true);
+
+  async function handeUserCreation(
+    name,
+    email,
+    profile_pic,
+    phone,
+    description,
+  ) {}
+  async function checkIfUserExists(email) {
+    const data = {
+      email,
+    };
+    const response = await api.post('/users/find', data);
+    console.log(response.data.is_registered);
+    return response.data.is_registered;
+  }
   useEffect(() => {
     async function loadStoragedData() {
       const storagedUser = await AsyncStorage.getItem('@RNAuth:user');
@@ -42,7 +58,8 @@ export function AuthProvider({children}) {
     } else {
       setLoading(false);
       setUser(result);
-      setIsRegistered(false);
+
+      await setIsRegistered(await checkIfUserExists(result.email));
       await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(result));
       await AsyncStorage.setItem('@RNAuth:wasSigned', JSON.stringify(true));
     }
