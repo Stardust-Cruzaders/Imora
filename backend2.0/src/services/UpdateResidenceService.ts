@@ -1,12 +1,10 @@
-import { getCustomRepository, getRepository } from 'typeorm';
-
+import { getRepository } from 'typeorm';
 import Residence from '../models/Residence';
-import User from '../models/User';
-import ResidenceRepository from '../repositories/ResidenceRepository';
 
 import AppError from '../errors/AppError';
 
 interface Request {
+  residence_id: string;
   residence_name: string;
   description: string;
   images: string;
@@ -34,13 +32,11 @@ interface Request {
   num_bathrooms: number;
   current_residents: number;
   max_residents: number;
-  owner_id: string;
 }
 
-class CreateResidenceService {
-  private residenceRepository: ResidenceRepository;
-
+class UpdateResidenceService {
   public async execute({
+    residence_id,
     residence_name,
     description,
     images,
@@ -68,20 +64,18 @@ class CreateResidenceService {
     num_bathrooms,
     current_residents,
     max_residents,
-    owner_id,
   }: Request): Promise<Residence> {
-    const residenceRepository = getCustomRepository(ResidenceRepository);
-    const userRepository = getRepository(User);
+    const residenceRepository = getRepository(Residence);
 
-    const checkIfUserExists = await userRepository.findOne({ id: owner_id });
-    const checkAddress = await residenceRepository.findOne({ street, numberr });
-    if (!checkIfUserExists) {
-      throw new AppError("User doesn't exist", 404);
+    const residence = await residenceRepository.findOne({
+      where: { id: residence_id },
+    });
+
+    if (!residence) {
+      throw new AppError("Residence doesn't exist");
     }
-    if (checkAddress) {
-      throw new AppError('This address is already being used', 400);
-    }
-    const residence = residenceRepository.create({
+
+    const updatedResidence = residenceRepository.create({
       residence_name,
       description,
       images,
@@ -109,12 +103,9 @@ class CreateResidenceService {
       num_bathrooms,
       current_residents,
       max_residents,
-      owner_id,
     });
-    await residenceRepository.save(residence);
-    checkIfUserExists.is_host = true;
-    await userRepository.save(checkIfUserExists);
-    return residence;
+    await residenceRepository.update(residence.id, updatedResidence);
+    return updatedResidence;
   }
 }
-export default CreateResidenceService;
+export default UpdateResidenceService;
