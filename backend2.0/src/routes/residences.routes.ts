@@ -1,10 +1,9 @@
 import { Router } from 'express';
-import { getRepository, LessThanOrEqual, Not } from 'typeorm';
-import Residence from '../models/Residence';
 
 import CreateResidenceService from '../services/CreateResidenceService';
 import ListFavoriteResidencesService from '../services/ListFavoriteResidencesService';
 import ListUserResidenceService from '../services/ListUserResidenceService';
+import ListResidenceService from '../services/ListResidencesService';
 import ChangeResidenceAvailabilityService from '../services/ChangeResidenceAvailabilityService';
 import DeleteResidenceService from '../services/DeleteResidenceService';
 import UpdateResidenceService from '../services/UpdateResidenceService';
@@ -12,7 +11,6 @@ import UpdateResidenceService from '../services/UpdateResidenceService';
 const residencesRouter = Router();
 
 residencesRouter.get('/', async (request, response) => {
-  const residenceRepository = getRepository(Residence);
   const {
     price,
     residence_place,
@@ -29,24 +27,24 @@ residencesRouter.get('/', async (request, response) => {
     grill,
     city,
   } = request.query;
-  const residences = await residenceRepository.find({
-    where: {
-      available: true,
-      price: Not(LessThanOrEqual(Number(price) - 1)),
-      residence_place,
-      residence_type,
-      allow_pets,
-      allow_smokers,
-      wifi,
-      kitchen,
-      tv,
-      ac,
-      notebook_work,
-      pool,
-      parking,
-      grill,
-      city,
-    },
+
+  const listResidenceService = new ListResidenceService();
+
+  const residences = await listResidenceService.execute({
+    price,
+    residence_place,
+    residence_type,
+    allow_pets,
+    allow_smokers,
+    wifi,
+    kitchen,
+    tv,
+    ac,
+    notebook_work,
+    pool,
+    parking,
+    grill,
+    city,
   });
   return response.json(residences);
 });
