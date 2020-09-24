@@ -20,20 +20,28 @@ export function AuthProvider({children}) {
   const [accessToken, setAccessToken] = useState('');
   const [isRegistered, setIsRegistered] = useState(true);
 
-  async function handeUserCreation(
-    name,
-    email,
-    profile_pic,
-    phone,
-    description,
-  ) {}
+  async function CreateUser(name, email, profile_pic, phone_num, description) {
+    const data = {
+      name,
+      email,
+      avatar: profile_pic,
+      bio: description,
+      phone: phone_num,
+    };
+    const response = await api.post('/users', data);
+    console.log(!response ? response.data : response);
+  }
   async function checkIfUserExists(email) {
     const data = {
       email,
     };
     const response = await api.post('/users/find', data);
-    console.log(response.data.is_registered);
-    return response.data.is_registered;
+    //console.log(response.data.is_registered);
+    if (response !== undefined) {
+      return response.data.is_registered;
+    } else {
+      return response;
+    }
   }
   useEffect(() => {
     async function loadStoragedData() {
@@ -119,6 +127,7 @@ export function AuthProvider({children}) {
         FacebookSignIn,
         loading,
         FacebookSignOut,
+        CreateUser,
       }}>
       {children}
     </AuthContext.Provider>
