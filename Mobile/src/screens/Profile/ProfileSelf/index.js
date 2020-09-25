@@ -43,28 +43,33 @@ export default function ProfileSelf({navigation}) {
         </View>
         <View style={[styles.body, {width: width - 55}]}>
           <View style={styles.main}>
-            <View style={[styles.iconTextView, {marginTop: 25}]}>
-              <Icon
-                name={'phone'}
-                size={24}
-                color={'#3F3F3F'}
-                style={styles.icon}
-              />
-              <Text style={[styles.bodyText, textStyles.font]}>
-                {user.phone}
-              </Text>
-            </View>
-            <View style={styles.iconTextView}>
-              <Icon
-                name={'map-pin'}
-                size={24}
-                color={'#3F3F3F'}
-                style={styles.icon}
-              />
-              <Text style={[styles.bodyText, textStyles.font]}>
-                {user.city}, {user.state}
-              </Text>
-            </View>
+            {(user.phone !== null || undefined) && (
+              <View style={[styles.iconTextView, {marginTop: 25}]}>
+                <Icon
+                  name={'phone'}
+                  size={24}
+                  color={'#3F3F3F'}
+                  style={styles.icon}
+                />
+                <Text style={[styles.bodyText, textStyles.font]}>
+                  {user.phone}
+                </Text>
+              </View>
+            )}
+            {(user.city !== null || undefined) &&
+              (user.state !== null || undefined) && (
+                <View style={styles.iconTextView}>
+                  <Icon
+                    name={'map-pin'}
+                    size={24}
+                    color={'#3F3F3F'}
+                    style={styles.icon}
+                  />
+                  <Text style={[styles.bodyText, textStyles.font]}>
+                    {user.city}, {user.state}
+                  </Text>
+                </View>
+              )}
             <View style={styles.iconTextView}>
               <Icon
                 name={'mail'}
@@ -78,7 +83,11 @@ export default function ProfileSelf({navigation}) {
             </View>
             <Div threshold={100} height={1.5} />
             <Text style={[styles.bodyTitle, textStyles.font]}>Sobre</Text>
-            <Text style={[styles.bodyText, textStyles.font]}>{user.bio}</Text>
+            <Text style={[styles.bodyText, textStyles.font]}>
+              {user.bio !== undefined || null
+                ? user.bio
+                : 'sem descrição disponível'}
+            </Text>
             <View>
               <Div threshold={100} />
               <RectButton
