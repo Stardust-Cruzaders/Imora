@@ -9,7 +9,7 @@ import Div from '../../../Component/Div';
 import {useAuth} from '../../../contexts/auth';
 export default function LoginOK({navigation}) {
   const width = useWindowDimensions().width;
-  const {user, phone, CreateUser, setIsRegistered} = useAuth();
+  const {user, phone, bio, st, city, CreateUser, setIsRegistered} = useAuth();
   const description =
     'Antes de avançar para o feed de imóveis, você poderia ' +
     'responder um rápido questionário?';
@@ -34,7 +34,9 @@ export default function LoginOK({navigation}) {
                 user.email,
                 user.picture.data.url,
                 phone,
-                null,
+                bio,
+                st,
+                city,
               );
             }}
             style={[styles.button, {width: width - 100}]}>

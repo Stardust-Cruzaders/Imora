@@ -107,7 +107,7 @@ export default function LoginEditInfo({navigation}) {
                 style={{flexDirection: 'row', alignContent: 'space-between'}}>
                 <View style={styles.inputView}>
                   <Icon
-                    name={'feather'}
+                    name={'map-pin'}
                     size={24}
                     color={'#7e57c2'}
                     style={styles.icon}
