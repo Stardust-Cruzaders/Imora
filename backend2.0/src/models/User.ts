@@ -33,6 +33,12 @@ class User {
   @Column('varchar', { array: true })
   favorites: Array<string>;
 
+  @Column()
+  state: string;
+
+  @Column()
+  city: string;
+
   @CreateDateColumn()
   created_at: Date;
 

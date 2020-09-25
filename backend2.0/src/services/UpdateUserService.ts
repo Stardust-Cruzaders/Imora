@@ -6,10 +6,18 @@ interface Request {
   id: string;
   bio: string;
   phone: string;
+  state: string;
+  city: string;
 }
 
 export default class UpdateUserService {
-  public async execute({ id, bio, phone }: Request): Promise<User> {
+  public async execute({
+    id,
+    bio,
+    phone,
+    state,
+    city,
+  }: Request): Promise<User> {
     const usersRepository = getRepository(User);
 
     const user = await usersRepository.findOne(id);
@@ -24,6 +32,8 @@ export default class UpdateUserService {
 
     user.bio = bio;
     user.phone = phone;
+    user.state = state;
+    user.city = city;
 
     const newUser = await usersRepository.save(user);
     return newUser;

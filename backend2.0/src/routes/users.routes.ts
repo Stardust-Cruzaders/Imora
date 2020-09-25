@@ -9,7 +9,16 @@ import DeleteUserService from '../services/DeleteUserService';
 const usersRouter = Router();
 
 usersRouter.post('/', async (request, response) => {
-  const { name, email, avatar, bio, is_host, phone } = request.body;
+  const {
+    name,
+    email,
+    avatar,
+    bio,
+    is_host,
+    phone,
+    state,
+    city,
+  } = request.body;
 
   const createUser = new CreateUserService();
 
@@ -20,6 +29,8 @@ usersRouter.post('/', async (request, response) => {
     bio,
     is_host,
     phone,
+    state,
+    city,
     favorites: [],
   });
 
@@ -38,7 +49,7 @@ usersRouter.post('/find', async (request, response) => {
 
 usersRouter.put('/:user_id', async (request, response) => {
   const { user_id } = request.params;
-  const { bio, phone } = request.body;
+  const { bio, phone, state, city } = request.body;
 
   const updateUser = new UpdateUserService();
 
@@ -46,6 +57,8 @@ usersRouter.put('/:user_id', async (request, response) => {
     id: user_id,
     bio,
     phone,
+    state,
+    city,
   });
 
   return response.json(user);

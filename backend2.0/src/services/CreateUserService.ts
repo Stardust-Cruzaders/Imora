@@ -10,6 +10,8 @@ interface Request {
   is_host: boolean;
   phone?: string;
   favorites: Array<string>;
+  state?: string;
+  city?: string;
 }
 export default class CreateUserService {
   public async execute({
@@ -19,6 +21,8 @@ export default class CreateUserService {
     bio,
     is_host,
     phone,
+    state,
+    city,
     favorites,
   }: Request): Promise<User> {
     const usersRepository = getRepository(User);
@@ -38,6 +42,8 @@ export default class CreateUserService {
       bio,
       is_host,
       phone,
+      state,
+      city,
       favorites,
     });
 
