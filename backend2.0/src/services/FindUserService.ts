@@ -6,7 +6,7 @@ interface Request {
   email: string;
 }
 export default class FindUserService {
-  public async execute({ email }: Request): Promise<boolean> {
+  public async execute({ email }: Request): Promise<User | boolean> {
     const usersRepository = getRepository(User);
 
     if (email.includes('@')) {
@@ -18,12 +18,14 @@ export default class FindUserService {
     } else {
       throw new AppError('invalid email format');
     }
-    const checkIfUserExists = await usersRepository.findOne({
+    const user = await usersRepository.findOne({
       where: { email },
     });
-    if (checkIfUserExists) {
-      return true;
+
+    if (user) {
+      return user;
     }
+
     return false;
   }
 }

@@ -43,8 +43,11 @@ usersRouter.post('/find', async (request, response) => {
   const findUser = new FindUserService();
 
   const result = await findUser.execute({ email });
+  if (result === false) {
+    return response.json({ user: {}, is_registered: result });
+  }
 
-  return response.json({ is_registered: result });
+  return response.json({ user: result, is_registered: true });
 });
 
 usersRouter.put('/:user_id', async (request, response) => {
