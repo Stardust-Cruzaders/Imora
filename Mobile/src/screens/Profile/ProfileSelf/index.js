@@ -12,7 +12,7 @@ import {useAuth} from '../../../contexts/auth';
 export default function ProfileSelf({navigation}) {
   const width = useWindowDimensions().width;
 
-  const {FacebookSignOut} = useAuth();
+  const {FacebookSignOut, user} = useAuth();
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -29,15 +29,15 @@ export default function ProfileSelf({navigation}) {
             <View style={styles.profilePicView}>
               <Image
                 source={{
-                  uri:
-                    'https://i.pinimg.com/564x/59/17/c1/5917c11380e44c7e3f10dd3d56e01c4b.jpg',
+                  uri: user.avatar,
+                  //'https://i.pinimg.com/564x/59/17/c1/5917c11380e44c7e3f10dd3d56e01c4b.jpg',
                 }}
                 style={styles.profilePic}
               />
             </View>
 
             <Text style={[textStyles.font, styles.headerTitle]}>
-              Will Smith
+              {user.name}
             </Text>
           </View>
         </View>
@@ -51,7 +51,7 @@ export default function ProfileSelf({navigation}) {
                 style={styles.icon}
               />
               <Text style={[styles.bodyText, textStyles.font]}>
-                (11) 12345-4321
+                {user.phone}
               </Text>
             </View>
             <View style={styles.iconTextView}>
@@ -62,7 +62,7 @@ export default function ProfileSelf({navigation}) {
                 style={styles.icon}
               />
               <Text style={[styles.bodyText, textStyles.font]}>
-                Planeta Terra
+                {user.city}, {user.state}
               </Text>
             </View>
             <View style={styles.iconTextView}>
@@ -73,19 +73,12 @@ export default function ProfileSelf({navigation}) {
                 style={styles.icon}
               />
               <Text style={[styles.bodyText, textStyles.font]}>
-                willSmithOficial@gmail.com
+                {user.email}
               </Text>
             </View>
             <Div threshold={100} height={1.5} />
             <Text style={[styles.bodyTitle, textStyles.font]}>Sobre</Text>
-            <Text style={[styles.bodyText, textStyles.font]}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              ornare lacus ac consectetur convallis. Vestibulum ultricies nisl
-              quis interdum laoreet. Aliquam vitae fermentum lectus. Nunc vel
-              varius nisi. Quisque mollis nisl vitae fermentum molestie. Nullam
-              eget aliquam lacus. In porta consequat tincidunt. Nulla vehicula
-              est vel diam fermentum rutrum.
-            </Text>
+            <Text style={[styles.bodyText, textStyles.font]}>{user.bio}</Text>
             <View>
               <Div threshold={100} />
               <RectButton
