@@ -54,12 +54,16 @@ export function AuthProvider({children}) {
       email,
     };
     const response = await api.post('/users/find', data);
-    //console.log(response.data.is_registered);
-    if (response !== undefined) {
-      return response.data.is_registered;
-    } else {
-      return response;
+    console.log('Is registered: ' + response.data.is_registered);
+    if (response.data.is_registered) {
+      await AsyncStorage.setItem(
+        '@RNAuth:user',
+        JSON.stringify(response.data.user),
+      );
+      setUser(response.data.user);
     }
+
+    return response !== undefined ? response.data.is_registered : response;
   }
   useEffect(() => {
     async function loadStoragedData() {
@@ -86,9 +90,9 @@ export function AuthProvider({children}) {
       setLoading(false);
       setUser(result);
 
-      setIsRegistered(await checkIfUserExists(result.email));
       await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(result));
       await AsyncStorage.setItem('@RNAuth:wasSigned', JSON.stringify(true));
+      setIsRegistered(await checkIfUserExists(result.email));
     }
   }
   function getUserInfo(token) {
