@@ -6,7 +6,8 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 
 import Icon from 'react-native-vector-icons/Feather';
 
-import Feed from '../screens/Feed';
+import FeedNavigation from './FeedNavigation';
+
 import Favorites from '../screens/Favorites';
 import Chat from '../screens/Chat';
 import ProfileSelfNavigation from './ProfileSelfNavigation';
@@ -24,7 +25,7 @@ export default function MainNavigation() {
       shifting={true}>
       <Tab.Screen
         name="Explorar"
-        component={Feed}
+        component={FeedNavigation}
         options={{
           tabBarLabel: 'Explorar',
           tabBarIcon: () => <Icon name={'compass'} size={24} color={'#fff'} />,
