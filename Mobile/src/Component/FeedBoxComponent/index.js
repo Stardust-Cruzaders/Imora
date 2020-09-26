@@ -1,9 +1,11 @@
-import React from 'react';
-import {Text, View, Image} from 'react-native';
+import React, {useState} from 'react';
+import {Text, View, Image, useWindowDimensions} from 'react-native';
 
 import styles from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 
+import ImageSwipe from '../ImageSwipe';
+import {SliderBox} from 'react-native-image-slider-box';
 import {RectButton} from 'react-native-gesture-handler';
 
 export default function FeedBoxComponent({
@@ -15,27 +17,28 @@ export default function FeedBoxComponent({
   sub_stars,
   localization,
 }) {
+  const width = useWindowDimensions().width;
+
   return (
     <View style={styles.feedBox}>
-      <View style={styles.imageContainer}>
-        <Icon name="heart" size={25} style={styles.heartIcon} />
-      </View>
-      <Image source={{uri: img}} style={styles.image} />
+      <RectButton onPress={() => {}}>
+        <View style={styles.imageContainer}>
+          <ImageSwipe img={img} />
+        </View>
 
-      <View style={styles.starsItem}>
-        <Text style={styles.priceText}>R${price}/mês </Text>
-        <Text style={styles.starText}>
-          {stars} <Icon name="star" size={20} color="#26E07C" />
-          <Text style={styles.subStarsStyle}> ({sub_stars})</Text>
-        </Text>
-      </View>
+        {/* <Image source={{uri: img}} style={styles.image} /> */}
 
-      <View style={styles.div} />
+        <View style={styles.starsItem}>
+          <Text style={styles.priceText}>R${price}/mês </Text>
+        </View>
 
-      <View style={styles.bottomTextPos}>
-        <Text style={styles.titleText}>{name}</Text>
-        <Text style={styles.localizationText}>{localization}</Text>
-      </View>
+        <View style={styles.div} />
+
+        <View style={styles.bottomTextPos}>
+          <Text style={styles.titleText}>{name}</Text>
+          <Text style={styles.localizationText}>{localization}</Text>
+        </View>
+      </RectButton>
     </View>
   );
 }

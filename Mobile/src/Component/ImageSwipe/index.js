@@ -31,18 +31,19 @@ export default function ImageSwipe({img}) {
         pagingEnabled
         horizontal
         onScroll={change}
-        showHorizontalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
         style={{width, height}}>
         {img.map((image, index) => (
           <Image
             key={index}
             source={{
-              uri: 'data:image/jpeg;base64,' + image.data,
+              uri: /*'data:image/jpeg;base64,' +*/ image,
             }}
-            style={{width, height, resizeMode: 'cover'}}
+            style={{width: width - 50,marginRight: 50, height, resizeMode: 'cover'}}
           />
         ))}
       </ScrollView>
+
       <FavoriteButton />
       <View style={styles.pagination}>
         {img.map((i, k) => (
