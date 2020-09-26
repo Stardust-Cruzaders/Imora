@@ -35,7 +35,7 @@ export default function Feed({navigation}) {
         <RectButton
           style={styles.filterButtonStyle}
           onPress={() => {
-            console.log('as');
+            navigation.navigate('Filter');
           }}>
           <Text style={styles.textFormatation}>Filtrar</Text>
         </RectButton>
