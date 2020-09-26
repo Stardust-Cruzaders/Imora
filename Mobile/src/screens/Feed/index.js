@@ -1,16 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {View, SafeAreaView, FlatList} from 'react-native';
+import {Text, View, SafeAreaView, FlatList} from 'react-native';
 
 import styles from './styles';
-import Icon from 'react-native-vector-icons/Feather';
 
 import FeedBoxComponent from '../../Component/FeedBoxComponent';
 import SearchBar from '../../Component/SearchBar';
-import FilterComponent from '../../Component/FilterComponent';
 
+import {RectButton} from 'react-native-gesture-handler';
 import api from '../../services/api';
 import {ActivityIndicator} from 'react-native-paper';
-export default function Feed() {
+export default function Feed({navigation}) {
   const [residences, setResidences] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -33,7 +32,13 @@ export default function Feed() {
     <SafeAreaView style={styles.container}>
       <View style={styles.headerNav}>
         <SearchBar />
-        <FilterComponent />
+        <RectButton
+          style={styles.filterButtonStyle}
+          onPress={() => {
+            console.log('as');
+          }}>
+          <Text style={styles.textFormatation}>Filtrar</Text>
+        </RectButton>
       </View>
       {!loading ? (
         <FlatList

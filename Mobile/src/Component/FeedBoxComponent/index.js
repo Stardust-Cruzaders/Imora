@@ -7,15 +7,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import ImageSwipe from '../ImageSwipe';
 import {RectButton} from 'react-native-gesture-handler';
 
-export default function FeedBoxComponent({
-  id,
-  name,
-  img,
-  price,
-  stars,
-  sub_stars,
-  localization,
-}) {
+export default function FeedBoxComponent({id, name, img, price, localization}) {
   return (
     <View style={styles.feedBox}>
       <RectButton onPress={() => {}}>
