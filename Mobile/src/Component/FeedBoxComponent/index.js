@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
-import {Text, View, Image, useWindowDimensions} from 'react-native';
+import React from 'react';
+import {Text, View} from 'react-native';
 
 import styles from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 
 import ImageSwipe from '../ImageSwipe';
-import {SliderBox} from 'react-native-image-slider-box';
 import {RectButton} from 'react-native-gesture-handler';
 
 export default function FeedBoxComponent({
@@ -17,8 +16,6 @@ export default function FeedBoxComponent({
   sub_stars,
   localization,
 }) {
-  const width = useWindowDimensions().width;
-
   return (
     <View style={styles.feedBox}>
       <RectButton onPress={() => {}}>
