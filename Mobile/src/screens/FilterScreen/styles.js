@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 5,
     width: width - 50,
-    marginBottom: 10,
     flex: 1,
   },
   marginBox: {
@@ -46,14 +45,48 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontSize: 25,
     marginTop: 8,
+    marginVertical: 5,
   },
   textStyle: {
     fontFamily: 'Roboto',
     fontSize: 18,
   },
+  subText: {
+    fontFamily: 'Roboto',
+    fontSize: 14,
+    marginTop: 8,
+    marginLeft: 8,
+    marginVertical: 5,
+    color: 'gray',
+  },
   radioButtonView: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  sectionView: {
+    marginVertical: 15,
+    marginRight: 5,
+  },
+  filterButtonView: {
+    paddingVertical: 5,
+    backgroundColor: 'transparent',
+    width,
+  },
+  filterButton: {
+    backgroundColor: '#26E07C',
+
+    position: 'absolute',
+    bottom: 1,
+    right: 1,
+    margin: 15,
+    marginRight: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    borderRadius: 100,
+
+    width: 65,
+    height: 65,
   },
 });
 

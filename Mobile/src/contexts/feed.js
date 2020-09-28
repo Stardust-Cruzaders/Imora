@@ -5,8 +5,8 @@ const FeedContext = createContext();
 export default function FeedProvider({children}) {
   const [residenceName, setResidenceName] = useState('');
   const [price, setPrice] = useState(0);
-  const [residenceType, setResidenceType] = useState('');
-  const [residencePlace, setResidencePlace] = useState('');
+  const [residenceType, setResidenceType] = useState('Espaço inteiro');
+  const [residencePlace, setResidencePlace] = useState('Casa');
   const [allowPets, setAllowPets] = useState(false);
   const [allowSmokers, setAllowSmokers] = useState(false);
   const [wifi, setWifi] = useState(false);
