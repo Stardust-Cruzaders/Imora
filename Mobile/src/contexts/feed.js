@@ -4,21 +4,22 @@ import {createContext, useState, useContext} from 'react';
 const FeedContext = createContext();
 export default function FeedProvider({children}) {
   const [residenceName, setResidenceName] = useState('');
-  const [price, setPrice] = useState(0);
-  const [residenceType, setResidenceType] = useState('Espaço inteiro');
-  const [residencePlace, setResidencePlace] = useState('Casa');
-  const [allowPets, setAllowPets] = useState(false);
-  const [allowSmokers, setAllowSmokers] = useState(false);
-  const [wifi, setWifi] = useState(false);
-  const [kitchen, setKitchen] = useState(false);
-  const [tv, setTV] = useState(false);
-  const [ac, setAC] = useState(false);
-  const [notebookWork, setNotebookWork] = useState(false);
-  const [grill, setGrill] = useState(false);
-  const [pool, setPool] = useState(false);
-  const [parking, setParking] = useState(false);
-  const [city, setCity] = useState(false);
+  const [price, setPrice] = useState(null);
+  const [residenceType, setResidenceType] = useState(null);
+  const [residencePlace, setResidencePlace] = useState(null);
+  const [allowPets, setAllowPets] = useState(null);
+  const [allowSmokers, setAllowSmokers] = useState(null);
+  const [wifi, setWifi] = useState(null);
+  const [kitchen, setKitchen] = useState(null);
+  const [tv, setTV] = useState(null);
+  const [ac, setAC] = useState(null);
+  const [notebookWork, setNotebookWork] = useState(null);
+  const [grill, setGrill] = useState(null);
+  const [pool, setPool] = useState(null);
+  const [parking, setParking] = useState(null);
+  const [city, setCity] = useState(null);
 
+  function Search() {}
   return (
     <FeedContext.Provider
       value={{
