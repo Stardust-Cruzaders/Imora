@@ -244,7 +244,7 @@ export default function FilterScreen({navigation}) {
         </View>
       </ScrollView>
       <RectButton style={styles.filterButton} onPress={() => {}}>
-        <Icon name={'thumbs-up'} size={38} color={'#FFF'} />
+        <Icon name={'thumbs-up'} size={34} color={'#FFF'} />
       </RectButton>
     </View>
   );
