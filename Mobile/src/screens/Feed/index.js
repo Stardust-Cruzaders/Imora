@@ -9,29 +9,52 @@ import SearchBar from '../../Component/SearchBar';
 import {RectButton} from 'react-native-gesture-handler';
 import api from '../../services/api';
 import {ActivityIndicator} from 'react-native-paper';
+import {useFeed} from '../../contexts/feed';
+
 export default function Feed({navigation}) {
   const [residences, setResidences] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {residenceName, setResidenceName} = useFeed();
   useEffect(() => {
     async function handleFeed() {
-      const response = await api.get('/residences');
+      if (residenceName === undefined || residenceName === '') {
+        const response = await api.get('/residences');
 
-      if (response.data === undefined) {
-        return response;
+        if (response.data === undefined) {
+          return response;
+        } else {
+          setResidences(response.data);
+          setLoading(false);
+
+          return response.data;
+        }
       } else {
-        setResidences(response.data);
-        setLoading(false);
+        const response = await api.get('/residences/search', {
+          params: {
+            residence_name: residenceName,
+          },
+        });
 
-        return response.data;
+        if (response.data === undefined) {
+          return response;
+        } else {
+          setResidences(response.data);
+          setLoading(false);
+          return response.data;
+        }
       }
     }
+
     handleFeed();
-  }, []);
+  }, [residenceName]);
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerNav}>
-        <SearchBar />
+        <SearchBar
+          residenceName={residenceName}
+          setResidenceName={setResidenceName}
+        />
         <RectButton
           style={styles.filterButtonStyle}
           onPress={() => {

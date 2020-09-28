@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import { getRepository, Like } from 'typeorm';
 import CreateResidenceService from '../services/CreateResidenceService';
 import ListFavoriteResidencesService from '../services/ListFavoriteResidencesService';
 import ListUserResidenceService from '../services/ListUserResidenceService';
@@ -7,6 +8,7 @@ import ListResidenceService from '../services/ListResidencesService';
 import ChangeResidenceAvailabilityService from '../services/ChangeResidenceAvailabilityService';
 import DeleteResidenceService from '../services/DeleteResidenceService';
 import UpdateResidenceService from '../services/UpdateResidenceService';
+import Residence from '../models/Residence';
 
 const residencesRouter = Router();
 
@@ -45,6 +47,14 @@ residencesRouter.get('/', async (request, response) => {
     parking,
     grill,
     city,
+  });
+  return response.json(residences);
+});
+residencesRouter.get('/search', async (request, response) => {
+  const { residence_name } = request.query;
+  const residenceRepository = getRepository(Residence);
+  const residences = await residenceRepository.find({
+    residence_name: Like(`%${residence_name}%`),
   });
   return response.json(residences);
 });
