@@ -18,12 +18,15 @@ export default function FavoriteButton() {
           toggleFavorite();
         }}>
         {isFavorite ? (
-          <Ionicon name={'ios-heart'} size={50} color={'#CB2F2F'} />
+          <Ionicon
+            name={'md-heart-dislike-circle-outline'}
+            size={65}
+            color={'black'}
+          />
         ) : (
-          <Ionicon name={'ios-heart-outline'} size={50} color={'#CB2F2F'} />
+          <Ionicon name={'md-heart-circle-outline'} size={65} color={'black'} />
         )}
       </RectButton>
     </View>
   );
 }
-
