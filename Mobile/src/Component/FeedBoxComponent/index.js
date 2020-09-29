@@ -10,8 +10,8 @@ import {RectButton} from 'react-native-gesture-handler';
 export default function FeedBoxComponent({id, name, img, price, localization}) {
   return (
     <View style={styles.feedBox}>
-      <RectButton onPress={() => {}}>
-        <View style={styles.imageContainer}>
+      <RectButton style={styles.goToResidenceButton} onPress={() => {}}>
+        <View style={[styles.imageContainer]}>
           <ImageSwipe img={img} />
         </View>
 

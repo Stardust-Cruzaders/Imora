@@ -79,6 +79,14 @@ const styles = StyleSheet.create({
     width: width - 50,
     borderRadius: 5,
   },
+  goToResidenceButton: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 5,
+    width: width - 50,
+    alignSelf: 'center',
+
+    flex: 1,
+  },
 });
 
 export default styles;
