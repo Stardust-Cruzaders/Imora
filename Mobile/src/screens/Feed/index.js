@@ -12,12 +12,22 @@ import {ActivityIndicator} from 'react-native-paper';
 import {useFeed} from '../../contexts/feed';
 
 export default function Feed({navigation}) {
-  const [residences, setResidences] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const {residenceName, setResidenceName} = useFeed();
+  const {
+    residenceName,
+    setResidenceName,
+    residences,
+    setResidences,
+    loading,
+    setLoading,
+    filtered,
+    setFiltered,
+  } = useFeed();
   useEffect(() => {
     async function handleFeed() {
-      if (residenceName === undefined || residenceName === '') {
+      if (
+        (residenceName === undefined || residenceName === '') &&
+        filtered === false
+      ) {
         const response = await api.get('/residences');
 
         if (response.data === undefined) {
@@ -40,6 +50,7 @@ export default function Feed({navigation}) {
         } else {
           setResidences(response.data);
           setLoading(false);
+
           return response.data;
         }
       }

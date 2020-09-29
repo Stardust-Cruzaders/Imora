@@ -1,26 +1,20 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {
-  View,
-  ScrollView,
-  Text,
-  TextInput,
-  useWindowDimensions,
-} from 'react-native';
+import {View, ScrollView, Text, useWindowDimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {RadioButton, Divider} from 'react-native-paper';
+import {
+  RadioButton,
+  Divider,
+  TextInput,
+  ActivityIndicator,
+} from 'react-native-paper';
 import CheckboxComponent from '../../Component/CheckboxComponent';
 
 import styles from './styles';
-
 import {useFeed} from '../../contexts/feed';
 import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
 export default function FilterScreen({navigation}) {
-  // InputText
-  const [value, onChangeText] = useState();
   const {
-    residenceName,
-    setResidenceName,
     price,
     setPrice,
     residenceType,
@@ -49,10 +43,29 @@ export default function FilterScreen({navigation}) {
     setParking,
     city,
     setCity,
+    Search,
+    loading,
+    setLoading,
+    setFiltered,
   } = useFeed();
-  // RadioButtons
+
   const width = useWindowDimensions().width;
-  // CheckBoxes
+  if (loading) {
+    return (
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <ActivityIndicator color={'purple'} size="large" />
+        <Text
+          style={{
+            color: '#3F3F3F',
+            fontSize: 32,
+            fontFamily: 'Robotto',
+          }}>
+          {' '}
+          Filtrando Residências... :D
+        </Text>
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <View
@@ -81,14 +94,20 @@ export default function FilterScreen({navigation}) {
         <View style={styles.filterBox}>
           <View style={styles.marginBox}>
             <TextInput
-              style={styles.textInputStyle}
-              onChangeText={(text) => onChangeText(text)}
+              style={[styles.textInputStyle, {marginBottom: 20}]}
+              onChangeText={(text) => setPrice(text)}
               value={price}
               clearTextOnFocus={true}
               keyboardType={'numeric'}
               placeholder=" $ Preço/Mês"
             />
-
+            <TextInput
+              style={styles.textInputStyle}
+              onChangeText={(text) => setCity(text)}
+              value={city}
+              clearTextOnFocus={true}
+              placeholder="Sua cidade de preferência"
+            />
             <View style={styles.sectionView}>
               <Text style={styles.subTitleStyle}>Tipo de Locação</Text>
               <View style={styles.radioButtonView}>
@@ -135,6 +154,15 @@ export default function FilterScreen({navigation}) {
                 Você dividirá o espaço, assim como os quartos, com outras
                 pessoas.
               </Text>
+              <View style={styles.radioButtonView}>
+                <RadioButton
+                  value=""
+                  status={residenceType === '' ? 'checked' : 'unchecked'}
+                  color={'#7E57C2'}
+                  onPress={() => setResidenceType('')}
+                />
+                <Text style={styles.textStyle}>Todas as opções</Text>
+              </View>
             </View>
             <Divider style={styles.divider} />
             <View style={styles.sectionView}>
@@ -148,7 +176,6 @@ export default function FilterScreen({navigation}) {
                 />
                 <Text style={styles.textStyle}>Casa</Text>
               </View>
-
               <View style={styles.radioButtonView}>
                 <RadioButton
                   value="Apartamento"
@@ -180,6 +207,15 @@ export default function FilterScreen({navigation}) {
                   onPress={() => setResidencePlace('KitNet')}
                 />
                 <Text style={styles.textStyle}>KitNet</Text>
+              </View>
+              <View style={styles.radioButtonView}>
+                <RadioButton
+                  value=""
+                  status={residencePlace === '' ? 'checked' : 'unchecked'}
+                  color={'#7E57C2'}
+                  onPress={() => setResidencePlace('')}
+                />
+                <Text style={styles.textStyle}>Todas as opções</Text>
               </View>
             </View>
             <Divider style={styles.divider} />
@@ -243,7 +279,14 @@ export default function FilterScreen({navigation}) {
           </View>
         </View>
       </ScrollView>
-      <RectButton style={styles.filterButton} onPress={() => {}}>
+      <RectButton
+        style={styles.filterButton}
+        onPress={async () => {
+          setLoading(true);
+          await Search();
+          setFiltered(true);
+          navigation.navigate('Feed');
+        }}>
         <Icon name={'thumbs-up'} size={34} color={'#FFF'} />
       </RectButton>
     </View>

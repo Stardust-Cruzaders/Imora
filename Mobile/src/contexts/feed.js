@@ -1,5 +1,6 @@
 import React from 'react';
 import {createContext, useState, useContext} from 'react';
+import api from '../services/api';
 
 const FeedContext = createContext();
 export default function FeedProvider({children}) {
@@ -18,8 +19,45 @@ export default function FeedProvider({children}) {
   const [pool, setPool] = useState(null);
   const [parking, setParking] = useState(null);
   const [city, setCity] = useState(null);
+  const [residences, setResidences] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filtered, setFiltered] = useState(false);
+  function CheckIfIsEmpty(x) {
+    if (x === '') {
+      return null;
+    } else {
+      return x;
+    }
+  }
+  async function Search() {
+    const response = await api.get('/residences', {
+      params: {
+        price: CheckIfIsEmpty(price),
+        residence_type: CheckIfIsEmpty(residenceType),
+        residence_place: CheckIfIsEmpty(residencePlace),
+        allow_pets: allowPets,
+        allow_smokers: allowSmokers,
+        wifi,
+        kitchen,
+        tv,
+        ac,
+        notebook_work: notebookWork,
+        grill,
+        pool,
+        parking,
+        city: CheckIfIsEmpty(city),
+      },
+    });
+    if (response.data === undefined) {
+      return response;
+    } else {
+      setFiltered(true);
+      setLoading(false);
+      setResidences(response.data);
 
-  function Search() {}
+      return response.data;
+    }
+  }
   return (
     <FeedContext.Provider
       value={{
@@ -53,6 +91,13 @@ export default function FeedProvider({children}) {
         setParking,
         city,
         setCity,
+        Search,
+        residences,
+        setResidences,
+        loading,
+        setLoading,
+        filtered,
+        setFiltered,
       }}>
       {children}
     </FeedContext.Provider>
