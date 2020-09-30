@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 
 import ResidenceAddMain from '../screens/Residence/ResidenceAdd/ResidenceAddMain';
 import ResidenceAddComfort from '../screens/Residence/ResidenceAdd/ResidenceAddComfort';
@@ -12,7 +11,7 @@ import ResidenceAddType from '../screens/Residence/ResidenceAdd/ResidenceAddType
 
 import ResidenceEdit from '../screens/Residence/ResidenceEdit';
 import ResidenceAddProvider from '../contexts/residenceAdd';
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 export default function ResidenceAddNavigation() {
   return (
     <ResidenceAddProvider>

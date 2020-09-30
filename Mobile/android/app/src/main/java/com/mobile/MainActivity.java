@@ -14,6 +14,7 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "Mobile";
   }
+
   @Override
   protected ReactActivityDelegate createReactActivityDelegate() {
     return new ReactActivityDelegate(this, getMainComponentName()) {
@@ -23,4 +24,10 @@ public class MainActivity extends ReactActivity {
       }
     };
   }
+  /*
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(null);
+  }
+*/
 }

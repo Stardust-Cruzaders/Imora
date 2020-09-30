@@ -6,7 +6,7 @@ import {RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-
+import axios from 'axios';
 import styles from './styles';
 import textStyles from '../../../textStyles';
 import Div from '../../../Component/Div';
@@ -46,8 +46,12 @@ export default function ResidenceDetailed({route, navigation}) {
     }
   }
   useEffect(() => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
     async function GetResidence(id) {
-      const response = await api.get(`/residences/${id}`);
+      const response = await api.get(`/residences/${id}`, {
+        cancelToken: source.token,
+      });
 
       if (response.data === undefined) {
         return response;
@@ -105,7 +109,10 @@ export default function ResidenceDetailed({route, navigation}) {
       }
     }
     GetResidence(route.params.id);
-  });
+    return () => {
+      source.cancel();
+    };
+  }, []);
 
   if (loading) {
     return (

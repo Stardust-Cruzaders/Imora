@@ -1,14 +1,14 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 
-import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 
 import Feed from '../screens/Feed';
 import FilterScreen from '../screens/FilterScreen';
 import ResidenceDetailed from '../screens/Residence/ResidenceDetailed';
 
 import FeedProvider from '../contexts/feed';
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 export default function FeedNavigation() {
   return (
     <FeedProvider>

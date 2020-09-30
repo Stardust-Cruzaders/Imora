@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 
 import React from 'react';
 
-import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 
 import ProfileSelf from '../screens/Profile/ProfileSelf';
 
@@ -12,7 +12,7 @@ import MyResidences from '../screens/MyResidences';
 
 import ProfileEdit from '../screens/Profile/ProfileEdit';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function ProfileSelfNavigation() {
   return (
