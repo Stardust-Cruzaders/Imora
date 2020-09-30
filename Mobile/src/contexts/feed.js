@@ -29,6 +29,7 @@ export default function FeedProvider({children}) {
       return x;
     }
   }
+
   async function Search() {
     const response = await api.get('/residences', {
       params: {

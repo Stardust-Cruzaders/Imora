@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {Text, View, SafeAreaView, FlatList} from 'react-native';
 
 import styles from './styles';
@@ -20,7 +20,6 @@ export default function Feed({navigation}) {
     loading,
     setLoading,
     filtered,
-    setFiltered,
   } = useFeed();
   useEffect(() => {
     async function handleFeed() {
@@ -87,6 +86,7 @@ export default function Feed({navigation}) {
               stars={5}
               sub_stars={400}
               localization={item.city + ',' + item.state}
+              navigation={navigation}
             />
           )}
         />
