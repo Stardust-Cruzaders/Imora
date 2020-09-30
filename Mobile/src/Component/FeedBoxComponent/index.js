@@ -7,12 +7,27 @@ import Icon from 'react-native-vector-icons/Feather';
 import ImageSwipe from '../ImageSwipe';
 import {RectButton} from 'react-native-gesture-handler';
 
-export default function FeedBoxComponent({id, name, img, price, localization}) {
+import api from '../../services/api';
+
+export default function FeedBoxComponent({
+  id,
+  name,
+  img,
+  price,
+  localization,
+  navigation,
+}) {
   return (
     <View style={styles.feedBox}>
-      <RectButton style={styles.goToResidenceButton} onPress={() => {}}>
+      <RectButton
+        style={styles.goToResidenceButton}
+        onPress={() => {
+          navigation.navigate('ResidenceDetailed', {
+            id: id,
+          });
+        }}>
         <View style={[styles.imageContainer]}>
-          <ImageSwipe img={img} />
+          <ImageSwipe img={img} widthDiff={50} />
         </View>
 
         {/* <Image source={{uri: img}} style={styles.image} /> */}
