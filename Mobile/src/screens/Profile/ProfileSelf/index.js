@@ -56,20 +56,19 @@ export default function ProfileSelf({navigation}) {
                 </Text>
               </View>
             )}
-            {(user.city !== null || undefined) &&
-              (user.state !== null || undefined) && (
-                <View style={styles.iconTextView}>
-                  <Icon
-                    name={'map-pin'}
-                    size={24}
-                    color={'#3F3F3F'}
-                    style={styles.icon}
-                  />
-                  <Text style={[styles.bodyText, textStyles.font]}>
-                    {user.city}, {user.state}
-                  </Text>
-                </View>
-              )}
+
+            <View style={styles.iconTextView}>
+              <Icon
+                name={'map-pin'}
+                size={24}
+                color={'#3F3F3F'}
+                style={styles.icon}
+              />
+              <Text style={[styles.bodyText, textStyles.font]}>
+                {user.city},{user.state}
+              </Text>
+            </View>
+
             <View style={styles.iconTextView}>
               <Icon
                 name={'mail'}

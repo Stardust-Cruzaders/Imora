@@ -11,12 +11,11 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 //import * from as auth from '../services/auth';
 import api from '../services/api';
-import {useScreens} from 'react-native-screens';
+
 const AuthContext = createContext();
 
 export function AuthProvider({children}) {
   const [user, setUser] = useState(null);
-  const [additionalInfo, setAdditionalInfo] = useState(null);
   const [phone, setPhone] = useState('');
   const [bio, setBio] = useState('');
   const [city, setCity] = useState('');
@@ -71,11 +70,12 @@ export function AuthProvider({children}) {
       const storagedToken = await AsyncStorage.getItem('@RNAuth:token');
       const wasSigned = await AsyncStorage.getItem('@RNAuth:wasSigned');
       console.log('waSigned: ' + wasSigned);
-      console.log(storagedUser);
+      console.log('token de acesso: ' + storagedToken);
       if (wasSigned === null || undefined) {
         setLoading(false);
       } else if (storagedUser && storagedToken) {
-        setUser(storagedUser);
+        setUser(JSON.parse(storagedUser));
+        console.log(`Usuário armazenado: ${storagedUser}`);
         setAccessToken(storagedToken);
         setLoading(false);
       }
@@ -151,7 +151,7 @@ export function AuthProvider({children}) {
         loading,
         FacebookSignOut,
         CreateUser,
-        additionalInfo,
+
         bio,
         setBio,
         st,
