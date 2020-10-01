@@ -2,7 +2,6 @@ import { getRepository } from 'typeorm';
 import Residence from '../models/Residence';
 
 import AppError from '../errors/AppError';
-import User from '../models/User';
 
 interface Request {
   residence_id: string;
