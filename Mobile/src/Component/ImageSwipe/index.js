@@ -10,7 +10,7 @@ import {
 
 import styles from './styles';
 import FavoriteButton from '../FavoriteButton';
-export default function ImageSwipe({img, widthDiff}) {
+export default function ImageSwipe({img, widthDiff, residence_id, user_id}) {
   const width = useWindowDimensions().width;
   const height = width * 0.6;
 
@@ -50,7 +50,7 @@ export default function ImageSwipe({img, widthDiff}) {
         ))}
       </ScrollView>
 
-      <FavoriteButton />
+      <FavoriteButton user_id={user_id} residence_id={residence_id}/>
       <View style={styles.pagination}>
         {img.map((i, k) => (
           <Text key={k} style={k === active ? styles.activeDot : styles.dot}>

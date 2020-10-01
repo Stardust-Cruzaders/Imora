@@ -6,7 +6,7 @@ import styles from './styles';
 import ImageSwipe from '../ImageSwipe';
 import {RectButton} from 'react-native-gesture-handler';
 
-export default function FeedBoxComponent({residence, navigation}) {
+export default function FeedBoxComponent({residence, user_id, navigation}) {
   return (
     <View style={styles.feedBox}>
       <RectButton
@@ -17,7 +17,12 @@ export default function FeedBoxComponent({residence, navigation}) {
           });
         }}>
         <View style={[styles.imageContainer]}>
-          <ImageSwipe img={residence.images} widthDiff={50} />
+          <ImageSwipe
+            img={residence.images}
+            widthDiff={50}
+            residence_id={residence.id}
+            user_id={user_id}
+          />
         </View>
 
         {/* <Image source={{uri: img}} style={styles.image} /> */}

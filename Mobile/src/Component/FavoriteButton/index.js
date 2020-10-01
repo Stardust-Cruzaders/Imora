@@ -1,21 +1,29 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 
 import {RectButton} from 'react-native-gesture-handler';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 
 import styles from './styles';
-export default function FavoriteButton() {
+
+import api from '../../services/api';
+
+export default function FavoriteButton({user_id, residence_id}) {
   const [isFavorite, setIsFavorite] = useState(false);
-  function toggleFavorite() {
+  async function toggleFavorite() {
+    const response = await api.patch(`/users/${user_id}/favorite`, {
+      residence_id,
+    });
     setIsFavorite(!isFavorite);
+    console.log(response.data);
   }
+
   return (
     <View style={styles.favoriteButtonView}>
       <RectButton
         style={styles.favoriteButton}
-        onPress={() => {
-          toggleFavorite();
+        onPress={async () => {
+          await toggleFavorite();
         }}>
         {isFavorite ? (
           <Ionicon

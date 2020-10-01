@@ -10,7 +10,7 @@ import {RectButton} from 'react-native-gesture-handler';
 import api from '../../services/api';
 import {ActivityIndicator} from 'react-native-paper';
 import {useFeed} from '../../contexts/feed';
-
+import {useAuth} from '../../contexts/auth';
 export default function Feed({navigation}) {
   const {
     residenceName,
@@ -21,6 +21,7 @@ export default function Feed({navigation}) {
     setLoading,
     filtered,
   } = useFeed();
+  const {user} = useAuth();
   useEffect(() => {
     async function handleFeed() {
       if (
@@ -78,7 +79,11 @@ export default function Feed({navigation}) {
           data={residences}
           keyExtractor={(item) => item.id}
           renderItem={({item}) => (
-            <FeedBoxComponent residence={item} navigation={navigation} />
+            <FeedBoxComponent
+              user_id={user.id}
+              residence={item}
+              navigation={navigation}
+            />
           )}
         />
       ) : (
