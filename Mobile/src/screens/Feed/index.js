@@ -78,16 +78,7 @@ export default function Feed({navigation}) {
           data={residences}
           keyExtractor={(item) => item.id}
           renderItem={({item}) => (
-            <FeedBoxComponent
-              id={item.id}
-              name={item.residence_name}
-              img={item.images}
-              price={item.price}
-              stars={5}
-              sub_stars={400}
-              localization={item.city + ',' + item.state}
-              navigation={navigation}
-            />
+            <FeedBoxComponent residence={item} navigation={navigation} />
           )}
         />
       ) : (

@@ -2,21 +2,18 @@
 import React, {useState, useEffect} from 'react';
 import {Text, View, useWindowDimensions, Image, ScrollView} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
-
+import {ActivityIndicator} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import axios from 'axios';
+
 import styles from './styles';
 import textStyles from '../../../textStyles';
 import Div from '../../../Component/Div';
 import ImageSwipe from '../../../Component/ImageSwipe';
-import api from '../../../services/api';
-import {ActivityIndicator} from 'react-native-paper';
 
 export default function ResidenceDetailed({route, navigation}) {
   const width = useWindowDimensions().width;
-  const [residence, setResidence] = useState(null);
   const [loading, setLoading] = useState(true);
   const [locationTypeMessage, setLocationTypeMessage] = useState('');
   const [comforts, setComforts] = useState([]);
@@ -46,72 +43,54 @@ export default function ResidenceDetailed({route, navigation}) {
     }
   }
   useEffect(() => {
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
-    async function GetResidence(id) {
-      const response = await api.get(`/residences/${id}`, {
-        cancelToken: source.token,
-      });
-
-      if (response.data === undefined) {
-        return response;
-      } else {
-        setResidence(response.data);
-        CreateLocationTypeMessage(response.data[0].residence_type);
-        setComforts(
-          [
-            {id: 'Wifi', value: response.data[0].wifi, icon: 'wifi'},
-            {id: 'Televisão', value: response.data[0].tv, icon: 'youtube-tv'},
-            {
-              id: 'Ar-condicionado',
-              value: response.data[0].ac,
-              icon: 'weather-windy',
-            },
-            {
-              id: 'Lugar de trabalho adequado para notebook',
-              value: response.data[0].notebook_work,
-              icon: 'laptop-windows',
-            },
-            {
-              id: 'Cozinha',
-              value: response.data[0].kitchen,
-              icon: 'food-fork-drink',
-            },
-            {
-              id: 'Churrasqueira',
-              value: response.data[0].grill,
-              icon: 'food-steak',
-            },
-            {id: 'Piscina', value: response.data[0].pool, icon: 'pool'},
-            {
-              id: 'Estacionamento',
-              value: response.data[0].parking,
-              icon: 'car-side',
-            },
-          ].filter((element) => element.value === true),
-        );
-        setConditions(
-          [
-            {
-              id: 'Animais de estimação',
-              value: response.data[0].allow_pets,
-              icon: 'pets',
-            },
-            {
-              id: 'Fumar dentro da residência',
-              value: response.data[0].allow_smokers,
-              icon: 'smoking-rooms',
-            },
-          ].filter((element) => element.value === false),
-        );
-        setLoading(false);
-        return response.data;
-      }
-    }
-    GetResidence(route.params.id);
-    return () => {
-      source.cancel();
-    };
+    CreateLocationTypeMessage(route.params.residence_type);
+    setComforts(
+      [
+        {id: 'Wifi', value: route.params.residence.wifi, icon: 'wifi'},
+        {id: 'Televisão', value: route.params.residence.tv, icon: 'youtube-tv'},
+        {
+          id: 'Ar-condicionado',
+          value: route.params.residence.ac,
+          icon: 'weather-windy',
+        },
+        {
+          id: 'Lugar de trabalho adequado para notebook',
+          value: route.params.residence.notebook_work,
+          icon: 'laptop-windows',
+        },
+        {
+          id: 'Cozinha',
+          value: route.params.residence.kitchen,
+          icon: 'food-fork-drink',
+        },
+        {
+          id: 'Churrasqueira',
+          value: route.params.residence.grill,
+          icon: 'food-steak',
+        },
+        {id: 'Piscina', value: route.params.residence.pool, icon: 'pool'},
+        {
+          id: 'Estacionamento',
+          value: route.params.residence.parking,
+          icon: 'car-side',
+        },
+      ].filter((element) => element.value === true),
+    );
+    setConditions(
+      [
+        {
+          id: 'Animais de estimação',
+          value: route.params.residence.allow_pets,
+          icon: 'pets',
+        },
+        {
+          id: 'Fumar dentro da residência',
+          value: route.params.residence.allow_smokers,
+          icon: 'smoking-rooms',
+        },
+      ].filter((element) => element.value === false),
+    );
+    setLoading(false);
   }, []);
 
   if (loading) {
@@ -132,20 +111,20 @@ export default function ResidenceDetailed({route, navigation}) {
   return (
     <ScrollView style={styles.scroll}>
       <View style={[styles.headerImgView]}>
-        <ImageSwipe img={residence[0].images} widthDiff={0} />
+        <ImageSwipe img={route.params.residence.images} widthDiff={0} />
       </View>
       <View style={styles.container}>
         <View style={[styles.bodyView, {width: width - 50}]}>
           <View style={styles.basicInfoView}>
             <Text style={[styles.mainTitle, textStyles.font]}>
-              {residence[0].residence_name}{' '}
+              {route.params.residence.residence_name}{' '}
             </Text>
             <Text style={[styles.location, textStyles.font]}>
-              {residence[0].city},{residence[0].state}
+              {route.params.residence.city},{route.params.residence.state}
             </Text>
 
             <Text style={[styles.price, textStyles.font]}>
-              R${residence[0].price},00/Mês{' '}
+              R${route.params.residence.price},00/Mês{' '}
             </Text>
           </View>
           <View style={styles.ownerView}>
@@ -153,13 +132,13 @@ export default function ResidenceDetailed({route, navigation}) {
               <Image
                 style={[styles.profilePic, {resizeMode: 'cover'}]}
                 source={{
-                  uri: residence[0].avatar,
+                  uri: route.params.residence.avatar,
                   //'https://i.pinimg.com/564x/73/72/ca/7372caf9143345b46f5941218af00af2.jpg',
                 }}
               />
             </View>
             <Text style={[styles.name, textStyles.font]}>
-              {residence[0].name}
+              {route.params.residence.name}
             </Text>
             <Text style={[styles.subTitle, textStyles.font]}>Proprietário</Text>
           </View>
@@ -168,14 +147,14 @@ export default function ResidenceDetailed({route, navigation}) {
             <View style={styles.titleWithIconView}>
               <Icon name={'home'} size={30} color={'#3F3F3F'} />
               <Text style={[styles.title1, textStyles.font]}>
-                {residence[0].residence_place}
+                {route.params.residence.residence_place}
               </Text>
             </View>
             <Text style={[styles.description, textStyles.font]}>
-              {residence[0].residence_type}: {locationTypeMessage}
+              {route.params.residence.residence_type}: {locationTypeMessage}
             </Text>
             <Text style={[styles.description, textStyles.font]}>
-              {residence[0].description}
+              {route.params.residence.description}
             </Text>
             <View style={styles.titleWithIconView}>
               <Text style={[textStyles.font, {fontSize: 30}]}>•</Text>
@@ -185,7 +164,7 @@ export default function ResidenceDetailed({route, navigation}) {
                 color={'#3F3F3F'}
               />
               <Text style={[styles.descriptionList, textStyles.font]}>
-                Quantidade de banheiros: {residence[0].num_bathrooms}
+                Quantidade de banheiros: {route.params.residence.num_bathrooms}
               </Text>
             </View>
             <View style={styles.titleWithIconView}>
@@ -198,7 +177,7 @@ export default function ResidenceDetailed({route, navigation}) {
                 color={'#3F3F3F'}
               />
               <Text style={[styles.descriptionList, textStyles.font]}>
-                Quantidade de quartos: {residence[0].num_rooms}
+                Quantidade de quartos: {route.params.residence.num_rooms}
               </Text>
             </View>
           </View>
@@ -256,7 +235,7 @@ export default function ResidenceDetailed({route, navigation}) {
                     textStyles.font,
                     {fontWeight: 'normal', top: 10},
                   ]}>
-                  {residence[0].max_residents}
+                  {route.params.residence.max_residents}
                 </Text>
               </Text>
             </View>
@@ -274,7 +253,7 @@ export default function ResidenceDetailed({route, navigation}) {
                     textStyles.font,
                     {fontWeight: 'normal', top: 10},
                   ]}>
-                  {residence[0].current_residents}
+                  {route.params.residence.current_residents}
                 </Text>
               </Text>
             </View>
@@ -336,8 +315,9 @@ export default function ResidenceDetailed({route, navigation}) {
               <Text style={[styles.title1, textStyles.font]}>Localização </Text>
             </View>
             <Text style={[styles.description, textStyles.font]}>
-              {residence[0].street} {residence[0].neighborhood}{' '}
-              {residence[0].numberr}
+              {route.params.residence.street}{' '}
+              {route.params.residence.neighborhood}{' '}
+              {route.params.residence.numberr}
             </Text>
             <RectButton
               style={[
