@@ -2,18 +2,10 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-
-import Icon from 'react-native-vector-icons/Feather';
-
 import FeedNavigation from './FeedNavigation';
-
-import Favorites from '../screens/Favorites';
-import Chat from '../screens/Chat';
-import ProfileSelfNavigation from './ProfileSelfNavigation';
+import ProfileUser from '../screens/Profile/ProfileUser';
 import ResidenceDetailed from '../screens/Residence/ResidenceDetailed';
 import FilterScreen from '../screens/FilterScreen';
-import Feed from '../screens/Feed';
 import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 import FeedProvider from '../contexts/feed';
 
@@ -30,6 +22,7 @@ export default function MainNavigation() {
           name={'ResidenceDetailed'}
           component={ResidenceDetailed}
         />
+        <Stack.Screen name={'ProfileUser'} component={ProfileUser} />
       </Stack.Navigator>
     </FeedProvider>
   );
