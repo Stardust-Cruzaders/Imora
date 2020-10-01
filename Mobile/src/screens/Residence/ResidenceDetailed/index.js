@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {Text, View, useWindowDimensions, Image, ScrollView} from 'react-native';
-import {RectButton} from 'react-native-gesture-handler';
+import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
 import {ActivityIndicator} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -96,14 +96,14 @@ export default function ResidenceDetailed({route, navigation}) {
   if (loading) {
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <ActivityIndicator color={'purple'} size="large" />
+        <ActivityIndicator color={'#7E57C2'} size="large" />
         <Text
           style={{
             color: '#3F3F3F',
             fontSize: 32,
             fontFamily: 'Roboto',
           }}>
-          UwU
+          Carregando informações.
         </Text>
       </View>
     );
@@ -128,15 +128,29 @@ export default function ResidenceDetailed({route, navigation}) {
             </Text>
           </View>
           <View style={styles.ownerView}>
-            <View style={styles.profilePicView}>
-              <Image
-                style={[styles.profilePic, {resizeMode: 'cover'}]}
-                source={{
-                  uri: route.params.residence.avatar,
-                  //'https://i.pinimg.com/564x/73/72/ca/7372caf9143345b46f5941218af00af2.jpg',
-                }}
-              />
-            </View>
+            <BorderlessButton
+              onPress={() => {
+                navigation.navigate('ProfileUser', {
+                  name: route.params.residence.name,
+                  bio: route.params.residence.bio,
+                  avatar: route.params.residence.avatar,
+                  email: route.params.residence.email,
+                  phone: route.params.residence.phone,
+                  is_host: route.params.residence.is_host,
+                  //city: route.params.city,
+                  ///state: route.params.state,
+                });
+              }}>
+              <View style={styles.profilePicView}>
+                <Image
+                  style={[styles.profilePic, {resizeMode: 'cover'}]}
+                  source={{
+                    uri: route.params.residence.avatar,
+                    //'https://i.pinimg.com/564x/73/72/ca/7372caf9143345b46f5941218af00af2.jpg',
+                  }}
+                />
+              </View>
+            </BorderlessButton>
             <Text style={[styles.name, textStyles.font]}>
               {route.params.residence.name}
             </Text>
