@@ -34,10 +34,10 @@ class User {
   favorites: Array<string>;
 
   @Column()
-  state: string;
+  user_state: string;
 
   @Column()
-  city: string;
+  user_city: string;
 
   @CreateDateColumn()
   created_at: Date;

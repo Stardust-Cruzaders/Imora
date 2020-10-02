@@ -10,8 +10,8 @@ interface Request {
   is_host: boolean;
   phone?: string;
   favorites: Array<string>;
-  state?: string;
-  city?: string;
+  user_state?: string;
+  user_city?: string;
 }
 export default class CreateUserService {
   public async execute({
@@ -21,8 +21,8 @@ export default class CreateUserService {
     bio,
     is_host,
     phone,
-    state,
-    city,
+    user_state,
+    user_city,
     favorites,
   }: Request): Promise<User> {
     const usersRepository = getRepository(User);
@@ -35,15 +35,15 @@ export default class CreateUserService {
       bio = 'sem descrição disponível';
     }
 
-    const user = await usersRepository.create({
+    const user = usersRepository.create({
       name,
       email,
       avatar,
       bio,
       is_host,
       phone,
-      state,
-      city,
+      user_state,
+      user_city,
       favorites,
     });
 

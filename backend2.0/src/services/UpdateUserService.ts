@@ -6,8 +6,8 @@ interface Request {
   id: string;
   bio: string;
   phone: string;
-  state: string;
-  city: string;
+  user_state: string;
+  user_city: string;
 }
 
 export default class UpdateUserService {
@@ -15,8 +15,8 @@ export default class UpdateUserService {
     id,
     bio,
     phone,
-    state,
-    city,
+    user_state,
+    user_city,
   }: Request): Promise<User> {
     const usersRepository = getRepository(User);
 
@@ -32,8 +32,8 @@ export default class UpdateUserService {
 
     user.bio = bio;
     user.phone = phone;
-    user.state = state;
-    user.city = city;
+    user.user_state = user_state;
+    user.user_city = user_city;
 
     const newUser = await usersRepository.save(user);
     return newUser;
