@@ -57,17 +57,20 @@ export default function ProfileSelf({navigation}) {
               </View>
             )}
 
-            <View style={styles.iconTextView}>
-              <Icon
-                name={'map-pin'}
-                size={24}
-                color={'#3F3F3F'}
-                style={styles.icon}
-              />
-              <Text style={[styles.bodyText, textStyles.font]}>
-                {user.city},{user.state}
-              </Text>
-            </View>
+            {(user.user_state !== null || undefined) &&
+              (user.user_state !== null || undefined) && (
+                <View style={styles.iconTextView}>
+                  <Icon
+                    name={'map-pin'}
+                    size={24}
+                    color={'#3F3F3F'}
+                    style={styles.icon}
+                  />
+                  <Text style={[styles.bodyText, textStyles.font]}>
+                    {user.user_city}, {user.user_state}
+                  </Text>
+                </View>
+              )}
 
             <View style={styles.iconTextView}>
               <Icon
@@ -120,7 +123,6 @@ export default function ProfileSelf({navigation}) {
                   <Text style={styles.buttonText}> Sair do app </Text>
                 </View>
               </RectButton>
-              <Div threshold={100} height={1.5} />
             </View>
           </View>
         </View>

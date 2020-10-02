@@ -137,8 +137,8 @@ export default function ResidenceDetailed({route, navigation}) {
                   email: route.params.residence.email,
                   phone: route.params.residence.phone,
                   is_host: route.params.residence.is_host,
-                  //city: route.params.city,
-                  ///state: route.params.state,
+                  city: route.params.residence.user_city,
+                  state: route.params.residence.user_state,
                 });
               }}>
               <View style={styles.profilePicView}>

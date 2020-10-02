@@ -10,16 +10,18 @@ import Div from '../../../Component/Div';
 
 export default function ProfileUser({navigation, route}) {
   const width = useWindowDimensions().width;
-  const {name, bio, avatar, email, phone, is_host} = route.params;
-  const city = 'city';
-  const state = 'state';
+  const {name, bio, avatar, email, phone, is_host, state, city} = route.params;
+
   console.log(route.params);
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.headerView}>
           <View style={[styles.topBar, {width: width}]}>
-            <BorderlessButton onPress={() => {}}>
+            <BorderlessButton
+              onPress={() => {
+                console.log(route.params);
+              }}>
               <Icon
                 style={{margin: 15}}
                 name={'message-square'}
@@ -44,7 +46,7 @@ export default function ProfileUser({navigation, route}) {
         </View>
         <View style={[styles.body, {width: width - 55}]}>
           <View style={styles.main}>
-            {(phone !== null || undefined) && (
+            {(phone !== null || phone !== undefined) && (
               <View style={[styles.iconTextView, {marginTop: 25}]}>
                 <Icon
                   name={'phone'}
@@ -55,19 +57,20 @@ export default function ProfileUser({navigation, route}) {
                 <Text style={[styles.bodyText, textStyles.font]}>{phone}</Text>
               </View>
             )}
-            {(city !== null || undefined) && (state !== null || undefined) && (
-              <View style={styles.iconTextView}>
-                <Icon
-                  name={'map-pin'}
-                  size={24}
-                  color={'#3F3F3F'}
-                  style={styles.icon}
-                />
-                <Text style={[styles.bodyText, textStyles.font]}>
-                  {city}, {state}
-                </Text>
-              </View>
-            )}
+            {(state !== null || state !== undefined) &&
+              (city !== null || city !== undefined) && (
+                <View style={styles.iconTextView}>
+                  <Icon
+                    name={'map-pin'}
+                    size={24}
+                    color={'#3F3F3F'}
+                    style={styles.icon}
+                  />
+                  <Text style={[styles.bodyText, textStyles.font]}>
+                    {city}, {state}
+                  </Text>
+                </View>
+              )}
             <View style={styles.iconTextView}>
               <Icon
                 name={'mail'}
