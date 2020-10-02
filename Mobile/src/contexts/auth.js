@@ -40,8 +40,8 @@ export function AuthProvider({children}) {
       avatar: profile_pic,
       bio: description,
       phone: phone_num,
-      state,
-      city,
+      user_state: state,
+      user_city: city,
     };
 
     const response = await api.post('/users', data);

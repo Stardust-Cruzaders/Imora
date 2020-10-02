@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Text, View, SafeAreaView, FlatList} from 'react-native';
-
+import axios from 'axios';
 import styles from './styles';
 
 import FeedBoxComponent from '../../Component/FeedBoxComponent';
@@ -23,12 +23,17 @@ export default function Feed({navigation}) {
   } = useFeed();
   const {user} = useAuth();
   useEffect(() => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
     async function handleFeed() {
       if (
         (residenceName === undefined || residenceName === '') &&
         filtered === false
       ) {
-        const response = await api.get('/residences');
+        const response = await api.get('/residences', {
+          cancelToken: source.token,
+        });
 
         if (response.data === undefined) {
           return response;
@@ -40,6 +45,7 @@ export default function Feed({navigation}) {
         }
       } else {
         const response = await api.get('/residences/search', {
+          cancelToken: source.token,
           params: {
             residence_name: residenceName,
           },
@@ -57,6 +63,9 @@ export default function Feed({navigation}) {
     }
 
     handleFeed();
+    return () => {
+      source.cancel();
+    };
   }, [residenceName]);
 
   return (
