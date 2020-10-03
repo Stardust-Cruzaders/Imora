@@ -1,4 +1,4 @@
-import { getRepository } from 'typeorm';
+import { getRepository, In } from 'typeorm';
 import Residence from '../models/Residence';
 import User from '../models/User';
 
@@ -13,14 +13,22 @@ class ListFavoriteResidencesService {
     const userRepository = getRepository(User);
 
     const user = await userRepository.findOne({ where: { id } });
-    if (user === undefined) {
+    if (!user) {
       throw new AppError("User doesn't exist");
     }
-    const favoriteResidencesIds = user.favorites;
 
-    const favoriteResidences = await residenceRepository.findByIds(
-      favoriteResidencesIds,
-    );
+    const favoriteResidences = await residenceRepository
+      .createQueryBuilder('residences')
+      .innerJoinAndSelect('users', 'users', 'users.id = residences.owner_id')
+      .where({
+        id: In(user.favorites),
+      })
+      .getRawMany();
+
+    if (!favoriteResidences) {
+      throw new AppError('Query failed :c');
+    }
+
     return favoriteResidences;
   }
 }

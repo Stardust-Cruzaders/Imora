@@ -36,7 +36,6 @@ export default class FavoriteResidenceService {
     if (residence === undefined) {
       throw new AppError("This residence doesn't exist");
     }
-    console.log(residence_id, user.favorites.includes(residence_id));
     if (user.favorites.includes(residence_id)) {
       await usersRepository.query(queryDeleteFavoriteArray, [
         residence_id,
