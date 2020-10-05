@@ -52,7 +52,6 @@ export default function Favorites({navigation}) {
     }
 
     handleFeed();
-    console.log('mamaco:' + isFavoriteOk);
     return () => {
       source.cancel();
     };
