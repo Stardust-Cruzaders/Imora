@@ -20,8 +20,11 @@ export default function FeedProvider({children}) {
   const [parking, setParking] = useState(null);
   const [city, setCity] = useState(null);
   const [residences, setResidences] = useState([]);
+  const [favoriteResidences, setFavoriteResidences] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filtered, setFiltered] = useState(false);
+
+  const [isFavoriteOk, setFavoriteOk] = useState(false);
   function CheckIfIsEmpty(x) {
     if (x === '') {
       return null;
@@ -99,6 +102,10 @@ export default function FeedProvider({children}) {
         setLoading,
         filtered,
         setFiltered,
+        favoriteResidences,
+        setFavoriteResidences,
+        isFavoriteOk,
+        setFavoriteOk,
       }}>
       {children}
     </FeedContext.Provider>

@@ -18,10 +18,7 @@ export default function ProfileUser({navigation, route}) {
       <ScrollView>
         <View style={styles.headerView}>
           <View style={[styles.topBar, {width: width}]}>
-            <BorderlessButton
-              onPress={() => {
-                console.log(route.params);
-              }}>
+            <BorderlessButton onPress={() => {}}>
               <Icon
                 style={{margin: 15}}
                 name={'message-square'}

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, View, SafeAreaView, FlatList} from 'react-native';
 import axios from 'axios';
 import styles from './styles';
@@ -11,6 +11,7 @@ import api from '../../services/api';
 import {ActivityIndicator} from 'react-native-paper';
 import {useFeed} from '../../contexts/feed';
 import {useAuth} from '../../contexts/auth';
+import NotFound from '../../Component/NotFound';
 export default function Feed({navigation}) {
   const {
     residenceName,
@@ -22,6 +23,11 @@ export default function Feed({navigation}) {
     filtered,
   } = useFeed();
   const {user} = useAuth();
+  const [residencesOk, setResidencesOk] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(
+    'Nenhuma Residência Foi encontrada',
+  );
+  const [errorIcon, setErrorIcon] = useState('archive');
   useEffect(() => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
@@ -31,33 +37,43 @@ export default function Feed({navigation}) {
         (residenceName === undefined || residenceName === '') &&
         filtered === false
       ) {
-        const response = await api.get('/residences', {
-          cancelToken: source.token,
-        });
-
-        if (response.data === undefined) {
-          return response;
-        } else {
-          setResidences(response.data);
+        try {
+          const response = await api.get('/residences', {
+            cancelToken: source.token,
+          });
+          if (response.data.length >= 1) {
+            setResidences(response.data);
+          } else {
+            setResidencesOk(false);
+          }
           setLoading(false);
-
-          return response.data;
+        } catch (err) {
+          setLoading(false);
+          setResidencesOk(false);
+          setErrorIcon('wifi-off');
+          setErrorMessage(
+            'Oops! parece que nossos servidores não estão disponíveis no Momento',
+          );
         }
       } else {
-        const response = await api.get('/residences/search', {
-          cancelToken: source.token,
-          params: {
-            residence_name: residenceName,
-          },
-        });
+        try {
+          const response = await api.get('/residences/search', {
+            cancelToken: source.token,
+            params: {
+              residence_name: residenceName,
+            },
+          });
 
-        if (response.data === undefined) {
-          return response;
-        } else {
           setResidences(response.data);
+          setResidencesOk(true);
           setLoading(false);
-
-          return response.data;
+        } catch (err) {
+          setLoading(false);
+          setResidencesOk(false);
+          setErrorIcon('wifi-off');
+          setErrorMessage(
+            'Oops! parece que nossos servidores não estão disponíveis no Momento',
+          );
         }
       }
     }
@@ -84,17 +100,21 @@ export default function Feed({navigation}) {
         </RectButton>
       </View>
       {!loading ? (
-        <FlatList
-          data={residences}
-          keyExtractor={(item) => item.id}
-          renderItem={({item}) => (
-            <FeedBoxComponent
-              user_id={user.id}
-              residence={item}
-              navigation={navigation}
-            />
-          )}
-        />
+        residencesOk ? (
+          <FlatList
+            data={residences}
+            keyExtractor={(item) => item.id}
+            renderItem={({item}) => (
+              <FeedBoxComponent
+                user_id={user.id}
+                residence={item}
+                navigation={navigation}
+              />
+            )}
+          />
+        ) : (
+          <NotFound message={errorMessage} icon={errorIcon} />
+        )
       ) : (
         <ActivityIndicator size={'small'} color={'purple'} />
       )}
