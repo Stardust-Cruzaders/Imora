@@ -11,16 +11,17 @@ import {useFeed} from '../../contexts/feed';
 import {useAuth} from '../../contexts/auth';
 
 export default function FavoriteButton({user_id, residence_id}) {
-  const [isFavorite, setIsFavorite] = useState(false);
   const {setFavoriteResidences, setFavoriteOk} = useFeed();
-  const {user} = useAuth();
+  //const {user} = useAuth();
+  const [isFavorite, setIsFavorite] = useState(false);
+
   async function toggleFavorite() {
     try {
-      await api.patch(`/users/${user_id}/favorite`, {
+      const user = await api.patch(`/users/${user_id}/favorite`, {
         residence_id,
       });
       const response = await api.get(`/residences/${user.id}/favorites`);
-      setIsFavorite(!isFavorite);
+      setIsFavorite(user.data.favorites.includes(residence_id) ? true : false);
       console.log(response.data);
       setFavoriteResidences(response.data);
       if (response.data.length >= 1) {
