@@ -40,18 +40,18 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
   facebookButton: {
-    alignItems: 'center',
     backgroundColor: '#0075FF',
     padding: 10,
     margin: 15,
   },
   iconContainer: {
     flexDirection: 'row',
-    alignContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
   },
   facebookIcon: {
-    position: 'absolute',
-    right: 125,
+    alignSelf: 'center',
+    marginRight: 30,
   },
   buttonText: {
     color: '#FFF',
