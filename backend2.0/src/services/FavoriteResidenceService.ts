@@ -47,7 +47,10 @@ export default class FavoriteResidenceService {
         user_id,
       ]);
     }
-
-    return user;
+    const newUser = await usersRepository.findOne({ id: user_id });
+    if (newUser === undefined) {
+      throw new AppError("User doesn't exist", 404);
+    }
+    return newUser;
   }
 }
