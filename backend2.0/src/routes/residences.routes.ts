@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { getRepository, Like } from 'typeorm';
+import { getRepository } from 'typeorm';
 import CreateResidenceService from '../services/CreateResidenceService';
 import ListFavoriteResidencesService from '../services/ListFavoriteResidencesService';
 import ListUserResidenceService from '../services/ListUserResidenceService';
@@ -54,9 +54,19 @@ residencesRouter.get('/', async (request, response) => {
 residencesRouter.get('/search', async (request, response) => {
   const { residence_name } = request.query;
   const residenceRepository = getRepository(Residence);
-  const residences = await residenceRepository.find({
-    residence_name: Like(`%${residence_name}%`),
-  });
+
+  const residences = await residenceRepository
+    .createQueryBuilder('residences')
+    .innerJoin('users', 'users', 'residences.owner_id = users.id')
+    .select(
+      'residences.*, users.name, users.email, users.avatar,users.bio, users.phone, users.is_host, users.user_city, users.user_state',
+    )
+    .where('residences.residence_name LIKE :residence_name', {
+      residence_name: `%${residence_name}%`,
+    })
+    .andWhere('residences.available = true')
+    .getRawMany();
+
   return response.json(residences);
 });
 residencesRouter.get('/:residence_id', async (request, response) => {
