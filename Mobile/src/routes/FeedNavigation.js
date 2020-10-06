@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import ProfileSelfNavigation from './ProfileSelfNavigation';
 import Chat from '../screens/Chat';
 import Favorites from '../screens/Favorites';
+import ProfileSelf from '../screens/Profile/ProfileSelf';
 const Tab = createMaterialBottomTabNavigator();
 export default function FeedNavigation() {
   return (
@@ -48,7 +49,7 @@ export default function FeedNavigation() {
       />
       <Tab.Screen
         name="Perfil"
-        component={ProfileSelfNavigation}
+        component={ProfileSelf}
         options={{
           tabBarLabel: 'Perfil',
           tabBarIcon: () => <Icon name={'user'} size={24} color={'#FFF'} />,

@@ -2,24 +2,23 @@ import 'react-native-gesture-handler';
 
 import React from 'react';
 
-import {createNativeStackNavigator} from 'react-native-screens/native-stack';
-
 import ProfileSelf from '../screens/Profile/ProfileSelf';
 
 import MyResidences from '../screens/MyResidences';
 
 import ProfileEdit from '../screens/Profile/ProfileEdit';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-const Stack = createNativeStackNavigator();
+const Tabs = createMaterialBottomTabNavigator();
 
 export default function ProfileSelfNavigation() {
   return (
-    <Stack.Navigator
+    <Tabs.Navigator
       initialRouteName={'ProfileSelf'}
       screenOptions={{headerShown: false}}>
-      <Stack.Screen name={'ProfileSelf'} component={ProfileSelf} />
-      <Stack.Screen name={'MyResidences'} component={MyResidences} />
-      <Stack.Screen name={'ProfileEdit'} component={ProfileEdit} />
-    </Stack.Navigator>
+      <Tabs.Screen name={'ProfileSelf'} component={ProfileSelf} />
+      <Tabs.Screen name={'MyResidences'} component={MyResidences} />
+      <Tabs.Screen name={'ProfileEdit'} component={ProfileEdit} />
+    </Tabs.Navigator>
   );
 }
