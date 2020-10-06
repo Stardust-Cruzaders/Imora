@@ -12,16 +12,18 @@ import {useAuth} from '../../contexts/auth';
 
 export default function FavoriteButton({user_id, residence_id}) {
   const {setFavoriteResidences, setFavoriteOk} = useFeed();
-  //const {user} = useAuth();
+  const {user} = useAuth();
   const [isFavorite, setIsFavorite] = useState(false);
 
   async function toggleFavorite() {
     try {
-      const user = await api.patch(`/users/${user_id}/favorite`, {
+      const newUser = await api.patch(`/users/${user_id}/favorite`, {
         residence_id,
       });
       const response = await api.get(`/residences/${user.id}/favorites`);
-      setIsFavorite(user.data.favorites.includes(residence_id) ? true : false);
+      setIsFavorite(
+        newUser.data.favorites.includes(residence_id) ? true : false,
+      );
       console.log(response.data);
       setFavoriteResidences(response.data);
       if (response.data.length >= 1) {
@@ -43,12 +45,16 @@ export default function FavoriteButton({user_id, residence_id}) {
         }}>
         {isFavorite ? (
           <Ionicon
-            name={'md-heart-dislike-circle-outline'}
+            name={'ios-heart-dislike-circle-outline'}
             size={65}
             color={'black'}
           />
         ) : (
-          <Ionicon name={'md-heart-circle-outline'} size={65} color={'black'} />
+          <Ionicon
+            name={'ios-heart-circle-outline'}
+            size={65}
+            color={'black'}
+          />
         )}
       </RectButton>
     </View>
