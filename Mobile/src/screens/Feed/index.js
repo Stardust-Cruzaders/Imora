@@ -28,6 +28,48 @@ export default function Feed({navigation}) {
     'Nenhuma Residência Foi encontrada',
   );
   const [errorIcon, setErrorIcon] = useState('archive');
+  async function ListAll(source) {
+    try {
+      const response = await api.get('/residences', {
+        cancelToken: source.token,
+      });
+      if (response.data.length >= 1) {
+        setResidences(response.data);
+      } else {
+        setResidencesOk(false);
+      }
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      setResidencesOk(false);
+      setErrorIcon('wifi-off');
+      setErrorMessage(
+        'Oops! parece que nossos servidores não estão disponíveis no Momento',
+      );
+    }
+  }
+  async function ListSearch(source) {
+    try {
+      const response = await api.get('/residences/search', {
+        cancelToken: source.token,
+        params: {
+          residence_name: residenceName,
+        },
+      });
+
+      setResidences(response.data);
+      setResidencesOk(true);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      setResidencesOk(false);
+      setErrorIcon('wifi-off');
+      setErrorMessage(
+        'Oops! parece que nossos servidores não estão disponíveis no Momento',
+      );
+    }
+  }
+
   useEffect(() => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
@@ -37,44 +79,9 @@ export default function Feed({navigation}) {
         (residenceName === undefined || residenceName === '') &&
         filtered === false
       ) {
-        try {
-          const response = await api.get('/residences', {
-            cancelToken: source.token,
-          });
-          if (response.data.length >= 1) {
-            setResidences(response.data);
-          } else {
-            setResidencesOk(false);
-          }
-          setLoading(false);
-        } catch (err) {
-          setLoading(false);
-          setResidencesOk(false);
-          setErrorIcon('wifi-off');
-          setErrorMessage(
-            'Oops! parece que nossos servidores não estão disponíveis no Momento',
-          );
-        }
+        await ListAll(source);
       } else {
-        try {
-          const response = await api.get('/residences/search', {
-            cancelToken: source.token,
-            params: {
-              residence_name: residenceName,
-            },
-          });
-
-          setResidences(response.data);
-          setResidencesOk(true);
-          setLoading(false);
-        } catch (err) {
-          setLoading(false);
-          setResidencesOk(false);
-          setErrorIcon('wifi-off');
-          setErrorMessage(
-            'Oops! parece que nossos servidores não estão disponíveis no Momento',
-          );
-        }
+        await ListSearch(source);
       }
     }
 
