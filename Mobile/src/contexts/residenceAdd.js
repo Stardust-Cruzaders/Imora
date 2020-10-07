@@ -1,13 +1,9 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import {createContext, useState, useContext} from 'react';
 import cep from 'cep-promise';
 
 const ResidenceAddContext = createContext();
-export default function ResidenceAddProvider({children}){
-
-
-
+export default function ResidenceAddProvider({children}) {
   //Residence Main
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
@@ -32,26 +28,26 @@ export default function ResidenceAddProvider({children}){
   const [hasParkingLot, setHasParkingLot] = useState(false);
 
   const [comforts, setComforts] = useState([
-                    {id: 'Wifi', value: hasWifi, icon: 'wifi'},
-                    {id: 'Televisão', value: hasTV, icon: 'youtube-tv'},
-                    {
-                      id: 'Ar-condicionado',
-                      value: hasAC,
-                      icon: 'weather-windy',
-                    },
-                    {
-                      id: 'Lugar de trabalho adequado para notebook',
-                      value: hasNotebookWork,
-                      icon: 'laptop-windows',
-                    },
-                    {id: 'Cozinha', value: hasKitchen, icon: 'food-fork-drink'},
-                    {id: 'Churrasqueira', value: hasGrill, icon: 'food-steak'},
-                    {id: 'Piscina', value: hasPool, icon: 'pool'},
-                    {
-                      id: 'Estacionamento',
-                      value: hasParkingLot,
-                      icon: 'car-side',
-                    },
+    {id: 'Wifi', value: hasWifi, icon: 'wifi'},
+    {id: 'Televisão', value: hasTV, icon: 'youtube-tv'},
+    {
+      id: 'Ar-condicionado',
+      value: hasAC,
+      icon: 'weather-windy',
+    },
+    {
+      id: 'Lugar de trabalho adequado para notebook',
+      value: hasNotebookWork,
+      icon: 'laptop-windows',
+    },
+    {id: 'Cozinha', value: hasKitchen, icon: 'food-fork-drink'},
+    {id: 'Churrasqueira', value: hasGrill, icon: 'food-steak'},
+    {id: 'Piscina', value: hasPool, icon: 'pool'},
+    {
+      id: 'Estacionamento',
+      value: hasParkingLot,
+      icon: 'car-side',
+    },
   ]);
   //Residence Conditions
   const [maxResidentNum, setMaxResidentNum] = useState('');
@@ -60,8 +56,12 @@ export default function ResidenceAddProvider({children}){
   const [allowSmokers, setAllowSmokers] = useState(false);
 
   const [conditions, setConditions] = useState([
-    {id: 'Animais de estimação', valufeate: allowPets,  icon: 'pets'},
-    {id: 'Fumar dentro da residência', value: allowSmokers,  icon: 'smoking-rooms'},
+    {id: 'Animais de estimação', valufeate: allowPets, icon: 'pets'},
+    {
+      id: 'Fumar dentro da residência',
+      value: allowSmokers,
+      icon: 'smoking-rooms',
+    },
   ]);
   const [genderPreference, setGenderPreference] = useState('Indiferente');
 
@@ -76,80 +76,114 @@ export default function ResidenceAddProvider({children}){
   const [state, setState] = useState('');
 
   const [locationTypeMessage, setLocationTypeMessage] = useState('');
-  function checkIfEmpty(array){
-    if (array.length < 1){
+  function checkIfEmpty(array) {
+    if (array.length < 1) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
-  function CreateLocationTypeMessage(typeOfLocation){
-    switch (typeOfLocation){
+  function CreateLocationTypeMessage(typeOfLocation) {
+    switch (typeOfLocation) {
       case 'Espaço inteiro':
         return setLocationTypeMessage('Você terá o espaço todo só para você');
       case 'Quarto inteiro':
-        return setLocationTypeMessage('Você terá um quarto seu, mas também dividirá o espaço com outras pessoas');
+        return setLocationTypeMessage(
+          'Você terá um quarto seu, mas também dividirá o espaço com outras pessoas',
+        );
       case 'Quarto compartilhado':
-        return setLocationTypeMessage('Você terá que compartilhar um dormitório, assim como o espaço com outras pessoas');
+        return setLocationTypeMessage(
+          'Você terá que compartilhar um dormitório, assim como o espaço com outras pessoas',
+        );
       default:
         setLocationTypeMessage('Sla kk');
         break;
     }
   }
-  function GetAddress(zipcode){
+  function GetAddress(zipcode) {
     cep(zipcode)
-    .then(function(result){
-      setState(result.state);
-      setCity(result.city);
-      setNeighborhood(result.neighborhood);
-      setStreet(result.street);
-  })
-    .catch(function(err){
-      throw err;
-    });
+      .then(function (result) {
+        setState(result.state);
+        setCity(result.city);
+        setNeighborhood(result.neighborhood);
+        setStreet(result.street);
+      })
+      .catch(function (err) {
+        throw err;
+      });
   }
   return (
     <ResidenceAddContext.Provider
       value={{
-        title,setTitle,
-        price,setPrice,
-        numRooms, setNumRooms,
-        numBathrooms,setNumBathrooms,
-        resourcePath, setResourcePath,
-        locationType,setLocationType,
-        checkedHouseType, setCheckedHouseType,
-        description,setDescription,
-        hasWifi, setHasWifi,
-        hasTV, setHasTV,
-        hasAC, setHasAC,
-        hasNotebookWork, setHasNotebookWork,
-        hasKitchen, setHasKitchen,
-        hasGrill, setHasGrill,
-        hasPool, setHasPool,
-        hasParkingLot, setHasParkingLot,
-        maxResidentNum, setMaxResidentNum,
-        currentResidents,setCurrentResidents,
-        allowPets, setAllowPets,
-        allowSmokers, setAllowSmokers,
-        genderPreference, setGenderPreference,
-        zipcode, setZipcode,
-        street, setStreet,
-        number, setNumber,
-        neighborhood, setNeighborhood,
-        city, setCity,
-        state, setState,
-        comforts,setComforts,
-        conditions, setConditions,
-        checkIfEmpty, CreateLocationTypeMessage,
-        locationTypeMessage, setLocationTypeMessage,
+        title,
+        setTitle,
+        price,
+        setPrice,
+        numRooms,
+        setNumRooms,
+        numBathrooms,
+        setNumBathrooms,
+        resourcePath,
+        setResourcePath,
+        locationType,
+        setLocationType,
+        checkedHouseType,
+        setCheckedHouseType,
+        description,
+        setDescription,
+        hasWifi,
+        setHasWifi,
+        hasTV,
+        setHasTV,
+        hasAC,
+        setHasAC,
+        hasNotebookWork,
+        setHasNotebookWork,
+        hasKitchen,
+        setHasKitchen,
+        hasGrill,
+        setHasGrill,
+        hasPool,
+        setHasPool,
+        hasParkingLot,
+        setHasParkingLot,
+        maxResidentNum,
+        setMaxResidentNum,
+        currentResidents,
+        setCurrentResidents,
+        allowPets,
+        setAllowPets,
+        allowSmokers,
+        setAllowSmokers,
+        genderPreference,
+        setGenderPreference,
+        zipcode,
+        setZipcode,
+        street,
+        setStreet,
+        number,
+        setNumber,
+        neighborhood,
+        setNeighborhood,
+        city,
+        setCity,
+        state,
+        setState,
+        comforts,
+        setComforts,
+        conditions,
+        setConditions,
+        checkIfEmpty,
+        CreateLocationTypeMessage,
+        locationTypeMessage,
+        setLocationTypeMessage,
         GetAddress,
       }}>
       {children}
-      </ResidenceAddContext.Provider>
+    </ResidenceAddContext.Provider>
   );
 }
-export function useResidenceAdd(){
+export function useResidenceAdd() {
   const context = useContext(ResidenceAddContext);
   return context;
 }
