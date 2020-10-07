@@ -1,24 +1,19 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-
 import {StatusBar} from 'react-native';
 
-import ResidenceDetailed from './screens/Residence/ResidenceDetailed';
+import {NavigationContainer} from '@react-navigation/native';
+import Routes from './routes/Routes';
+import {AuthProvider} from './contexts/auth';
 
-import ResidenceAddComfort from './screens/Residence/ResidenceAdd/ResidenceAddComfort';
-import ResidenceAddConditions from './screens/Residence/ResidenceAdd/ResidenceAddConditions';
-import ResidenceAddLocation from './screens/Residence/ResidenceAdd/ResidenceAddLocation';
-import ResidenceAddMain from './screens/Residence/ResidenceAdd/ResidenceAddMain';
-import ResidenceAddType from './screens/Residence/ResidenceAdd/ResidenceAddType';
-import Feed from './screens/Feed';
-import FilterScreen from './screens/FilterScreen';
 import SwiperComponent from './screens/onBoarding';
-
+import MainNavigation from './routes/MainNavigation';
+import ResidenceAddNavigation from './routes/ResidenceAddNavigation';
 export default function App() {
-    return (
-        <>
-            <StatusBar backgroundColor={'#4D2C91'} />
-            <SwiperComponent />
-        </>
-    );
+  return (
+    <>
+      <StatusBar backgroundColor={'#4D2C91'} />
+      <SwiperComponent />
+    </>
+  );
 }

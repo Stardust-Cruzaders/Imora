@@ -36,7 +36,9 @@ export default function ImageSwipe({img}) {
         {img.map((image, index) => (
           <Image
             key={index}
-            source={{uri: image}}
+            source={{
+              uri: 'data:image/jpeg;base64,' + image.data,
+            }}
             style={{width, height, resizeMode: 'cover'}}
           />
         ))}

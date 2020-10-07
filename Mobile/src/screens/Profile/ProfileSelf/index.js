@@ -7,9 +7,12 @@ import styles from './styles';
 import textStyles from '../../../textStyles';
 import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../Component/Div';
+import {useAuth} from '../../../contexts/auth';
 
 export default function ProfileSelf({navigation}) {
   const width = useWindowDimensions().width;
+
+  const {FacebookSignOut} = useAuth();
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -88,38 +91,6 @@ export default function ProfileSelf({navigation}) {
               <RectButton
                 style={styles.button}
                 onPress={() => {
-                  navigation.navigate('Favorites');
-                }}>
-                <View style={styles.iconTextView}>
-                  <Icon
-                    name={'heart'}
-                    size={24}
-                    color={'#3F3F3F'}
-                    style={styles.icon}
-                  />
-                  <Text style={styles.buttonText}> Favoritos </Text>
-                </View>
-              </RectButton>
-              <Div threshold={100} />
-              <RectButton
-                style={styles.button}
-                onPress={() => {
-                  navigation.navigate('MyAds');
-                }}>
-                <View style={styles.iconTextView}>
-                  <Icon
-                    name={'inbox'}
-                    size={24}
-                    color={'#3F3F3F'}
-                    style={styles.icon}
-                  />
-                  <Text style={styles.buttonText}> Meus Anúncios </Text>
-                </View>
-              </RectButton>
-              <Div threshold={100} />
-              <RectButton
-                style={styles.button}
-                onPress={() => {
                   navigation.navigate('MyResidences');
                 }}>
                 <View style={styles.iconTextView}>
@@ -130,6 +101,22 @@ export default function ProfileSelf({navigation}) {
                     style={styles.icon}
                   />
                   <Text style={styles.buttonText}> Meus imóveis </Text>
+                </View>
+              </RectButton>
+              <Div threshold={100} height={1.5} />
+              <RectButton
+                style={styles.button}
+                onPress={() => {
+                  FacebookSignOut();
+                }}>
+                <View style={styles.iconTextView}>
+                  <Icon
+                    name={'log-out'}
+                    size={24}
+                    color={'#E03826'}
+                    style={styles.icon}
+                  />
+                  <Text style={styles.buttonText}> Sair do app </Text>
                 </View>
               </RectButton>
               <Div threshold={100} height={1.5} />
