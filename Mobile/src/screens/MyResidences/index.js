@@ -11,21 +11,26 @@ export default function MyResidences() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.newResidenceView}>
-        <RectButton onPress={() => {}} style={styles.newResidencesButton}>
-          <Icon name={'home'} size={30} color={'#3f3f3f'} />
-          <Text style={styles.newResidencesButtonText}>
-            Criar novo anúncio{' '}
-          </Text>
+        <RectButton onPress={() => {}} style={styles.newResidenceButton}>
+          <Icon
+            style={styles.houseIcon}
+            name={'home'}
+            size={25}
+            color={'#3f3f3f'}
+          />
+          <Text style={styles.newResidenceButtonText}>Criar novo anúncio </Text>
         </RectButton>
       </View>
-      <Div threshold={100} />
-      <ScrollView>
-        <ResidenceToggle />
-        <ResidenceToggle />
-        <ResidenceToggle />
-        <ResidenceToggle />
-        <ResidenceToggle />
-      </ScrollView>
+      <Div threshold={50} height={1.5} />
+      <View style={styles.residenceToggleView}>
+        <ScrollView>
+          <ResidenceToggle />
+          <ResidenceToggle />
+          <ResidenceToggle />
+          <ResidenceToggle />
+          <ResidenceToggle />
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
