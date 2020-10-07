@@ -13,10 +13,12 @@ import ResidenceAddNavigation from './routes/ResidenceAddNavigation';
 export default function App() {
   return (
     <>
-      <AuthProvider>
-        <StatusBar backgroundColor={'#4D2C91'} />
-        <Routes />
-      </AuthProvider>
+      <NavigationContainer>
+        <AuthProvider>
+          <StatusBar backgroundColor={'#4D2C91'} />
+          <Routes />
+        </AuthProvider>
+      </NavigationContainer>
     </>
   );
 }
