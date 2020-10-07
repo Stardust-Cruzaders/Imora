@@ -7,11 +7,15 @@ import Div from '../../Component/Div';
 import ResidenceToggle from '../../Component/ResidenceToggle';
 
 import styles from './styles';
-export default function MyResidences() {
+export default function MyResidences({navigation}) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.newResidenceView}>
-        <RectButton onPress={() => {}} style={styles.newResidenceButton}>
+        <RectButton
+          onPress={() => {
+            //navigation.navigate('ResidenceAdd');
+          }}
+          style={styles.newResidenceButton}>
           <Icon
             style={styles.houseIcon}
             name={'home'}

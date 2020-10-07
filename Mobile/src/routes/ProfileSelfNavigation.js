@@ -1,29 +1,21 @@
 import 'react-native-gesture-handler';
 
-import React from 'react';
+import React, {useState} from 'react';
 
 import ProfileSelf from '../screens/Profile/ProfileSelf';
 
 import MyResidences from '../screens/MyResidences';
+
 import ProfileHeader from '../Component/ProfileHeader';
 
+import ResidenceAddNavigation from './ResidenceAddNavigation';
 import ProfileEdit from '../screens/Profile/ProfileEdit';
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 
-const Tabs = createMaterialBottomTabNavigator();
 const TopTab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
-/**
- * Perfil:
- *  - ProfileSelf
- *  - ProfileEdit
- * Minhas residências
- *  - MyResidences
- *  - ProfileEdit
- *  - ResidenceAdd
- */
+
 function ProfileTab() {
   return (
     <Stack.Navigator
@@ -41,13 +33,15 @@ function MyResidencesTab() {
       screenOptions={{headerShown: false}}>
       <Stack.Screen name={'MyResidences'} component={MyResidences} />
       <Stack.Screen name={'ProfileEdit'} component={ProfileEdit} />
+      <Stack.Screen name={'ResidenceAdd'} component={ResidenceAddNavigation} />
     </Stack.Navigator>
   );
 }
 export default function ProfileSelfNavigation() {
+  const [isResidenceAddActivated, setIsResidenceAddActivated] = useState(false);
   return (
     <>
-      <ProfileHeader />
+      {isResidenceAddActivated === false && <ProfileHeader />}
       <TopTab.Navigator
         initialRouteName={'ProfileTab'}
         screenOptions={{headerShown: false}}

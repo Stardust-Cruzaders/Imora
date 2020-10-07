@@ -13,13 +13,15 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'flex-start',
     marginTop: 15,
-    marginBottom: -13,
+    marginBottom: -10,
+    marginLeft: 45,
+    paddingVertical: 10,
   },
   newResidenceButton: {
     flexDirection: 'row',
     alignContent: 'center',
-    marginLeft: 23,
-    paddingVertical: 10,
+
+    width: '100%',
   },
   houseIcon: {
     alignSelf: 'center',
