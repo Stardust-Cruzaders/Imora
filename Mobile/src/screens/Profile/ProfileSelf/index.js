@@ -8,6 +8,7 @@ import textStyles from '../../../textStyles';
 import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../Component/Div';
 import {useAuth} from '../../../contexts/auth';
+import ProfileHeader from '../../../Component/ProfileHeader';
 
 export default function ProfileSelf({navigation}) {
   const width = useWindowDimensions().width;
@@ -15,6 +16,7 @@ export default function ProfileSelf({navigation}) {
   const {FacebookSignOut, user} = useAuth();
   return (
     <View style={styles.container}>
+      <ProfileHeader />
       <ScrollView>
         <View style={[styles.body, {width: width - 55}]}>
           <View style={styles.main}>

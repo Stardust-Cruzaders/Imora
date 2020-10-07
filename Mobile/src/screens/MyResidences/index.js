@@ -13,7 +13,7 @@ export default function MyResidences({navigation}) {
       <View style={styles.newResidenceView}>
         <RectButton
           onPress={() => {
-            //navigation.navigate('ResidenceAdd');
+            navigation.navigate('ResidenceAdd');
           }}
           style={styles.newResidenceButton}>
           <Icon
