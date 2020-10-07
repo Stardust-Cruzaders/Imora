@@ -28,11 +28,11 @@ export default function MyResidences({navigation}) {
       <Div threshold={50} height={1.5} />
       <View style={styles.residenceToggleView}>
         <ScrollView>
-          <ResidenceToggle />
-          <ResidenceToggle />
-          <ResidenceToggle />
-          <ResidenceToggle />
-          <ResidenceToggle />
+          <ResidenceToggle navigation={navigation} />
+          <ResidenceToggle navigation={navigation} />
+          <ResidenceToggle navigation={navigation} />
+          <ResidenceToggle navigation={navigation} />
+          <ResidenceToggle navigation={navigation} />
         </ScrollView>
       </View>
     </SafeAreaView>

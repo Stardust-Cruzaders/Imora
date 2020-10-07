@@ -10,6 +10,7 @@ import ResidenceAddNavigation from './ResidenceAddNavigation';
 import ProfileEdit from '../screens/Profile/ProfileEdit';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {createNativeStackNavigator} from 'react-native-screens/native-stack';
+import EditResidenceConfig from '../screens/EditResidenceConfig';
 
 const TopTab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -31,6 +32,10 @@ function MyResidencesTab() {
       screenOptions={{headerShown: false}}>
       <Stack.Screen name={'MyResidences'} component={MyResidences} />
       <Stack.Screen name={'ResidenceAdd'} component={ResidenceAddNavigation} />
+      <Stack.Screen
+        name={'EditResidenceConfig'}
+        component={EditResidenceConfig}
+      />
     </Stack.Navigator>
   );
 }

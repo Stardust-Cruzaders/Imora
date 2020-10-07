@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import styles from './styles';
 
-export default function ResidenceToggle() {
+export default function ResidenceToggle({navigation}) {
   return (
     <View style={styles.container}>
       <View style={styles.residenceView}>
@@ -16,7 +16,11 @@ export default function ResidenceToggle() {
           </BorderlessButton>
         </View>
         <View style={styles.buttonView}>
-          <BorderlessButton style={styles.configButton}>
+          <BorderlessButton
+            onPress={() => {
+              navigation.navigate('EditResidenceConfig');
+            }}
+            style={styles.configButton}>
             <Icon name={'settings'} size={40} color={'#3F3F3F'} />
           </BorderlessButton>
         </View>
