@@ -16,31 +16,6 @@ export default function ProfileSelf({navigation}) {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <View style={styles.headerView}>
-          <View style={[styles.topBar, {width: width}]}>
-            <BorderlessButton
-              onPress={() => {
-                navigation.navigate('ProfileEdit');
-              }}>
-              <Icon name={'settings'} size={40} color={'#FFF'} />
-            </BorderlessButton>
-          </View>
-          <View style={styles.profileInfo}>
-            <View style={styles.profilePicView}>
-              <Image
-                source={{
-                  uri: user.avatar,
-                  //'https://i.pinimg.com/564x/59/17/c1/5917c11380e44c7e3f10dd3d56e01c4b.jpg',
-                }}
-                style={styles.profilePic}
-              />
-            </View>
-
-            <Text style={[textStyles.font, styles.headerTitle]}>
-              {user.name}
-            </Text>
-          </View>
-        </View>
         <View style={[styles.body, {width: width - 55}]}>
           <View style={styles.main}>
             {(user.phone !== null || undefined) && (
@@ -56,7 +31,7 @@ export default function ProfileSelf({navigation}) {
                 </Text>
               </View>
             )}
-
+            <Div threshold={100} />
             {(user.user_state !== null || undefined) &&
               (user.user_state !== null || undefined) && (
                 <View style={styles.iconTextView}>
@@ -71,7 +46,7 @@ export default function ProfileSelf({navigation}) {
                   </Text>
                 </View>
               )}
-
+            <Div threshold={100} />
             <View style={styles.iconTextView}>
               <Icon
                 name={'mail'}
@@ -83,45 +58,21 @@ export default function ProfileSelf({navigation}) {
                 {user.email}
               </Text>
             </View>
-            <Div threshold={100} height={1.5} />
+            <Div threshold={100} />
             <Text style={[styles.bodyTitle, textStyles.font]}>Sobre</Text>
             <Text style={[styles.bodyText, textStyles.font]}>
               {user.bio !== undefined || null
                 ? user.bio
                 : 'sem descrição disponível'}
             </Text>
+            <Div threshold={100} />
             <View>
-              <Div threshold={100} />
-              <RectButton
-                style={styles.button}
-                onPress={() => {
-                  navigation.navigate('MyResidences');
-                }}>
-                <View style={styles.iconTextView}>
-                  <Icon
-                    name={'home'}
-                    size={24}
-                    color={'#3F3F3F'}
-                    style={styles.icon}
-                  />
-                  <Text style={styles.buttonText}> Meus imóveis </Text>
-                </View>
-              </RectButton>
-              <Div threshold={100} height={1.5} />
               <RectButton
                 style={styles.button}
                 onPress={() => {
                   FacebookSignOut();
                 }}>
-                <View style={styles.iconTextView}>
-                  <Icon
-                    name={'log-out'}
-                    size={24}
-                    color={'#E03826'}
-                    style={styles.icon}
-                  />
-                  <Text style={styles.buttonText}> Sair do app </Text>
-                </View>
+                <Text style={styles.buttonText}> Sair da Conta </Text>
               </RectButton>
             </View>
           </View>

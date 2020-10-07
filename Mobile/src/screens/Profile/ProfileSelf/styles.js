@@ -68,6 +68,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     alignSelf: 'center',
     flex: 1,
+
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
   },
   main: {
     marginHorizontal: 25,
@@ -83,16 +86,18 @@ const styles = StyleSheet.create({
     color: '#3F3F3F',
     fontSize: 24,
 
-    marginTop: 15,
     marginBottom: 5,
   },
   buttonText: {
     color: '#3F3F3F',
-    fontSize: 24,
+    marginTop: 5,
+    marginBottom: 25,
+    fontSize: 18,
+    textDecorationLine: 'underline',
   },
   button: {
     justifyContent: 'flex-end',
-    alignItems: 'flex-start',
+    alignItems: 'flex-end',
     width: '100%',
   },
 });

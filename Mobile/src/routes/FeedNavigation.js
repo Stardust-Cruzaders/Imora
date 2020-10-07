@@ -49,7 +49,7 @@ export default function FeedNavigation() {
       />
       <Tab.Screen
         name="Perfil"
-        component={ProfileSelf}
+        component={ProfileSelfNavigation}
         options={{
           tabBarLabel: 'Perfil',
           tabBarIcon: () => <Icon name={'user'} size={24} color={'#FFF'} />,

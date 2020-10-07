@@ -26,7 +26,6 @@ export default function MainNavigation() {
           name={'ResidenceDetailed'}
           component={ResidenceDetailed}
         />
-        <Stack.Screen name={'Profile'} component={ProfileSelfNavigation} />
       </Stack.Navigator>
     </FeedProvider>
   );
