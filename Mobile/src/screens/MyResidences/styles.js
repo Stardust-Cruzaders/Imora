@@ -4,9 +4,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F0F0F0',
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: 20,
   },
   newResidenceView: {
     backgroundColor: '#F0F0F0',

@@ -13,27 +13,36 @@ const styles = StyleSheet.create({
   },
   residenceView: {
     flexDirection: 'row',
-    alignContent: 'space-between',
     marginVertical: 10,
-    marginLeft: 5,
+
+    width: '100%',
+
+    justifyContent: 'space-between',
   },
   houseButtonView: {
     marginHorizontal: 25,
+    width: 250,
   },
   name: {
     color: '#3f3f3f',
 
-    fontSize: 25,
+    fontSize: 20,
     fontFamily: 'Roboto',
     fontWeight: 'bold',
     alignSelf: 'flex-start',
     textAlign: 'left',
   },
+  isAvailableText: {
+    fontSize: 14,
+    color: '#26E07C',
+    fontFamily: 'Roboto',
+  },
   buttonView: {
     flexDirection: 'row',
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
   },
-  toggleButton: {},
-  deleteButton: {},
+  configButton: {
+    marginRight: 15,
+  },
 });
 export default styles;

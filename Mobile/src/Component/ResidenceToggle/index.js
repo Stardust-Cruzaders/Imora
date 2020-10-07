@@ -11,15 +11,13 @@ export default function ResidenceToggle() {
       <View style={styles.residenceView}>
         <View style={styles.houseButtonView}>
           <BorderlessButton>
-            <Text style={styles.name}>Casa</Text>
+            <Text style={styles.name}>Casa grande uou tem at </Text>
+            <Text style={styles.isAvailableText}>Disponível </Text>
           </BorderlessButton>
         </View>
         <View style={styles.buttonView}>
-          <BorderlessButton style={styles.toggleButton}>
-            <Icon name={'toggle-left'} size={30} color={'#3F3F3F'} />
-          </BorderlessButton>
-          <BorderlessButton style={styles.deleteButton}>
-            <Icon name={'trash-2'} size={30} color={'#3F3F3F'} />
+          <BorderlessButton style={styles.configButton}>
+            <Icon name={'settings'} size={40} color={'#3F3F3F'} />
           </BorderlessButton>
         </View>
       </View>
