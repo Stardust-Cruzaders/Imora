@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+
+    elevation: 15,
   },
   textFormatation: {
     fontFamily: 'Roboto',

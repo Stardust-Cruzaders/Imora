@@ -14,6 +14,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 10,
     flex: 1,
+
+    elevation: 15,
+    shadowColor: '#000000',
+    shadowOffset: {width: 2, height: 10}, // change this for more shadow
+    shadowOpacity: 0.8,
+    shadowRadius: 6,
   },
   image: {
     width: '100%',
