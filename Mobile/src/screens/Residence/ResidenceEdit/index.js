@@ -242,18 +242,8 @@ export default function ResidenceEdit({navigation}) {
                     styles.descriptionList,
                     textStyles.font,
                     {fontWeight: 'bold', top: 10},
-                  ]}>
-                  Preferência de residentes:
-                  <Text
-                    style={[
-                      styles.descriptionList,
-                      textStyles.font,
-                      {fontWeight: 'normal', top: 10},
-                    ]}>
-                    {' '}
-                    {genderPreference}
-                  </Text>
-                </Text>
+                  ]}
+                />
               </View>
               {checkIfEmpty(conditions) === false && (
                 <Text
@@ -305,9 +295,11 @@ export default function ResidenceEdit({navigation}) {
               <Text style={[styles.description, {marginBottom: 25}]}>
                 {street} {neighborhood} {number}
               </Text>
-              <Text style={[styles.description, {marginBottom: 25}]}>
-                Complemento: {complement}
-              </Text>
+              {complement != null && (
+                <Text style={[styles.description, {marginBottom: 25}]}>
+                  Complemento: {complement}
+                </Text>
+              )}
             </View>
           </View>
         </View>

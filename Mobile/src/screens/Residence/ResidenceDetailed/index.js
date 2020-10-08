@@ -271,25 +271,7 @@ export default function ResidenceDetailed({route, navigation}) {
                 </Text>
               </Text>
             </View>
-            <View style={[styles.titleWithIconView]}>
-              <Text
-                style={[
-                  styles.descriptionList,
-                  textStyles.font,
-                  {fontWeight: 'bold', top: 10},
-                ]}>
-                Preferência de residentes:
-                <Text
-                  style={[
-                    styles.descriptionList,
-                    textStyles.font,
-                    {fontWeight: 'normal', top: 10},
-                  ]}>
-                  {' '}
-                  Indiferente
-                </Text>
-              </Text>
-            </View>
+
             {checkIfArrayIsEmpty(conditions) === false && (
               <Text
                 style={[
@@ -322,7 +304,7 @@ export default function ResidenceDetailed({route, navigation}) {
             })}
           </View>
 
-          <Div threshold={100} />
+          <Div threshold={100} height={1.5} />
           <View style={styles.locationView}>
             <View style={styles.titleWithIconView}>
               <Icon name={'map-pin'} size={30} color={'#3F3F3F'} />
@@ -333,15 +315,19 @@ export default function ResidenceDetailed({route, navigation}) {
               {route.params.residence.neighborhood}{' '}
               {route.params.residence.numberr}
             </Text>
-            <Text style={[styles.description, textStyles.font]}>
-              Complemento: {route.params.residence.complement}{' '}
-            </Text>
+            {route.params.complement != null && (
+              <Text style={[styles.description, {marginBottom: 25}]}>
+                Complemento: {route.params.complement}
+              </Text>
+            )}
             <RectButton
               style={[
                 styles.button,
                 {backgroundColor: '#26E07C', width: width - 75},
               ]}
-              onPress={() => {}}>
+              onPress={() => {
+                console.log(route.params);
+              }}>
               <View style={{flexDirection: 'row'}}>
                 <Icon name={'map-pin'} size={30} color={'#FFF'} />
                 <Text style={[styles.buttonText, textStyles.font]}>
