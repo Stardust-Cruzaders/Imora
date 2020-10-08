@@ -46,6 +46,9 @@ class Residence {
   numberr: string;
 
   @Column()
+  complement: string;
+
+  @Column()
   residence_type: string;
 
   @Column()
