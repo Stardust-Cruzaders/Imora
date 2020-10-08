@@ -1,15 +1,14 @@
+/* eslint-disable react-native/no-inline-styles */
 import 'react-native-gesture-handler';
 import React from 'react';
 
 import Feed from '../screens/Feed';
 
-import FeedProvider from '../contexts/feed';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import Icon from 'react-native-vector-icons/Feather';
 import ProfileSelfNavigation from './ProfileSelfNavigation';
 import Chat from '../screens/Chat';
 import Favorites from '../screens/Favorites';
-import ProfileSelf from '../screens/Profile/ProfileSelf';
 const Tab = createMaterialBottomTabNavigator();
 export default function FeedNavigation() {
   return (

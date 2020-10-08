@@ -333,6 +333,9 @@ export default function ResidenceDetailed({route, navigation}) {
               {route.params.residence.neighborhood}{' '}
               {route.params.residence.numberr}
             </Text>
+            <Text style={[styles.description, textStyles.font]}>
+              Complemento: {route.params.residence.complement}{' '}
+            </Text>
             <RectButton
               style={[
                 styles.button,
