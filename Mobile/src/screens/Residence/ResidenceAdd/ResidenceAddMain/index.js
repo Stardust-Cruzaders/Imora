@@ -209,7 +209,7 @@ export default function ResidenceAddMain({navigation}) {
               <BorderlessButton
                 style={styles.navButton}
                 onPress={() => {
-                  //navigation.goBack();
+                  navigation.goBack();
                 }}>
                 <Icon name={'log-out'} color={'#E03826'} size={40} />
               </BorderlessButton>
