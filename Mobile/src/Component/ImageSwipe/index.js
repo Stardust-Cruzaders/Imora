@@ -53,9 +53,7 @@ export default function ImageSwipe({img, widthDiff, residence_id, user_id}) {
       <FavoriteButton user_id={user_id} residence_id={residence_id}/>
       <View style={styles.pagination}>
         {img.map((i, k) => (
-          <Text key={k} style={k === active ? styles.activeDot : styles.dot}>
-            •
-          </Text>
+          <Text key={k} style={k == active ? styles.activeDot : styles.dot}>•</Text>
         ))}
       </View>
     </View>

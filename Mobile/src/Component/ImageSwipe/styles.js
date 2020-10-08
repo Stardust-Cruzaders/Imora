@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   pagination: {
     flexDirection: 'row',
     position: 'absolute',
-    top: 195,
+    bottom: 0,
     alignSelf: 'center',
   },
   dot: {
