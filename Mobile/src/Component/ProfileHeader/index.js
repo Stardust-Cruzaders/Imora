@@ -6,13 +6,18 @@ import {useAuth} from '../../contexts/auth';
 
 import styles from './styles';
 import textStyles from '../../textStyles';
-export default function ProfileHeader() {
-  const {FacebookSignOut, user} = useAuth();
+export default function ProfileHeader({navigation}) {
+  const {user} = useAuth();
   const width = useWindowDimensions().width;
   return (
     <View style={{backgroundColor: '#7e57c2'}}>
       <View style={[styles.topBar, {width: width}]}>
-        <BorderlessButton onPress={() => {}}>
+        <BorderlessButton
+          onPress={() => {
+            navigation.navigate('ProfileEdit', {
+              user,
+            });
+          }}>
           <Icon style={{margin: 15}} name={'edit-3'} size={40} color={'#FFF'} />
         </BorderlessButton>
       </View>

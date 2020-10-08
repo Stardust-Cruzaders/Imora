@@ -48,14 +48,15 @@ export default function ImageSwipe({img, widthDiff, residence_id, user_id}) {
             style={imgStyle}
           />
         ))}
-      </ScrollView>
 
-      <FavoriteButton user_id={user_id} residence_id={residence_id}/>
+      </ScrollView>
       <View style={styles.pagination}>
         {img.map((i, k) => (
-          <Text key={k} style={k == active ? styles.activeDot : styles.dot}>•</Text>
+          <Text key={i} style={k == (active - 0) ? styles.activeDot : styles.dot}>•</Text>
         ))}
       </View>
+      <FavoriteButton user_id={user_id} residence_id={residence_id}/>
+
     </View>
   );
 }

@@ -15,67 +15,57 @@ import EditResidenceConfig from '../screens/EditResidenceConfig';
 const TopTab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
 
-function ProfileTab() {
+function MyResidencesTab() {
   return (
-    <Stack.Navigator
-      initialRouteName={'ProfileSelf'}
-      screenOptions={{headerShown: false}}>
-      <Stack.Screen name={'ProfileSelf'} component={ProfileSelf} />
-      <Stack.Screen name={'ProfileEdit'} component={ProfileEdit} />
-    </Stack.Navigator>
+    <TopTab.Navigator
+      initialRouteName={'ProfileTab'}
+      screenOptions={{headerShown: true}}
+      tabBarOptions={{
+        indicatorStyle: {
+          backgroundColor: '#FFF',
+          height: 3,
+
+          marginVertical: 5,
+
+          borderRadius: 2,
+          width: '45%',
+          marginLeft: 5,
+        },
+        labelStyle: {fontSize: 14},
+        elevation: 0,
+        activeTintColor: '#FFF',
+        style: {
+          backgroundColor: '#7e57c2',
+
+          elevation: 0,
+          shadowColor: '#000000',
+          shadowOffset: {width: 0, height: 10}, // change this for more shadow
+          shadowOpacity: 0.4,
+          shadowRadius: 6,
+        },
+        tabBarLabel: {
+          focused: true,
+          color: '#fff',
+        },
+      }}>
+      <TopTab.Screen name={'Perfil'} component={ProfileSelf} />
+      <TopTab.Screen name={'Minhas residências'} component={MyResidences} />
+    </TopTab.Navigator>
   );
 }
-function MyResidencesTab() {
+export default function ProfileSelfNavigation() {
   return (
     <Stack.Navigator
       initialRouteName={'MyResidences'}
       screenOptions={{headerShown: false}}>
-      <Stack.Screen name={'MyResidences'} component={MyResidences} />
+      <Stack.Screen name={'MyResidences'} component={MyResidencesTab} />
       <Stack.Screen name={'ResidenceAdd'} component={ResidenceAddNavigation} />
       <Stack.Screen
         name={'EditResidenceConfig'}
         component={EditResidenceConfig}
       />
+      <Stack.Screen name={'ProfileSelf'} component={ProfileSelf} />
+      <Stack.Screen name={'ProfileEdit'} component={ProfileEdit} />
     </Stack.Navigator>
-  );
-}
-export default function ProfileSelfNavigation() {
-  return (
-    <>
-      <TopTab.Navigator
-        initialRouteName={'ProfileTab'}
-        screenOptions={{headerShown: true}}
-        tabBarOptions={{
-          indicatorStyle: {
-            backgroundColor: '#FFF',
-            height: 3,
-
-            marginVertical: 5,
-
-            borderRadius: 2,
-            width: '45%',
-            marginLeft: 5,
-          },
-          labelStyle: {fontSize: 14},
-          elevation: 0,
-          activeTintColor: '#FFF',
-          style: {
-            backgroundColor: '#7e57c2',
-
-            elevation: 0,
-            shadowColor: '#000000',
-            shadowOffset: {width: 0, height: 10}, // change this for more shadow
-            shadowOpacity: 0.4,
-            shadowRadius: 6,
-          },
-          tabBarLabel: {
-            focused: true,
-            color: '#fff',
-          },
-        }}>
-        <Stack.Screen name={'Perfil'} component={ProfileTab} />
-        <Stack.Screen name={'Minhas residências'} component={MyResidencesTab} />
-      </TopTab.Navigator>
-    </>
   );
 }

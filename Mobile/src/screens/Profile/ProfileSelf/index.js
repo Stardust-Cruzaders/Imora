@@ -16,7 +16,7 @@ export default function ProfileSelf({navigation}) {
   const {FacebookSignOut, user} = useAuth();
   return (
     <View style={styles.container}>
-      <ProfileHeader />
+      <ProfileHeader navigation={navigation} />
       <ScrollView>
         <View style={[styles.body, {width: width - 55}]}>
           <View style={styles.main}>
