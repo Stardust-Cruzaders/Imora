@@ -132,6 +132,7 @@ export default function ResidenceAddMain({navigation}) {
                 value={title}
                 onChangeText={(text) => setTitle(text)}
                 placeholder={'Título: Ex: Casa com 4 quartos'}
+                maxLength={75}
               />
 
               <TextInput
@@ -140,6 +141,7 @@ export default function ResidenceAddMain({navigation}) {
                 onChangeText={(text) => setPrice(text)}
                 placeholder={'Preço/Mês '}
                 keyboardType={'decimal-pad'}
+                maxLength={10}
               />
               <TextInput
                 style={[styles.input, {width: width - 80}]}
@@ -147,6 +149,7 @@ export default function ResidenceAddMain({navigation}) {
                 onChangeText={(text) => setNumRooms(text)}
                 placeholder={'Quantidade de quartos disponíveis '}
                 keyboardType={'number-pad'}
+                maxLength={3}
               />
               <TextInput
                 style={[styles.input, {width: width - 80}]}
@@ -154,6 +157,7 @@ export default function ResidenceAddMain({navigation}) {
                 onChangeText={(text) => setNumBathrooms(text)}
                 placeholder={'Quantidade de banheiros disponíveis'}
                 keyboardType={'number-pad'}
+                maxLength={3}
               />
             </View>
             <View>

@@ -49,7 +49,7 @@ export default function ResidenceEdit({navigation}) {
       />
       <ScrollView style={styles.scroll}>
         <View style={[styles.headerImgView]}>
-          <ImageSwipe img={resourcePath} />
+          {/*<ImageSwipe img={resourcePath} />*/}
         </View>
         <View style={styles.container}>
           <View style={[styles.bodyView, {width: width - 50}]}>

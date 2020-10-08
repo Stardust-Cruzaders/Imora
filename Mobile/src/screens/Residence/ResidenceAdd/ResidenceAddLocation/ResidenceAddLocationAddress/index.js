@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, View, useWindowDimensions} from 'react-native';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../../../Component/Div';
 import ResidenceAddHeader from '../../../../../Component/ResidenceAddHeader';
 
-import {TextInput} from 'react-native-paper';
+import {ActivityIndicator, TextInput} from 'react-native-paper';
 import {useResidenceAdd} from '../../../../../contexts/residenceAdd';
 import {Root, Popup} from 'popup-ui';
 export default function ResidenceAddLocationAddress({navigation}) {
@@ -24,6 +24,8 @@ export default function ResidenceAddLocationAddress({navigation}) {
     setCity,
     state,
     setState,
+    loading,
+    addressFound,
   } = useResidenceAdd();
   const width = useWindowDimensions().width;
   function VerifyFields() {
@@ -39,10 +41,22 @@ export default function ResidenceAddLocationAddress({navigation}) {
       return false;
     }
   }
+
+  if (loading) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator color={'#7e57c2'} />
+        <Text style={{fontSize: 20, fontFamily: 'Roboto', color: '#3f3f3f'}}>
+          Buscando endereço.
+        </Text>
+      </View>
+    );
+  }
   return (
     <>
       <Root>
         <ResidenceAddHeader />
+
         <View style={styles.container}>
           <View style={[styles.card, {width: width - 55}]}>
             <Text style={[styles.cardTitle, textStyles.font]}>
@@ -59,6 +73,7 @@ export default function ResidenceAddLocationAddress({navigation}) {
                 value={street}
                 onChangeText={(text) => setStreet(text)}
                 placeholder={'Rua:'}
+                maxLength={250}
               />
 
               <TextInput
@@ -67,6 +82,7 @@ export default function ResidenceAddLocationAddress({navigation}) {
                 onChangeText={(text) => setNumber(text)}
                 placeholder={'Número'}
                 keyboardType={'numeric'}
+                maxLength={15}
               />
 
               <TextInput
@@ -74,18 +90,21 @@ export default function ResidenceAddLocationAddress({navigation}) {
                 value={neighborhood}
                 onChangeText={(text) => setNeighborhood(text)}
                 placeholder={'Bairro'}
+                maxLength={250}
               />
               <TextInput
                 style={[styles.input, {width: width - 80}]}
                 value={city}
                 onChangeText={(text) => setCity(text)}
                 placeholder={'Cidade'}
+                maxLength={250}
               />
               <TextInput
                 style={[styles.input, {width: width - 80}]}
                 value={state}
                 onChangeText={(text) => setState(text)}
                 placeholder={'Estado'}
+                maxLength={2}
               />
             </View>
 

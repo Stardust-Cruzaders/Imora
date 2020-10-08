@@ -67,7 +67,8 @@ export default function ResidenceAddProvider({children}) {
 
   //Residence Zipcode
   const [zipcode, setZipcode] = useState('');
-
+  const [loading, setLoading] = useState(false);
+  const [addressFound, setAddressFound] = useState(false);
   //ResidenceAddress
   const [street, setStreet] = useState('');
   const [number, setNumber] = useState('');
@@ -101,15 +102,20 @@ export default function ResidenceAddProvider({children}) {
     }
   }
   function GetAddress(zipcode) {
+    setLoading(true);
     cep(zipcode)
       .then(function (result) {
+        setLoading(false);
+        setAddressFound(true);
         setState(result.state);
         setCity(result.city);
         setNeighborhood(result.neighborhood);
         setStreet(result.street);
       })
       .catch(function (err) {
-        throw err;
+        setAddressFound(false);
+        setLoading(false);
+        return err;
       });
   }
   return (
@@ -159,6 +165,8 @@ export default function ResidenceAddProvider({children}) {
         setGenderPreference,
         zipcode,
         setZipcode,
+        loading,
+        addressFound,
         street,
         setStreet,
         number,
