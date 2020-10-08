@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {BorderlessButton} from 'react-native-gesture-handler';
+import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 
 import styles from './styles';
@@ -10,10 +10,8 @@ export default function ResidenceToggle({navigation}) {
     <View style={styles.container}>
       <View style={styles.residenceView}>
         <View style={styles.houseButtonView}>
-          <BorderlessButton>
-            <Text style={styles.name}>Casa grande uou tem at </Text>
-            <Text style={styles.isAvailableText}>Disponível </Text>
-          </BorderlessButton>
+          <Text style={styles.name}>Casa grande uou tem at </Text>
+          <Text style={styles.isAvailableText}>Disponível </Text>
         </View>
         <View style={styles.buttonView}>
           <BorderlessButton
