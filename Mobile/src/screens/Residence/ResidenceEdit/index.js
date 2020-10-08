@@ -39,6 +39,7 @@ export default function ResidenceEdit({navigation}) {
     conditions,
     checkIfEmpty,
     resourcePath,
+    complement,
     currentResidents,
   } = useResidenceAdd();
   return (
@@ -303,6 +304,9 @@ export default function ResidenceEdit({navigation}) {
 
               <Text style={[styles.description, {marginBottom: 25}]}>
                 {street} {neighborhood} {number}
+              </Text>
+              <Text style={[styles.description, {marginBottom: 25}]}>
+                Complemento: {complement}
               </Text>
             </View>
           </View>

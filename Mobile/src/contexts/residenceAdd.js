@@ -75,7 +75,7 @@ export default function ResidenceAddProvider({children}) {
   const [neighborhood, setNeighborhood] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
-
+  const [complement, setComplement] = useState('');
   const [locationTypeMessage, setLocationTypeMessage] = useState('');
   function checkIfEmpty(array) {
     if (array.length < 1) {
@@ -186,6 +186,8 @@ export default function ResidenceAddProvider({children}) {
         locationTypeMessage,
         setLocationTypeMessage,
         GetAddress,
+        complement,
+        setComplement,
       }}>
       {children}
     </ResidenceAddContext.Provider>
