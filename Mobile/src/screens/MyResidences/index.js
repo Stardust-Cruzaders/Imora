@@ -33,6 +33,12 @@ export default function MyResidences({navigation}) {
           <ResidenceToggle navigation={navigation} />
           <ResidenceToggle navigation={navigation} />
           <ResidenceToggle navigation={navigation} />
+          <ResidenceToggle navigation={navigation} />
+          <ResidenceToggle navigation={navigation} />
+          <ResidenceToggle navigation={navigation} />
+          <ResidenceToggle navigation={navigation} />
+          <ResidenceToggle navigation={navigation} />
+          <ResidenceToggle navigation={navigation} />
         </ScrollView>
       </View>
     </SafeAreaView>
