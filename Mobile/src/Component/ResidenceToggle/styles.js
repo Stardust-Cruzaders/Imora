@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
   },
   isAvailableText: {
     fontSize: 14,
-    color: '#26E07C',
     fontFamily: 'Roboto',
   },
   buttonView: {
