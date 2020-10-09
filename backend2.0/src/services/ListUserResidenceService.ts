@@ -16,8 +16,16 @@ class ListUserResidenceService {
     if (user === undefined) {
       throw new AppError("User doesn't exist");
     }
-    const residences = await residenceRepository.find({ where: { owner_id } });
-
+    const residences = await residenceRepository
+      .createQueryBuilder('residences')
+      .innerJoin('users', 'users', 'residences.owner_id = users.id')
+      .select(
+        'residences.*, users.name, users.email, users.avatar,users.bio, users.phone, users.is_host, users.user_city, users.user_state',
+      )
+      .where({
+        owner_id: user.id,
+      })
+      .getRawMany();
     return residences;
   }
 }
