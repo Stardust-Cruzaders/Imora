@@ -25,7 +25,6 @@ export default function MyResidences({navigation}) {
     api
       .get(`/residences/${user.id}`)
       .then((response) => {
-        console.log(response.data);
         setMyResidences(response.data);
         setLoading(false);
         setError(false);
