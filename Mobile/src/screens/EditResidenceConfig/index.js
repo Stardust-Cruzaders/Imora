@@ -1,10 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../Component/Div';
 import styles from './styles';
-export default function EditResidenceConfig() {
+
+import api from '../../services/api';
+
+export default function EditResidenceConfig({route}) {
+  function handleResidenceDeletion(residence_id) {
+    api
+      .delete(`/residences/${residence_id}`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  function handleUpdateAvailability(residence_id, available) {
+    api
+      .patch(`/residences/${residence_id}/available`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -13,7 +36,11 @@ export default function EditResidenceConfig() {
             <Text style={styles.title}>Disponibilidade: </Text>
             <Text style={styles.status}>disponível</Text>
             <View>
-              <RectButton style={styles.button}>
+              <RectButton
+                onPress={() =>
+                  handleUpdateAvailability(route.params.residence.id, true)
+                }
+                style={styles.button}>
                 <Icon
                   style={styles.powerIcon}
                   name={'power'}
@@ -50,7 +77,8 @@ export default function EditResidenceConfig() {
           </View>
         </RectButton>
         <Div threshold={32} height={1.5} />
-        <RectButton>
+        <RectButton
+          onPress={() => handleResidenceDeletion(route.params.residence.id)}>
           <View style={styles.section}>
             <View style={styles.headerView}>
               <Text style={styles.title}>Excluir anúncio</Text>
