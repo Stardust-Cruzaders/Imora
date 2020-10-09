@@ -1,32 +1,49 @@
 import React, {useState} from 'react';
-import {View, Text} from 'react-native';
-import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
+import {View, Text, Alert} from 'react-native';
+import {RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../Component/Div';
 import styles from './styles';
 
 import api from '../../services/api';
 
-export default function EditResidenceConfig({route}) {
+export default function EditResidenceConfig({route, navigation}) {
+  const [available, setAvailable] = useState(route.params.residence.available);
   function handleResidenceDeletion(residence_id) {
+    api.delete(`/residences/${residence_id}`).catch((error) => {
+      console.log(error);
+    });
+  }
+  function handleUpdateAvailability(residence_id) {
     api
-      .delete(`/residences/${residence_id}`)
+      .patch(`/residences/${residence_id}/available`)
       .then((response) => {
-        console.log(response.data);
+        setAvailable(response.data.available);
       })
       .catch((error) => {
         console.log(error);
       });
   }
-  function handleUpdateAvailability(residence_id, available) {
-    api
-      .patch(`/residences/${residence_id}/available`)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  function showDeleteAlert() {
+    Alert.alert(
+      'Deletar residência',
+      'Você tem certeza que quer deletar essa residência? Essa ação é permanente e irreversível.',
+      [
+        {
+          text: 'cancelar',
+          style: 'cancel',
+        },
+        {
+          text: 'deletar',
+          onPress: () => {
+            handleResidenceDeletion(route.params.residence.id);
+            navigation.goBack();
+          },
+        },
+        ,
+      ],
+      {cancelable: false},
+    );
   }
   return (
     <View style={styles.container}>
@@ -34,11 +51,17 @@ export default function EditResidenceConfig({route}) {
         <View style={styles.section}>
           <View style={styles.infoView}>
             <Text style={styles.title}>Disponibilidade: </Text>
-            <Text style={styles.status}>disponível</Text>
+            <Text
+              style={[
+                styles.status,
+                {color: available ? '#26E07C' : '#ff0033'},
+              ]}>
+              {available ? 'disponível' : 'indisponível'}
+            </Text>
             <View>
               <RectButton
                 onPress={() =>
-                  handleUpdateAvailability(route.params.residence.id, true)
+                  handleUpdateAvailability(route.params.residence.id)
                 }
                 style={styles.button}>
                 <Icon
@@ -78,7 +101,9 @@ export default function EditResidenceConfig({route}) {
         </RectButton>
         <Div threshold={32} height={1.5} />
         <RectButton
-          onPress={() => handleResidenceDeletion(route.params.residence.id)}>
+          onPress={() => {
+            showDeleteAlert();
+          }}>
           <View style={styles.section}>
             <View style={styles.headerView}>
               <Text style={styles.title}>Excluir anúncio</Text>
@@ -103,7 +128,7 @@ export default function EditResidenceConfig({route}) {
               <Text style={styles.title}>Interessados</Text>
               <Icon
                 style={styles.icon}
-                name={'edit-3'}
+                name={'users'}
                 size={28}
                 color={'#3f3f3f'}
               />

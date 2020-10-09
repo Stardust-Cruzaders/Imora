@@ -40,7 +40,7 @@ export default function MyResidences({navigation}) {
         setErrorIcon('wifi-off');
         setErrorMessage('Oops! algo deu errado com nosso servidor.');
       });
-  }, []);
+  }, [myResidences]);
 
   return (
     <SafeAreaView style={styles.container}>

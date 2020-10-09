@@ -34,8 +34,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   status: {
-    color: '#8D8D97',
-
     fontFamily: 'Roboto',
     fontSize: 20,
     textDecorationLine: 'underline',
