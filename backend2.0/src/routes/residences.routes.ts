@@ -9,7 +9,6 @@ import ChangeResidenceAvailabilityService from '../services/ChangeResidenceAvail
 import DeleteResidenceService from '../services/DeleteResidenceService';
 import UpdateResidenceService from '../services/UpdateResidenceService';
 import Residence from '../models/Residence';
-import GetResidenceService from '../services/GetResidenceService';
 
 const residencesRouter = Router();
 
@@ -69,14 +68,7 @@ residencesRouter.get('/search', async (request, response) => {
 
   return response.json(residences);
 });
-residencesRouter.get('/:residence_id', async (request, response) => {
-  const { residence_id } = request.params;
 
-  const getResidenceService = new GetResidenceService();
-
-  const residence = await getResidenceService.execute({ residence_id });
-  return response.json(residence);
-});
 residencesRouter.get('/:owner_id', async (request, response) => {
   const { owner_id } = request.params;
 

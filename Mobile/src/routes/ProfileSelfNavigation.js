@@ -64,7 +64,6 @@ export default function ProfileSelfNavigation() {
         name={'EditResidenceConfig'}
         component={EditResidenceConfig}
       />
-      <Stack.Screen name={'ProfileSelf'} component={ProfileSelf} />
       <Stack.Screen name={'ProfileEdit'} component={ProfileEdit} />
     </Stack.Navigator>
   );
