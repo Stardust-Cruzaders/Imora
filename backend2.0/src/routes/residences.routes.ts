@@ -68,7 +68,6 @@ residencesRouter.get('/search', async (request, response) => {
 
   return response.json(residences);
 });
-
 residencesRouter.get('/:owner_id', async (request, response) => {
   const { owner_id } = request.params;
 
@@ -226,14 +225,12 @@ residencesRouter.put('/:residence_id', async (request, response) => {
 residencesRouter.patch(
   '/:residence_id/available',
   async (request, response) => {
-    const { available } = request.body;
     const { residence_id } = request.params;
 
     const changeResidenceAvailabilityService = new ChangeResidenceAvailabilityService();
 
     const residence = await changeResidenceAvailabilityService.execute({
       residence_id,
-      available,
     });
     return response.json(residence);
   },
