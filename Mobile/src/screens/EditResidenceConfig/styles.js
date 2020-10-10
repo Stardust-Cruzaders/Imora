@@ -3,16 +3,12 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     backgroundColor: '#E8E8E8',
   },
   card: {
     backgroundColor: '#FFF',
     alignSelf: 'center',
-    flex: 1,
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-    marginHorizontal: 25,
+    marginHorizontal: 45,
   },
   section: {
     margin: 15,
