@@ -10,6 +10,8 @@ const styles = StyleSheet.create({
 
     paddingVertical: 5,
     alignContent: 'center',
+
+    elevation: 5,
   },
   button: {
     flexDirection: 'row',
@@ -20,7 +22,7 @@ const styles = StyleSheet.create({
   },
   avatar: {
     height: 80,
-
+    resizeMode: 'cover',
     borderRadius: 100,
   },
   avatarView: {
