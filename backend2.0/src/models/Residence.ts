@@ -102,6 +102,9 @@ class Residence {
   @Column()
   owner_id: string;
 
+  @Column('varchar', { array: true })
+  interessed_users: Array<string>;
+
   @ManyToOne(() => User)
   @JoinColumn({ name: 'owner_id' })
   owner: User;

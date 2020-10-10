@@ -112,6 +112,7 @@ class CreateResidenceService {
       num_bathrooms,
       current_residents,
       max_residents,
+      interessed_users: [],
       owner_id,
     });
     await residenceRepository.save(residence);

@@ -9,6 +9,7 @@ import ChangeResidenceAvailabilityService from '../services/ChangeResidenceAvail
 import DeleteResidenceService from '../services/DeleteResidenceService';
 import UpdateResidenceService from '../services/UpdateResidenceService';
 import Residence from '../models/Residence';
+import ToggleInterestService from '../services/ToggleInterestService';
 
 const residencesRouter = Router();
 
@@ -235,6 +236,18 @@ residencesRouter.patch(
     return response.json(residence);
   },
 );
+residencesRouter.patch('/:residence_id/interess', async (request, response) => {
+  const { user_id } = request.body;
+  const { residence_id } = request.params;
+
+  const toggleInterestService = new ToggleInterestService();
+
+  const residence = await toggleInterestService.execute({
+    user_id,
+    residence_id,
+  });
+  return response.json(residence);
+});
 residencesRouter.delete('/:residence_id', async (request, response) => {
   const { residence_id } = request.params;
 
