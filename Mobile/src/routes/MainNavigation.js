@@ -8,6 +8,10 @@ import ResidenceDetailed from '../screens/Residence/ResidenceDetailed';
 import FilterScreen from '../screens/FilterScreen';
 import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 import FeedProvider from '../contexts/feed';
+import ProfileEdit from '../screens/Profile/ProfileEdit';
+import MyResidences from '../screens/MyResidences';
+import ResidenceAddNavigation from './ResidenceAddNavigation';
+import EditResidenceConfig from '../screens/EditResidenceConfig';
 
 const Stack = createNativeStackNavigator();
 export default function MainNavigation() {
@@ -23,6 +27,16 @@ export default function MainNavigation() {
           component={ResidenceDetailed}
         />
         <Stack.Screen name={'ProfileUser'} component={ProfileUser} />
+        <Stack.Screen name={'MyResidences'} component={MyResidences} />
+        <Stack.Screen
+          name={'ResidenceAdd'}
+          component={ResidenceAddNavigation}
+        />
+        <Stack.Screen
+          name={'EditResidenceConfig'}
+          component={EditResidenceConfig}
+        />
+        <Stack.Screen name={'ProfileEdit'} component={ProfileEdit} />
       </Stack.Navigator>
     </FeedProvider>
   );
