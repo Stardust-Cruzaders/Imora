@@ -1,7 +1,7 @@
 import React from 'react';
 import {createContext, useState, useContext} from 'react';
 import cep from 'cep-promise';
-
+import api from '../services/api';
 const ResidenceAddContext = createContext();
 export default function ResidenceAddProvider({children}) {
   //Residence Main
@@ -63,7 +63,6 @@ export default function ResidenceAddProvider({children}) {
       icon: 'smoking-rooms',
     },
   ]);
-  const [genderPreference, setGenderPreference] = useState('Indiferente');
 
   //Residence Zipcode
   const [zipcode, setZipcode] = useState('');
@@ -77,6 +76,55 @@ export default function ResidenceAddProvider({children}) {
   const [state, setState] = useState('');
   const [complement, setComplement] = useState('');
   const [locationTypeMessage, setLocationTypeMessage] = useState('');
+
+  function HandleResidenceAdd(user_id) {
+    const data = {
+      residence_name: title,
+      description: description,
+      images: [
+        'https://i.pinimg.com/564x/34/43/2f/34432f8d15ad73f2fb289195327b2ad4.jpg',
+        'https://i.pinimg.com/564x/8b/09/43/8b0943a51a748b59e3f1aacffeb266dc.jpg',
+        'https://i.pinimg.com/564x/eb/23/16/eb2316a4c199cb12436f6b9f440a2330.jpg',
+        'https://i.pinimg.com/564x/ea/bf/e8/eabfe8dae949003e8ae55cf965899e76.jpg',
+        'https://i.pinimg.com/564x/e0/33/17/e033172ea1e2726d95ece2a3e85e230d.jpg',
+      ],
+      available: true,
+      zipcode: zipcode,
+      state: state,
+      city: city,
+      neighborhood: neighborhood,
+      street: street,
+      numberr: number,
+      complement: complement,
+      residence_type: locationType,
+      residence_place: checkedHouseType,
+      price: price,
+      allow_smokers: allowSmokers,
+      allow_pets: allowPets,
+      wifi: hasWifi,
+      kitchen: hasKitchen,
+      tv: hasTV,
+      ac: hasAC,
+      notebook_work: hasNotebookWork,
+      grill: hasGrill,
+      pool: hasPool,
+      parking: hasParkingLot,
+      num_rooms: numRooms,
+      num_bathrooms: numBathrooms,
+      current_residents: currentResidents,
+      max_residents: maxResidentNum,
+    };
+    api
+      .post(`/residences/${user_id}`, {
+        data,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   function checkIfEmpty(array) {
     if (array.length < 1) {
       return true;
@@ -101,6 +149,7 @@ export default function ResidenceAddProvider({children}) {
         break;
     }
   }
+  // eslint-disable-next-line no-shadow
   function GetAddress(zipcode) {
     setLoading(true);
     cep(zipcode)
@@ -161,8 +210,6 @@ export default function ResidenceAddProvider({children}) {
         setAllowPets,
         allowSmokers,
         setAllowSmokers,
-        genderPreference,
-        setGenderPreference,
         zipcode,
         setZipcode,
         loading,
@@ -188,6 +235,7 @@ export default function ResidenceAddProvider({children}) {
         GetAddress,
         complement,
         setComplement,
+        HandleResidenceAdd,
       }}>
       {children}
     </ResidenceAddContext.Provider>

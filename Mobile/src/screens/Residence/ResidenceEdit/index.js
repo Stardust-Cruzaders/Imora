@@ -16,10 +16,11 @@ import ImageSwipe from '../../../Component/ImageSwipe';
 import {RectButton, BorderlessButton} from 'react-native-gesture-handler';
 
 import {useResidenceAdd} from '../../../contexts/residenceAdd';
+import {useAuth} from '../../../contexts/auth';
 
 export default function ResidenceEdit({navigation}) {
   const width = useWindowDimensions().width;
-
+  const {user} = useAuth();
   const {
     title,
     price,
@@ -29,7 +30,6 @@ export default function ResidenceEdit({navigation}) {
     checkedHouseType,
     description,
     maxResidentNum,
-    genderPreference,
     street,
     number,
     neighborhood,
@@ -41,6 +41,7 @@ export default function ResidenceEdit({navigation}) {
     resourcePath,
     complement,
     currentResidents,
+    HandleResidenceAdd,
   } = useResidenceAdd();
   return (
     <>
@@ -50,7 +51,15 @@ export default function ResidenceEdit({navigation}) {
       />
       <ScrollView style={styles.scroll}>
         <View style={[styles.headerImgView]}>
-          {/*<ImageSwipe img={resourcePath} />*/}
+          <ImageSwipe
+            img={[
+              'https://i.pinimg.com/564x/34/43/2f/34432f8d15ad73f2fb289195327b2ad4.jpg',
+              'https://i.pinimg.com/564x/8b/09/43/8b0943a51a748b59e3f1aacffeb266dc.jpg',
+              'https://i.pinimg.com/564x/eb/23/16/eb2316a4c199cb12436f6b9f440a2330.jpg',
+              'https://i.pinimg.com/564x/ea/bf/e8/eabfe8dae949003e8ae55cf965899e76.jpg',
+              'https://i.pinimg.com/564x/e0/33/17/e033172ea1e2726d95ece2a3e85e230d.jpg',
+            ]}
+          />
         </View>
         <View style={styles.container}>
           <View style={[styles.bodyView, {width: width - 50}]}>
@@ -182,7 +191,6 @@ export default function ResidenceEdit({navigation}) {
                 </View>
               </>
             )}
-
             <Div threshold={100} />
             <View style={styles.conditionView}>
               <View style={[styles.titleWithEditOption, {width: width - 80}]}>
@@ -322,7 +330,9 @@ export default function ResidenceEdit({navigation}) {
             styles.button,
             {backgroundColor: '#7E57C2', width: width - 245},
           ]}
-          onPress={() => {}}>
+          onPress={() => {
+            HandleResidenceAdd(user.id);
+          }}>
           <Text style={styles.buttonText}>Publicar</Text>
         </RectButton>
       </View>
