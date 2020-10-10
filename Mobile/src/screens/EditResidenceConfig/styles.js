@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     alignSelf: 'center',
     marginHorizontal: 45,
+    width: '100%',
   },
   section: {
     margin: 15,

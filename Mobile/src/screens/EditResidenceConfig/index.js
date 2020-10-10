@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Alert, ScrollView} from 'react-native';
+import {View, Text, Alert, ScrollView, FlatList} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -10,6 +10,7 @@ import api from '../../services/api';
 
 export default function EditResidenceConfig({route, navigation}) {
   const [available, setAvailable] = useState(route.params.residence.available);
+  const [users, setUsers] = useState([]);
   function handleResidenceDeletion(residence_id) {
     api.delete(`/residences/${residence_id}`).catch((error) => {
       console.log(error);
@@ -46,6 +47,7 @@ export default function EditResidenceConfig({route, navigation}) {
       {cancelable: false},
     );
   }
+  function listInteressedUsers(residence_id) {}
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -136,8 +138,6 @@ export default function EditResidenceConfig({route, navigation}) {
                 />
               </View>
               <View style={styles.interessUsersView}>
-                <UserRow />
-                <UserRow />
                 <UserRow />
                 <UserRow />
                 <UserRow />

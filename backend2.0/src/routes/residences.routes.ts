@@ -10,6 +10,7 @@ import DeleteResidenceService from '../services/DeleteResidenceService';
 import UpdateResidenceService from '../services/UpdateResidenceService';
 import Residence from '../models/Residence';
 import ToggleInterestService from '../services/ToggleInterestService';
+import ListInteressedUsers from '../services/ListInteressedUsers';
 
 const residencesRouter = Router();
 
@@ -76,6 +77,15 @@ residencesRouter.get('/:owner_id', async (request, response) => {
 
   const residences = await listUserResidenceService.execute({ owner_id });
   return response.json(residences);
+});
+residencesRouter.get('/:residence_id/interess/', async (request, response) => {
+  const { residence_id } = request.params;
+
+  const listInteressedUsers = new ListInteressedUsers();
+
+  const users = await listInteressedUsers.execute(residence_id);
+
+  return response.json(users);
 });
 residencesRouter.get('/:owner_id/favorites', async (request, response) => {
   const { owner_id } = request.params;
