@@ -5,6 +5,7 @@ import {Text, View, useWindowDimensions, Image, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import {Root, Popup} from 'popup-ui';
 
 import styles from './styles';
 import textStyles from '../../../textStyles';
@@ -44,23 +45,13 @@ export default function ResidenceEdit({navigation}) {
     HandleResidenceAdd,
   } = useResidenceAdd();
   return (
-    <>
+    <Root>
       <ResidenceAddHeader
         title={'Está feliz com seu anúncio?'}
         subtitle={'Clique no lápis para alterar uma sessão'}
       />
       <ScrollView style={styles.scroll}>
-        <View style={[styles.headerImgView]}>
-          <ImageSwipe
-            img={[
-              'https://i.pinimg.com/564x/34/43/2f/34432f8d15ad73f2fb289195327b2ad4.jpg',
-              'https://i.pinimg.com/564x/8b/09/43/8b0943a51a748b59e3f1aacffeb266dc.jpg',
-              'https://i.pinimg.com/564x/eb/23/16/eb2316a4c199cb12436f6b9f440a2330.jpg',
-              'https://i.pinimg.com/564x/ea/bf/e8/eabfe8dae949003e8ae55cf965899e76.jpg',
-              'https://i.pinimg.com/564x/e0/33/17/e033172ea1e2726d95ece2a3e85e230d.jpg',
-            ]}
-          />
-        </View>
+        <View style={[styles.headerImgView]} />
         <View style={styles.container}>
           <View style={[styles.bodyView, {width: width - 50}]}>
             <View style={styles.basicInfoView}>
@@ -89,12 +80,12 @@ export default function ResidenceEdit({navigation}) {
                 <Image
                   style={[styles.profilePic, {resizeMode: 'cover'}]}
                   source={{
-                    uri:
-                      'https://i.pinimg.com/564x/73/72/ca/7372caf9143345b46f5941218af00af2.jpg',
+                    uri: user.avatar,
+                    //'https://i.pinimg.com/564x/73/72/ca/7372caf9143345b46f5941218af00af2.jpg',
                   }}
                 />
               </View>
-              <Text style={[styles.name, textStyles.font]}>لا احتيال</Text>
+              <Text style={[styles.name, textStyles.font]}>{user.name}</Text>
               <Text style={[styles.subTitle, textStyles.font]}>
                 Proprietário
               </Text>
@@ -332,10 +323,22 @@ export default function ResidenceEdit({navigation}) {
           ]}
           onPress={() => {
             HandleResidenceAdd(user.id);
+            Popup.show({
+              type: 'Success',
+              title: 'Residência adicionada com sucesso',
+              button: true,
+              textBody:
+                'Sua residência foi adicionada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
+              buttontext: 'OK',
+              callback: () => {
+                Popup.hide();
+                navigation.navigate('Feed');
+              },
+            });
           }}>
           <Text style={styles.buttonText}>Publicar</Text>
         </RectButton>
       </View>
-    </>
+    </Root>
   );
 }

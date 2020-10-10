@@ -11,6 +11,7 @@ import styles from './styles';
 import {useAuth} from '../../contexts/auth';
 import {ActivityIndicator} from 'react-native-paper';
 
+import axios from 'axios';
 export default function MyResidences({navigation}) {
   const [myResidences, setMyResidences] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,8 +23,10 @@ export default function MyResidences({navigation}) {
   const {user} = useAuth();
 
   useEffect(() => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
     api
-      .get(`/residences/${user.id}`)
+      .get(`/residences/${user.id}`, {cancelToken: source.token})
       .then((response) => {
         setMyResidences(response.data);
         setLoading(false);
@@ -34,12 +37,16 @@ export default function MyResidences({navigation}) {
           setErrorMessage('Você não possui nenhuma residência cadastrada');
         }
       })
-      .catch((err) => {
+      .catch(() => {
         setLoading(false);
         setError(true);
         setErrorIcon('wifi-off');
         setErrorMessage('Oops! algo deu errado com nosso servidor.');
       });
+
+    return () => {
+      source.cancel();
+    };
   }, [myResidences]);
 
   return (

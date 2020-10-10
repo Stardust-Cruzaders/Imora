@@ -115,9 +115,7 @@ export default function ResidenceAddProvider({children}) {
       max_residents: maxResidentNum,
     };
     api
-      .post(`/residences/${user_id}`, {
-        data,
-      })
+      .post(`/residences/${user_id}`, data)
       .then((response) => {
         console.log(response.data);
       })
