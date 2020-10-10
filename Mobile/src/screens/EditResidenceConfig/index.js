@@ -67,10 +67,10 @@ export default function EditResidenceConfig({route, navigation}) {
                   }
                   style={styles.button}>
                   <Icon
-                    style={styles.powerIcon}
+                    style={[styles.powerIcon]}
                     name={'power'}
                     size={40}
-                    color={'#26E07C'}
+                    color={available ? '#26E07C' : '#ff0033'}
                   />
                 </RectButton>
               </View>
