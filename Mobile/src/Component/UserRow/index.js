@@ -8,12 +8,9 @@ export default function UserRow({navigation, user}) {
     <View style={styles.container}>
       <RectButton
         onPress={() => {
-          /*
           navigation.navigate('ProfileUser', {
-            user: user.item,
+            user: user,
           });
-          */
-          console.log(user);
         }}
         style={styles.button}>
         <View style={styles.avatarView}>

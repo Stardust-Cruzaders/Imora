@@ -10,9 +10,18 @@ import Div from '../../../Component/Div';
 
 export default function ProfileUser({navigation, route}) {
   const width = useWindowDimensions().width;
-  const {name, bio, avatar, email, phone, is_host, state, city} = route.params;
+  const {
+    name,
+    bio,
+    avatar,
+    email,
+    phone,
+    is_host,
+    user_state,
+    user_city,
+  } = route.params.user;
 
-  console.log(route.params);
+  console.log(route.params.user);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -54,20 +63,19 @@ export default function ProfileUser({navigation, route}) {
                 <Text style={[styles.bodyText, textStyles.font]}>{phone}</Text>
               </View>
             )}
-            {(state !== null || state !== undefined) &&
-              (city !== null || city !== undefined) && (
-                <View style={styles.iconTextView}>
-                  <Icon
-                    name={'map-pin'}
-                    size={24}
-                    color={'#3F3F3F'}
-                    style={styles.icon}
-                  />
-                  <Text style={[styles.bodyText, textStyles.font]}>
-                    {city}, {state}
-                  </Text>
-                </View>
-              )}
+            {user_state !== null && user_city !== null && (
+              <View style={styles.iconTextView}>
+                <Icon
+                  name={'map-pin'}
+                  size={24}
+                  color={'#3F3F3F'}
+                  style={styles.icon}
+                />
+                <Text style={[styles.bodyText, textStyles.font]}>
+                  {user_city}, {user_state}
+                </Text>
+              </View>
+            )}
             <View style={styles.iconTextView}>
               <Icon
                 name={'mail'}
