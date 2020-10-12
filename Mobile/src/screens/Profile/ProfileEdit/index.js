@@ -8,6 +8,7 @@ import Div from '../../../Component/Div';
 import styles from './styles';
 import api from '../../../services/api';
 import {useFeed} from '../../../contexts/feed';
+import {useAuth} from '../../../contexts/auth';
 
 export default function EditResidenceConfig({navigation}) {
   const {
@@ -25,7 +26,45 @@ export default function EditResidenceConfig({navigation}) {
     setUserState,
     user_city,
     setUserCity,
+    setCurrentUserData,
+    UpdateUserData,
   } = useFeed();
+  const {user, FacebookSignOut} = useAuth();
+  function handleUserDeletion(user_id) {
+    api
+      .delete(`/users/${user_id}`)
+      .then(() => {
+        FacebookSignOut().catch((err) => {
+          console.log('Erro ao tentar sair: ' + err);
+        });
+      })
+      .catch((error) => {
+        console.log('Erro ao tentar deletar conta: ' + error);
+      });
+  }
+  function showDeleteAlert() {
+    Alert.alert(
+      'Deletar conta',
+      'Você tem certeza que quer deletar sua conta? Essa ação é permanente e irreversível.',
+      [
+        {
+          text: 'cancelar',
+          style: 'cancel',
+        },
+        {
+          text: 'deletar',
+          onPress: () => {
+            handleUserDeletion(user.id);
+          },
+        },
+      ],
+      {cancelable: false},
+    );
+  }
+
+  useEffect(() => {
+    setCurrentUserData(user);
+  });
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -143,7 +182,9 @@ export default function EditResidenceConfig({navigation}) {
             </View>
           </View>
           <Div threshold={30} />
-          <RectButton style={{backgroundColor: 'white', borderRadius: 1}}>
+          <RectButton
+            onPress={() => showDeleteAlert()}
+            style={{backgroundColor: 'white', borderRadius: 1}}>
             <View style={styles.section}>
               <View style={styles.headerView}>
                 <Text style={styles.title}>Excluir Perfil</Text>

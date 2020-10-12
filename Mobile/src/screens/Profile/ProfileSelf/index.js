@@ -9,11 +9,13 @@ import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../Component/Div';
 import {useAuth} from '../../../contexts/auth';
 import ProfileHeader from '../../../Component/ProfileHeader';
+import {useFeed} from '../../../contexts/feed';
 
 export default function ProfileSelf({navigation}) {
   const width = useWindowDimensions().width;
 
   const {FacebookSignOut, user} = useAuth();
+  const {isEmailAvailable, isLocationAvailable, isPhoneAvailable} = useFeed();
   return (
     <View style={styles.container}>
       <ProfileHeader navigation={navigation} />

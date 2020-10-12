@@ -43,7 +43,6 @@ export default function FeedProvider({children}) {
       return x;
     }
   }
-
   async function Search() {
     const response = await api.get('/residences', {
       params: {
@@ -73,6 +72,30 @@ export default function FeedProvider({children}) {
       return response.data;
     }
   }
+  function setCurrentUserData(user) {
+    setBio(user.bio);
+    setPhone(user.phone);
+    setUserState(user.user_state);
+    setUserCity(user.user_city);
+  }
+  function UpdateUserData(id) {
+    const data = {
+      bio,
+      phone,
+      user_state,
+      user_city,
+    };
+    api
+      .put(`/users/${id}`, data)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        return err;
+      });
+  }
+
   return (
     <FeedContext.Provider
       value={{
@@ -131,6 +154,8 @@ export default function FeedProvider({children}) {
         setUserState,
         user_city,
         setUserCity,
+        setCurrentUserData,
+        UpdateUserData,
       }}>
       {children}
     </FeedContext.Provider>
