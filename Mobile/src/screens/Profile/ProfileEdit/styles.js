@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   section: {
-    margin: 15,
+    marginHorizontal: 15,
+    marginVertical: 15,
   },
   headerView: {
     flexDirection: 'row',
@@ -67,9 +68,14 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   saveView: {
+    backgroundColor: '#3F3F3F',
+    borderRadius: 100,
     position: 'absolute',
+    alignSelf: 'flex-end',
+
     bottom: 1,
     right: 1,
+    margin: 15,
   },
   saveButton: {
     justifyContent: 'center',
@@ -79,7 +85,6 @@ const styles = StyleSheet.create({
 
     borderRadius: 100,
     padding: 15,
-    margin: 15,
   },
   saveIcon: {
     color: '#FFF',
