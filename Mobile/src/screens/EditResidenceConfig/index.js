@@ -84,6 +84,7 @@ export default function EditResidenceConfig({route, navigation}) {
     return () => {
       source.cancel();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [users]);
   return (
     <ScrollView>
