@@ -88,11 +88,12 @@ export default function FeedProvider({children}) {
     api
       .put(`/users/${id}`, data)
       .then((response) => {
+        console.log(response.data);
         return response.data;
       })
       .catch((err) => {
         console.log(err);
-        return err;
+        return null;
       });
   }
 
