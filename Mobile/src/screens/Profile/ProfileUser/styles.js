@@ -22,13 +22,12 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   profilePic: {
-    resizeMode: 'contain',
-    width: 150,
-    height: 150,
+    resizeMode: 'cover',
+    width: '100%',
+    height: 175,
 
+    borderRadius: 100,
     alignSelf: 'center',
-
-    borderRadius: 1000,
 
     flex: 1,
   },

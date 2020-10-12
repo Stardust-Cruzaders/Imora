@@ -130,15 +130,18 @@ export default function ResidenceDetailed({route, navigation}) {
           <View style={styles.ownerView}>
             <BorderlessButton
               onPress={() => {
-                navigation.navigate('ProfileUser', {
+                const user = {
                   name: route.params.residence.name,
                   bio: route.params.residence.bio,
                   avatar: route.params.residence.avatar,
                   email: route.params.residence.email,
                   phone: route.params.residence.phone,
                   is_host: route.params.residence.is_host,
-                  city: route.params.residence.user_city,
-                  state: route.params.residence.user_state,
+                  user_city: route.params.residence.user_city,
+                  user_state: route.params.residence.user_state,
+                };
+                navigation.navigate('ProfileUser', {
+                  user,
                 });
               }}>
               <View style={styles.profilePicView}>
