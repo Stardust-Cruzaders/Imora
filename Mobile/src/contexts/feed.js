@@ -25,6 +25,17 @@ export default function FeedProvider({children}) {
   const [filtered, setFiltered] = useState(false);
 
   const [isFavoriteOk, setFavoriteOk] = useState(false);
+
+  //Profile User
+  const [isEmailAvailable, setIsEmailAvailable] = useState(true);
+  const [isLocationAvailable, setIsLocationAvailable] = useState(true);
+  const [isPhoneAvailable, setIsPhoneAvailable] = useState(true);
+
+  const [bio, setBio] = useState('');
+  const [phone, setPhone] = useState('');
+  const [user_state, setUserState] = useState('');
+  const [user_city, setUserCity] = useState('');
+
   function CheckIfIsEmpty(x) {
     if (x === '') {
       return null;
@@ -106,6 +117,20 @@ export default function FeedProvider({children}) {
         setFavoriteResidences,
         isFavoriteOk,
         setFavoriteOk,
+        isEmailAvailable,
+        setIsEmailAvailable,
+        isLocationAvailable,
+        setIsLocationAvailable,
+        isPhoneAvailable,
+        setIsPhoneAvailable,
+        bio,
+        setBio,
+        phone,
+        setPhone,
+        user_state,
+        setUserState,
+        user_city,
+        setUserCity,
       }}>
       {children}
     </FeedContext.Provider>

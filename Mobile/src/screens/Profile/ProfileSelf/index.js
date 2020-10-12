@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text, Image, useWindowDimensions, ScrollView} from 'react-native';
+import {View, Text, useWindowDimensions, ScrollView} from 'react-native';
 
-import {RectButton, BorderlessButton} from 'react-native-gesture-handler';
+import {RectButton} from 'react-native-gesture-handler';
 
 import styles from './styles';
 import textStyles from '../../../textStyles';

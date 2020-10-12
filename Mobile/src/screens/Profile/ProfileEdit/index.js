@@ -7,16 +7,25 @@ import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../Component/Div';
 import styles from './styles';
 import api from '../../../services/api';
+import {useFeed} from '../../../contexts/feed';
 
 export default function EditResidenceConfig({navigation}) {
-  const [isEmailAvailable, setIsEmailAvailable] = useState(true);
-  const [isLocationAvailable, setIsLocationAvailable] = useState(true);
-  const [isPhoneAvailable, setIsPhoneAvailable] = useState(true);
-
-  const [bio, setBio] = useState('');
-  const [phone, setPhone] = useState('');
-  const [user_state, setUserState] = useState('');
-  const [user_city, setUserCity] = useState('');
+  const {
+    isEmailAvailable,
+    setIsEmailAvailable,
+    isLocationAvailable,
+    setIsLocationAvailable,
+    isPhoneAvailable,
+    setIsPhoneAvailable,
+    bio,
+    setBio,
+    phone,
+    setPhone,
+    user_state,
+    setUserState,
+    user_city,
+    setUserCity,
+  } = useFeed();
   return (
     <View style={styles.container}>
       <ScrollView>
