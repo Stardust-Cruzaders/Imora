@@ -82,7 +82,7 @@ export default function EditResidenceConfig({route, navigation}) {
     listInterestedUsers(route.params.residence.id, source.token);
 
     return () => {
-      source.cancel;
+      source.cancel();
     };
   }, [users]);
   return (
