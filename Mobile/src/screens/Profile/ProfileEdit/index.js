@@ -127,6 +127,7 @@ export default function EditResidenceConfig({navigation}) {
       setUserState(user.user_state);
       setUserCity(user.user_city);
     }
+    let mounted = true;
     function getDataPreference() {
       Promise.all([
         AsyncStorage.getItem('@isEmailAvailable'),
@@ -134,12 +135,11 @@ export default function EditResidenceConfig({navigation}) {
         AsyncStorage.getItem('@isLocationAvailable'),
       ])
         .then((values) => {
-          setIsEmailAvailable(JSON.parse(values[0]));
-          setIsPhoneAvailable(JSON.parse(values[1]));
-          setIsLocationAvailable(JSON.parse(values[2]));
-          console.log(
-            JSON.parse(values[0], JSON.parse(values[1]), JSON.parse(values[2])),
-          );
+          if (mounted) {
+            setIsEmailAvailable(JSON.parse(values[0]));
+            setIsPhoneAvailable(JSON.parse(values[1]));
+            setIsLocationAvailable(JSON.parse(values[2]));
+          }
         })
         .catch((e) => {
           console.log(e);
@@ -147,6 +147,7 @@ export default function EditResidenceConfig({navigation}) {
     }
     setCurrentData();
     getDataPreference();
+    return () => (mounted = false);
   }, [
     user.bio,
     user.phone,
