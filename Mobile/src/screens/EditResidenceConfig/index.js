@@ -56,33 +56,33 @@ export default function EditResidenceConfig({route, navigation}) {
       {cancelable: false},
     );
   }
-  function listInterestedUsers(residence_id, cancelToken) {
-    console.log(residence_id);
-    api
-      .get(`/residences/${residence_id}/interess`, {cancelToken})
-      .then((response) => {
-        setUsers(response.data);
-        setError(false);
-        setErrorIcon('archive');
-        setErrorMessage(
-          'Parece que não tem ninguém interessado nessa residência no momento',
-        );
-      })
-      .catch(() => {
-        setError(true);
-        setErrorIcon('wifi-off');
-        setErrorMessage('Oops! parece que algo deu errado no nosso servidor');
-      })
-      .finally(() => setLoading(false));
-  }
   useEffect(() => {
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
+    let mounted = true;
+    function listInterestedUsers(residence_id) {
+      api
+        .get(`/residences/${residence_id}/interess`)
+        .then((response) => {
+          if (mounted) {
+            setUsers(response.data);
+            setError(false);
+            setErrorIcon('archive');
+            setErrorMessage(
+              'Parece que não tem ninguém interessado nessa residência no momento',
+            );
+          }
+        })
+        .catch(() => {
+          setError(true);
+          setErrorIcon('wifi-off');
+          setErrorMessage('Oops! parece que algo deu errado no nosso servidor');
+        })
+        .finally(() => setLoading(false));
+    }
 
-    listInterestedUsers(route.params.residence.id, source.token);
+    listInterestedUsers(route.params.residence.id);
 
     return () => {
-      source.cancel();
+      mounted = false;
     };
   }, [route.params.residence.id, users]);
   return (
