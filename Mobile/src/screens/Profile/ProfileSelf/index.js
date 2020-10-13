@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, useWindowDimensions, ScrollView} from 'react-native';
 
 import {RectButton} from 'react-native-gesture-handler';
@@ -10,19 +10,49 @@ import Div from '../../../Component/Div';
 import {useAuth} from '../../../contexts/auth';
 import ProfileHeader from '../../../Component/ProfileHeader';
 import {useFeed} from '../../../contexts/feed';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default function ProfileSelf({navigation}) {
   const width = useWindowDimensions().width;
 
   const {FacebookSignOut, user} = useAuth();
-  const {isEmailAvailable, isLocationAvailable, isPhoneAvailable} = useFeed();
+  const {
+    isEmailAvailable,
+    setIsEmailAvailable,
+    isLocationAvailable,
+    setIsLocationAvailable,
+    isPhoneAvailable,
+    setIsPhoneAvailable,
+  } = useFeed();
+
+  useEffect(() => {
+    function getDataPreference() {
+      Promise.all([
+        AsyncStorage.getItem('@isEmailAvailable'),
+        AsyncStorage.getItem('@isPhoneAvailable'),
+        AsyncStorage.getItem('@isLocationAvailable'),
+      ])
+        .then((values) => {
+          setIsEmailAvailable(JSON.parse(values[0]));
+          setIsPhoneAvailable(JSON.parse(values[1]));
+          setIsLocationAvailable(JSON.parse(values[2]));
+          console.log(
+            JSON.parse(values[0], JSON.parse(values[1]), JSON.parse(values[2])),
+          );
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+    getDataPreference();
+  }, [setIsEmailAvailable, setIsLocationAvailable, setIsPhoneAvailable]);
   return (
     <View style={styles.container}>
       <ProfileHeader navigation={navigation} />
       <ScrollView>
         <View style={[styles.body, {width: width - 55}]}>
           <View style={styles.main}>
-            {user.phone !== null && isPhoneAvailable === true && (
+            {!!user.phone && isPhoneAvailable === true && (
               <>
                 <View style={[styles.iconTextView, {marginTop: 25}]}>
                   <Icon
@@ -39,24 +69,22 @@ export default function ProfileSelf({navigation}) {
               </>
             )}
 
-            {user.user_state !== null &&
-              isLocationAvailable &&
-              user.city !== null && (
-                <>
-                  <View style={styles.iconTextView}>
-                    <Icon
-                      name={'map-pin'}
-                      size={24}
-                      color={'#3F3F3F'}
-                      style={styles.icon}
-                    />
-                    <Text style={[styles.bodyText, textStyles.font]}>
-                      {user.user_city}, {user.user_state}
-                    </Text>
-                  </View>
-                  <Div threshold={100} />
-                </>
-              )}
+            {!!user.user_state && isLocationAvailable && !!user.user_city && (
+              <>
+                <View style={styles.iconTextView}>
+                  <Icon
+                    name={'map-pin'}
+                    size={24}
+                    color={'#3F3F3F'}
+                    style={styles.icon}
+                  />
+                  <Text style={[styles.bodyText, textStyles.font]}>
+                    {user.user_city}, {user.user_state}
+                  </Text>
+                </View>
+                <Div threshold={100} />
+              </>
+            )}
 
             {isEmailAvailable && (
               <>

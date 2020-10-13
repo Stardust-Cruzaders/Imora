@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Alert, ScrollView} from 'react-native';
 import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
 import {TextInput} from 'react-native-paper';
@@ -9,6 +9,7 @@ import styles from './styles';
 import api from '../../../services/api';
 import {useFeed} from '../../../contexts/feed';
 import {useAuth} from '../../../contexts/auth';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default function EditResidenceConfig({navigation}) {
   const {
@@ -18,18 +19,13 @@ export default function EditResidenceConfig({navigation}) {
     setIsLocationAvailable,
     isPhoneAvailable,
     setIsPhoneAvailable,
-    bio,
-    setBio,
-    phone,
-    setPhone,
-    user_state,
-    setUserState,
-    user_city,
-    setUserCity,
-    setCurrentUserData,
-    UpdateUserData,
   } = useFeed();
-  const {user, FacebookSignOut} = useAuth();
+  const {user, FacebookSignOut, setUser} = useAuth();
+  const [bio, setBio] = useState('');
+  const [phone, setPhone] = useState('');
+  const [user_state, setUserState] = useState('');
+  const [user_city, setUserCity] = useState('');
+
   function handleUserDeletion(user_id) {
     api
       .delete(`/users/${user_id}`)
@@ -61,10 +57,105 @@ export default function EditResidenceConfig({navigation}) {
       {cancelable: false},
     );
   }
+  function UpdateUserData(id) {
+    const data = {
+      bio,
+      phone,
+      user_state,
+      user_city,
+    };
+    api
+      .put(`/users/${id}`, data)
+      .then((response) => {
+        console.log(response.data);
+        return response.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        return null;
+      });
+  }
+  async function storeDataPreferences() {
+    try {
+      await Promise.all([
+        AsyncStorage.setItem(
+          '@isEmailAvailable',
+          JSON.stringify(isEmailAvailable),
+        ),
+        AsyncStorage.setItem(
+          '@isPhoneAvailable',
+          JSON.stringify(isPhoneAvailable),
+        ),
+        AsyncStorage.setItem(
+          '@isLocationAvailable',
+          JSON.stringify(isLocationAvailable),
+        ),
+      ]);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  function ConfirmationAlert() {
+    Alert.alert(
+      'Confirmar',
+      'Deseja alterar suas informações? Você será desconectado do app.',
+      [
+        {
+          text: 'cancelar',
+          style: 'cancel',
+        },
+        {
+          text: 'atualizar informações',
+          onPress: () => {
+            storeDataPreferences().then(() => {
+              const newUser = UpdateUserData(user.id);
+              if (newUser !== null) {
+                setUser(newUser);
+              }
+            });
+          },
+        },
+      ],
+      {cancelable: false},
+    );
+  }
 
   useEffect(() => {
-    setCurrentUserData(user);
-  });
+    function setCurrentData() {
+      setBio(user.bio);
+      setPhone(user.phone);
+      setUserState(user.user_state);
+      setUserCity(user.user_city);
+    }
+    function getDataPreference() {
+      Promise.all([
+        AsyncStorage.getItem('@isEmailAvailable'),
+        AsyncStorage.getItem('@isPhoneAvailable'),
+        AsyncStorage.getItem('@isLocationAvailable'),
+      ])
+        .then((values) => {
+          setIsEmailAvailable(JSON.parse(values[0]));
+          setIsPhoneAvailable(JSON.parse(values[1]));
+          setIsLocationAvailable(JSON.parse(values[2]));
+          console.log(
+            JSON.parse(values[0], JSON.parse(values[1]), JSON.parse(values[2])),
+          );
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+    setCurrentData();
+    getDataPreference();
+  }, [
+    user.bio,
+    user.phone,
+    user.user_state,
+    user.user_city,
+    setIsEmailAvailable,
+    setIsPhoneAvailable,
+    setIsLocationAvailable,
+  ]);
   return (
     <Root>
       <View style={styles.container}>
@@ -94,6 +185,7 @@ export default function EditResidenceConfig({navigation}) {
                 <TextInput
                   style={styles.input}
                   placeholder={'Celular'}
+                  keyboardType={'number-pad'}
                   maxLength={15}
                   onChangeText={(text) => {
                     setPhone(text);
@@ -208,22 +300,7 @@ export default function EditResidenceConfig({navigation}) {
         <View style={styles.saveView}>
           <BorderlessButton
             onPress={() => {
-              const newUser = UpdateUserData(user.id);
-              if (newUser !== null) {
-                //setUser(newUser);
-              }
-              Popup.show({
-                type: 'Success',
-                title: 'Perfil atualizado!',
-                button: true,
-                textBody:
-                  'Seus dados e preferências foram atualizadas com sucesso!',
-                buttonText: 'Ok',
-                callback: () => {
-                  Popup.hide();
-                  navigation.goBack();
-                },
-              });
+              ConfirmationAlert();
             }}
             style={styles.saveButton}>
             <Icon name={'save'} size={40} style={styles.saveIcon} />

@@ -151,7 +151,7 @@ export function AuthProvider({children}) {
         loading,
         FacebookSignOut,
         CreateUser,
-
+        setUser,
         bio,
         setBio,
         st,

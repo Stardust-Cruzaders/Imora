@@ -31,11 +31,6 @@ export default function FeedProvider({children}) {
   const [isLocationAvailable, setIsLocationAvailable] = useState(true);
   const [isPhoneAvailable, setIsPhoneAvailable] = useState(true);
 
-  const [bio, setBio] = useState('');
-  const [phone, setPhone] = useState('');
-  const [user_state, setUserState] = useState('');
-  const [user_city, setUserCity] = useState('');
-
   function CheckIfIsEmpty(x) {
     if (x === '') {
       return null;
@@ -71,30 +66,6 @@ export default function FeedProvider({children}) {
 
       return response.data;
     }
-  }
-  function setCurrentUserData(user) {
-    setBio(user.bio);
-    setPhone(user.phone);
-    setUserState(user.user_state);
-    setUserCity(user.user_city);
-  }
-  function UpdateUserData(id) {
-    const data = {
-      bio,
-      phone,
-      user_state,
-      user_city,
-    };
-    api
-      .put(`/users/${id}`, data)
-      .then((response) => {
-        console.log(response.data);
-        return response.data;
-      })
-      .catch((err) => {
-        console.log(err);
-        return null;
-      });
   }
 
   return (
@@ -147,16 +118,6 @@ export default function FeedProvider({children}) {
         setIsLocationAvailable,
         isPhoneAvailable,
         setIsPhoneAvailable,
-        bio,
-        setBio,
-        phone,
-        setPhone,
-        user_state,
-        setUserState,
-        user_city,
-        setUserCity,
-        setCurrentUserData,
-        UpdateUserData,
       }}>
       {children}
     </FeedContext.Provider>

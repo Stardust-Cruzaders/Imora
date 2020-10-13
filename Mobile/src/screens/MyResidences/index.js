@@ -47,7 +47,7 @@ export default function MyResidences({navigation}) {
     return () => {
       source.cancel();
     };
-  }, [myResidences]);
+  }, [myResidences, user.id]);
 
   return (
     <SafeAreaView style={styles.container}>
