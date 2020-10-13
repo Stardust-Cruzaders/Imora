@@ -84,118 +84,119 @@ export default function EditResidenceConfig({route, navigation}) {
     return () => {
       source.cancel();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [users]);
+  }, [route.params.residence.id, users]);
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <View style={styles.card}>
-          <View style={styles.section}>
-            <View style={styles.infoView}>
-              <Text style={styles.title}>Disponibilidade: </Text>
-              <Text
-                style={[
-                  styles.status,
-                  {color: available ? '#26E07C' : '#ff0033'},
-                ]}>
-                {available ? 'disponível' : 'indisponível'}
-              </Text>
-              <View>
-                <RectButton
-                  onPress={() =>
-                    handleUpdateAvailability(route.params.residence.id)
-                  }
-                  style={styles.button}>
-                  <Icon
-                    style={[styles.powerIcon]}
-                    name={'power'}
-                    size={40}
-                    color={available ? '#26E07C' : '#ff0033'}
-                  />
-                </RectButton>
+    <>
+      {!loading ? (
+        error === false ? (
+          <FlatList
+            ListHeaderComponent={
+              <View style={styles.container}>
+                <View style={styles.card}>
+                  <View style={styles.section}>
+                    <View style={styles.infoView}>
+                      <Text style={styles.title}>Disponibilidade: </Text>
+                      <Text
+                        style={[
+                          styles.status,
+                          {color: available ? '#26E07C' : '#ff0033'},
+                        ]}>
+                        {available ? 'disponível' : 'indisponível'}
+                      </Text>
+                      <View>
+                        <RectButton
+                          onPress={() =>
+                            handleUpdateAvailability(route.params.residence.id)
+                          }
+                          style={styles.button}>
+                          <Icon
+                            style={[styles.powerIcon]}
+                            name={'power'}
+                            size={40}
+                            color={available ? '#26E07C' : '#ff0033'}
+                          />
+                        </RectButton>
+                      </View>
+                    </View>
+                    <View>
+                      <Text style={styles.description}>
+                        Se isso estiver desligado, a residência constará como
+                        ocupada e não será mostrada aos usuários.
+                      </Text>
+                    </View>
+                  </View>
+                  <Div threshold={32} height={1.6} />
+                  <RectButton>
+                    <View style={styles.section}>
+                      <View style={styles.headerView}>
+                        <Text style={styles.title}>Alterar anúncio</Text>
+                        <Icon
+                          style={styles.icon}
+                          name={'edit-3'}
+                          size={28}
+                          color={'#3f3f3f'}
+                        />
+                      </View>
+                      <View>
+                        <Text style={styles.description}>
+                          Clique aqui para alterar as informações dessa
+                          residência.
+                        </Text>
+                      </View>
+                    </View>
+                  </RectButton>
+                  <Div threshold={32} height={1.5} />
+                  <RectButton
+                    onPress={() => {
+                      showDeleteAlert();
+                    }}>
+                    <View style={styles.section}>
+                      <View style={styles.headerView}>
+                        <Text style={styles.title}>Excluir anúncio</Text>
+                        <Icon
+                          style={styles.icon}
+                          name={'trash-2'}
+                          size={28}
+                          color={'#3f3f3f'}
+                        />
+                      </View>
+                      <View>
+                        <Text style={styles.description}>
+                          Clique aqui para excluir o seu anúncio
+                          permanentemente.
+                        </Text>
+                      </View>
+                    </View>
+                  </RectButton>
+                  <Div threshold={32} height={1.5} />
+                  <View>
+                    <View style={styles.section}>
+                      <View style={styles.headerView}>
+                        <Text style={styles.title}>Interessados</Text>
+                        <Icon
+                          style={styles.icon}
+                          name={'users'}
+                          size={28}
+                          color={'#3f3f3f'}
+                        />
+                      </View>
+                    </View>
+                  </View>
+                </View>
               </View>
-            </View>
-            <View>
-              <Text style={styles.description}>
-                Se isso estiver desligado, a residência constará como ocupada e
-                não será mostrada aos usuários.
-              </Text>
-            </View>
-          </View>
-          <Div threshold={32} height={1.6} />
-          <RectButton>
-            <View style={styles.section}>
-              <View style={styles.headerView}>
-                <Text style={styles.title}>Alterar anúncio</Text>
-                <Icon
-                  style={styles.icon}
-                  name={'edit-3'}
-                  size={28}
-                  color={'#3f3f3f'}
-                />
-              </View>
-              <View>
-                <Text style={styles.description}>
-                  Clique aqui para alterar as informações dessa residência.
-                </Text>
-              </View>
-            </View>
-          </RectButton>
-          <Div threshold={32} height={1.5} />
-          <RectButton
-            onPress={() => {
-              showDeleteAlert();
-            }}>
-            <View style={styles.section}>
-              <View style={styles.headerView}>
-                <Text style={styles.title}>Excluir anúncio</Text>
-                <Icon
-                  style={styles.icon}
-                  name={'trash-2'}
-                  size={28}
-                  color={'#3f3f3f'}
-                />
-              </View>
-              <View>
-                <Text style={styles.description}>
-                  Clique aqui para excluir o seu anúncio permanentemente.
-                </Text>
-              </View>
-            </View>
-          </RectButton>
-          <Div threshold={32} height={1.5} />
-          <View>
-            <View style={styles.section}>
-              <View style={styles.headerView}>
-                <Text style={styles.title}>Interessados</Text>
-                <Icon
-                  style={styles.icon}
-                  name={'users'}
-                  size={28}
-                  color={'#3f3f3f'}
-                />
-              </View>
-              {!loading ? (
-                error === false ? (
-                  <FlatList
-                    data={users}
-                    keyExtractor={(item) => item.id}
-                    renderItem={(item) => {
-                      return (
-                        <UserRow navigation={navigation} user={item.item} />
-                      );
-                    }}
-                  />
-                ) : (
-                  <NotFound message={errorMessage} icon={errorIcon} />
-                )
-              ) : (
-                <ActivityIndicator color={'#7E57C2'} />
-              )}
-            </View>
-          </View>
-        </View>
-      </View>
-    </ScrollView>
+            }
+            data={users}
+            keyExtractor={(item) => item.id}
+            renderItem={(item) => {
+              return <UserRow navigation={navigation} user={item.item} />;
+            }}
+          />
+        ) : (
+          <NotFound message={errorMessage} icon={errorIcon} />
+        )
+      ) : (
+        <ActivityIndicator color={'#7E57C2'} />
+      )}
+    </>
   );
 }
