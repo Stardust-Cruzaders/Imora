@@ -6,7 +6,7 @@ import {ActivityIndicator} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import styles from './styles';
 import textStyles from '../../../textStyles';
 import Div from '../../../Component/Div';
@@ -323,6 +323,24 @@ export default function ResidenceDetailed({route, navigation}) {
                 Complemento: {route.params.complement}
               </Text>
             )}
+            <View style={styles.mapView}>
+              <MapView
+                provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+                style={styles.map}
+                initialRegion={{
+                  latitude: 37.78825,
+                  longitude: -122.4324,
+                  latitudeDelta: 0.015,
+                  longitudeDelta: 0.0121,
+                }}
+                region={{
+                  latitude: 37.78825,
+                  longitude: -122.4324,
+                  latitudeDelta: 0.015,
+                  longitudeDelta: 0.0121,
+                }}
+              />
+            </View>
             <RectButton
               style={[
                 styles.button,
