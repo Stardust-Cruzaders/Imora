@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, Image, useWindowDimensions, ScrollView} from 'react-native';
 
 import {BorderlessButton} from 'react-native-gesture-handler';
@@ -7,6 +7,8 @@ import styles from './styles';
 import textStyles from '../../../textStyles';
 import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../Component/Div';
+import {useFeed} from '../../../contexts/feed';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default function ProfileUser({navigation, route}) {
   const width = useWindowDimensions().width;
@@ -20,8 +22,37 @@ export default function ProfileUser({navigation, route}) {
     user_state,
     user_city,
   } = route.params.user;
+  const {
+    isEmailAvailable,
+    setIsEmailAvailable,
+    isLocationAvailable,
+    setIsLocationAvailable,
+    isPhoneAvailable,
+    setIsPhoneAvailable,
+  } = useFeed();
+  useEffect(() => {
+    let mounted = true;
+    function getDataPreference() {
+      Promise.all([
+        AsyncStorage.getItem('@isEmailAvailable'),
+        AsyncStorage.getItem('@isPhoneAvailable'),
+        AsyncStorage.getItem('@isLocationAvailable'),
+      ])
+        .then((values) => {
+          if (mounted) {
+            setIsEmailAvailable(JSON.parse(values[0]));
+            setIsPhoneAvailable(JSON.parse(values[1]));
+            setIsLocationAvailable(JSON.parse(values[2]));
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+    getDataPreference();
 
-  console.log(route.params.user);
+    return () => (mounted = false);
+  }, [setIsEmailAvailable, setIsLocationAvailable, setIsPhoneAvailable]);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -52,7 +83,7 @@ export default function ProfileUser({navigation, route}) {
         </View>
         <View style={[styles.body, {width: width - 55}]}>
           <View style={styles.main}>
-            {(phone !== null || phone !== undefined) && (
+            {!!phone && isPhoneAvailable && (
               <View style={[styles.iconTextView, {marginTop: 25}]}>
                 <Icon
                   name={'phone'}
@@ -63,7 +94,7 @@ export default function ProfileUser({navigation, route}) {
                 <Text style={[styles.bodyText, textStyles.font]}>{phone}</Text>
               </View>
             )}
-            {user_state !== null && user_city !== null && (
+            {!!user_state && !!user_city && isLocationAvailable && (
               <View style={styles.iconTextView}>
                 <Icon
                   name={'map-pin'}
@@ -76,16 +107,23 @@ export default function ProfileUser({navigation, route}) {
                 </Text>
               </View>
             )}
-            <View style={styles.iconTextView}>
-              <Icon
-                name={'mail'}
-                size={24}
-                color={'#3F3F3F'}
-                style={styles.icon}
-              />
-              <Text style={[styles.bodyText, textStyles.font]}>{email}</Text>
-            </View>
-            <Div threshold={100} height={1.5} />
+            {isEmailAvailable && (
+              <>
+                <View style={styles.iconTextView}>
+                  <Icon
+                    name={'mail'}
+                    size={24}
+                    color={'#3F3F3F'}
+                    style={styles.icon}
+                  />
+                  <Text style={[styles.bodyText, textStyles.font]}>
+                    {email}
+                  </Text>
+                </View>
+                <Div threshold={100} height={1.5} />
+              </>
+            )}
+
             <Text style={[styles.bodyTitle, textStyles.font]}>Sobre</Text>
             <Text style={[styles.bodyText, textStyles.font]}>
               {bio !== undefined || null ? bio : 'sem descrição disponível'}
