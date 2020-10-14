@@ -1,17 +1,25 @@
+/* eslint-disable handle-callback-err */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
-import {Text, View, useWindowDimensions, Image, ScrollView} from 'react-native';
+import {
+  Text,
+  View,
+  useWindowDimensions,
+  Image,
+  ScrollView,
+  Linking,
+} from 'react-native';
 import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
 import {ActivityIndicator} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-import styles from './styles';
+import axios from 'axios';
+import {GEOCODING_KEY} from '@env';
 import textStyles from '../../../textStyles';
 import Div from '../../../Component/Div';
 import ImageSwipe from '../../../Component/ImageSwipe';
-
+import styles from './styles';
 export default function ResidenceDetailed({route, navigation}) {
   const width = useWindowDimensions().width;
   const [loading, setLoading] = useState(true);
@@ -42,12 +50,46 @@ export default function ResidenceDetailed({route, navigation}) {
         break;
     }
   }
+
+  const APIKEY = GEOCODING_KEY;
+  //Directions api
+
+  //Geocoding
+  const address = `${route.params.residence.street}, ${route.params.residence.numberr} ${route.params.residence.city} ${route.params.residence.state}`;
+  const geoURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${APIKEY}`;
+  const [residenceLat, setResidenceLat] = useState('');
+  const [residenceLng, setResidenceLng] = useState('');
+  const [couldFindAddress, setCouldFindAddress] = useState(false);
+
+  function openExternalApp(url) {
+    Linking.canOpenURL(url).then((supported) => {
+      if (supported) {
+        Linking.openURL(url);
+      } else {
+        console.log("Don't know how to open URI: " + url);
+      }
+    });
+  }
+
+  function openGps(lat, lng) {
+    var url = `geo:${lat},${lng}`;
+    openExternalApp(url);
+  }
+
   useEffect(() => {
     CreateLocationTypeMessage(route.params.residence_type);
     setComforts(
       [
-        {id: 'Wifi', value: route.params.residence.wifi, icon: 'wifi'},
-        {id: 'Televisão', value: route.params.residence.tv, icon: 'youtube-tv'},
+        {
+          id: 'Wifi',
+          value: route.params.residence.wifi,
+          icon: 'wifi',
+        },
+        {
+          id: 'Televisão',
+          value: route.params.residence.tv,
+          icon: 'youtube-tv',
+        },
         {
           id: 'Ar-condicionado',
           value: route.params.residence.ac,
@@ -68,7 +110,11 @@ export default function ResidenceDetailed({route, navigation}) {
           value: route.params.residence.grill,
           icon: 'food-steak',
         },
-        {id: 'Piscina', value: route.params.residence.pool, icon: 'pool'},
+        {
+          id: 'Piscina',
+          value: route.params.residence.pool,
+          icon: 'pool',
+        },
         {
           id: 'Estacionamento',
           value: route.params.residence.parking,
@@ -90,9 +136,35 @@ export default function ResidenceDetailed({route, navigation}) {
         },
       ].filter((element) => element.value === false),
     );
-    setLoading(false);
-  }, []);
-
+    axios
+      .get(geoURL)
+      .then((response) => {
+        const latitude = response.data.results[0].geometry.location.lat;
+        const longitude = response.data.results[0].geometry.location.lng;
+        setResidenceLat(latitude);
+        setResidenceLng(longitude);
+        setCouldFindAddress(true);
+      })
+      .catch((err) => {
+        console.log(address);
+        setCouldFindAddress(false);
+      })
+      .finally(() => setLoading(false));
+  }, [
+    address,
+    geoURL,
+    route.params.residence.ac,
+    route.params.residence.allow_pets,
+    route.params.residence.allow_smokers,
+    route.params.residence.grill,
+    route.params.residence.kitchen,
+    route.params.residence.notebook_work,
+    route.params.residence.parking,
+    route.params.residence.pool,
+    route.params.residence.tv,
+    route.params.residence.wifi,
+    route.params.residence_type,
+  ]);
   if (loading) {
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -100,7 +172,7 @@ export default function ResidenceDetailed({route, navigation}) {
         <Text
           style={{
             color: '#3F3F3F',
-            fontSize: 32,
+            fontSize: 20,
             fontFamily: 'Roboto',
           }}>
           Carregando informações.
@@ -108,6 +180,7 @@ export default function ResidenceDetailed({route, navigation}) {
       </View>
     );
   }
+
   return (
     <ScrollView style={styles.scroll}>
       <View style={[styles.headerImgView]}>
@@ -323,40 +396,38 @@ export default function ResidenceDetailed({route, navigation}) {
                 Complemento: {route.params.complement}
               </Text>
             )}
+            {/*
             <View style={styles.mapView}>
               <MapView
-                provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                 style={styles.map}
                 initialRegion={{
-                  latitude: 37.78825,
-                  longitude: -122.4324,
-                  latitudeDelta: 0.015,
-                  longitudeDelta: 0.0121,
-                }}
-                region={{
-                  latitude: 37.78825,
-                  longitude: -122.4324,
-                  latitudeDelta: 0.015,
-                  longitudeDelta: 0.0121,
-                }}
-              />
+                  latitude: residenceLat,
+                  longitude: residenceLong,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421,
+                }}>
+                <Polyline coordinates={[...coords]} strokeWidth={4} />
+              </MapView>
             </View>
-            <RectButton
-              style={[
-                styles.button,
-                {backgroundColor: '#26E07C', width: width - 75},
-              ]}
-              onPress={() => {
-                console.log(route.params);
-              }}>
-              <View style={{flexDirection: 'row'}}>
-                <Icon name={'map-pin'} size={30} color={'#FFF'} />
-                <Text style={[styles.buttonText, textStyles.font]}>
-                  {' '}
-                  Mostrar no Google Maps{' '}
-                </Text>
-              </View>
-            </RectButton>
+            */}
+            {couldFindAddress && (
+              <RectButton
+                style={[
+                  styles.button,
+                  {backgroundColor: '#26E07C', width: width - 75},
+                ]}
+                onPress={() => {
+                  openGps(residenceLat, residenceLng);
+                }}>
+                <View style={{flexDirection: 'row'}}>
+                  <Icon name={'map-pin'} size={30} color={'#FFF'} />
+                  <Text style={[styles.buttonText, textStyles.font]}>
+                    {' '}
+                    Mostrar no Google Maps{' '}
+                  </Text>
+                </View>
+              </RectButton>
+            )}
             <RectButton
               style={[
                 styles.button,

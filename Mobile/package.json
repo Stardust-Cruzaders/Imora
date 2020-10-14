@@ -24,6 +24,7 @@
     "popup-ui": "^1.1.1",
     "react": "16.13.1",
     "react-native": "0.63.1",
+    "react-native-dotenv": "^2.4.1",
     "react-native-elements": "^2.0.4",
     "react-native-fbsdk": "^2.0.0",
     "react-native-gesture-handler": "^1.7.0",
