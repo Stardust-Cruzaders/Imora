@@ -52,9 +52,7 @@ export default function ResidenceDetailed({route, navigation}) {
   }
 
   const APIKEY = GEOCODING_KEY;
-  //Directions api
 
-  //Geocoding
   const address = `${route.params.residence.street}, ${route.params.residence.numberr} ${route.params.residence.city} ${route.params.residence.state}`;
   const geoURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${APIKEY}`;
   const [residenceLat, setResidenceLat] = useState('');
@@ -136,9 +134,11 @@ export default function ResidenceDetailed({route, navigation}) {
         },
       ].filter((element) => element.value === false),
     );
+    console.log('');
     axios
       .get(geoURL)
       .then((response) => {
+        console.log(response);
         const latitude = response.data.results[0].geometry.location.lat;
         const longitude = response.data.results[0].geometry.location.lng;
         setResidenceLat(latitude);
@@ -146,7 +146,7 @@ export default function ResidenceDetailed({route, navigation}) {
         setCouldFindAddress(true);
       })
       .catch((err) => {
-        console.log(address);
+        console.log(err);
         setCouldFindAddress(false);
       })
       .finally(() => setLoading(false));
