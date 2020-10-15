@@ -1,5 +1,5 @@
-/* eslint-disable handle-callback-err */
 /* eslint-disable react-native/no-inline-styles */
+import {REACT_APP_GEOCODING_KEY} from '@env';
 import React, {useState, useEffect} from 'react';
 import {
   Text,
@@ -15,7 +15,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import axios from 'axios';
-import {GEOCODING_KEY} from '@env';
+
 import textStyles from '../../../textStyles';
 import Div from '../../../Component/Div';
 import ImageSwipe from '../../../Component/ImageSwipe';
@@ -51,10 +51,8 @@ export default function ResidenceDetailed({route, navigation}) {
     }
   }
 
-  const APIKEY = GEOCODING_KEY;
-
   const address = `${route.params.residence.street}, ${route.params.residence.numberr} ${route.params.residence.city} ${route.params.residence.state}`;
-  const geoURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${APIKEY}`;
+  const geoURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${REACT_APP_GEOCODING_KEY}`;
   const [residenceLat, setResidenceLat] = useState('');
   const [residenceLng, setResidenceLng] = useState('');
   const [couldFindAddress, setCouldFindAddress] = useState(false);
@@ -134,11 +132,10 @@ export default function ResidenceDetailed({route, navigation}) {
         },
       ].filter((element) => element.value === false),
     );
-    console.log('');
     axios
       .get(geoURL)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
         const latitude = response.data.results[0].geometry.location.lat;
         const longitude = response.data.results[0].geometry.location.lng;
         setResidenceLat(latitude);
@@ -165,6 +162,7 @@ export default function ResidenceDetailed({route, navigation}) {
     route.params.residence.wifi,
     route.params.residence_type,
   ]);
+
   if (loading) {
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
