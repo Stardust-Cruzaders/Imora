@@ -11,51 +11,36 @@ import Div from '../../../Component/Div';
 import {useAuth} from '../../../contexts/auth';
 import ProfileHeader from '../../../Component/ProfileHeader';
 import {useFeed} from '../../../contexts/feed';
-import AsyncStorage from '@react-native-community/async-storage';
 
 export default function ProfileSelf({navigation}) {
   const width = useWindowDimensions().width;
 
   const {FacebookSignOut, user} = useAuth();
   const {
-    isEmailAvailable,
+    is_email_available,
+    is_phone_available,
+    is_location_available,
     setIsEmailAvailable,
-    isLocationAvailable,
-    setIsLocationAvailable,
-    isPhoneAvailable,
     setIsPhoneAvailable,
+    setIsLocationAvailable,
   } = useFeed();
 
   useEffect(() => {
-    let mounted = true;
-    function getDataPreference() {
-      Promise.all([
-        AsyncStorage.getItem('@isEmailAvailable'),
-        AsyncStorage.getItem('@isPhoneAvailable'),
-        AsyncStorage.getItem('@isLocationAvailable'),
-      ])
-        .then((values) => {
-          if (mounted) {
-            setIsEmailAvailable(JSON.parse(values[0]));
-            setIsPhoneAvailable(JSON.parse(values[1]));
-            setIsLocationAvailable(JSON.parse(values[2]));
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+    function setCurrentData() {
+      setIsEmailAvailable(user.is_email_available);
+      setIsPhoneAvailable(user.is_phone_available);
+      setIsLocationAvailable(user.is_location_available);
     }
-    getDataPreference();
 
-    return () => (mounted = false);
-  }, [setIsEmailAvailable, setIsLocationAvailable, setIsPhoneAvailable]);
+    setCurrentData();
+  }, []);
   return (
     <View style={styles.container}>
       <ProfileHeader navigation={navigation} />
       <ScrollView>
         <View style={[styles.body, {width: width - 55}]}>
           <View style={styles.main}>
-            {!!user.phone && isPhoneAvailable === true && (
+            {!!user.phone && is_phone_available === true && (
               <>
                 <View style={[styles.iconTextView, {marginTop: 25}]}>
                   <Icon
@@ -72,7 +57,7 @@ export default function ProfileSelf({navigation}) {
               </>
             )}
 
-            {!!user.user_state && isLocationAvailable && !!user.user_city && (
+            {!!user.user_state && is_location_available && !!user.user_city && (
               <>
                 <View style={styles.iconTextView}>
                   <Icon
@@ -89,7 +74,7 @@ export default function ProfileSelf({navigation}) {
               </>
             )}
 
-            {isEmailAvailable && (
+            {is_email_available && (
               <>
                 <View style={styles.iconTextView}>
                   <Icon

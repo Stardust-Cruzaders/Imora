@@ -9,16 +9,15 @@ import styles from './styles';
 import api from '../../../services/api';
 import {useFeed} from '../../../contexts/feed';
 import {useAuth} from '../../../contexts/auth';
-import AsyncStorage from '@react-native-community/async-storage';
 
 export default function EditResidenceConfig({navigation}) {
   const {
-    isEmailAvailable,
+    is_email_available,
     setIsEmailAvailable,
-    isLocationAvailable,
-    setIsLocationAvailable,
-    isPhoneAvailable,
+    is_phone_available,
     setIsPhoneAvailable,
+    is_location_available,
+    setIsLocationAvailable,
   } = useFeed();
   const {user, FacebookSignOut, setUser} = useAuth();
   const [bio, setBio] = useState('');
@@ -63,6 +62,9 @@ export default function EditResidenceConfig({navigation}) {
       phone,
       user_state,
       user_city,
+      is_email_available,
+      is_phone_available,
+      is_location_available,
     };
     api
       .put(`/users/${id}`, data)
@@ -75,26 +77,7 @@ export default function EditResidenceConfig({navigation}) {
         return null;
       });
   }
-  async function storeDataPreferences() {
-    try {
-      await Promise.all([
-        AsyncStorage.setItem(
-          '@isEmailAvailable',
-          JSON.stringify(isEmailAvailable),
-        ),
-        AsyncStorage.setItem(
-          '@isPhoneAvailable',
-          JSON.stringify(isPhoneAvailable),
-        ),
-        AsyncStorage.setItem(
-          '@isLocationAvailable',
-          JSON.stringify(isLocationAvailable),
-        ),
-      ]);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+
   function ConfirmationAlert() {
     Alert.alert(
       'Confirmar',
@@ -107,12 +90,10 @@ export default function EditResidenceConfig({navigation}) {
         {
           text: 'atualizar informações',
           onPress: () => {
-            storeDataPreferences().then(() => {
-              const newUser = UpdateUserData(user.id);
-              if (newUser !== null) {
-                setUser(newUser);
-              }
-            });
+            const newUser = UpdateUserData(user.id);
+            if (newUser !== null) {
+              setUser(newUser);
+            }
           },
         },
       ],
@@ -127,36 +108,9 @@ export default function EditResidenceConfig({navigation}) {
       setUserState(user.user_state);
       setUserCity(user.user_city);
     }
-    let mounted = true;
-    function getDataPreference() {
-      Promise.all([
-        AsyncStorage.getItem('@isEmailAvailable'),
-        AsyncStorage.getItem('@isPhoneAvailable'),
-        AsyncStorage.getItem('@isLocationAvailable'),
-      ])
-        .then((values) => {
-          if (mounted) {
-            setIsEmailAvailable(JSON.parse(values[0]));
-            setIsPhoneAvailable(JSON.parse(values[1]));
-            setIsLocationAvailable(JSON.parse(values[2]));
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    }
+
     setCurrentData();
-    getDataPreference();
-    return () => (mounted = false);
-  }, [
-    user.bio,
-    user.phone,
-    user.user_state,
-    user.user_city,
-    setIsEmailAvailable,
-    setIsPhoneAvailable,
-    setIsLocationAvailable,
-  ]);
+  }, [user.bio, user.phone, user.user_state, user.user_city]);
   return (
     <Root>
       <View style={styles.container}>
@@ -233,14 +187,14 @@ export default function EditResidenceConfig({navigation}) {
                 <Text style={styles.itemTitle}>Email </Text>
                 <BorderlessButton
                   onPress={() => {
-                    setIsEmailAvailable(!isEmailAvailable);
+                    setIsEmailAvailable(!is_email_available);
                   }}
                   style={[styles.toggleButton]}>
                   <Icon
                     style={styles.toggleIcon}
-                    name={isEmailAvailable ? 'toggle-right' : 'toggle-left'}
+                    name={is_email_available ? 'toggle-right' : 'toggle-left'}
                     size={40}
-                    color={isEmailAvailable ? '#26E07C' : '#ff0033'}
+                    color={is_email_available ? '#26E07C' : '#ff0033'}
                   />
                 </BorderlessButton>
               </View>
@@ -248,14 +202,18 @@ export default function EditResidenceConfig({navigation}) {
                 <Text style={styles.itemTitle}>Localização </Text>
                 <BorderlessButton
                   onPress={() => {
-                    setIsLocationAvailable(!isLocationAvailable);
+                    setIsLocationAvailable(
+                      is_location_available ? false : true,
+                    );
                   }}
                   style={styles.toggleButton}>
                   <Icon
                     style={styles.toggleIcon}
-                    name={isLocationAvailable ? 'toggle-right' : 'toggle-left'}
+                    name={
+                      is_location_available ? 'toggle-right' : 'toggle-left'
+                    }
                     size={40}
-                    color={isLocationAvailable ? '#26E07C' : '#ff0033'}
+                    color={is_location_available ? '#26E07C' : '#ff0033'}
                   />
                 </BorderlessButton>
               </View>
@@ -263,14 +221,14 @@ export default function EditResidenceConfig({navigation}) {
                 <Text style={styles.itemTitle}>Telefone </Text>
                 <BorderlessButton
                   onPress={() => {
-                    setIsPhoneAvailable(!isPhoneAvailable);
+                    setIsPhoneAvailable(!is_phone_available);
                   }}
                   style={styles.toggleButton}>
                   <Icon
                     style={styles.toggleIcon}
-                    name={isPhoneAvailable ? 'toggle-right' : 'toggle-left'}
+                    name={is_phone_available ? 'toggle-right' : 'toggle-left'}
                     size={40}
-                    color={isPhoneAvailable ? '#26E07C' : '#ff0033'}
+                    color={is_phone_available ? '#26E07C' : '#ff0033'}
                   />
                 </BorderlessButton>
               </View>
