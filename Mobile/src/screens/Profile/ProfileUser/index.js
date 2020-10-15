@@ -1,15 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, Text, Image, useWindowDimensions, ScrollView} from 'react-native';
-
 import {BorderlessButton} from 'react-native-gesture-handler';
 
 import styles from './styles';
 import textStyles from '../../../textStyles';
 import Icon from 'react-native-vector-icons/Feather';
 import Div from '../../../Component/Div';
-import {useFeed} from '../../../contexts/feed';
-import AsyncStorage from '@react-native-community/async-storage';
-
 export default function ProfileUser({navigation, route}) {
   const width = useWindowDimensions().width;
   const {
@@ -18,41 +14,13 @@ export default function ProfileUser({navigation, route}) {
     avatar,
     email,
     phone,
-    is_host,
     user_state,
     user_city,
+    is_email_available,
+    is_phone_available,
+    is_location_available,
   } = route.params.user;
-  const {
-    isEmailAvailable,
-    setIsEmailAvailable,
-    isLocationAvailable,
-    setIsLocationAvailable,
-    isPhoneAvailable,
-    setIsPhoneAvailable,
-  } = useFeed();
-  useEffect(() => {
-    let mounted = true;
-    function getDataPreference() {
-      Promise.all([
-        AsyncStorage.getItem('@isEmailAvailable'),
-        AsyncStorage.getItem('@isPhoneAvailable'),
-        AsyncStorage.getItem('@isLocationAvailable'),
-      ])
-        .then((values) => {
-          if (mounted) {
-            setIsEmailAvailable(JSON.parse(values[0]));
-            setIsPhoneAvailable(JSON.parse(values[1]));
-            setIsLocationAvailable(JSON.parse(values[2]));
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    }
-    getDataPreference();
 
-    return () => (mounted = false);
-  }, [setIsEmailAvailable, setIsLocationAvailable, setIsPhoneAvailable]);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -83,7 +51,7 @@ export default function ProfileUser({navigation, route}) {
         </View>
         <View style={[styles.body, {width: width - 55}]}>
           <View style={styles.main}>
-            {!!phone && isPhoneAvailable && (
+            {!!phone && is_phone_available && (
               <View style={[styles.iconTextView, {marginTop: 25}]}>
                 <Icon
                   name={'phone'}
@@ -94,7 +62,7 @@ export default function ProfileUser({navigation, route}) {
                 <Text style={[styles.bodyText, textStyles.font]}>{phone}</Text>
               </View>
             )}
-            {!!user_state && !!user_city && isLocationAvailable && (
+            {!!user_state && !!user_city && is_location_available && (
               <View style={styles.iconTextView}>
                 <Icon
                   name={'map-pin'}
@@ -107,7 +75,7 @@ export default function ProfileUser({navigation, route}) {
                 </Text>
               </View>
             )}
-            {isEmailAvailable && (
+            {is_email_available && (
               <>
                 <View style={styles.iconTextView}>
                   <Icon

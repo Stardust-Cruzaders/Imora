@@ -210,6 +210,10 @@ export default function ResidenceDetailed({route, navigation}) {
                   is_host: route.params.residence.is_host,
                   user_city: route.params.residence.user_city,
                   user_state: route.params.residence.user_state,
+                  is_email_available: route.params.residence.is_email_available,
+                  is_phone_available: route.params.residence.is_phone_available,
+                  is_location_available:
+                    route.params.residence.is_location_available,
                 };
                 navigation.navigate('ProfileUser', {
                   user,
