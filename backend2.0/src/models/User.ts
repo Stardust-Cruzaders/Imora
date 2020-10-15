@@ -39,6 +39,15 @@ class User {
   @Column()
   user_city: string;
 
+  @Column('boolean')
+  is_email_available: boolean;
+
+  @Column('boolean')
+  is_phone_available: boolean;
+
+  @Column('boolean')
+  is_location_available: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 
