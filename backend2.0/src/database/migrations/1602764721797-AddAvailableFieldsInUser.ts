@@ -8,7 +8,6 @@ export default class AddAvailableFieldsInUser1602764721797
       new TableColumn({
         name: 'is_email_available',
         type: 'boolean',
-        isNullable: true,
         default: true,
       }),
     );
@@ -17,7 +16,6 @@ export default class AddAvailableFieldsInUser1602764721797
       new TableColumn({
         name: 'is_phone_available',
         type: 'boolean',
-        isNullable: true,
         default: true,
       }),
     );
@@ -26,7 +24,6 @@ export default class AddAvailableFieldsInUser1602764721797
       new TableColumn({
         name: 'is_location_available',
         type: 'boolean',
-        isNullable: true,
         default: true,
       }),
     );

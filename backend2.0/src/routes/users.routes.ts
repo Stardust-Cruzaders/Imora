@@ -52,7 +52,15 @@ usersRouter.post('/find', async (request, response) => {
 
 usersRouter.put('/:user_id', async (request, response) => {
   const { user_id } = request.params;
-  const { bio, phone, user_state, user_city } = request.body;
+  const {
+    bio,
+    phone,
+    user_state,
+    user_city,
+    is_email_available,
+    is_phone_available,
+    is_location_available,
+  } = request.body;
 
   const updateUser = new UpdateUserService();
 
@@ -62,6 +70,9 @@ usersRouter.put('/:user_id', async (request, response) => {
     phone,
     user_state,
     user_city,
+    is_email_available,
+    is_phone_available,
+    is_location_available,
   });
 
   return response.json(user);
