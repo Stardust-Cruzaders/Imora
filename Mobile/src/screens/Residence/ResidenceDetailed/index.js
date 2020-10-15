@@ -16,11 +16,14 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import axios from 'axios';
 
+import api from '../../../services/api';
 import textStyles from '../../../textStyles';
 import Div from '../../../Component/Div';
 import ImageSwipe from '../../../Component/ImageSwipe';
 import styles from './styles';
+import {useAuth} from '../../../contexts/auth';
 export default function ResidenceDetailed({route, navigation}) {
+  const {user} = useAuth();
   const width = useWindowDimensions().width;
   const [loading, setLoading] = useState(true);
   const [locationTypeMessage, setLocationTypeMessage] = useState('');
@@ -56,7 +59,7 @@ export default function ResidenceDetailed({route, navigation}) {
   const [residenceLat, setResidenceLat] = useState('');
   const [residenceLng, setResidenceLng] = useState('');
   const [couldFindAddress, setCouldFindAddress] = useState(false);
-
+  const [interessed_users, setInteressedUsers] = useState([]);
   function openExternalApp(url) {
     Linking.canOpenURL(url).then((supported) => {
       if (supported) {
@@ -71,8 +74,20 @@ export default function ResidenceDetailed({route, navigation}) {
     var url = `geo:${lat},${lng}`;
     openExternalApp(url);
   }
-
+  function ToggleInterest(residence_id, user_id) {
+    api
+      .patch(`/residences/${residence_id}/interess`, {
+        user_id,
+      })
+      .then((response) => {
+        setInteressedUsers(response.data.interessed_users);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   useEffect(() => {
+    console.log(interessed_users.includes(user.id));
     CreateLocationTypeMessage(route.params.residence_type);
     setComforts(
       [
@@ -135,7 +150,6 @@ export default function ResidenceDetailed({route, navigation}) {
     axios
       .get(geoURL)
       .then((response) => {
-        console.log(response.data);
         const latitude = response.data.results[0].geometry.location.lat;
         const longitude = response.data.results[0].geometry.location.lng;
         setResidenceLat(latitude);
@@ -150,6 +164,7 @@ export default function ResidenceDetailed({route, navigation}) {
   }, [
     address,
     geoURL,
+    interessed_users,
     route.params.residence.ac,
     route.params.residence.allow_pets,
     route.params.residence.allow_smokers,
@@ -161,6 +176,7 @@ export default function ResidenceDetailed({route, navigation}) {
     route.params.residence.tv,
     route.params.residence.wifi,
     route.params.residence_type,
+    user.id,
   ]);
 
   if (loading) {
@@ -398,20 +414,6 @@ export default function ResidenceDetailed({route, navigation}) {
                 Complemento: {route.params.complement}
               </Text>
             )}
-            {/*
-            <View style={styles.mapView}>
-              <MapView
-                style={styles.map}
-                initialRegion={{
-                  latitude: residenceLat,
-                  longitude: residenceLong,
-                  latitudeDelta: 0.0922,
-                  longitudeDelta: 0.0421,
-                }}>
-                <Polyline coordinates={[...coords]} strokeWidth={4} />
-              </MapView>
-            </View>
-            */}
             {couldFindAddress && (
               <RectButton
                 style={[
@@ -433,11 +435,20 @@ export default function ResidenceDetailed({route, navigation}) {
             <RectButton
               style={[
                 styles.button,
-                {backgroundColor: '#7E57C2', width: width - 75},
+                {
+                  backgroundColor: interessed_users.includes(user.id)
+                    ? 'black'
+                    : '#7E57C2',
+                  width: width - 75,
+                },
               ]}
-              onPress={() => {}}>
+              onPress={() => {
+                ToggleInterest(route.params.residence.id, user.id);
+              }}>
               <Text style={[styles.buttonText, textStyles.font]}>
-                Demonstrar interesse
+                {interessed_users.includes(user.id)
+                  ? 'Você demonstrou interesse'
+                  : 'Estou interessado'}
               </Text>
             </RectButton>
           </View>
