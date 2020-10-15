@@ -27,8 +27,8 @@ export default function Login({navigation}) {
         </RectButton>
 
         <RectButton
-          onPress={() => {
-            FacebookSignIn();
+          onPress={async () => {
+            await FacebookSignIn();
             if (isRegistered == false) {
               navigation.navigate('LoginEditInfo');
             }

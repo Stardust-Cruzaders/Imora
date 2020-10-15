@@ -52,17 +52,20 @@ export function AuthProvider({children}) {
     const data = {
       email,
     };
-    const response = await api.post('/users/find', data);
-    console.log('Is registered: ' + response.data.is_registered);
-    if (response.data.is_registered) {
-      await AsyncStorage.setItem(
-        '@RNAuth:user',
-        JSON.stringify(response.data.user),
-      );
-      setUser(response.data.user);
+    try {
+      const response = await api.post('/users/find', data);
+      console.log('Is registered: ' + response.data.is_registered);
+      if (response.data.is_registered) {
+        await AsyncStorage.setItem(
+          '@RNAuth:user',
+          JSON.stringify(response.data.user),
+        );
+        setUser(response.data.user);
+        return response !== undefined ? response.data.is_registered : response;
+      }
+    } catch (err) {
+      console.log(err);
     }
-
-    return response !== undefined ? response.data.is_registered : response;
   }
   useEffect(() => {
     async function loadStoragedData() {
@@ -109,26 +112,36 @@ export function AuthProvider({children}) {
     new GraphRequestManager().addRequest(infoRequest).start();
   }
   function FacebookSignIn() {
-    LoginManager.logInWithPermissions(['public_profile', 'email']).then(
-      async function (result) {
-        if (result.isCancelled) {
-          console.log('Login Cancelled');
-        } else {
-          console.log(
-            'Login success with permissions ' +
-              result.grantedPermissions.toString(),
-          );
-          const accessData = await AccessToken.getCurrentAccessToken();
+    api
+      .get('/')
+      .then(() => {
+        LoginManager.logInWithPermissions(['public_profile', 'email']).then(
+          async function (result) {
+            if (result.isCancelled) {
+              console.log('Login Cancelled');
+            } else {
+              console.log(
+                'Login success with permissions ' +
+                  result.grantedPermissions.toString(),
+              );
+              const accessData = await AccessToken.getCurrentAccessToken();
 
-          getUserInfo(accessData.accessToken);
-          setAccessToken(accessData.accessToken);
-          await AsyncStorage.setItem('@RNAuth:token', accessData.accessToken);
-        }
-      },
-      function (error) {
-        console.log('Login fail with error: ' + error);
-      },
-    );
+              getUserInfo(accessData.accessToken);
+              setAccessToken(accessData.accessToken);
+              await AsyncStorage.setItem(
+                '@RNAuth:token',
+                accessData.accessToken,
+              );
+            }
+          },
+          function (error) {
+            console.log('Login fail with error: ' + error);
+          },
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   function FacebookSignOut() {
     AsyncStorage.clear().then(() => {
