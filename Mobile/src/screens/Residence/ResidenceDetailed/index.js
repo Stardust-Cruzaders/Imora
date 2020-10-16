@@ -87,7 +87,12 @@ export default function ResidenceDetailed({route, navigation}) {
       });
   }
   useEffect(() => {
-    console.log(interessed_users.includes(user.id));
+    console.log(`Usuários interessado? ${interessed_users.includes(user.id)}`);
+    console.log(
+      `Usuários interessado: valor do antigo? ${route.params.residence.interessed_users.includes(
+        user.id,
+      )}`,
+    );
     CreateLocationTypeMessage(route.params.residence_type);
     setComforts(
       [
@@ -448,7 +453,7 @@ export default function ResidenceDetailed({route, navigation}) {
               <Text style={[styles.buttonText, textStyles.font]}>
                 {interessed_users.includes(user.id)
                   ? 'Você demonstrou interesse'
-                  : 'Estou interessado'}
+                  : 'Demonstrar interesse'}
               </Text>
             </RectButton>
           </View>
