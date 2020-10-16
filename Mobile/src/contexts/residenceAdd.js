@@ -130,6 +130,96 @@ export default function ResidenceAddProvider({children}) {
       return false;
     }
   }
+
+  function HandleResidenceUpdate(residence_id) {
+    const data = {
+      residence_name: title,
+      description: description,
+      images: [
+        'https://i.pinimg.com/564x/34/43/2f/34432f8d15ad73f2fb289195327b2ad4.jpg',
+        'https://i.pinimg.com/564x/8b/09/43/8b0943a51a748b59e3f1aacffeb266dc.jpg',
+        'https://i.pinimg.com/564x/eb/23/16/eb2316a4c199cb12436f6b9f440a2330.jpg',
+        'https://i.pinimg.com/564x/ea/bf/e8/eabfe8dae949003e8ae55cf965899e76.jpg',
+        'https://i.pinimg.com/564x/e0/33/17/e033172ea1e2726d95ece2a3e85e230d.jpg',
+      ],
+      available: true,
+      zipcode: zipcode,
+      state: state,
+      city: city,
+      neighborhood: neighborhood,
+      street: street,
+      numberr: number,
+      complement: complement,
+      residence_type: locationType,
+      residence_place: checkedHouseType,
+      price: price,
+      allow_smokers: allowSmokers,
+      allow_pets: allowPets,
+      wifi: hasWifi,
+      kitchen: hasKitchen,
+      tv: hasTV,
+      ac: hasAC,
+      notebook_work: hasNotebookWork,
+      grill: hasGrill,
+      pool: hasPool,
+      parking: hasParkingLot,
+      num_rooms: numRooms,
+      num_bathrooms: numBathrooms,
+      current_residents: currentResidents,
+      max_residents: maxResidentNum,
+    };
+
+    api
+      .put(`/residences/${residence_id}`, data)
+      .then(() => {
+        console.log('successs!');
+      })
+      .catch((err) => {
+        console.log('Error: ' + err);
+      });
+  }
+  const [residence_id, setResidenceId] = useState('');
+  const [isUpdatingValues, setIsUpdatingValues] = useState(false);
+  function setDefaultValues(residence) {
+    //Residence Main
+    setResidenceId(residence.id);
+    setIsUpdatingValues(true);
+    setTitle(residence.residence_name);
+    setPrice(residence.price);
+    setNumRooms(residence.num_rooms);
+    setNumBathrooms(residence.num_bathrooms);
+
+    //Residence Type
+    setLocationType(residence.residence_type);
+    setCheckedHouseType(residence.residence_place);
+    setDescription(residence.description);
+
+    //Residence Comforts
+    setHasWifi(residence.wifi);
+    setHasTV(residence.tv);
+    setHasAC(residence.ac);
+    setHasNotebookWork(residence.notebook_work);
+    setHasKitchen(residence.kitchen);
+    setHasGrill(residence.grill);
+    setHasPool(residence.pool);
+    setHasParkingLot(residence.parking);
+
+    //Residence Conditions
+    setMaxResidentNum(residence.max_residents);
+    setCurrentResidents(residence.current_residents);
+    setAllowPets(residence.allow_pets);
+    setAllowSmokers(residence.allow_smokers);
+
+    //Residence Zipcode
+    setZipcode(residence.zipcode);
+    //ResidenceAddress
+    setStreet(residence.street);
+    setNumber(residence.numberr);
+    setNeighborhood(residence.neighborhood);
+    setCity(residence.city);
+    setState(residence.state);
+    setComplement(residence.complement);
+  }
   function CreateLocationTypeMessage(typeOfLocation) {
     switch (typeOfLocation) {
       case 'Espaço inteiro':
@@ -234,6 +324,11 @@ export default function ResidenceAddProvider({children}) {
         complement,
         setComplement,
         HandleResidenceAdd,
+        setDefaultValues,
+        isUpdatingValues,
+        setIsUpdatingValues,
+        HandleResidenceUpdate,
+        residence_id,
       }}>
       {children}
     </ResidenceAddContext.Provider>

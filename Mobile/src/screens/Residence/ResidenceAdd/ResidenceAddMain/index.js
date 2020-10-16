@@ -1,4 +1,7 @@
-import React, {useState} from 'react';
+/* eslint-disable no-alert */
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable eqeqeq */
+import React, {useEffect} from 'react';
 import {
   Image,
   Text,
@@ -23,14 +26,13 @@ import {
   BorderlessButton,
   FlatList,
   RectButton,
-  ScrollView,
 } from 'react-native-gesture-handler';
 
 import {TextInput} from 'react-native-paper';
 import {Root, Popup} from 'popup-ui';
 
 import {useResidenceAdd} from '../../../../contexts/residenceAdd';
-export default function ResidenceAddMain({navigation}) {
+export default function ResidenceAddMain({navigation, route}) {
   const {
     title,
     setTitle,
@@ -42,10 +44,21 @@ export default function ResidenceAddMain({navigation}) {
     setNumBathrooms,
     resourcePath,
     setResourcePath,
+    setDefaultValues,
+    setIsUpdatingValues,
   } = useResidenceAdd();
 
   const width = useWindowDimensions().width;
 
+  useEffect(() => {
+    if (route.params.residence) {
+      setIsUpdatingValues(true);
+      setDefaultValues(route.params.residence);
+    } else {
+      setIsUpdatingValues(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const selectFile = () => {
     var options = {
       title: 'Selecionar imagem',

@@ -1,17 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-shadow */
 import React, {useEffect, useState} from 'react';
-import {View, Text, Alert, FlatList, ScrollView} from 'react-native';
+import {View, Text, Alert, FlatList} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
-import axios from 'axios';
-import UserRow from '../../Component/UserRow';
-import Div from '../../Component/Div';
-import styles from './styles';
-import api from '../../services/api';
-import NotFound from '../../Component/NotFound';
 import {ActivityIndicator} from 'react-native-paper';
 
+import UserRow from '../../Component/UserRow';
+import Div from '../../Component/Div';
+import api from '../../services/api';
+import NotFound from '../../Component/NotFound';
+import styles from './styles';
 export default function EditResidenceConfig({route, navigation}) {
   const [available, setAvailable] = useState(route.params.residence.available);
   const [users, setUsers] = useState([]);
@@ -126,7 +125,15 @@ export default function EditResidenceConfig({route, navigation}) {
                     </View>
                   </View>
                   <Div threshold={32} height={1.6} />
-                  <RectButton>
+                  <RectButton
+                    onPress={() => {
+                      navigation.navigate('ResidenceAdd', {
+                        screen: 'ResidenceAddMain',
+                        params: {
+                          residence: route.params.residence,
+                        },
+                      });
+                    }}>
                     <View style={styles.section}>
                       <View style={styles.headerView}>
                         <Text style={styles.title}>Alterar anúncio</Text>

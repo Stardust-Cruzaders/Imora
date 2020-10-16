@@ -43,7 +43,11 @@ export default function ResidenceEdit({navigation}) {
     complement,
     currentResidents,
     HandleResidenceAdd,
+    isUpdatingValues,
+    HandleResidenceUpdate,
+    residence_id,
   } = useResidenceAdd();
+
   return (
     <Root>
       <ResidenceAddHeader
@@ -322,19 +326,35 @@ export default function ResidenceEdit({navigation}) {
             {backgroundColor: '#7E57C2', width: width - 245},
           ]}
           onPress={() => {
-            HandleResidenceAdd(user.id);
-            Popup.show({
-              type: 'Success',
-              title: 'Residência adicionada com sucesso',
-              button: true,
-              textBody:
-                'Sua residência foi adicionada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
-              buttontext: 'OK',
-              callback: () => {
-                Popup.hide();
-                navigation.navigate('Feed');
-              },
-            });
+            if (isUpdatingValues === false) {
+              HandleResidenceAdd(user.id);
+              Popup.show({
+                type: 'Success',
+                title: 'Residência adicionada com sucesso',
+                button: true,
+                textBody:
+                  'Sua residência foi adicionada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
+                buttontext: 'OK',
+                callback: () => {
+                  Popup.hide();
+                  navigation.navigate('Feed');
+                },
+              });
+            } else {
+              HandleResidenceUpdate(residence_id);
+              Popup.show({
+                type: 'Success',
+                title: 'Residência Alterada com sucesso',
+                button: true,
+                textBody:
+                  'Sua residência foi alterada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
+                buttontext: 'OK',
+                callback: () => {
+                  Popup.hide();
+                  navigation.navigate('Feed');
+                },
+              });
+            }
           }}>
           <Text style={styles.buttonText}>Publicar</Text>
         </RectButton>
