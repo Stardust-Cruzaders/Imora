@@ -22,6 +22,20 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderColor: '#7E57C2',
   },
+  filterButtonStyle: {
+    backgroundColor: '#3F3F3F',
+    borderRadius: 1000,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    elevation: 15,
+  },
+  textFormatation: {
+    fontFamily: 'Roboto',
+    fontSize: 18,
+    color: '#FFF',
+  },
 });
 
 export default styles;

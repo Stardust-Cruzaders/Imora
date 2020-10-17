@@ -9,7 +9,16 @@ import DeleteUserService from '../services/DeleteUserService';
 const usersRouter = Router();
 
 usersRouter.post('/', async (request, response) => {
-  const { name, email, avatar, bio, is_host, phone } = request.body;
+  const {
+    name,
+    email,
+    avatar,
+    bio,
+    is_host,
+    phone,
+    user_state,
+    user_city,
+  } = request.body;
 
   const createUser = new CreateUserService();
 
@@ -20,6 +29,8 @@ usersRouter.post('/', async (request, response) => {
     bio,
     is_host,
     phone,
+    user_state,
+    user_city,
     favorites: [],
   });
 
@@ -32,13 +43,24 @@ usersRouter.post('/find', async (request, response) => {
   const findUser = new FindUserService();
 
   const result = await findUser.execute({ email });
+  if (result === false) {
+    return response.json({ user: {}, is_registered: result });
+  }
 
-  return response.json({ is_registered: result });
+  return response.json({ user: result, is_registered: true });
 });
 
 usersRouter.put('/:user_id', async (request, response) => {
   const { user_id } = request.params;
-  const { bio, phone } = request.body;
+  const {
+    bio,
+    phone,
+    user_state,
+    user_city,
+    is_email_available,
+    is_phone_available,
+    is_location_available,
+  } = request.body;
 
   const updateUser = new UpdateUserService();
 
@@ -46,6 +68,11 @@ usersRouter.put('/:user_id', async (request, response) => {
     id: user_id,
     bio,
     phone,
+    user_state,
+    user_city,
+    is_email_available,
+    is_phone_available,
+    is_location_available,
   });
 
   return response.json(user);

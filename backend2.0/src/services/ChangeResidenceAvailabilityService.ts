@@ -4,14 +4,10 @@ import Residence from '../models/Residence';
 
 interface Request {
   residence_id: string;
-  available: boolean;
 }
 
 class ChangeResidenceAvailabilityService {
-  public async execute({
-    residence_id,
-    available,
-  }: Request): Promise<Residence> {
+  public async execute({ residence_id }: Request): Promise<Residence> {
     const residenceRepository = getRepository(Residence);
 
     const residence = await residenceRepository.findOne({
@@ -20,7 +16,11 @@ class ChangeResidenceAvailabilityService {
     if (!residence) {
       throw new AppError("Residence doesn't exist");
     }
-    residence.available = available;
+    if (residence.available) {
+      residence.available = false;
+    } else {
+      residence.available = true;
+    }
     const newResidence = await residenceRepository.save(residence);
     return newResidence;
   }

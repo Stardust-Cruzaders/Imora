@@ -1,15 +1,14 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 
 import Login from '../screens/Login';
 import LoginEditInfo from '../screens/Login/LoginEditInfo';
 import LoginOK from '../screens/Login/LoginOK';
 import MainNavigation from './MainNavigation';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 export default function LoginNavigation({isRegistered}) {
   return (
     <Stack.Navigator

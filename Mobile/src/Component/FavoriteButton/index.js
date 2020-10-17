@@ -1,29 +1,62 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 
 import {RectButton} from 'react-native-gesture-handler';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 
 import styles from './styles';
-export default function FavoriteButton() {
+
+import api from '../../services/api';
+import {useFeed} from '../../contexts/feed';
+import {useAuth} from '../../contexts/auth';
+
+export default function FavoriteButton({user_id, residence_id}) {
+  const {setFavoriteResidences, setFavoriteOk} = useFeed();
+  const {user} = useAuth();
   const [isFavorite, setIsFavorite] = useState(false);
-  function toggleFavorite() {
-    setIsFavorite(!isFavorite);
+
+  async function toggleFavorite() {
+    try {
+      const newUser = await api.patch(`/users/${user_id}/favorite`, {
+        residence_id,
+      });
+      const response = await api.get(`/residences/${user.id}/favorites`);
+      setIsFavorite(
+        newUser.data.favorites.includes(residence_id) ? true : false,
+      );
+      console.log(response.data);
+      setFavoriteResidences(response.data);
+      if (response.data.length >= 1) {
+        setFavoriteOk(true);
+      } else {
+        setFavoriteOk(false);
+      }
+    } catch (err) {
+      console.log('Erro ao favoritar: ' + err);
+    }
   }
+
   return (
     <View style={styles.favoriteButtonView}>
       <RectButton
         style={styles.favoriteButton}
-        onPress={() => {
-          toggleFavorite();
+        onPress={async () => {
+          await toggleFavorite();
         }}>
         {isFavorite ? (
-          <Ionicon name={'ios-heart'} size={50} color={'#CB2F2F'} />
+          <Ionicon
+            name={'ios-heart-dislike-circle-outline'}
+            size={65}
+            color={'black'}
+          />
         ) : (
-          <Ionicon name={'ios-heart-outline'} size={50} color={'#CB2F2F'} />
+          <Ionicon
+            name={'ios-heart-circle-outline'}
+            size={65}
+            color={'black'}
+          />
         )}
       </RectButton>
     </View>
   );
 }
-

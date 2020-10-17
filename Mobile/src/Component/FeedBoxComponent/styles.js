@@ -13,7 +13,10 @@ const styles = StyleSheet.create({
     width: width - 50,
     alignSelf: 'center',
     marginBottom: 10,
-    flex:1
+    flex: 1,
+
+    elevation: 10,
+    shadowColor: '#000000',
   },
   image: {
     width: '100%',
@@ -42,34 +45,25 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     color: '#3F3F3F',
     fontSize: 22,
-    letterSpacing: 0.6
+    letterSpacing: 0.6,
   },
   bottomTextPos: {
     paddingHorizontal: 15,
   },
   localizationText: {
-    fontSize: 13  ,
+    fontSize: 13,
     color: '#8D8D97',
     fontFamily: 'Roboto',
     letterSpacing: 1,
-    paddingVertical: 7
-
+    paddingVertical: 7,
   },
   priceText: {
     fontSize: 16,
     fontWeight: 'bold',
     letterSpacing: 0.5,
-    marginLeft: 5
+    marginLeft: 5,
   },
-  starText: {
-    fontWeight: 'bold',
-    fontSize: 16,
 
-  },
-  subStarsStyle: {
-    fontSize: 12,
-    color: '#8D8D97',
-  },
   heartIcon: {
     position: 'absolute',
     right: 15,
@@ -85,8 +79,16 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: width - 50,
+    borderRadius: 5,
+  },
+  goToResidenceButton: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 5,
+    width: width - 50,
+    alignSelf: 'center',
+
+    flex: 1,
   },
 });
 

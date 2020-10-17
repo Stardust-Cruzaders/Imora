@@ -1,41 +1,45 @@
 import React from 'react';
-import {Text, View, Image} from 'react-native';
+import {Text, View} from 'react-native';
 
 import styles from './styles';
-import Icon from 'react-native-vector-icons/Feather';
 
+import ImageSwipe from '../ImageSwipe';
 import {RectButton} from 'react-native-gesture-handler';
 
-export default function FeedBoxComponent({
-  id,
-  name,
-  img,
-  price,
-  stars,
-  sub_stars,
-  localization,
-}) {
+export default function FeedBoxComponent({residence, user_id, navigation}) {
   return (
     <View style={styles.feedBox}>
-      <View style={styles.imageContainer}>
-        <Icon name="heart" size={25} style={styles.heartIcon} />
-      </View>
-      <Image source={{uri: img}} style={styles.image} />
+      <RectButton
+        style={styles.goToResidenceButton}
+        onPress={() => {
+          navigation.navigate('ResidenceDetailed', {
+            residence,
+          });
+        }}>
+        <View style={[styles.imageContainer]}>
+          <ImageSwipe
+            img={residence.images}
+            widthDiff={50}
+            residence_id={residence.id}
+            user_id={user_id}
+          />
+        </View>
 
-      <View style={styles.starsItem}>
-        <Text style={styles.priceText}>R${price}/mês </Text>
-        <Text style={styles.starText}>
-          {stars} <Icon name="star" size={20} color="#26E07C" />
-          <Text style={styles.subStarsStyle}> ({sub_stars})</Text>
-        </Text>
-      </View>
+        {/* <Image source={{uri: img}} style={styles.image} /> */}
 
-      <View style={styles.div} />
+        <View style={styles.starsItem}>
+          <Text style={styles.priceText}>R${residence.price}/mês </Text>
+        </View>
 
-      <View style={styles.bottomTextPos}>
-        <Text style={styles.titleText}>{name}</Text>
-        <Text style={styles.localizationText}>{localization}</Text>
-      </View>
+        <View style={styles.div} />
+
+        <View style={styles.bottomTextPos}>
+          <Text style={styles.titleText}>{residence.residence_name}</Text>
+          <Text style={styles.localizationText}>
+            {residence.city},{residence.state}
+          </Text>
+        </View>
+      </RectButton>
     </View>
   );
 }

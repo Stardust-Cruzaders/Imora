@@ -1,4 +1,7 @@
-import React, {useState} from 'react';
+/* eslint-disable no-alert */
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable eqeqeq */
+import React, {useEffect} from 'react';
 import {
   Image,
   Text,
@@ -23,14 +26,13 @@ import {
   BorderlessButton,
   FlatList,
   RectButton,
-  ScrollView,
 } from 'react-native-gesture-handler';
 
 import {TextInput} from 'react-native-paper';
 import {Root, Popup} from 'popup-ui';
 
 import {useResidenceAdd} from '../../../../contexts/residenceAdd';
-export default function ResidenceAddMain({navigation}) {
+export default function ResidenceAddMain({navigation, route}) {
   const {
     title,
     setTitle,
@@ -42,10 +44,21 @@ export default function ResidenceAddMain({navigation}) {
     setNumBathrooms,
     resourcePath,
     setResourcePath,
+    setDefaultValues,
+    setIsUpdatingValues,
   } = useResidenceAdd();
 
   const width = useWindowDimensions().width;
 
+  useEffect(() => {
+    if (route.params.residence) {
+      setIsUpdatingValues(true);
+      setDefaultValues(route.params.residence);
+    } else {
+      setIsUpdatingValues(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const selectFile = () => {
     var options = {
       title: 'Selecionar imagem',
@@ -132,6 +145,7 @@ export default function ResidenceAddMain({navigation}) {
                 value={title}
                 onChangeText={(text) => setTitle(text)}
                 placeholder={'Título: Ex: Casa com 4 quartos'}
+                maxLength={75}
               />
 
               <TextInput
@@ -140,6 +154,7 @@ export default function ResidenceAddMain({navigation}) {
                 onChangeText={(text) => setPrice(text)}
                 placeholder={'Preço/Mês '}
                 keyboardType={'decimal-pad'}
+                maxLength={10}
               />
               <TextInput
                 style={[styles.input, {width: width - 80}]}
@@ -147,6 +162,7 @@ export default function ResidenceAddMain({navigation}) {
                 onChangeText={(text) => setNumRooms(text)}
                 placeholder={'Quantidade de quartos disponíveis '}
                 keyboardType={'number-pad'}
+                maxLength={3}
               />
               <TextInput
                 style={[styles.input, {width: width - 80}]}
@@ -154,6 +170,7 @@ export default function ResidenceAddMain({navigation}) {
                 onChangeText={(text) => setNumBathrooms(text)}
                 placeholder={'Quantidade de banheiros disponíveis'}
                 keyboardType={'number-pad'}
+                maxLength={3}
               />
             </View>
             <View>
@@ -205,7 +222,7 @@ export default function ResidenceAddMain({navigation}) {
               <BorderlessButton
                 style={styles.navButton}
                 onPress={() => {
-                  //navigation.goBack();
+                  navigation.goBack();
                 }}>
                 <Icon name={'log-out'} color={'#E03826'} size={40} />
               </BorderlessButton>

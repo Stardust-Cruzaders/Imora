@@ -5,6 +5,7 @@ import {Text, View, useWindowDimensions, Image, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import {Root, Popup} from 'popup-ui';
 
 import styles from './styles';
 import textStyles from '../../../textStyles';
@@ -16,10 +17,11 @@ import ImageSwipe from '../../../Component/ImageSwipe';
 import {RectButton, BorderlessButton} from 'react-native-gesture-handler';
 
 import {useResidenceAdd} from '../../../contexts/residenceAdd';
+import {useAuth} from '../../../contexts/auth';
 
 export default function ResidenceEdit({navigation}) {
   const width = useWindowDimensions().width;
-
+  const {user} = useAuth();
   const {
     title,
     price,
@@ -29,7 +31,6 @@ export default function ResidenceEdit({navigation}) {
     checkedHouseType,
     description,
     maxResidentNum,
-    genderPreference,
     street,
     number,
     neighborhood,
@@ -39,18 +40,22 @@ export default function ResidenceEdit({navigation}) {
     conditions,
     checkIfEmpty,
     resourcePath,
+    complement,
     currentResidents,
+    HandleResidenceAdd,
+    isUpdatingValues,
+    HandleResidenceUpdate,
+    residence_id,
   } = useResidenceAdd();
+
   return (
-    <>
+    <Root>
       <ResidenceAddHeader
         title={'Está feliz com seu anúncio?'}
         subtitle={'Clique no lápis para alterar uma sessão'}
       />
       <ScrollView style={styles.scroll}>
-        <View style={[styles.headerImgView]}>
-          <ImageSwipe img={resourcePath} />
-        </View>
+        <View style={[styles.headerImgView]} />
         <View style={styles.container}>
           <View style={[styles.bodyView, {width: width - 50}]}>
             <View style={styles.basicInfoView}>
@@ -79,12 +84,12 @@ export default function ResidenceEdit({navigation}) {
                 <Image
                   style={[styles.profilePic, {resizeMode: 'cover'}]}
                   source={{
-                    uri:
-                      'https://i.pinimg.com/564x/73/72/ca/7372caf9143345b46f5941218af00af2.jpg',
+                    uri: user.avatar,
+                    //'https://i.pinimg.com/564x/73/72/ca/7372caf9143345b46f5941218af00af2.jpg',
                   }}
                 />
               </View>
-              <Text style={[styles.name, textStyles.font]}>لا احتيال</Text>
+              <Text style={[styles.name, textStyles.font]}>{user.name}</Text>
               <Text style={[styles.subTitle, textStyles.font]}>
                 Proprietário
               </Text>
@@ -181,7 +186,6 @@ export default function ResidenceEdit({navigation}) {
                 </View>
               </>
             )}
-
             <Div threshold={100} />
             <View style={styles.conditionView}>
               <View style={[styles.titleWithEditOption, {width: width - 80}]}>
@@ -241,18 +245,8 @@ export default function ResidenceEdit({navigation}) {
                     styles.descriptionList,
                     textStyles.font,
                     {fontWeight: 'bold', top: 10},
-                  ]}>
-                  Preferência de residentes:
-                  <Text
-                    style={[
-                      styles.descriptionList,
-                      textStyles.font,
-                      {fontWeight: 'normal', top: 10},
-                    ]}>
-                    {' '}
-                    {genderPreference}
-                  </Text>
-                </Text>
+                  ]}
+                />
               </View>
               {checkIfEmpty(conditions) === false && (
                 <Text
@@ -304,6 +298,11 @@ export default function ResidenceEdit({navigation}) {
               <Text style={[styles.description, {marginBottom: 25}]}>
                 {street} {neighborhood} {number}
               </Text>
+              {complement != null && (
+                <Text style={[styles.description, {marginBottom: 25}]}>
+                  Complemento: {complement}
+                </Text>
+              )}
             </View>
           </View>
         </View>
@@ -326,10 +325,40 @@ export default function ResidenceEdit({navigation}) {
             styles.button,
             {backgroundColor: '#7E57C2', width: width - 245},
           ]}
-          onPress={() => {}}>
+          onPress={() => {
+            if (isUpdatingValues === false) {
+              HandleResidenceAdd(user.id);
+              Popup.show({
+                type: 'Success',
+                title: 'Residência adicionada com sucesso',
+                button: true,
+                textBody:
+                  'Sua residência foi adicionada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
+                buttontext: 'OK',
+                callback: () => {
+                  Popup.hide();
+                  navigation.navigate('Feed');
+                },
+              });
+            } else {
+              HandleResidenceUpdate(residence_id);
+              Popup.show({
+                type: 'Success',
+                title: 'Residência Alterada com sucesso',
+                button: true,
+                textBody:
+                  'Sua residência foi alterada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
+                buttontext: 'OK',
+                callback: () => {
+                  Popup.hide();
+                  navigation.navigate('Feed');
+                },
+              });
+            }
+          }}>
           <Text style={styles.buttonText}>Publicar</Text>
         </RectButton>
       </View>
-    </>
+    </Root>
   );
 }

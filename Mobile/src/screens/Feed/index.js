@@ -1,69 +1,131 @@
-import React from 'react';
-import {View, SafeAreaView, FlatList} from 'react-native';
-
+import React, {useState, useEffect} from 'react';
+import {Text, View, SafeAreaView, FlatList} from 'react-native';
+import axios from 'axios';
 import styles from './styles';
-import Icon from 'react-native-vector-icons/Feather';
 
 import FeedBoxComponent from '../../Component/FeedBoxComponent';
 import SearchBar from '../../Component/SearchBar';
-import FilterComponent from '../../Component/FilterComponent';
 
-export default function Feed() {
-  const newImoraData = [
-    {
-      id: '1',
-      name: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-      img:
-        'https://www.stonerdays.com/wp-content/uploads/2015/11/patrick-star-house-1.jpg',
-      price: '420,00',
-      stars: '4,5',
-      sub_stars: '30',
-      localization: 'Sea',
-    },
-    {
-      id: '2',
-      name: 'Que tesão mano',
-      img: 'https://www.coxinhanerd.com.br/wp-content/uploads/2018/06/ffff.jpg',
-      price: '69,69',
-      stars: '3,8',
-      sub_stars: '5',
-      localization: 'Earth',
-    },
-    {
-      id: '3',
-      name: 'Death Star',
-      img:
-        'https://vignette.wikia.nocookie.net/en.futurama/images/6/6e/Near_Death_Star.PNG/revision/latest/top-crop/width/360/height/450?cb=20080112204806',
-      price: '44,44',
-      stars: '3,8',
-      sub_stars: '100',
-      localization: 'Space',
-    },
-  ];
+import {RectButton} from 'react-native-gesture-handler';
+import api from '../../services/api';
+import {ActivityIndicator} from 'react-native-paper';
+import {useFeed} from '../../contexts/feed';
+import {useAuth} from '../../contexts/auth';
+import NotFound from '../../Component/NotFound';
+export default function Feed({navigation}) {
+  const {
+    residenceName,
+    setResidenceName,
+    residences,
+    setResidences,
+    loading,
+    setLoading,
+    filtered,
+  } = useFeed();
+  const {user} = useAuth();
+  const [residencesOk, setResidencesOk] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(
+    'Nenhuma Residência Foi encontrada',
+  );
+  const [errorIcon, setErrorIcon] = useState('archive');
+  async function ListAll(source) {
+    try {
+      const response = await api.get('/residences', {
+        cancelToken: source.token,
+      });
+      if (response.data.length >= 1) {
+        setResidences(response.data);
+      } else {
+        setResidencesOk(false);
+      }
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      setResidencesOk(false);
+      setErrorIcon('wifi-off');
+      setErrorMessage(
+        'Oops! parece que nossos servidores não estão disponíveis no Momento',
+      );
+    }
+  }
+  async function ListSearch(source) {
+    try {
+      const response = await api.get('/residences/search', {
+        cancelToken: source.token,
+        params: {
+          residence_name: residenceName,
+        },
+      });
+
+      setResidences(response.data);
+      setResidencesOk(true);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      setResidencesOk(false);
+      setErrorIcon('wifi-off');
+      setErrorMessage(
+        'Oops! parece que nossos servidores não estão disponíveis no Momento',
+      );
+    }
+  }
+
+  useEffect(() => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
+    async function handleFeed() {
+      if (
+        (residenceName === undefined || residenceName === '') &&
+        filtered === false
+      ) {
+        await ListAll(source);
+      } else {
+        await ListSearch(source);
+      }
+    }
+
+    handleFeed();
+    return () => {
+      source.cancel();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [residenceName]);
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerNav}>
-        <SearchBar />
-        <FilterComponent />
+        <SearchBar
+          residenceName={residenceName}
+          setResidenceName={setResidenceName}
+        />
+        <RectButton
+          style={styles.filterButtonStyle}
+          onPress={() => {
+            navigation.navigate('Filter');
+          }}>
+          <Text style={styles.textFormatation}>Filtrar</Text>
+        </RectButton>
       </View>
-
-      <FeedBoxComponent />
-      <FlatList
-        data={newImoraData}
-        renderItem={({item}) => (
-          <FeedBoxComponent
-            id={item.id}
-            name={item.name}
-            img={item.img}
-            price={item.price}
-            stars={item.stars}
-            sub_stars={item.sub_stars}
-            localization={item.localization}
+      {!loading ? (
+        residencesOk ? (
+          <FlatList
+            data={residences}
+            keyExtractor={(item) => item.id}
+            renderItem={({item}) => (
+              <FeedBoxComponent
+                user_id={user.id}
+                residence={item}
+                navigation={navigation}
+              />
+            )}
           />
-        )}
-        keyExtractor={(item) => item.id}
-      />
+        ) : (
+          <NotFound message={errorMessage} icon={errorIcon} />
+        )
+      ) : (
+        <ActivityIndicator size={'small'} color={'purple'} />
+      )}
     </SafeAreaView>
   );
 }

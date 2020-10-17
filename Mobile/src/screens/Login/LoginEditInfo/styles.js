@@ -57,6 +57,16 @@ const styles = StyleSheet.create({
 
     color: '#8D8D97',
   },
+  inputLocation: {
+    marginVertical: 10,
+    fontSize: 18,
+
+    paddingLeft: 30,
+    paddingVertical: 15,
+    textAlign: 'left',
+
+    color: '#8D8D97',
+  },
   icon: {
     position: 'absolute',
   },

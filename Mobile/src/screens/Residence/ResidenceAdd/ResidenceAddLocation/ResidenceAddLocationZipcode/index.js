@@ -15,6 +15,7 @@ import {useResidenceAdd} from '../../../../../contexts/residenceAdd';
 export default function ResidenceAddLocationZipcode({navigation}) {
   const {zipcode, setZipcode, GetAddress} = useResidenceAdd();
   const width = useWindowDimensions().width;
+
   return (
     <>
       <ResidenceAddHeader />

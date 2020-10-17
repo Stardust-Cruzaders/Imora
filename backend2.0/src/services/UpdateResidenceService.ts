@@ -15,6 +15,7 @@ interface Request {
   neighborhood: string;
   street: string;
   numberr: string;
+  complement?: string;
   residence_type: string;
   residence_place: string;
   price: number;
@@ -47,6 +48,7 @@ class UpdateResidenceService {
     neighborhood,
     street,
     numberr,
+    complement,
     residence_type,
     residence_place,
     price,
@@ -86,6 +88,7 @@ class UpdateResidenceService {
       neighborhood,
       street,
       numberr,
+      complement,
       residence_type,
       residence_place,
       price,

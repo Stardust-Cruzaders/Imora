@@ -17,6 +17,7 @@ interface Request {
   neighborhood: string;
   street: string;
   numberr: string;
+  complement?: string;
   residence_type: string;
   residence_place: string;
   price: number;
@@ -51,6 +52,7 @@ class CreateResidenceService {
     neighborhood,
     street,
     numberr,
+    complement,
     residence_type,
     residence_place,
     price,
@@ -92,6 +94,7 @@ class CreateResidenceService {
       neighborhood,
       street,
       numberr,
+      complement,
       residence_type,
       residence_place,
       price,
@@ -109,6 +112,7 @@ class CreateResidenceService {
       num_bathrooms,
       current_residents,
       max_residents,
+      interessed_users: [],
       owner_id,
     });
     await residenceRepository.save(residence);

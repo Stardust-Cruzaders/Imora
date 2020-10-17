@@ -9,15 +9,6 @@ interface Request {
 }
 export default class FavoriteResidenceService {
   public async execute({ user_id, residence_id }: Request): Promise<User> {
-    /**
-     * Pegar o id da residência que vai ser favoritada.
-     * Pegar o id do usuário que está favoritando.
-     * Verificar se O usuário existe
-     * Vericar se a residência existe
-     * Verificar se a residência está favoritada.
-     * Se não estiver, Favoritar.
-     * Se estiver, Deletar dos favoritos.
-     */
     const usersRepository = getRepository(User);
     const residenceRepository = getCustomRepository(ResidenceRepository);
 
@@ -36,7 +27,6 @@ export default class FavoriteResidenceService {
     if (residence === undefined) {
       throw new AppError("This residence doesn't exist");
     }
-    console.log(residence_id, user.favorites.includes(residence_id));
     if (user.favorites.includes(residence_id)) {
       await usersRepository.query(queryDeleteFavoriteArray, [
         residence_id,
@@ -48,7 +38,10 @@ export default class FavoriteResidenceService {
         user_id,
       ]);
     }
-
-    return user;
+    const newUser = await usersRepository.findOne({ id: user_id });
+    if (newUser === undefined) {
+      throw new AppError("User doesn't exist", 404);
+    }
+    return newUser;
   }
 }

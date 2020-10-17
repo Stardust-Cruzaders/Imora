@@ -70,6 +70,7 @@ export default function ResidenceAddConditions({navigation}) {
                   onChangeText={(text) => setMaxResidentNum(text)}
                   keyboardType={'number-pad'}
                   placeholder={'0'}
+                  maxLength={3}
                 />
               </View>
               <View
@@ -89,6 +90,7 @@ export default function ResidenceAddConditions({navigation}) {
                   onChangeText={(text) => setCurrentResidents(text)}
                   keyboardType={'number-pad'}
                   placeholder={'0'}
+                  maxLength={3}
                 />
               </View>
               <CheckboxComponent
@@ -101,69 +103,7 @@ export default function ResidenceAddConditions({navigation}) {
                 setValue={setAllowSmokers}
                 text={'Fumar dentro de casa é proibido.'}
               />
-              <View style={styles.preferenceView}>
-                <Text
-                  style={[
-                    styles.cardText,
-                    textStyles.font,
-                    {marginBottom: 10, marginTop: 25},
-                  ]}>
-                  Preferência de Residentes:{' '}
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                  }}>
-                  <RadioButton
-                    value="Masculino"
-                    status={
-                      genderPreference === 'Masculino' ? 'checked' : 'unchecked'
-                    }
-                    onPress={() => setGenderPreference('Masculino')}
-                    color={'#7E57C2'}
-                  />
-                  <Text style={[styles.cardText, textStyles.font]}>
-                    Masculino
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                  }}>
-                  <RadioButton
-                    value="Feminino"
-                    status={
-                      genderPreference === 'Feminino' ? 'checked' : 'unchecked'
-                    }
-                    onPress={() => setGenderPreference('Feminino')}
-                    color={'#7E57C2'}
-                  />
-                  <Text style={[styles.cardText, textStyles.font]}>
-                    Feminino
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                  }}>
-                  <RadioButton
-                    value="Indiferente"
-                    status={
-                      genderPreference === 'Indiferente'
-                        ? 'checked'
-                        : 'unchecked'
-                    }
-                    onPress={() => setGenderPreference('Indiferente')}
-                    color={'#7E57C2'}
-                  />
-                  <Text style={[styles.cardText, textStyles.font]}>
-                    Indiferente
-                  </Text>
-                </View>
-              </View>
+
               <View style={styles.cardFooter}>
                 <BorderlessButton
                   style={styles.button}
