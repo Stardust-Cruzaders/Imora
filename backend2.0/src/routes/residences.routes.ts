@@ -1,6 +1,7 @@
 import { Router } from 'express';
-
 import { getRepository } from 'typeorm';
+
+import Multer from 'multer';
 import CreateResidenceService from '../services/CreateResidenceService';
 import ListFavoriteResidencesService from '../services/ListFavoriteResidencesService';
 import ListUserResidenceService from '../services/ListUserResidenceService';
@@ -11,8 +12,27 @@ import UpdateResidenceService from '../services/UpdateResidenceService';
 import Residence from '../models/Residence';
 import ToggleInterestService from '../services/ToggleInterestService';
 import ListInteressedUsers from '../services/ListInteressedUsers';
+import imgUpload from '../middlewares/ImgUpload';
 
 const residencesRouter = Router();
+
+const multer = Multer({
+  storage: Multer.MemoryStorage,
+  fileSize: 5 * 1024 * 1024,
+});
+
+residencesRouter.post(
+  '/upload',
+  multer.single('image'),
+  imgUpload.uploadToGcs,
+  (request, response) => {
+    const data = request.body;
+    if (request.file && request.file.cloudStoragePublicUrl) {
+      data.imageUrl = request.file.cloudStoragePublicUrl;
+    }
+    response.send(data);
+  },
+);
 
 residencesRouter.get('/', async (request, response) => {
   const {

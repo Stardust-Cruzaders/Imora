@@ -1,7 +1,8 @@
 /* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable eqeqeq */
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
+import FormData from 'form-data';
 import {
   Image,
   Text,
@@ -32,6 +33,8 @@ import {TextInput} from 'react-native-paper';
 import {Root, Popup} from 'popup-ui';
 
 import {useResidenceAdd} from '../../../../contexts/residenceAdd';
+import api from '../../../../services/api';
+
 export default function ResidenceAddMain({navigation, route}) {
   const {
     title,
@@ -49,14 +52,17 @@ export default function ResidenceAddMain({navigation, route}) {
   } = useResidenceAdd();
 
   const width = useWindowDimensions().width;
-
+  const [images, setImages] = useState([]);
   useEffect(() => {
-    if (route.params.residence) {
-      setIsUpdatingValues(true);
-      setDefaultValues(route.params.residence);
-    } else {
-      setIsUpdatingValues(false);
+    if (route.params) {
+      if (route.params.residence) {
+        setIsUpdatingValues(true);
+        setDefaultValues(route.params.residence);
+      } else {
+        setIsUpdatingValues(false);
+      }
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const selectFile = () => {
@@ -76,11 +82,35 @@ export default function ResidenceAddMain({navigation, route}) {
       } else if (res.customButton) {
         alert(res.customButton);
       } else {
-        let source = res;
+        const image = {
+          uri: res.uri,
+          type: 'image/jpeg',
+          name: `myImage-${Date.now()}.jpg`,
+        };
 
+        const imgBody = new FormData();
+        console.log('boundary: ' + imgBody._boundary);
+        imgBody.append('image', image);
+        api
+          .post(
+            '/residences/upload',
+            {data: imgBody},
+            {
+              headers: {
+                'content-type': `multipart/form-data; boundary=${imgBody._boundary}`,
+              },
+            },
+          )
+          .then((response) => {
+            console.log(response);
+            const source = {uri: response.imageUrl, isStatic: true};
+            setImages(source);
+            setResourcePath([...resourcePath, res]);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         //const newArr = resourcePath.split();
-
-        setResourcePath([...resourcePath, source]);
       }
     });
   };
