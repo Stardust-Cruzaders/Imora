@@ -1,32 +1,35 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, ImageBackground, Image } from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import styles from './styles';
 import textStyles from '../../textStyles';
-import Icon from 'react-native-vector-icons/Feather';
-Icon.loadFont();
 
 export default function Login() {
   return (
     <View style={styles.container}>
+    <ImageBackground 
+    source={{uri:'https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60'}}
+    style={styles.imageBackground}
+    imageStyle={{opacity: 0.3}}
+    > 
+
       <View style={styles.headerAlign}>
-        <Icon name="home" size={50} color="#FFF" />
+          <Image 
+            source={require('./Logo.png')}
+            style={styles.logoImage}
+          />
         <Text style={[styles.imoraText, textStyles.font]}>Imora</Text>
       </View>
 
-      <View style={styles.whiteBox}>
-        <RectButton onPress={() => {}} style={styles.feedButton}>
-          <Text style={[styles.buttonText, textStyles.font]}>
-            Explorar o App
-          </Text>
+      <View style={{flex:1 , flexDirection: 'column', justifyContent: 'flex-end'}}>
+        <RectButton onPress={() => {}} style={styles.loginButton}>
+          <Text style={[styles.buttonText, textStyles.font]}>Login</Text>
         </RectButton>
-        <RectButton onPress={() => {}} style={styles.facebookButton}>
-          <Text style={[styles.buttonText, textStyles.font]}>Facebook</Text>
-        </RectButton>
-        <RectButton onPress={() => {}} style={styles.googleButton}>
-          <Text style={[styles.buttonText, textStyles.font]}>Google</Text>
+        <RectButton onPress={() => {}} style={styles.registerButton}>
+          <Text style={[styles.buttonText2, textStyles.font]}>Registrar-se</Text>
         </RectButton>
       </View>
+      </ImageBackground>
     </View>
   );
 }
