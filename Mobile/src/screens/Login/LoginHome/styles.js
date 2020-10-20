@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
         height: 320,
         flexDirection: 'column',
         alignSelf: 'center',
+        justifyContent:'space-evenly',
         backgroundColor: '#FFF',
         borderRadius: 5,
         paddingHorizontal: 24
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: '#26E07C',
         padding: 10,
-        marginTop: 170
+      
       },
       textButton: {
         fontFamily: 'Roboto',

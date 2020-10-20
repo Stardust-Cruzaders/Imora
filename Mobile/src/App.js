@@ -22,7 +22,7 @@ export default function App() {
       <NavigationContainer>
         <AuthProvider>
           <StatusBar backgroundColor={'#4D2C91'} />
-          <ForgotPass />
+          <LoginHome />
         </AuthProvider>
       </NavigationContainer>
     </>

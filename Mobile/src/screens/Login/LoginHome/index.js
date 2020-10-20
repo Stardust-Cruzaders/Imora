@@ -17,19 +17,20 @@ export default function LoginHome(){
         <Text style={styles.fontTitle}>Bem vindo de volta!</Text>
         
         <View style={styles.whiteBox}>
-            <View style={{flexDirection: 'row'}}>
-            <Icon name="mail" size={25} color="#7E57C2"/>
+    
+            <View style={{flexDirection: 'row' , borderBottomWidth: 1}}>
+            <Icon name="mail" size={25} color="#7E57C2" style={{alignSelf:'center'}} />
             <TextInput 
-            style={{height: 20, borderBottomWidth: 1}} 
+            style={{height: 45, width: 200}} 
             placeholder="Email" 
-            placeholderTextColor= '#fff' 
+            placeholderTextColor= 'gray' 
             />
             </View>
            
-            <View style={{flexDirection: 'row'}}>
-            <Icon name="lock" size={25} color="#7E57C2"/>
+            <View style={{flexDirection: 'row', borderBottomWidth: 1 , marginBottom: 20}}>
+            <Icon name="lock" size={25} color="#7E57C2" style={{alignSelf:'center'}} />
             <TextInput 
-            style={{height: 20, borderBottomWidth: 1}} 
+            style={{height: 45, width: 200}} 
             placeholder="Senha" 
             placeholderTextColor="gray" />
             </View>
