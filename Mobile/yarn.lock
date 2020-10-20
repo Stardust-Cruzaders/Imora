@@ -2558,6 +2558,10 @@ domexception@^2.0.1:
   dependencies:
     webidl-conversions "^5.0.0"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a236c0ae7b750753c3bc1683acac26d3ddc89078
 domutils@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.7.0.tgz#56ea341e834e06e6748af7a1cb25da67ea9f8c2a"
@@ -2566,6 +2570,11 @@ domutils@^1.7.0:
     dom-serializer "0"
     domelementtype "1"
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> c07da44ccfc018f7350e6fe60e8f1f9228779915
+>>>>>>> a236c0ae7b750753c3bc1683acac26d3ddc89078
 dotenv@^8.0.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
@@ -5872,6 +5881,10 @@ react-native-status-bar-height@^2.5.0:
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.5.0.tgz#bc0fb85230603850aab9667ee8111a62954de90c"
   integrity sha512-sYBCPYA/NapBSHkdm/IVL4ID3LLlIuLqINi2FBDyMkc2BU9pfSGOtkz9yfxoK39mYJuTrlTOQ7mManARUsYDSA==
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a236c0ae7b750753c3bc1683acac26d3ddc89078
 react-native-svg@^12.1.0:
   version "12.1.0"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-12.1.0.tgz#acfe48c35cd5fca3d5fd767abae0560c36cfc03d"
@@ -5880,6 +5893,11 @@ react-native-svg@^12.1.0:
     css-select "^2.1.0"
     css-tree "^1.0.0-alpha.39"
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> c07da44ccfc018f7350e6fe60e8f1f9228779915
+>>>>>>> a236c0ae7b750753c3bc1683acac26d3ddc89078
 react-native-swiper@^1.6.0-rc.3:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/react-native-swiper/-/react-native-swiper-1.6.0.tgz#59fdbdf95addee49630312f27077622c27776819"
