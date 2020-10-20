@@ -33,20 +33,20 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   registerButton: {
-    alignItems: 'center',  
+    alignItems: 'center',
     padding: 10,
     margin: 15,
     marginBottom: 50,
     borderRadius: 1001,
-    backgroundColor: '#AAAA', 
-    borderColor: "white",
+    backgroundColor: '#AAAA',
+    borderColor: 'white',
   },
   loginButton: {
     alignItems: 'center',
     backgroundColor: '#fff',
     padding: 10,
     margin: 15,
-    borderRadius: 1000
+    borderRadius: 1000,
   },
   iconContainer: {
     flexDirection: 'row',
@@ -68,13 +68,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
   },
   imageBackground: {
-    flex:1,
-    resizeMode: 'cover'
+    flex: 1,
+    resizeMode: 'cover',
   },
   logoImage: {
     height: 60,
-    width:60,
-  }
+    width: 60,
+  },
 });
 
 export default styles;
