@@ -19,38 +19,36 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Roboto',
     color: '#FFF',
-    marginBottom: 5
+    marginBottom: 5,
   },
   fontBox: {
     fontSize: 15,
     fontWeight: '600',
-    fontFamily:'Roboto',
+    fontFamily: 'Roboto',
     textAlign: 'center',
     marginHorizontal: 15,
     borderBottomWidth: 1,
-    marginBottom: 5
-
+    marginBottom: 5,
   },
   buttonStyle: {
-      backgroundColor: '#26E07C',
-      borderRadius: 5,
-      padding: 15
+    backgroundColor: '#26E07C',
+    borderRadius: 5,
+    padding: 15,
   },
   buttonFont: {
     fontSize: 25,
-    color: "#FFF",
+    color: '#FFF',
     fontWeight: '500',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   fontHighlight: {
     fontSize: 15,
     fontWeight: '600',
-    fontFamily:'Roboto',
+    fontFamily: 'Roboto',
     textAlign: 'center',
     marginHorizontal: 15,
-    color: 'orange'
-  }
-
+    color: 'orange',
+  },
 });
 
 export default styles;

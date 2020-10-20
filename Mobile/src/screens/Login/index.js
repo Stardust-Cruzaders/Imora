@@ -11,6 +11,7 @@ import styles from './styles';
 import textStyles from '../../textStyles';
 
 import {useAuth} from '../../contexts/auth';
+import {Icon} from 'react-native-vector-icons/Feather';
 
 // user.picture.data.url
 export default function Login({navigation}) {
@@ -52,13 +53,20 @@ export default function Login({navigation}) {
           </View>
         </RectButton>
 
-      <View style={{flex:1 , flexDirection: 'column', justifyContent: 'flex-end'}}>
-        <RectButton onPress={() => {}} style={styles.loginButton}>
-          <Text style={[styles.buttonText, textStyles.font]}>Login</Text>
-        </RectButton>
-        <RectButton onPress={() => {}} style={styles.registerButton}>
-          <Text style={[styles.buttonText2, textStyles.font]}>Registrar-se</Text>
-        </RectButton>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+          }}>
+          <RectButton onPress={() => {}} style={styles.loginButton}>
+            <Text style={[styles.buttonText, textStyles.font]}>Login</Text>
+          </RectButton>
+          <RectButton onPress={() => {}} style={styles.registerButton}>
+            <Text style={[styles.buttonText2, textStyles.font]}>
+              Registrar-se
+            </Text>
+          </RectButton>
         </View>
       </ImageBackground>
     </View>
