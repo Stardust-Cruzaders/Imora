@@ -12,11 +12,12 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: '#FFF',
     marginBottom: 10,
+    marginHorizontal: 20
   },
   body: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 200,
+    marginVertical: 50,
   },
   whiteBox: {
     alignSelf: 'center',

@@ -14,6 +14,7 @@ import Login from './screens/Login';
 import LoginHome from './screens/Login/LoginHome';
 import ForgotPass from './screens/Login/ForgotPass';
 import ForgotPassConclusion from './screens/Login/ForgotPassConclusion';
+import RegisterUser from './screens/Register/RegisterUser';
 
 export default function App() {
   return (
@@ -23,7 +24,7 @@ export default function App() {
       <NavigationContainer>
         <AuthProvider>
           <StatusBar backgroundColor={'#4D2C91'} />
-          <ForgotPassConclusion />
+          <RegisterUser />
         </AuthProvider>
       </NavigationContainer>
     </>
