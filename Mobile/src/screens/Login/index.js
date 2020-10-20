@@ -15,7 +15,7 @@ export default function Login() {
 
       <View style={styles.headerAlign}>
           <Image 
-            source={require('./Logo.png')}
+            source={require('./icon.png')}
             style={styles.logoImage}
           />
         <Text style={[styles.imoraText, textStyles.font]}>Imora</Text>
