@@ -32,8 +32,12 @@
     "react-native-paper": "^4.0.1",
     "react-native-reanimated": "^1.13.0",
     "react-native-safe-area-context": "^3.1.4",
+<<<<<<< HEAD
     "react-native-screens": "^2.10.1",
     "react-native-svg": "^12.1.0",
+=======
+    "react-native-screens": "^2.11.0",
+>>>>>>> a2b9be0617a16f83cabbcffed28ce530d9674215
     "react-native-swiper": "^1.6.0-rc.3",
     "react-native-tab-view": "^2.15.1",
     "react-native-vector-icons": "^7.0.0"
