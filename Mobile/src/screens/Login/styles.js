@@ -33,25 +33,19 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   registerButton: {
-    alignItems: 'center',  
+    alignItems: 'center',
     padding: 10,
     margin: 15,
     marginBottom: 50,
     borderRadius: 1001,
-    backgroundColor: '#AAAA', 
-    borderColor: "white",
+    backgroundColor: '#AAAA',
+    borderColor: 'white',
   },
-<<<<<<< HEAD
-  loginButton: {
-    alignItems: 'center',
-    backgroundColor: '#fff',
-=======
   facebookButton: {
     backgroundColor: '#0075FF',
->>>>>>> 798cffa35afa7398dafa8439684b08ce37a697d7
     padding: 10,
     margin: 15,
-    borderRadius: 1000
+    borderRadius: 1000,
   },
   iconContainer: {
     flexDirection: 'row',
@@ -73,13 +67,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
   },
   imageBackground: {
-    flex:1,
-    resizeMode: 'cover'
+    flex: 1,
+    resizeMode: 'cover',
   },
   logoImage: {
     height: 60,
-    width:60,
-  }
+    width: 60,
+  },
 });
 
 export default styles;

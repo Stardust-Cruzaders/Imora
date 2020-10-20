@@ -1,13 +1,16 @@
-import React from 'react';
-import {View, Text, TextInput, ImageBackground} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, ImageBackground, KeyboardAvoidingView} from 'react-native';
+import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import {RectButton} from 'react-native-gesture-handler';
 
 import styles from './styles';
 
 export default function LoginHome() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView enabled={false} style={styles.container}>
       <ImageBackground
         source={{
           uri:
@@ -15,41 +18,53 @@ export default function LoginHome() {
         }}
         style={styles.imageBackground}
         imageStyle={{opacity: 0.3}}>
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: 60,
-          }}>
+        <View style={styles.body}>
           <Text style={styles.fontTitle}>Bem vindo de volta!</Text>
-
           <View style={styles.whiteBox}>
-            <View style={{flexDirection: 'row'}}>
-              <Icon name="mail" size={25} color="#7E57C2" />
-              <TextInput
-                style={{height: 20, borderBottomWidth: 1}}
-                placeholder="Email"
-                placeholderTextColor="#fff"
-              />
+            <View style={styles.form}>
+              <View style={styles.inputView}>
+                <TextInput
+                  style={styles.input}
+                  value={email}
+                  onChangeText={(text) => {
+                    setEmail(text);
+                  }}
+                  placeholder={'Email'}
+                  keyboardType={'email-address'}
+                  underlineColorAndroid={'#3F3F3F'}
+                  left={
+                    <TextInput.Icon name="email-outline" color={'#7E57C2'} />
+                  }
+                />
+              </View>
+              <View style={styles.inputView}>
+                <TextInput
+                  style={styles.input}
+                  value={password}
+                  onChangeText={(text) => {
+                    setPassword(text);
+                  }}
+                  placeholder={'Senha'}
+                  secureTextEntry
+                  underlineColorAndroid={'#3F3F3F'}
+                  left={
+                    <TextInput.Icon name="lock-outline" color={'#7E57C2'} />
+                  }
+                />
+              </View>
             </View>
-
-            <View style={{flexDirection: 'row'}}>
-              <Icon name="lock" size={25} color="#7E57C2" />
-              <TextInput
-                style={{height: 20, borderBottomWidth: 1}}
-                placeholder="Senha"
-                placeholderTextColor="gray"
-              />
-            </View>
-
             <RectButton style={styles.buttonStyle}>
               <Text style={styles.textButton}>Continuar</Text>
             </RectButton>
           </View>
-          <Text style={styles.subTextWhite}>Esqueceu sua senha?</Text>
-          <Text style={styles.subTextGreen}>Recupere-a aqui</Text>
+          <View style={styles.forgotPasswordView}>
+            <Text style={styles.subTextWhite}>Esqueceu sua senha?</Text>
+            <RectButton onPress={() => {}}>
+              <Text style={styles.subTextGreen}>Recupere-a aqui</Text>
+            </RectButton>
+          </View>
         </View>
       </ImageBackground>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
