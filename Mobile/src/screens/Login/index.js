@@ -1,7 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import {Text, View, ImageBackground, Image } from 'react-native';
-=======
 import {
   Image,
   ImageBackground,
@@ -9,7 +6,6 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
->>>>>>> c07da44ccfc018f7350e6fe60e8f1f9228779915
 import {RectButton} from 'react-native-gesture-handler';
 import styles from './styles';
 import textStyles from '../../textStyles';
