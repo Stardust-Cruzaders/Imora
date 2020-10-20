@@ -16,17 +16,14 @@ import LoginHome from './screens/Login/LoginHome';
 export default function App() {
   return (
     <>
-<<<<<<< HEAD
       <StatusBar backgroundColor={'#4D2C91'} />
-      <LoginHome />
-=======
+
       <NavigationContainer>
         <AuthProvider>
           <StatusBar backgroundColor={'#4D2C91'} />
-          <Routes />
+          <LoginHome />
         </AuthProvider>
       </NavigationContainer>
->>>>>>> 798cffa35afa7398dafa8439684b08ce37a697d7
     </>
   );
 }
