@@ -1,62 +1,43 @@
 /* eslint-disable react-native/no-inline-styles */
 import 'react-native-gesture-handler';
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-import Icon from 'react-native-vector-icons/Feather';
+import FeedNavigation from './FeedNavigation';
+import ProfileUser from '../screens/Profile/ProfileUser';
+import ResidenceDetailed from '../screens/Residence/ResidenceDetailed';
+import FilterScreen from '../screens/FilterScreen';
+import {createNativeStackNavigator} from 'react-native-screens/native-stack';
+import FeedProvider from '../contexts/feed';
+import ProfileEdit from '../screens/Profile/ProfileEdit';
+import MyResidences from '../screens/MyResidences';
+import ResidenceAddNavigation from './ResidenceAddNavigation';
+import EditResidenceConfig from '../screens/EditResidenceConfig';
 
-import Feed from '../screens/Feed';
-import Offers from '../screens/Offers';
-import Chat from '../screens/Chat';
-import ProfileSelfNavigation from './ProfileSelfNavigation';
-
-const Tab = createMaterialBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 export default function MainNavigation() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Explorar"
-        activeColor="#f0edf6"
-        barStyle={{backgroundColor: '#7E57C2', paddingVertical: 5}}
-        shifting={true}>
-        <Tab.Screen
-          name="Explorar"
-          component={Feed}
-          options={{
-            tabBarLabel: 'Explorar',
-            tabBarIcon: () => (
-              <Icon name={'compass'} size={26} color={'#fff'} />
-            ),
-          }}
+    <FeedProvider>
+      <Stack.Navigator
+        initialRouteName={'Feed'}
+        screenOptions={{headerShown: false}}>
+        <Stack.Screen name={'Feed'} component={FeedNavigation} />
+        <Stack.Screen name={'Filter'} component={FilterScreen} />
+        <Stack.Screen
+          name={'ResidenceDetailed'}
+          component={ResidenceDetailed}
         />
-        <Tab.Screen
-          name="Ofertas"
-          component={Offers}
-          options={{
-            tabBarLabel: 'Ofertas',
-            tabBarIcon: () => <Icon name={'zap'} size={26} color={'#FFF'} />,
-          }}
+        <Stack.Screen name={'ProfileUser'} component={ProfileUser} />
+        <Stack.Screen name={'MyResidences'} component={MyResidences} />
+        <Stack.Screen
+          name={'ResidenceAdd'}
+          component={ResidenceAddNavigation}
         />
-        <Tab.Screen
-          name="Chat"
-          component={Chat}
-          options={{
-            tabBarLabel: 'Mensagens',
-            tabBarIcon: () => (
-              <Icon name={'message-circle'} size={26} color={'#FFF'} />
-            ),
-          }}
+        <Stack.Screen
+          name={'EditResidenceConfig'}
+          component={EditResidenceConfig}
         />
-        <Tab.Screen
-          name="Perfil"
-          component={ProfileSelfNavigation}
-          options={{
-            tabBarLabel: 'Perfil',
-            tabBarIcon: () => <Icon name={'user'} size={26} color={'#FFF'} />,
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+        <Stack.Screen name={'ProfileEdit'} component={ProfileEdit} />
+      </Stack.Navigator>
+    </FeedProvider>
   );
 }

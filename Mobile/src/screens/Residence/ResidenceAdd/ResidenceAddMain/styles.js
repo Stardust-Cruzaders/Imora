@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
 
     justifyContent: 'center',
-
+    position: 'absolute',
     borderRadius: 10,
     padding: 20,
   },
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderColor: 'black',
-    borderWidth: 2,
+
     borderRadius: 5,
     paddingLeft: 15,
     color: '#3F3F3F',
@@ -87,6 +87,12 @@ const styles = StyleSheet.create({
   activeDot: {
     color: '#26E07C',
     fontSize: 50,
+  },
+  imageComponent: {
+    marginHorizontal: 5,
+  },
+  imageView: {
+    flexDirection: 'row',
   },
 });
 

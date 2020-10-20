@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Mobile</string>
+    <string name="facebook_app_id">3277421175709396</string>
+    <string name="fb_login_protocol_scheme">fb3277421175709396</string>
 </resources>
