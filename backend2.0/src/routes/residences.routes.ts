@@ -11,9 +11,11 @@ import UpdateResidenceService from '../services/UpdateResidenceService';
 import Residence from '../models/Residence';
 import ToggleInterestService from '../services/ToggleInterestService';
 import ListInteressedUsers from '../services/ListInteressedUsers';
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const residencesRouter = Router();
 
+residencesRouter.use(ensureAuthenticated);
 residencesRouter.get('/', async (request, response) => {
   const {
     price,
