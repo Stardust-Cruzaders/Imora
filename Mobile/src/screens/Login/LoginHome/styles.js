@@ -4,8 +4,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#7E57C2',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   fontTitle: {
     fontFamily: 'Roboto',
