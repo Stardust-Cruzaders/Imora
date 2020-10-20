@@ -12,6 +12,7 @@ import MainNavigation from './routes/MainNavigation';
 import ResidenceAddNavigation from './routes/ResidenceAddNavigation';
 import Login from './screens/Login';
 import LoginHome from './screens/Login/LoginHome';
+import Register2 from './screens/Login/RegisterUser2';
 import ForgotPass from './screens/Login/ForgotPass';
 
 export default function App() {
@@ -22,7 +23,7 @@ export default function App() {
       <NavigationContainer>
         <AuthProvider>
           <StatusBar backgroundColor={'#4D2C91'} />
-          <LoginHome />
+          <Register2 />
         </AuthProvider>
       </NavigationContainer>
     </>

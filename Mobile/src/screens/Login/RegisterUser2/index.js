@@ -11,7 +11,7 @@ import {RectButton} from 'react-native-gesture-handler';
 
 import styles from './styles';
 
-export default function LoginHome() {
+export default function RegisterUser2() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
