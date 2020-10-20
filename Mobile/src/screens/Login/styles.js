@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     paddingBottom: 40,
-    paddingTop: 20,
+    paddingTop: 50,
   },
   imoraText: {
-    fontWeight: 'bold',
-    fontSize: 35,
+    fontWeight: '400',
+    fontSize: 40,
     color: '#FFF',
   },
   feedButton: {
@@ -32,17 +32,26 @@ const styles = StyleSheet.create({
     margin: 15,
     marginTop: 50,
   },
-  googleButton: {
-    alignItems: 'center',
-    backgroundColor: '#CB2F2F',
+  registerButton: {
+    alignItems: 'center',  
     padding: 10,
     margin: 15,
     marginBottom: 50,
+    borderRadius: 1001,
+    backgroundColor: '#AAAA', 
+    borderColor: "white",
   },
+<<<<<<< HEAD
+  loginButton: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+=======
   facebookButton: {
     backgroundColor: '#0075FF',
+>>>>>>> 798cffa35afa7398dafa8439684b08ce37a697d7
     padding: 10,
     margin: 15,
+    borderRadius: 1000
   },
   iconContainer: {
     flexDirection: 'row',
@@ -54,10 +63,23 @@ const styles = StyleSheet.create({
     marginRight: 30,
   },
   buttonText: {
+    color: '#7E57C2',
+    fontSize: 20,
+    fontFamily: 'Roboto',
+  },
+  buttonText2: {
     color: '#FFF',
     fontSize: 20,
     fontFamily: 'Roboto',
   },
+  imageBackground: {
+    flex:1,
+    resizeMode: 'cover'
+  },
+  logoImage: {
+    height: 60,
+    width:60,
+  }
 });
 
 export default styles;
