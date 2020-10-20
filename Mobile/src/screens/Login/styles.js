@@ -41,14 +41,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#AAAA', 
     borderColor: "white",
   },
-<<<<<<< HEAD
   loginButton: {
     alignItems: 'center',
     backgroundColor: '#fff',
-=======
-  facebookButton: {
-    backgroundColor: '#0075FF',
->>>>>>> 798cffa35afa7398dafa8439684b08ce37a697d7
     padding: 10,
     margin: 15,
     borderRadius: 1000
