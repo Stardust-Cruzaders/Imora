@@ -1,4 +1,7 @@
 import React from 'react';
+<<<<<<< HEAD
+import {Text, View, ImageBackground, Image } from 'react-native';
+=======
 import {
   Image,
   ImageBackground,
@@ -6,10 +9,10 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
+>>>>>>> c07da44ccfc018f7350e6fe60e8f1f9228779915
 import {RectButton} from 'react-native-gesture-handler';
 import styles from './styles';
 import textStyles from '../../textStyles';
-import Icon from 'react-native-vector-icons/Feather';
 
 import {useAuth} from '../../contexts/auth';
 
@@ -53,9 +56,14 @@ export default function Login({navigation}) {
           </View>
         </RectButton>
 
-        <RectButton onPress={() => {}} style={styles.googleButton}>
-          <Text style={[styles.buttonText, textStyles.font]}>Google</Text>
+      <View style={{flex:1 , flexDirection: 'column', justifyContent: 'flex-end'}}>
+        <RectButton onPress={() => {}} style={styles.loginButton}>
+          <Text style={[styles.buttonText, textStyles.font]}>Login</Text>
         </RectButton>
+        <RectButton onPress={() => {}} style={styles.registerButton}>
+          <Text style={[styles.buttonText2, textStyles.font]}>Registrar-se</Text>
+        </RectButton>
+        </View>
       </ImageBackground>
     </View>
   );
