@@ -12,11 +12,12 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: '#FFF',
     marginBottom: 10,
+    marginHorizontal: 25,
   },
   body: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 200,
+    marginVertical: 150,
   },
   whiteBox: {
     alignSelf: 'center',
@@ -37,23 +38,6 @@ const styles = StyleSheet.create({
     color: '#FFF',
     textAlign: 'center',
   },
-  forgotPasswordView: {
-    flexDirection: 'row',
-  },
-  subTextWhite: {
-    fontSize: 15,
-    color: '#FFF',
-    fontFamily: 'Roboto',
-    marginRight: 5,
-    alignSelf: 'center',
-  },
-  subTextGreen: {
-    fontSize: 15,
-    color: '#26E07C',
-    fontFamily: 'Roboto',
-    textDecorationLine: 'underline',
-    alignSelf: 'center',
-  },
   imageBackground: {
     position: 'absolute',
     backgroundColor: 'rgba(0,0,0,0.45)',
@@ -63,10 +47,10 @@ const styles = StyleSheet.create({
   form: {
     marginBottom: 25,
   },
-  inputView: {},
   input: {
     backgroundColor: 'transparent',
     height: 50,
+    marginVertical: 5,
   },
 });
 

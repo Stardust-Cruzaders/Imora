@@ -14,6 +14,7 @@ import styles from './styles';
 export default function RegisterUser2() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -26,7 +27,7 @@ export default function RegisterUser2() {
         <KeyboardAvoidingView
           behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
           <View style={styles.body}>
-            <Text style={styles.fontTitle}>Bem vindo de volta!</Text>
+            <Text style={styles.fontTitle}>Cadastre-se para começar!</Text>
             <View style={styles.whiteBox}>
               <View style={styles.form}>
                 <View style={styles.inputView}>
@@ -59,15 +60,24 @@ export default function RegisterUser2() {
                     }
                   />
                 </View>
+                <View style={styles.inputView}>
+                  <TextInput
+                    style={styles.input}
+                    value={confirmPassword}
+                    onChangeText={(text) => {
+                      setConfirmPassword(text);
+                    }}
+                    placeholder={'Confirmar senha'}
+                    secureTextEntry
+                    underlineColorAndroid={'#3F3F3F'}
+                    left={
+                      <TextInput.Icon name="lock-outline" color={'#7E57C2'} />
+                    }
+                  />
+                </View>
               </View>
               <RectButton style={styles.buttonStyle}>
-                <Text style={styles.textButton}>Continuar</Text>
-              </RectButton>
-            </View>
-            <View style={styles.forgotPasswordView}>
-              <Text style={styles.subTextWhite}>Esqueceu sua senha?</Text>
-              <RectButton onPress={() => {}}>
-                <Text style={styles.subTextGreen}>Recupere-a aqui</Text>
+                <Text style={styles.textButton}>Tudo Pronto!</Text>
               </RectButton>
             </View>
           </View>
