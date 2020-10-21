@@ -10,10 +10,10 @@ import {TextInput} from 'react-native-paper';
 import {RectButton} from 'react-native-gesture-handler';
 
 import styles from './styles';
+import {useAuth} from '../../../contexts/auth';
 
 export default function RegisterUser2({navigation}) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {email, setEmail, password, setPassword, Register} = useAuth();
   const [confirmPassword, setConfirmPassword] = useState('');
   return (
     <View style={styles.container}>
@@ -25,7 +25,7 @@ export default function RegisterUser2({navigation}) {
         style={styles.imageBackground}
         imageStyle={{opacity: 0.3}}>
         <KeyboardAvoidingView
-          behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <View style={styles.body}>
             <Text style={styles.fontTitle}>Cadastre-se para começar!</Text>
             <View style={styles.whiteBox}>
@@ -77,8 +77,13 @@ export default function RegisterUser2({navigation}) {
                 </View>
               </View>
               <RectButton
-                onPress={() => {
-                  navigation.navigate('Login');
+                onPress={async () => {
+                  try {
+                    await Register();
+                    navigation.navigate('Login');
+                  } catch {
+                    console.log('deu ruim mano kk');
+                  }
                 }}
                 style={styles.buttonStyle}>
                 <Text style={styles.textButton}>Tudo Pronto!</Text>

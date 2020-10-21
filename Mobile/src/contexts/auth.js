@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React from 'react';
 import {createContext, useState, useEffect, useContext} from 'react';
 
@@ -10,14 +11,27 @@ const AuthContext = createContext();
 export function AuthProvider({children}) {
   const [user, setUser] = useState(null);
 
+  const [name, setName] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [user_state, setUserState] = useState('');
+  const [user_city, setUserCity] = useState('');
+  const [phone, setPhone] = useState('');
+  const [bio, setBio] = useState('');
+  const [avatar, setAvatar] = useState(
+    'https://i.pinimg.com/564x/4c/7e/e3/4c7ee3fd61cb7e3abb4dc5024a1da198.jpg',
+  );
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadStoragedData() {
       const storagedUser = await AsyncStorage.getItem('@RNAuth:user');
       const storagedToken = await AsyncStorage.getItem('@RNAuth:token');
+      const wasSigned = await AsyncStorage.getItem('@RNAuth:wasSigned');
 
-      if (storagedUser && storagedToken) {
+      if (wasSigned === null || undefined) {
+        setLoading(false);
+      } else if (storagedUser && storagedToken) {
         api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
 
         setUser(JSON.parse(storagedUser));
@@ -40,6 +54,26 @@ export function AuthProvider({children}) {
       return err;
     }
   }
+  async function Register() {
+    const data = {
+      name,
+      email,
+      password,
+      avatar,
+      bio,
+      is_host: false,
+      phone,
+      user_state,
+      user_city,
+    };
+    try {
+      const response = await api.post('/users', data);
+      return response.data;
+    } catch (err) {
+      console.log('Erro ao criar usuário: ' + err);
+      throw err;
+    }
+  }
   async function Login(email, password) {
     try {
       const response = await SignIn(email, password);
@@ -48,6 +82,7 @@ export function AuthProvider({children}) {
       api.defaults.headers.Authorization = `Bearer ${response.token}`;
       await Promise.all([
         AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user)),
+        AsyncStorage.setItem('@RNAuth:wasSigned', JSON.stringify(true)),
         AsyncStorage.setItem('@RNAuth:token', response.token),
       ]);
     } catch (err) {
@@ -68,6 +103,23 @@ export function AuthProvider({children}) {
         setUser,
         Login,
         SignOut,
+        Register,
+        name,
+        setName,
+        email,
+        setEmail,
+        password,
+        setPassword,
+        user_state,
+        setUserState,
+        user_city,
+        setUserCity,
+        phone,
+        setPhone,
+        bio,
+        setBio,
+        avatar,
+        setAvatar,
       }}>
       {children}
     </AuthContext.Provider>

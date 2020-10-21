@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+/* eslint-disable react-native/no-inline-styles */
+import React from 'react';
 import {
   View,
   Text,
@@ -11,10 +12,23 @@ import {RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 
 import styles from './styles';
+import {useAuth} from '../../../contexts/auth';
 
 export default function RegisterUser({navigation}) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    name,
+    setName,
+    user_state,
+    setUserState,
+    user_city,
+    setUserCity,
+    phone,
+    setPhone,
+    bio,
+    setBio,
+    //avatar,
+    //setAvatar,
+  } = useAuth();
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -25,7 +39,7 @@ export default function RegisterUser({navigation}) {
         style={styles.imageBackground}
         imageStyle={{opacity: 0.3}}>
         <KeyboardAvoidingView
-          behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <View style={styles.body}>
             <Text style={styles.fontTitle}>Cadastre-se para começar!</Text>
             <View style={styles.whiteBox}>
@@ -47,9 +61,9 @@ export default function RegisterUser({navigation}) {
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={email}
+                    value={name}
                     onChangeText={(text) => {
-                      setEmail(text);
+                      setName(text);
                     }}
                     placeholder={'Nome Completo'}
                     keyboardType={'email-address'}
@@ -60,12 +74,11 @@ export default function RegisterUser({navigation}) {
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={email}
+                    value={user_state}
                     onChangeText={(text) => {
-                      setPassword(text);
+                      setUserState(text);
                     }}
                     placeholder={'Estado'}
-                    secureTextEntry
                     underlineColorAndroid={'#3F3F3F'}
                     left={
                       <TextInput.Icon name="map-outline" color={'#7E57C2'} />
@@ -75,12 +88,11 @@ export default function RegisterUser({navigation}) {
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={email}
+                    value={user_city}
                     onChangeText={(text) => {
-                      setPassword(text);
+                      setUserCity(text);
                     }}
                     placeholder={'Cidade'}
-                    secureTextEntry
                     underlineColorAndroid={'#3F3F3F'}
                     left={
                       <TextInput.Icon name="map-marker" color={'#7E57C2'} />
@@ -90,12 +102,11 @@ export default function RegisterUser({navigation}) {
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={email}
+                    value={phone}
                     onChangeText={(text) => {
-                      setPassword(text);
+                      setPhone(text);
                     }}
                     placeholder={'Telefone'}
-                    secureTextEntry
                     underlineColorAndroid={'#3F3F3F'}
                     left={<TextInput.Icon name="phone" color={'#7E57C2'} />}
                   />
@@ -103,12 +114,11 @@ export default function RegisterUser({navigation}) {
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={email}
+                    value={bio}
                     onChangeText={(text) => {
-                      setPassword(text);
+                      setBio(text);
                     }}
                     placeholder={'Bio (Opcional)'}
-                    secureTextEntry
                     underlineColorAndroid={'#3F3F3F'}
                     left={<TextInput.Icon name="book" color={'#7E57C2'} />}
                   />
