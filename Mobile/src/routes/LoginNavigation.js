@@ -15,7 +15,7 @@ const Stack = createNativeStackNavigator();
 export default function LoginNavigation({isRegistered}) {
   return (
     <Stack.Navigator
-      initialRouteName={isRegistered ? 'Login' : 'LoginEditInfo'}
+      initialRouteName={'Login'}
       screenOptions={{headerShown: false}}>
       <Stack.Screen name={'Login'} component={Login} />
       <Stack.Screen name={'LoginHome'} component={LoginHome} />
