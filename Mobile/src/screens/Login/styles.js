@@ -53,10 +53,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
-  facebookIcon: {
-    alignSelf: 'center',
-    marginRight: 30,
-  },
   buttonText: {
     color: '#7E57C2',
     fontSize: 20,

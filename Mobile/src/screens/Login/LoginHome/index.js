@@ -11,7 +11,7 @@ import {RectButton} from 'react-native-gesture-handler';
 
 import styles from './styles';
 
-export default function LoginHome() {
+export default function LoginHome({navigation}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
@@ -66,7 +66,10 @@ export default function LoginHome() {
             </View>
             <View style={styles.forgotPasswordView}>
               <Text style={styles.subTextWhite}>Esqueceu sua senha?</Text>
-              <RectButton onPress={() => {}}>
+              <RectButton
+                onPress={() => {
+                  navigation.navigate('ForgotPass');
+                }}>
                 <Text style={styles.subTextGreen}>Recupere-a aqui</Text>
               </RectButton>
             </View>

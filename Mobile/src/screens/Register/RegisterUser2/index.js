@@ -11,7 +11,7 @@ import {RectButton} from 'react-native-gesture-handler';
 
 import styles from './styles';
 
-export default function RegisterUser2() {
+export default function RegisterUser2({navigation}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -76,7 +76,11 @@ export default function RegisterUser2() {
                   />
                 </View>
               </View>
-              <RectButton style={styles.buttonStyle}>
+              <RectButton
+                onPress={() => {
+                  navigation.navigate('Login');
+                }}
+                style={styles.buttonStyle}>
                 <Text style={styles.textButton}>Tudo Pronto!</Text>
               </RectButton>
             </View>

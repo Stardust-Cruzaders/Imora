@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import styles from './styles';
 
-export default function LoginHome() {
+export default function RegisterUser({navigation}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
@@ -29,7 +29,20 @@ export default function LoginHome() {
           <View style={styles.body}>
             <Text style={styles.fontTitle}>Cadastre-se para começar!</Text>
             <View style={styles.whiteBox}>
-            <Icon name="user" size={28} color="#7E57C2" style={{position: 'absolute', top: -20, right: 115, borderRadius: 1000, backgroundColor: "#DDE0E3", borderWidth: 20, borderColor:"#FFF"}} />
+              <Icon
+                name="user"
+                size={28}
+                color="#7E57C2"
+                style={{
+                  position: 'absolute',
+                  top: -20,
+                  right: 115,
+                  borderRadius: 1000,
+                  backgroundColor: '#DDE0E3',
+                  borderWidth: 20,
+                  borderColor: '#FFF',
+                }}
+              />
               <View style={styles.form}>
                 <View style={styles.inputView}>
                   <TextInput
@@ -41,9 +54,7 @@ export default function LoginHome() {
                     placeholder={'Nome Completo'}
                     keyboardType={'email-address'}
                     underlineColorAndroid={'#3F3F3F'}
-                    left={
-                      <TextInput.Icon name="account" color={'#7E57C2'} />
-                    }
+                    left={<TextInput.Icon name="account" color={'#7E57C2'} />}
                   />
                 </View>
                 <View style={styles.inputView}>
@@ -86,9 +97,7 @@ export default function LoginHome() {
                     placeholder={'Telefone'}
                     secureTextEntry
                     underlineColorAndroid={'#3F3F3F'}
-                    left={
-                      <TextInput.Icon name="phone" color={'#7E57C2'} />
-                    }
+                    left={<TextInput.Icon name="phone" color={'#7E57C2'} />}
                   />
                 </View>
                 <View style={styles.inputView}>
@@ -101,13 +110,15 @@ export default function LoginHome() {
                     placeholder={'Bio (Opcional)'}
                     secureTextEntry
                     underlineColorAndroid={'#3F3F3F'}
-                    left={
-                      <TextInput.Icon name="book" color={'#7E57C2'} />
-                    }
+                    left={<TextInput.Icon name="book" color={'#7E57C2'} />}
                   />
                 </View>
               </View>
-              <RectButton style={styles.buttonStyle}>
+              <RectButton
+                onPress={() => {
+                  navigation.navigate('RegisterUser2');
+                }}
+                style={styles.buttonStyle}>
                 <Text style={styles.textButton}>Avançar</Text>
               </RectButton>
             </View>
