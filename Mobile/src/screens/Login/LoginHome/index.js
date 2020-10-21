@@ -8,10 +8,12 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {RectButton} from 'react-native-gesture-handler';
-
+import {Root, Popup} from 'popup-ui';
 import styles from './styles';
+import {useAuth} from '../../../contexts/auth';
 
 export default function LoginHome({navigation}) {
+  const {Login} = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
@@ -60,7 +62,11 @@ export default function LoginHome({navigation}) {
                   />
                 </View>
               </View>
-              <RectButton style={styles.buttonStyle}>
+              <RectButton
+                onPress={async () => {
+                  await Login(email, password);
+                }}
+                style={styles.buttonStyle}>
                 <Text style={styles.textButton}>Continuar</Text>
               </RectButton>
             </View>

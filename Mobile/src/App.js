@@ -19,7 +19,7 @@ export default function App() {
       <NavigationContainer>
         <AuthProvider>
           <StatusBar backgroundColor={'#4D2C91'} />
-          <LoginNavigation />
+          <Routes />
         </AuthProvider>
       </NavigationContainer>
     </>

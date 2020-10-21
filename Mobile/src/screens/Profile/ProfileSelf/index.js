@@ -15,7 +15,7 @@ import {useFeed} from '../../../contexts/feed';
 export default function ProfileSelf({navigation}) {
   const width = useWindowDimensions().width;
 
-  const {FacebookSignOut, user} = useAuth();
+  const {SignOut, user} = useAuth();
   const {
     is_email_available,
     is_phone_available,
@@ -102,7 +102,7 @@ export default function ProfileSelf({navigation}) {
               <RectButton
                 style={styles.button}
                 onPress={() => {
-                  FacebookSignOut();
+                  SignOut();
                 }}>
                 <Text style={styles.buttonText}> Sair da Conta </Text>
               </RectButton>
