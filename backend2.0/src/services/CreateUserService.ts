@@ -1,10 +1,12 @@
 import { getRepository } from 'typeorm';
+import { hash } from 'bcryptjs';
 import User from '../models/User';
 import AppError from '../errors/AppError';
 
 interface Request {
   name: string;
   email: string;
+  password: string;
   bio?: string;
   avatar: string;
   is_host: boolean;
@@ -17,6 +19,7 @@ export default class CreateUserService {
   public async execute({
     name,
     email,
+    password,
     avatar,
     bio,
     is_host,
@@ -34,10 +37,11 @@ export default class CreateUserService {
     if (bio === null) {
       bio = 'sem descrição disponível';
     }
-
+    const hashedPassword = await hash(password, 8);
     const user = usersRepository.create({
       name,
       email,
+      password: hashedPassword,
       avatar,
       bio,
       is_host,
@@ -46,7 +50,6 @@ export default class CreateUserService {
       user_city,
       favorites,
     });
-
     await usersRepository.save(user);
     return user;
   }

@@ -12,6 +12,7 @@ usersRouter.post('/', async (request, response) => {
   const {
     name,
     email,
+    password,
     avatar,
     bio,
     is_host,
@@ -25,6 +26,7 @@ usersRouter.post('/', async (request, response) => {
   const user = await createUser.execute({
     name,
     email,
+    password,
     avatar,
     bio,
     is_host,
@@ -33,7 +35,7 @@ usersRouter.post('/', async (request, response) => {
     user_city,
     favorites: [],
   });
-
+  delete user.password;
   return response.json(user);
 });
 

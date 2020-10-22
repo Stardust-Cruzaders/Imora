@@ -14,12 +14,18 @@ import ToggleInterestService from '../services/ToggleInterestService';
 import ListInteressedUsers from '../services/ListInteressedUsers';
 import imgUpload from '../middlewares/ImgUpload';
 
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
 const residencesRouter = Router();
 
 const multer = Multer({
   storage: Multer.MemoryStorage,
   fileSize: 5 * 1024 * 1024,
 });
+
+const residencesRouter = Router();
+
+residencesRouter.use(ensureAuthenticated);
 
 residencesRouter.post(
   '/upload',
