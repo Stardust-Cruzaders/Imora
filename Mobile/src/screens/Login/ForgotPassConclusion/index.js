@@ -5,7 +5,7 @@ import {RectButton} from 'react-native-gesture-handler';
 
 import styles from './styles';
 
-export default function ForgotPassConclusion() {
+export default function ForgotPassConclusion({navigation}) {
   return (
     <View style={styles.container}>
       <View
@@ -22,7 +22,11 @@ export default function ForgotPassConclusion() {
             <Text style={styles.fontHighlight}>Reevie a senha</Text>
           </Text>
           <View style={{marginHorizontal: 20}}>
-            <RectButton style={styles.buttonStyle}>
+            <RectButton
+              onPress={() => {
+                navigation.navigate('Login');
+              }}
+              style={styles.buttonStyle}>
               <Text style={styles.buttonFont}>Recebi</Text>
             </RectButton>
           </View>

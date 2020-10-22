@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Image,
-  ImageBackground,
-  Text,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import {Image, ImageBackground, Text, View} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import styles from './styles';
 import textStyles from '../../textStyles';
@@ -17,7 +11,6 @@ import {Icon} from 'react-native-vector-icons/Feather';
 export default function Login({navigation}) {
   const {FacebookSignIn, isRegistered} = useAuth();
 
-  const width = useWindowDimensions().width;
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -34,24 +27,6 @@ export default function Login({navigation}) {
           />
           <Text style={[styles.imoraText, textStyles.font]}>Imora</Text>
         </View>
-        <RectButton
-          onPress={async () => {
-            await FacebookSignIn();
-            if (isRegistered == false) {
-              navigation.navigate('LoginEditInfo');
-            }
-          }}
-          style={styles.facebookButton}>
-          <View style={[styles.iconContainer]}>
-            <Icon
-              name="facebook"
-              size={25}
-              color="#fff"
-              style={styles.facebookIcon}
-            />
-            <Text style={[styles.buttonText, textStyles.font]}>Facebook</Text>
-          </View>
-        </RectButton>
 
         <View
           style={{
@@ -59,10 +34,18 @@ export default function Login({navigation}) {
             flexDirection: 'column',
             justifyContent: 'flex-end',
           }}>
-          <RectButton onPress={() => {}} style={styles.loginButton}>
+          <RectButton
+            onPress={() => {
+              navigation.navigate('LoginHome');
+            }}
+            style={styles.loginButton}>
             <Text style={[styles.buttonText, textStyles.font]}>Login</Text>
           </RectButton>
-          <RectButton onPress={() => {}} style={styles.registerButton}>
+          <RectButton
+            onPress={() => {
+              navigation.navigate('RegisterUser');
+            }}
+            style={styles.registerButton}>
             <Text style={[styles.buttonText2, textStyles.font]}>
               Registrar-se
             </Text>

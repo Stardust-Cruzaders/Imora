@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+/* eslint-disable react-native/no-inline-styles */
+import React from 'react';
 import {
   View,
   Text,
@@ -11,10 +12,23 @@ import {RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 
 import styles from './styles';
+import {useAuth} from '../../../contexts/auth';
 
-export default function LoginHome() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export default function RegisterUser({navigation}) {
+  const {
+    name,
+    setName,
+    user_state,
+    setUserState,
+    user_city,
+    setUserCity,
+    phone,
+    setPhone,
+    bio,
+    setBio,
+    //avatar,
+    //setAvatar,
+  } = useAuth();
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -25,37 +39,48 @@ export default function LoginHome() {
         style={styles.imageBackground}
         imageStyle={{opacity: 0.3}}>
         <KeyboardAvoidingView
-          behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <View style={styles.body}>
             <Text style={styles.fontTitle}>Cadastre-se para começar!</Text>
             <View style={styles.whiteBox}>
-            <Icon name="user" size={28} color="#7E57C2" style={{position: 'absolute', top: -20, right: 115, borderRadius: 1000, backgroundColor: "#DDE0E3", borderWidth: 20, borderColor:"#FFF"}} />
+              <Icon
+                name="user"
+                size={28}
+                color="#7E57C2"
+                style={{
+                  position: 'absolute',
+                  top: -20,
+                  right: 115,
+                  borderRadius: 1000,
+                  backgroundColor: '#DDE0E3',
+                  borderWidth: 20,
+                  borderColor: '#FFF',
+                }}
+              />
               <View style={styles.form}>
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={email}
+                    value={name}
                     onChangeText={(text) => {
-                      setEmail(text);
+                      setName(text);
                     }}
                     placeholder={'Nome Completo'}
                     keyboardType={'email-address'}
                     underlineColorAndroid={'#3F3F3F'}
-                    left={
-                      <TextInput.Icon name="account" color={'#7E57C2'} />
-                    }
+                    left={<TextInput.Icon name="account" color={'#7E57C2'} />}
                   />
                 </View>
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={email}
+                    value={user_state}
                     onChangeText={(text) => {
-                      setPassword(text);
+                      setUserState(text);
                     }}
                     placeholder={'Estado'}
-                    secureTextEntry
                     underlineColorAndroid={'#3F3F3F'}
+                    maxLength={2}
                     left={
                       <TextInput.Icon name="map-outline" color={'#7E57C2'} />
                     }
@@ -64,12 +89,12 @@ export default function LoginHome() {
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={email}
+                    value={user_city}
                     onChangeText={(text) => {
-                      setPassword(text);
+                      setUserCity(text);
                     }}
                     placeholder={'Cidade'}
-                    secureTextEntry
+                    maxLength={85}
                     underlineColorAndroid={'#3F3F3F'}
                     left={
                       <TextInput.Icon name="map-marker" color={'#7E57C2'} />
@@ -79,35 +104,36 @@ export default function LoginHome() {
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={email}
+                    value={phone}
                     onChangeText={(text) => {
-                      setPassword(text);
+                      setPhone(text);
                     }}
-                    placeholder={'Telefone'}
-                    secureTextEntry
+                    placeholder={'Telefone (opcional)'}
+                    maxLength={15}
                     underlineColorAndroid={'#3F3F3F'}
-                    left={
-                      <TextInput.Icon name="phone" color={'#7E57C2'} />
-                    }
+                    left={<TextInput.Icon name="phone" color={'#7E57C2'} />}
                   />
                 </View>
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={email}
+                    value={bio}
                     onChangeText={(text) => {
-                      setPassword(text);
+                      setBio(text);
                     }}
                     placeholder={'Bio (Opcional)'}
-                    secureTextEntry
                     underlineColorAndroid={'#3F3F3F'}
-                    left={
-                      <TextInput.Icon name="book" color={'#7E57C2'} />
-                    }
+                    multiline
+                    maxLength={500}
+                    left={<TextInput.Icon name="book" color={'#7E57C2'} />}
                   />
                 </View>
               </View>
-              <RectButton style={styles.buttonStyle}>
+              <RectButton
+                onPress={() => {
+                  navigation.navigate('RegisterUser2');
+                }}
+                style={styles.buttonStyle}>
                 <Text style={styles.textButton}>Avançar</Text>
               </RectButton>
             </View>

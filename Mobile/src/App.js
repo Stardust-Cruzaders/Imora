@@ -10,21 +10,16 @@ import {enableScreens} from 'react-native-screens';
 enableScreens();
 import MainNavigation from './routes/MainNavigation';
 import ResidenceAddNavigation from './routes/ResidenceAddNavigation';
+import LoginNavigation from './routes/LoginNavigation';
 import Login from './screens/Login';
-import LoginHome from './screens/Login/LoginHome';
-import ForgotPass from './screens/Login/ForgotPass';
-import ForgotPassConclusion from './screens/Login/ForgotPassConclusion';
-import RegisterUser from './screens/Register/RegisterUser';
-import RegisterUser2 from './screens/Register/RegisterUser2';
 export default function App() {
   return (
     <>
       <StatusBar backgroundColor={'#4D2C91'} />
-
       <NavigationContainer>
         <AuthProvider>
           <StatusBar backgroundColor={'#4D2C91'} />
-          <RegisterUser2 />
+          <Routes />
         </AuthProvider>
       </NavigationContainer>
     </>
