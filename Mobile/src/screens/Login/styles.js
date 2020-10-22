@@ -38,8 +38,9 @@ const styles = StyleSheet.create({
     margin: 15,
     marginBottom: 50,
     borderRadius: 1001,
-    backgroundColor: '#AAAA',
-    borderColor: 'white',
+    borderWidth: 1,
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    borderColor: '#FFF',
   },
   loginButton: {
     alignItems: 'center',
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontSize: 20,
     fontFamily: 'Roboto',
-  },
+    },
   imageBackground: {
     flex: 1,
     resizeMode: 'cover',
@@ -70,6 +71,7 @@ const styles = StyleSheet.create({
   logoImage: {
     height: 60,
     width: 60,
+    tintColor: '#FFF'
   },
 });
 
