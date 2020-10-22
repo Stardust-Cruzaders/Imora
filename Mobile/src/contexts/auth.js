@@ -28,8 +28,14 @@ export function AuthProvider({children}) {
       const storagedUser = await AsyncStorage.getItem('@RNAuth:user');
       const storagedToken = await AsyncStorage.getItem('@RNAuth:token');
       const wasSigned = await AsyncStorage.getItem('@RNAuth:wasSigned');
-
-      if (wasSigned === null || undefined) {
+      console.log(wasSigned);
+      console.log(storagedUser, storagedToken);
+      if (
+        wasSigned === null ||
+        undefined ||
+        ((storagedUser === null || undefined) &&
+          (storagedToken === null || undefined))
+      ) {
         setLoading(false);
       } else if (storagedUser && storagedToken) {
         api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
