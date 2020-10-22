@@ -1,5 +1,4 @@
-/* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -12,23 +11,10 @@ import {RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 
 import styles from './styles';
-import {useAuth} from '../../../contexts/auth';
 
-export default function RegisterUser({navigation}) {
-  const {
-    name,
-    setName,
-    user_state,
-    setUserState,
-    user_city,
-    setUserCity,
-    phone,
-    setPhone,
-    bio,
-    setBio,
-    //avatar,
-    //setAvatar,
-  } = useAuth();
+export default function LoginHome() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -39,48 +25,37 @@ export default function RegisterUser({navigation}) {
         style={styles.imageBackground}
         imageStyle={{opacity: 0.3}}>
         <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+          behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
           <View style={styles.body}>
             <Text style={styles.fontTitle}>Cadastre-se para começar!</Text>
             <View style={styles.whiteBox}>
-              <Icon
-                name="user"
-                size={28}
-                color="#7E57C2"
-                style={{
-                  position: 'absolute',
-                  top: -20,
-                  right: 115,
-                  borderRadius: 1000,
-                  backgroundColor: '#DDE0E3',
-                  borderWidth: 20,
-                  borderColor: '#FFF',
-                }}
-              />
+            <Icon name="user" size={28} color="#7E57C2" style={{position: 'absolute', top: -20, right: 115, borderRadius: 1000, backgroundColor: "#DDE0E3", borderWidth: 15, borderColor:"#FFF", border}} />
               <View style={styles.form}>
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={name}
+                    value={email}
                     onChangeText={(text) => {
-                      setName(text);
+                      setEmail(text);
                     }}
                     placeholder={'Nome Completo'}
                     keyboardType={'email-address'}
                     underlineColorAndroid={'#3F3F3F'}
-                    left={<TextInput.Icon name="account" color={'#7E57C2'} />}
+                    left={
+                      <TextInput.Icon name="account" color={'#7E57C2'} />
+                    }
                   />
                 </View>
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={user_state}
+                    value={email}
                     onChangeText={(text) => {
-                      setUserState(text);
+                      setPassword(text);
                     }}
                     placeholder={'Estado'}
+                    secureTextEntry
                     underlineColorAndroid={'#3F3F3F'}
-                    maxLength={2}
                     left={
                       <TextInput.Icon name="map-outline" color={'#7E57C2'} />
                     }
@@ -89,12 +64,12 @@ export default function RegisterUser({navigation}) {
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={user_city}
+                    value={email}
                     onChangeText={(text) => {
-                      setUserCity(text);
+                      setPassword(text);
                     }}
                     placeholder={'Cidade'}
-                    maxLength={85}
+                    secureTextEntry
                     underlineColorAndroid={'#3F3F3F'}
                     left={
                       <TextInput.Icon name="map-marker" color={'#7E57C2'} />
@@ -104,36 +79,35 @@ export default function RegisterUser({navigation}) {
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={phone}
+                    value={email}
                     onChangeText={(text) => {
-                      setPhone(text);
+                      setPassword(text);
                     }}
-                    placeholder={'Telefone (opcional)'}
-                    maxLength={15}
+                    placeholder={'Telefone'}
+                    secureTextEntry
                     underlineColorAndroid={'#3F3F3F'}
-                    left={<TextInput.Icon name="phone" color={'#7E57C2'} />}
+                    left={
+                      <TextInput.Icon name="phone" color={'#7E57C2'} />
+                    }
                   />
                 </View>
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.input}
-                    value={bio}
+                    value={email}
                     onChangeText={(text) => {
-                      setBio(text);
+                      setPassword(text);
                     }}
                     placeholder={'Bio (Opcional)'}
+                    secureTextEntry
                     underlineColorAndroid={'#3F3F3F'}
-                    multiline
-                    maxLength={500}
-                    left={<TextInput.Icon name="book" color={'#7E57C2'} />}
+                    left={
+                      <TextInput.Icon name="book" color={'#7E57C2'} />
+                    }
                   />
                 </View>
               </View>
-              <RectButton
-                onPress={() => {
-                  navigation.navigate('RegisterUser2');
-                }}
-                style={styles.buttonStyle}>
+              <RectButton style={styles.buttonStyle}>
                 <Text style={styles.textButton}>Avançar</Text>
               </RectButton>
             </View>
