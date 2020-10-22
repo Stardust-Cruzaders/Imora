@@ -6,7 +6,7 @@ import MainNavigation from './MainNavigation';
 import {useAuth} from '../contexts/auth';
 import {ActivityIndicator, View} from 'react-native';
 export default function Routes() {
-  const {signed, isRegistered, loading} = useAuth();
+  const {signed, loading} = useAuth();
 
   if (loading) {
     return (
@@ -16,9 +16,5 @@ export default function Routes() {
     );
   }
 
-  return signed === true && isRegistered === true ? (
-    <MainNavigation />
-  ) : (
-    <LoginNavigation isRegistered={isRegistered} />
-  );
+  return signed === true ? <MainNavigation /> : <LoginNavigation />;
 }
