@@ -19,7 +19,7 @@ export default function EditResidenceConfig({navigation}) {
     is_location_available,
     setIsLocationAvailable,
   } = useFeed();
-  const {user, FacebookSignOut, setUser} = useAuth();
+  const {user, SignOut, setUser} = useAuth();
   const [bio, setBio] = useState('');
   const [phone, setPhone] = useState('');
   const [user_state, setUserState] = useState('');
@@ -29,12 +29,15 @@ export default function EditResidenceConfig({navigation}) {
     api
       .delete(`/users/${user_id}`)
       .then(() => {
-        FacebookSignOut().catch((err) => {
+        SignOut().catch((err) => {
           console.log('Erro ao tentar sair: ' + err);
+          return false;
         });
+        return true;
       })
       .catch((error) => {
         console.log('Erro ao tentar deletar conta: ' + error);
+        return false;
       });
   }
   function showDeleteAlert() {
@@ -49,12 +52,26 @@ export default function EditResidenceConfig({navigation}) {
         {
           text: 'deletar',
           onPress: () => {
-            handleUserDeletion(user.id);
+            if (handleUserDeletion(user.id) === false) {
+              ErrorAlert('Erro ao deletar a conta');
+            }
           },
         },
       ],
       {cancelable: false},
     );
+  }
+  function ErrorAlert(message) {
+    return Popup.show({
+      type: 'Danger',
+      title: 'Oops!! Parece que algo deu errado.',
+      button: true,
+      textBody: message,
+      buttontext: 'OK',
+      callback: () => {
+        Popup.hide();
+      },
+    });
   }
   function UpdateUserData(id) {
     const data = {
@@ -93,6 +110,7 @@ export default function EditResidenceConfig({navigation}) {
             const newUser = UpdateUserData(user.id);
             if (newUser !== null) {
               setUser(newUser);
+              SignOut();
             }
           },
         },
