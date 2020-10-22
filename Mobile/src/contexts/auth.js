@@ -38,6 +38,7 @@ export function AuthProvider({children}) {
         setLoading(false);
       }
     }
+
     loadStoragedData();
   }, []);
   async function SignIn(email, password) {
@@ -85,8 +86,10 @@ export function AuthProvider({children}) {
         AsyncStorage.setItem('@RNAuth:wasSigned', JSON.stringify(true)),
         AsyncStorage.setItem('@RNAuth:token', response.token),
       ]);
+      return true;
     } catch (err) {
       console.log('Erro no login ' + err);
+      return false;
     }
   }
   function SignOut() {

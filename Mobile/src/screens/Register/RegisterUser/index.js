@@ -80,6 +80,7 @@ export default function RegisterUser({navigation}) {
                     }}
                     placeholder={'Estado'}
                     underlineColorAndroid={'#3F3F3F'}
+                    maxLength={2}
                     left={
                       <TextInput.Icon name="map-outline" color={'#7E57C2'} />
                     }
@@ -93,6 +94,7 @@ export default function RegisterUser({navigation}) {
                       setUserCity(text);
                     }}
                     placeholder={'Cidade'}
+                    maxLength={85}
                     underlineColorAndroid={'#3F3F3F'}
                     left={
                       <TextInput.Icon name="map-marker" color={'#7E57C2'} />
@@ -106,7 +108,8 @@ export default function RegisterUser({navigation}) {
                     onChangeText={(text) => {
                       setPhone(text);
                     }}
-                    placeholder={'Telefone'}
+                    placeholder={'Telefone (opcional)'}
+                    maxLength={15}
                     underlineColorAndroid={'#3F3F3F'}
                     left={<TextInput.Icon name="phone" color={'#7E57C2'} />}
                   />
@@ -120,6 +123,8 @@ export default function RegisterUser({navigation}) {
                     }}
                     placeholder={'Bio (Opcional)'}
                     underlineColorAndroid={'#3F3F3F'}
+                    multiline
+                    maxLength={500}
                     left={<TextInput.Icon name="book" color={'#7E57C2'} />}
                   />
                 </View>
