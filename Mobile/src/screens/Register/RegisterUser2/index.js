@@ -82,27 +82,41 @@ export default function RegisterUser2({navigation}) {
                 </View>
                 <RectButton
                   onPress={async () => {
-                    try {
-                      await Register();
-                      Popup.show({
-                        type: 'Success',
-                        title: 'Você foi cadastrado com sucesso!!',
-                        button: true,
-                        textBody:
-                          'Você será redirecionado para a tela de login agora.',
-                        buttontext: 'OK',
-                        callback: () => {
-                          Popup.hide();
-                          navigation.navigate('LoginHome');
-                        },
-                      });
-                    } catch {
+                    if (password === confirmPassword) {
+                      try {
+                        await Register();
+                        Popup.show({
+                          type: 'Success',
+                          title: 'Você foi cadastrado com sucesso!!',
+                          button: true,
+                          textBody:
+                            'Você será redirecionado para a tela de login agora.',
+                          buttontext: 'OK',
+                          callback: () => {
+                            Popup.hide();
+                            navigation.navigate('LoginHome');
+                          },
+                        });
+                      } catch {
+                        Popup.show({
+                          type: 'Danger',
+                          title: 'Oops!! Parece que algo deu errado.',
+                          button: true,
+                          textBody:
+                            'Verifique se todas as informações estão digitadas corretamente.',
+                          buttontext: 'OK',
+                          callback: () => {
+                            Popup.hide();
+                          },
+                        });
+                      }
+                    } else {
                       Popup.show({
                         type: 'Danger',
                         title: 'Oops!! Parece que algo deu errado.',
                         button: true,
                         textBody:
-                          'Verifique se todas as informações estão digitadas corretamente.',
+                          'As senhas não batem. certifique-se de que a senha é igual em todos os campos',
                         buttontext: 'OK',
                         callback: () => {
                           Popup.hide();
