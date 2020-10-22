@@ -43,13 +43,13 @@ export default function Login({navigation}) {
           </RectButton>
          
           <TouchableOpacity
-          onPress={() => {
+           onPress={() => {
             navigation.navigate('RegisterUser');
           }}
           style={styles.registerButton}>
           <Text style={[styles.buttonText2, textStyles.font]}>
               Registrar-se
-            </Text>     
+            </Text>
 
           </TouchableOpacity>
         </View>
