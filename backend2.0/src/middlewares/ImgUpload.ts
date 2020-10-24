@@ -1,6 +1,17 @@
 import { Storage } from '@google-cloud/storage';
 import { Request, Response, NextFunction } from 'express';
 
+interface MulterRequest extends Request {
+  files: any;
+}
+interface Image {
+  fieldname: string;
+  originalname: string;
+  encoding: string;
+  mimetype: string;
+  buffer: any;
+  size: number;
+}
 const storage = new Storage({ keyFilename: 'Imora-de02efe2d599.json' });
 
 const bucketName = 'imora_residence_pictures';
@@ -10,36 +21,50 @@ const bucket = storage.bucket(bucketName);
 function getPublicUrl(filename: string): string {
   return `https://storage.googleapis.com/${bucketName}/${filename}`;
 }
-const imgUpload = {};
 
-imgUpload.uploadToGcs = (
-  request: Request,
+const uploadToGcs = (
+  request: MulterRequest,
   response: Response,
   next: NextFunction,
 ) => {
-  if (!request.file) return next();
+  if (!request.files) {
+    console.log('sad');
+    return next();
+  }
+  let promises: Array<Promise<unknown>> = [];
+  request.files.forEach((image: Image, index: number) => {
+    console.log(image, index);
+    const gcsname = `${image.originalname}${Date.now()}`;
+    const file = bucket.file(gcsname);
 
-  const gcsname = request.file.originalname;
-  const file = bucket.file(gcsname);
+    const promise = new Promise((resolve, reject) => {
+      const stream = file.createWriteStream({
+        metadata: {
+          contentType: image.mimetype,
+        },
+      });
 
-  const stream = file.createWriteStream({
-    metadata: {
-      contentType: request.file.mimetype,
-    },
+      stream.on('finish', async () => {
+        try {
+          request.files[index].cloudStorageObject = gcsname;
+          await file.makePublic();
+          request.files[index].cloudStoragePublicUrl = getPublicUrl(gcsname);
+          resolve();
+        } catch (error) {
+          reject(error);
+        }
+      });
+
+      stream.end(image.buffer);
+    });
+    promises.push(promise);
   });
-
-  stream.on('error', err => {
-    request.file.cloudStorageError = err;
-    next(err);
-  });
-
-  stream.on('finish', () => {
-    request.file.cloudStorageObject = gcsname;
-    request.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
-    next();
-  });
-
-  stream.end(request.file.buffer);
+  Promise.all(promises)
+    .then(_ => {
+      promises = [];
+      next();
+    })
+    .catch(next);
 };
 
-export default imgUpload;
+export default uploadToGcs;

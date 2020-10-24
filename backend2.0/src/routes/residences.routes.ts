@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { getRepository } from 'typeorm';
 
-import Multer from 'multer';
+import multer from 'multer';
 import CreateResidenceService from '../services/CreateResidenceService';
 import ListFavoriteResidencesService from '../services/ListFavoriteResidencesService';
 import ListUserResidenceService from '../services/ListUserResidenceService';
@@ -12,31 +12,26 @@ import UpdateResidenceService from '../services/UpdateResidenceService';
 import Residence from '../models/Residence';
 import ToggleInterestService from '../services/ToggleInterestService';
 import ListInteressedUsers from '../services/ListInteressedUsers';
-import imgUpload from '../middlewares/ImgUpload';
+import uploadToGcs from '../middlewares/ImgUpload';
 
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const residencesRouter = Router();
 
-const multer = Multer({
-  storage: Multer.MemoryStorage,
-  fileSize: 5 * 1024 * 1024,
+const Multer = multer({
+  storage: multer.memoryStorage(),
 });
-
-const residencesRouter = Router();
 
 residencesRouter.use(ensureAuthenticated);
 
 residencesRouter.post(
   '/upload',
-  multer.single('image'),
-  imgUpload.uploadToGcs,
-  (request, response) => {
-    const data = request.body;
-    if (request.file && request.file.cloudStoragePublicUrl) {
-      data.imageUrl = request.file.cloudStoragePublicUrl;
-    }
-    response.send(data);
+  Multer.array('image'),
+  uploadToGcs,
+  async (request, response, next) => {
+    console.log(request.headers);
+    console.log(`Files ${request.files}`);
+    return response.json({ files: request.files });
   },
 );
 
