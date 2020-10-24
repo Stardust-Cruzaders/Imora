@@ -20,6 +20,9 @@ const residencesRouter = Router();
 
 const Multer = multer({
   storage: multer.memoryStorage(),
+  limits: {
+    fieldSize: 5 * 1024 * 1024,
+  },
 });
 
 residencesRouter.use(ensureAuthenticated);
@@ -28,7 +31,7 @@ residencesRouter.post(
   '/upload',
   Multer.array('image'),
   uploadToGcs,
-  async (request, response, next) => {
+  async (request, response) => {
     console.log(request.headers);
     console.log(`Files ${request.files}`);
     return response.json({ files: request.files });
