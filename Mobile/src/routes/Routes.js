@@ -5,11 +5,7 @@ import MainNavigation from './MainNavigation';
 import {useAuth} from '../contexts/auth';
 import {ActivityIndicator, View} from 'react-native';
 export default function Routes() {
-  const {signed, loading, validateToken} = useAuth();
-
-  useEffect(() => {
-    validateToken();
-  }, []);
+  const {signed, loading} = useAuth();
 
   if (loading) {
     return (
