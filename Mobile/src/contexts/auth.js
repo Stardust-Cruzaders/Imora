@@ -47,6 +47,19 @@ export function AuthProvider({children}) {
 
     loadStoragedData();
   }, []);
+  async function validateToken() {
+    await api
+      .get('/residences')
+      .then(() => {
+        return true;
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          SignOut();
+          return false;
+        }
+      });
+  }
   async function SignIn(email, password) {
     const data = {
       email,
@@ -129,6 +142,7 @@ export function AuthProvider({children}) {
         setBio,
         avatar,
         setAvatar,
+        validateToken,
       }}>
       {children}
     </AuthContext.Provider>
