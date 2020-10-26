@@ -47,8 +47,6 @@ export default function ResidenceEdit({navigation}) {
     HandleResidenceUpdate,
     residence_id,
     images,
-    imagesGCS,
-    setImagesGCS,
   } = useResidenceAdd();
 
   function AddPhotos(formData) {
@@ -65,10 +63,8 @@ export default function ResidenceEdit({navigation}) {
     fetch(url, config)
       .then((response) => response.json())
       .then((result) => {
-        setImagesGCS([...imagesGCS, result.files]);
-
         if (isUpdatingValues === false) {
-          HandleResidenceAdd(user.id);
+          HandleResidenceAdd(user.id, result.files);
           Popup.show({
             type: 'Success',
             title: 'Residência adicionada com sucesso',
