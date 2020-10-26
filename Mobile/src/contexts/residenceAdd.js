@@ -10,7 +10,6 @@ export default function ResidenceAddProvider({children}) {
   const [numRooms, setNumRooms] = useState('');
   const [numBathrooms, setNumBathrooms] = useState('');
   const [resourcePath, setResourcePath] = useState([]);
-  const [imagesGCS, setImagesGCS] = useState([]);
   const [images, setImages] = useState([]);
 
   //Residence Type
@@ -79,11 +78,11 @@ export default function ResidenceAddProvider({children}) {
   const [complement, setComplement] = useState('');
   const [locationTypeMessage, setLocationTypeMessage] = useState('');
 
-  function HandleResidenceAdd(user_id) {
+  function HandleResidenceAdd(user_id, images) {
     const data = {
       residence_name: title,
       description: description,
-      images: imagesGCS,
+      images: images,
       available: true,
       zipcode: zipcode,
       state: state,
@@ -116,7 +115,7 @@ export default function ResidenceAddProvider({children}) {
         console.log(response.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log('Erro ao cadastrar residência' + err.response.message);
       });
   }
   function checkIfEmpty(array) {
@@ -127,11 +126,11 @@ export default function ResidenceAddProvider({children}) {
     }
   }
 
-  function HandleResidenceUpdate(residence_id) {
+  function HandleResidenceUpdate(residence_id, images) {
     const data = {
       residence_name: title,
       description: description,
-      images: imagesGCS,
+      images: images,
       available: true,
       zipcode: zipcode,
       state: state,
@@ -253,8 +252,6 @@ export default function ResidenceAddProvider({children}) {
         setNumBathrooms,
         resourcePath,
         setResourcePath,
-        imagesGCS,
-        setImagesGCS,
         images,
         setImages,
         locationType,
