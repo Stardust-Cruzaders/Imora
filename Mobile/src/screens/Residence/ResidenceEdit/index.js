@@ -21,7 +21,7 @@ import {useAuth} from '../../../contexts/auth';
 
 export default function ResidenceEdit({navigation}) {
   const width = useWindowDimensions().width;
-  const {user} = useAuth();
+  const {user, token} = useAuth();
   const {
     title,
     price,
@@ -46,7 +46,32 @@ export default function ResidenceEdit({navigation}) {
     isUpdatingValues,
     HandleResidenceUpdate,
     residence_id,
+    images,
+    imagesGCS,
+    setImagesGCS,
   } = useResidenceAdd();
+  function AddPhotos(formData) {
+    const url = 'http://192.168.15.14:3333/residences/upload';
+    const config = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    };
+
+    fetch(url, config)
+      .then((response) => response.json())
+      .then((result) => {
+        result.files.map((file) => {
+          setImagesGCS([...imagesGCS, file.cloudStoragePublicUrl]);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <Root>
@@ -325,7 +350,13 @@ export default function ResidenceEdit({navigation}) {
             styles.button,
             {backgroundColor: '#7E57C2', width: width - 245},
           ]}
-          onPress={() => {
+          onPress={async () => {
+            let formData = new FormData();
+            await images.map((image) => {
+              formData.append('image', image);
+            });
+            AddPhotos(formData);
+            console.log('GCS: ' + imagesGCS);
             if (isUpdatingValues === false) {
               HandleResidenceAdd(user.id);
               Popup.show({
@@ -342,6 +373,7 @@ export default function ResidenceEdit({navigation}) {
               });
             } else {
               HandleResidenceUpdate(residence_id);
+
               Popup.show({
                 type: 'Success',
                 title: 'Residência Alterada com sucesso',
