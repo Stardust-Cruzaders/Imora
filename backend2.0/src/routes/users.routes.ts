@@ -1,13 +1,33 @@
 import { Router } from 'express';
 
+import multer from 'multer';
 import FindUserService from '../services/FindUserService';
 import CreateUserService from '../services/CreateUserService';
 import UpdateUserService from '../services/UpdateUserService';
 import FavoriteResidenceService from '../services/FavoriteResidenceService';
 import DeleteUserService from '../services/DeleteUserService';
+import AvatarUpload from '../middlewares/AvatarUpload';
 
 const usersRouter = Router();
 
+const Multer = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fieldSize: 5 * 1024 * 1024,
+  },
+});
+usersRouter.post(
+  '/upload',
+  Multer.single('image'),
+  AvatarUpload,
+  async (request, response) => {
+    const data = request.body;
+    if (request.file && request.file.cloudStoragePublicUrl) {
+      data.imageUrl = request.file.cloudStoragePublicUrl;
+    }
+    return response.send(data);
+  },
+);
 usersRouter.post('/', async (request, response) => {
   const {
     name,
