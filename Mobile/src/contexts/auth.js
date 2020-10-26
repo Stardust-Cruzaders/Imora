@@ -100,7 +100,7 @@ export function AuthProvider({children}) {
     try {
       const response = await SignIn(email, password);
       setUser(response.user);
-
+      setToken(response.token);
       api.defaults.headers.Authorization = `Bearer ${response.token}`;
       await Promise.all([
         AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user)),
