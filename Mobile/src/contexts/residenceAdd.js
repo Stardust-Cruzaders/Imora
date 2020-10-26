@@ -10,6 +10,8 @@ export default function ResidenceAddProvider({children}) {
   const [numRooms, setNumRooms] = useState('');
   const [numBathrooms, setNumBathrooms] = useState('');
   const [resourcePath, setResourcePath] = useState([]);
+  const [imagesGCS, setImagesGCS] = useState([]);
+  const [images, setImages] = useState([]);
 
   //Residence Type
   const [locationType, setLocationType] = useState('Espaço inteiro');
@@ -81,13 +83,7 @@ export default function ResidenceAddProvider({children}) {
     const data = {
       residence_name: title,
       description: description,
-      images: [
-        'https://i.pinimg.com/564x/34/43/2f/34432f8d15ad73f2fb289195327b2ad4.jpg',
-        'https://i.pinimg.com/564x/8b/09/43/8b0943a51a748b59e3f1aacffeb266dc.jpg',
-        'https://i.pinimg.com/564x/eb/23/16/eb2316a4c199cb12436f6b9f440a2330.jpg',
-        'https://i.pinimg.com/564x/ea/bf/e8/eabfe8dae949003e8ae55cf965899e76.jpg',
-        'https://i.pinimg.com/564x/e0/33/17/e033172ea1e2726d95ece2a3e85e230d.jpg',
-      ],
+      images: imagesGCS,
       available: true,
       zipcode: zipcode,
       state: state,
@@ -135,13 +131,7 @@ export default function ResidenceAddProvider({children}) {
     const data = {
       residence_name: title,
       description: description,
-      images: [
-        'https://i.pinimg.com/564x/34/43/2f/34432f8d15ad73f2fb289195327b2ad4.jpg',
-        'https://i.pinimg.com/564x/8b/09/43/8b0943a51a748b59e3f1aacffeb266dc.jpg',
-        'https://i.pinimg.com/564x/eb/23/16/eb2316a4c199cb12436f6b9f440a2330.jpg',
-        'https://i.pinimg.com/564x/ea/bf/e8/eabfe8dae949003e8ae55cf965899e76.jpg',
-        'https://i.pinimg.com/564x/e0/33/17/e033172ea1e2726d95ece2a3e85e230d.jpg',
-      ],
+      images: imagesGCS,
       available: true,
       zipcode: zipcode,
       state: state,
@@ -169,14 +159,9 @@ export default function ResidenceAddProvider({children}) {
       max_residents: maxResidentNum,
     };
 
-    api
-      .put(`/residences/${residence_id}`, data)
-      .then(() => {
-        console.log('successs!');
-      })
-      .catch((err) => {
-        console.log('Error: ' + err);
-      });
+    api.put(`/residences/${residence_id}`, data).catch((err) => {
+      console.log('Error: ' + err);
+    });
   }
   const [residence_id, setResidenceId] = useState('');
   const [isUpdatingValues, setIsUpdatingValues] = useState(false);
@@ -268,6 +253,10 @@ export default function ResidenceAddProvider({children}) {
         setNumBathrooms,
         resourcePath,
         setResourcePath,
+        imagesGCS,
+        setImagesGCS,
+        images,
+        setImages,
         locationType,
         setLocationType,
         checkedHouseType,
