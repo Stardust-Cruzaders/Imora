@@ -34,18 +34,16 @@ const uploadToGcs = (
     },
   });
 
-  stream.on('finish', async () => {
-    try {
-      request.file.cloudStorageObject = gcsname;
-      await file.makePublic();
-      request.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
-    } catch (error) {
-      throw new AppError(`Something went wrong if the avatar upload: ${error}`);
-    }
+  stream.on('error', err => {
+    request.file.cloudStorageError = err;
+    next(err);
   });
-
+  stream.on('finish', () => {
+    request.file.cloudStorageObject = gcsname;
+    request.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
+    next();
+  });
   stream.end(request.file.buffer);
-  next();
 };
 
 export default uploadToGcs;
