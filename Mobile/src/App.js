@@ -8,10 +8,6 @@ import {AuthProvider} from './contexts/auth';
 import {enableScreens} from 'react-native-screens';
 
 enableScreens();
-import MainNavigation from './routes/MainNavigation';
-import ResidenceAddNavigation from './routes/ResidenceAddNavigation';
-import LoginNavigation from './routes/LoginNavigation';
-import Login from './screens/Login';
 export default function App() {
   return (
     <>
