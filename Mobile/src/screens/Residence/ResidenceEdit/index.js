@@ -50,6 +50,7 @@ export default function ResidenceEdit({navigation}) {
     imagesGCS,
     setImagesGCS,
   } = useResidenceAdd();
+
   function AddPhotos(formData) {
     const url = 'http://192.168.15.14:3333/residences/upload';
     const config = {
@@ -64,12 +65,41 @@ export default function ResidenceEdit({navigation}) {
     fetch(url, config)
       .then((response) => response.json())
       .then((result) => {
-        result.files.map((file) => {
-          setImagesGCS([...imagesGCS, file.cloudStoragePublicUrl]);
-        });
+        setImagesGCS([...imagesGCS, result.files]);
+
+        if (isUpdatingValues === false) {
+          HandleResidenceAdd(user.id);
+          Popup.show({
+            type: 'Success',
+            title: 'Residência adicionada com sucesso',
+            button: true,
+            textBody:
+              'Sua residência foi adicionada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
+            buttontext: 'OK',
+            callback: () => {
+              Popup.hide();
+              navigation.navigate('Feed');
+            },
+          });
+        } else {
+          HandleResidenceUpdate(residence_id);
+
+          Popup.show({
+            type: 'Success',
+            title: 'Residência Alterada com sucesso',
+            button: true,
+            textBody:
+              'Sua residência foi alterada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
+            buttontext: 'OK',
+            callback: () => {
+              Popup.hide();
+              navigation.navigate('Feed');
+            },
+          });
+        }
       })
       .catch((err) => {
-        console.log(err);
+        console.log('Erro ao tentar fazer o upload: ' + err);
       });
   }
 
@@ -350,43 +380,12 @@ export default function ResidenceEdit({navigation}) {
             styles.button,
             {backgroundColor: '#7E57C2', width: width - 245},
           ]}
-          onPress={async () => {
+          onPress={() => {
             let formData = new FormData();
-            await images.map((image) => {
+            images.map((image) => {
               formData.append('image', image);
             });
             AddPhotos(formData);
-            console.log('GCS: ' + imagesGCS);
-            if (isUpdatingValues === false) {
-              HandleResidenceAdd(user.id);
-              Popup.show({
-                type: 'Success',
-                title: 'Residência adicionada com sucesso',
-                button: true,
-                textBody:
-                  'Sua residência foi adicionada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
-                buttontext: 'OK',
-                callback: () => {
-                  Popup.hide();
-                  navigation.navigate('Feed');
-                },
-              });
-            } else {
-              HandleResidenceUpdate(residence_id);
-
-              Popup.show({
-                type: 'Success',
-                title: 'Residência Alterada com sucesso',
-                button: true,
-                textBody:
-                  'Sua residência foi alterada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
-                buttontext: 'OK',
-                callback: () => {
-                  Popup.hide();
-                  navigation.navigate('Feed');
-                },
-              });
-            }
           }}>
           <Text style={styles.buttonText}>Publicar</Text>
         </RectButton>
