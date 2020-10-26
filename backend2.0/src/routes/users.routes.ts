@@ -20,7 +20,7 @@ usersRouter.post(
   '/upload',
   Multer.single('image'),
   AvatarUpload,
-  async (request, response) => {
+  (request, response) => {
     const data = request.body;
     if (request.file && request.file.cloudStoragePublicUrl) {
       data.imageUrl = request.file.cloudStoragePublicUrl;
