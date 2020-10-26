@@ -32,7 +32,11 @@ residencesRouter.post(
   Multer.array('image'),
   uploadToGcs,
   async (request, response) => {
-    return response.json({ files: request.files });
+    const files: Array<string> = [];
+    request.files.map((file: any) => {
+      files.push(file.cloudStoragePublicUrl);
+    });
+    return response.json({ files });
   },
 );
 
