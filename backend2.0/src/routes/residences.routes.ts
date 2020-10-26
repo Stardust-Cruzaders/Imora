@@ -32,8 +32,6 @@ residencesRouter.post(
   Multer.array('image'),
   uploadToGcs,
   async (request, response) => {
-    console.log(request.headers);
-    console.log(`Files ${request.files}`);
     return response.json({ files: request.files });
   },
 );

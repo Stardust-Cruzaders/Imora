@@ -28,12 +28,10 @@ const uploadToGcs = (
   next: NextFunction,
 ) => {
   if (!request.files) {
-    console.log('sad');
     return next();
   }
   let promises: Array<Promise<unknown>> = [];
   request.files.forEach((image: Image, index: number) => {
-    console.log(image, index);
     const gcsname = `${image.originalname}${Date.now()}`;
     const file = bucket.file(gcsname);
 
