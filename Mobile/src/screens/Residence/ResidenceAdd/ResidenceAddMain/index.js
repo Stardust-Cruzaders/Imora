@@ -1,8 +1,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable eqeqeq */
-import React, {useEffect, useState} from 'react';
-import FormData from 'form-data';
+import React, {useEffect} from 'react';
 import {
   Image,
   Text,
@@ -33,7 +32,6 @@ import {TextInput} from 'react-native-paper';
 import {Root, Popup} from 'popup-ui';
 
 import {useResidenceAdd} from '../../../../contexts/residenceAdd';
-import api from '../../../../services/api';
 
 export default function ResidenceAddMain({navigation, route}) {
   const {
@@ -49,10 +47,11 @@ export default function ResidenceAddMain({navigation, route}) {
     setResourcePath,
     setDefaultValues,
     setIsUpdatingValues,
+    images,
+    setImages,
   } = useResidenceAdd();
-
   const width = useWindowDimensions().width;
-  const [images, setImages] = useState([]);
+
   useEffect(() => {
     if (route.params) {
       if (route.params.residence) {
@@ -72,7 +71,7 @@ export default function ResidenceAddMain({navigation, route}) {
       chooseFromLibraryButtonTitle: 'Escolher da galeria',
       storageOptions: {
         skipBackup: true,
-        path: 'images',
+        path: 'imora',
       },
     };
 
@@ -84,33 +83,11 @@ export default function ResidenceAddMain({navigation, route}) {
       } else {
         const image = {
           uri: res.uri,
-          type: 'image/jpeg',
-          name: `myImage-${Date.now()}.jpg`,
+          name: res.fileName,
+          type: res.type,
         };
-
-        const imgBody = new FormData();
-        console.log('boundary: ' + imgBody._boundary);
-        imgBody.append('image', image);
-        api
-          .post(
-            '/residences/upload',
-            {data: imgBody},
-            {
-              headers: {
-                'content-type': `multipart/form-data; boundary=${imgBody._boundary}`,
-              },
-            },
-          )
-          .then((response) => {
-            console.log(response);
-            const source = {uri: response.imageUrl, isStatic: true};
-            setImages(source);
-            setResourcePath([...resourcePath, res]);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-        //const newArr = resourcePath.split();
+        setImages([...images, image]);
+        setResourcePath([...resourcePath, res]);
       }
     });
   };
@@ -134,6 +111,11 @@ export default function ResidenceAddMain({navigation, route}) {
         return img.fileName !== item.fileName;
       }),
     );
+    setImages(
+      images.filter((img) => {
+        return img.name !== item.fileName;
+      }),
+    );
   }
   const DeleteImageConfirmation = (item) => {
     Alert.alert(
@@ -153,6 +135,7 @@ export default function ResidenceAddMain({navigation, route}) {
       {cancelable: false},
     );
   };
+
   return (
     <>
       <Root>
