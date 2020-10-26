@@ -1,6 +1,5 @@
 import { Storage } from '@google-cloud/storage';
 import { Request, Response, NextFunction } from 'express';
-import AppError from '../errors/AppError';
 
 interface MulterRequest extends Request {
   file: any;
