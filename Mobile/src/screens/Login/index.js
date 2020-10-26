@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, ImageBackground, Text, View} from 'react-native';
+import {Image, ImageBackground, Text, View, TouchableOpacity} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import styles from './styles';
 import textStyles from '../../textStyles';
@@ -41,15 +41,17 @@ export default function Login({navigation}) {
             style={styles.loginButton}>
             <Text style={[styles.buttonText, textStyles.font]}>Login</Text>
           </RectButton>
-          <RectButton
-            onPress={() => {
-              navigation.navigate('RegisterUser');
-            }}
-            style={styles.registerButton}>
-            <Text style={[styles.buttonText2, textStyles.font]}>
+         
+          <TouchableOpacity
+           onPress={() => {
+            navigation.navigate('RegisterUser');
+          }}
+          style={styles.registerButton}>
+          <Text style={[styles.buttonText2, textStyles.font]}>
               Registrar-se
             </Text>
-          </RectButton>
+
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>

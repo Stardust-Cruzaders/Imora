@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   View,
@@ -6,6 +5,7 @@ import {
   ImageBackground,
   KeyboardAvoidingView,
   Platform,
+  TouchableOpacity
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {RectButton} from 'react-native-gesture-handler';
@@ -43,20 +43,23 @@ export default function RegisterUser({navigation}) {
           <View style={styles.body}>
             <Text style={styles.fontTitle}>Cadastre-se para começar!</Text>
             <View style={styles.whiteBox}>
-              <Icon
-                name="user"
-                size={28}
-                color="#7E57C2"
-                style={{
-                  position: 'absolute',
-                  top: -20,
-                  right: 115,
-                  borderRadius: 1000,
-                  backgroundColor: '#DDE0E3',
-                  borderWidth: 20,
-                  borderColor: '#FFF',
-                }}
-              />
+
+            <View style={{borderWidth: 10 , borderColor: '#FFF', borderRadius: 100, position: 'absolute', top: -50, right: 100 }}>
+            <RectButton
+            style={{
+            borderWidth:1,
+            alignItems:'center',
+            justifyContent: 'center',
+            width:60,
+            height:60,
+            backgroundColor:'#DDE0E3',
+            borderRadius:50,
+            }}
+            >
+          <Icon name={'user'}  size={30} color="#8D8D97" />
+          </RectButton>
+          </View>
+
               <View style={styles.form}>
                 <View style={styles.inputView}>
                   <TextInput
@@ -123,8 +126,9 @@ export default function RegisterUser({navigation}) {
                     }}
                     placeholder={'Bio (Opcional)'}
                     underlineColorAndroid={'#3F3F3F'}
-                    multiline
+                    multiline={true}
                     maxLength={500}
+                    textAlignVertical= {true}
                     left={<TextInput.Icon name="book" color={'#7E57C2'} />}
                   />
                 </View>
