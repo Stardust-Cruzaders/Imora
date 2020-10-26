@@ -21,7 +21,7 @@ import {useAuth} from '../../../contexts/auth';
 
 export default function ResidenceEdit({navigation}) {
   const width = useWindowDimensions().width;
-  const {user} = useAuth();
+  const {user, token} = useAuth();
   const {
     title,
     price,
@@ -46,7 +46,58 @@ export default function ResidenceEdit({navigation}) {
     isUpdatingValues,
     HandleResidenceUpdate,
     residence_id,
+    images,
   } = useResidenceAdd();
+
+  function AddPhotos(formData) {
+    const url = 'http://192.168.15.14:3333/residences/upload';
+    const config = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    };
+
+    fetch(url, config)
+      .then((response) => response.json())
+      .then((result) => {
+        if (isUpdatingValues === false) {
+          HandleResidenceAdd(user.id, result.files);
+          Popup.show({
+            type: 'Success',
+            title: 'Residência adicionada com sucesso',
+            button: true,
+            textBody:
+              'Sua residência foi adicionada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
+            buttontext: 'OK',
+            callback: () => {
+              Popup.hide();
+              navigation.navigate('Feed');
+            },
+          });
+        } else {
+          HandleResidenceUpdate(residence_id);
+
+          Popup.show({
+            type: 'Success',
+            title: 'Residência Alterada com sucesso',
+            button: true,
+            textBody:
+              'Sua residência foi alterada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
+            buttontext: 'OK',
+            callback: () => {
+              Popup.hide();
+              navigation.navigate('Feed');
+            },
+          });
+        }
+      })
+      .catch((err) => {
+        console.log('Erro ao tentar fazer o upload: ' + err);
+      });
+  }
 
   return (
     <Root>
@@ -326,35 +377,11 @@ export default function ResidenceEdit({navigation}) {
             {backgroundColor: '#7E57C2', width: width - 245},
           ]}
           onPress={() => {
-            if (isUpdatingValues === false) {
-              HandleResidenceAdd(user.id);
-              Popup.show({
-                type: 'Success',
-                title: 'Residência adicionada com sucesso',
-                button: true,
-                textBody:
-                  'Sua residência foi adicionada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
-                buttontext: 'OK',
-                callback: () => {
-                  Popup.hide();
-                  navigation.navigate('Feed');
-                },
-              });
-            } else {
-              HandleResidenceUpdate(residence_id);
-              Popup.show({
-                type: 'Success',
-                title: 'Residência Alterada com sucesso',
-                button: true,
-                textBody:
-                  'Sua residência foi alterada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
-                buttontext: 'OK',
-                callback: () => {
-                  Popup.hide();
-                  navigation.navigate('Feed');
-                },
-              });
-            }
+            let formData = new FormData();
+            images.map((image) => {
+              formData.append('image', image);
+            });
+            AddPhotos(formData);
           }}>
           <Text style={styles.buttonText}>Publicar</Text>
         </RectButton>

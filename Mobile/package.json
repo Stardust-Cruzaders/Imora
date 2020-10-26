@@ -20,6 +20,7 @@
     "@react-navigation/stack": "^5.7.0",
     "axios": "^0.20.0",
     "cep-promise": "^4.0.0",
+    "form-data": "^3.0.0",
     "nanoid": "^3.1.12",
     "popup-ui": "^1.1.1",
     "react": "16.13.1",

@@ -1,6 +1,7 @@
 import { Router } from 'express';
-
 import { getRepository } from 'typeorm';
+
+import multer from 'multer';
 import CreateResidenceService from '../services/CreateResidenceService';
 import ListFavoriteResidencesService from '../services/ListFavoriteResidencesService';
 import ListUserResidenceService from '../services/ListUserResidenceService';
@@ -11,11 +12,34 @@ import UpdateResidenceService from '../services/UpdateResidenceService';
 import Residence from '../models/Residence';
 import ToggleInterestService from '../services/ToggleInterestService';
 import ListInteressedUsers from '../services/ListInteressedUsers';
+import uploadToGcs from '../middlewares/ImgUpload';
+
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const residencesRouter = Router();
 
+const Multer = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fieldSize: 5 * 1024 * 1024,
+  },
+});
+
 residencesRouter.use(ensureAuthenticated);
+
+residencesRouter.post(
+  '/upload',
+  Multer.array('image'),
+  uploadToGcs,
+  async (request, response) => {
+    const files: Array<string> = [];
+    request.files.map((file: any) => {
+      files.push(file.cloudStoragePublicUrl);
+    });
+    return response.json({ files });
+  },
+);
+
 residencesRouter.get('/', async (request, response) => {
   const {
     price,

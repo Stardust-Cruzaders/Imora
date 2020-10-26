@@ -174,6 +174,7 @@ export default function ResidenceDetailed({route, navigation}) {
     route.params.residence.allow_pets,
     route.params.residence.allow_smokers,
     route.params.residence.grill,
+    route.params.residence.interessed_users,
     route.params.residence.kitchen,
     route.params.residence.notebook_work,
     route.params.residence.parking,

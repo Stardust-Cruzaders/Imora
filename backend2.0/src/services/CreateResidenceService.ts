@@ -83,6 +83,12 @@ class CreateResidenceService {
     if (checkAddress) {
       throw new AppError('This address is already being used', 400);
     }
+    if (images.length < 1) {
+      throw new AppError(
+        'You need a minimum of one image in order to post a residence',
+        400,
+      );
+    }
     const residence = residenceRepository.create({
       residence_name,
       description,

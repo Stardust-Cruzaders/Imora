@@ -10,6 +10,7 @@ export default function ResidenceAddProvider({children}) {
   const [numRooms, setNumRooms] = useState('');
   const [numBathrooms, setNumBathrooms] = useState('');
   const [resourcePath, setResourcePath] = useState([]);
+  const [images, setImages] = useState([]);
 
   //Residence Type
   const [locationType, setLocationType] = useState('Espaço inteiro');
@@ -77,17 +78,11 @@ export default function ResidenceAddProvider({children}) {
   const [complement, setComplement] = useState('');
   const [locationTypeMessage, setLocationTypeMessage] = useState('');
 
-  function HandleResidenceAdd(user_id) {
+  function HandleResidenceAdd(user_id, images) {
     const data = {
       residence_name: title,
       description: description,
-      images: [
-        'https://i.pinimg.com/564x/34/43/2f/34432f8d15ad73f2fb289195327b2ad4.jpg',
-        'https://i.pinimg.com/564x/8b/09/43/8b0943a51a748b59e3f1aacffeb266dc.jpg',
-        'https://i.pinimg.com/564x/eb/23/16/eb2316a4c199cb12436f6b9f440a2330.jpg',
-        'https://i.pinimg.com/564x/ea/bf/e8/eabfe8dae949003e8ae55cf965899e76.jpg',
-        'https://i.pinimg.com/564x/e0/33/17/e033172ea1e2726d95ece2a3e85e230d.jpg',
-      ],
+      images: images,
       available: true,
       zipcode: zipcode,
       state: state,
@@ -120,7 +115,7 @@ export default function ResidenceAddProvider({children}) {
         console.log(response.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log('Erro ao cadastrar residência' + err.response.message);
       });
   }
   function checkIfEmpty(array) {
@@ -131,17 +126,11 @@ export default function ResidenceAddProvider({children}) {
     }
   }
 
-  function HandleResidenceUpdate(residence_id) {
+  function HandleResidenceUpdate(residence_id, images) {
     const data = {
       residence_name: title,
       description: description,
-      images: [
-        'https://i.pinimg.com/564x/34/43/2f/34432f8d15ad73f2fb289195327b2ad4.jpg',
-        'https://i.pinimg.com/564x/8b/09/43/8b0943a51a748b59e3f1aacffeb266dc.jpg',
-        'https://i.pinimg.com/564x/eb/23/16/eb2316a4c199cb12436f6b9f440a2330.jpg',
-        'https://i.pinimg.com/564x/ea/bf/e8/eabfe8dae949003e8ae55cf965899e76.jpg',
-        'https://i.pinimg.com/564x/e0/33/17/e033172ea1e2726d95ece2a3e85e230d.jpg',
-      ],
+      images: images,
       available: true,
       zipcode: zipcode,
       state: state,
@@ -169,14 +158,9 @@ export default function ResidenceAddProvider({children}) {
       max_residents: maxResidentNum,
     };
 
-    api
-      .put(`/residences/${residence_id}`, data)
-      .then(() => {
-        console.log('successs!');
-      })
-      .catch((err) => {
-        console.log('Error: ' + err);
-      });
+    api.put(`/residences/${residence_id}`, data).catch((err) => {
+      console.log('Error: ' + err);
+    });
   }
   const [residence_id, setResidenceId] = useState('');
   const [isUpdatingValues, setIsUpdatingValues] = useState(false);
@@ -268,6 +252,8 @@ export default function ResidenceAddProvider({children}) {
         setNumBathrooms,
         resourcePath,
         setResourcePath,
+        images,
+        setImages,
         locationType,
         setLocationType,
         checkedHouseType,

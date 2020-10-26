@@ -32,6 +32,7 @@ import {TextInput} from 'react-native-paper';
 import {Root, Popup} from 'popup-ui';
 
 import {useResidenceAdd} from '../../../../contexts/residenceAdd';
+
 export default function ResidenceAddMain({navigation, route}) {
   const {
     title,
@@ -46,17 +47,21 @@ export default function ResidenceAddMain({navigation, route}) {
     setResourcePath,
     setDefaultValues,
     setIsUpdatingValues,
+    images,
+    setImages,
   } = useResidenceAdd();
-
   const width = useWindowDimensions().width;
 
   useEffect(() => {
-    if (route.params.residence) {
-      setIsUpdatingValues(true);
-      setDefaultValues(route.params.residence);
-    } else {
-      setIsUpdatingValues(false);
+    if (route.params) {
+      if (route.params.residence) {
+        setIsUpdatingValues(true);
+        setDefaultValues(route.params.residence);
+      } else {
+        setIsUpdatingValues(false);
+      }
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const selectFile = () => {
@@ -66,7 +71,7 @@ export default function ResidenceAddMain({navigation, route}) {
       chooseFromLibraryButtonTitle: 'Escolher da galeria',
       storageOptions: {
         skipBackup: true,
-        path: 'images',
+        path: 'imora',
       },
     };
 
@@ -76,11 +81,13 @@ export default function ResidenceAddMain({navigation, route}) {
       } else if (res.customButton) {
         alert(res.customButton);
       } else {
-        let source = res;
-
-        //const newArr = resourcePath.split();
-
-        setResourcePath([...resourcePath, source]);
+        const image = {
+          uri: res.uri,
+          name: res.fileName,
+          type: res.type,
+        };
+        setImages([...images, image]);
+        setResourcePath([...resourcePath, res]);
       }
     });
   };
@@ -104,6 +111,11 @@ export default function ResidenceAddMain({navigation, route}) {
         return img.fileName !== item.fileName;
       }),
     );
+    setImages(
+      images.filter((img) => {
+        return img.name !== item.fileName;
+      }),
+    );
   }
   const DeleteImageConfirmation = (item) => {
     Alert.alert(
@@ -123,6 +135,7 @@ export default function ResidenceAddMain({navigation, route}) {
       {cancelable: false},
     );
   };
+
   return (
     <>
       <Root>

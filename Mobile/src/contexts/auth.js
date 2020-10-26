@@ -10,7 +10,6 @@ const AuthContext = createContext();
 
 export function AuthProvider({children}) {
   const [user, setUser] = useState(null);
-
   const [name, setName] = useState();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,6 +20,8 @@ export function AuthProvider({children}) {
   const [avatar, setAvatar] = useState(
     'https://i.pinimg.com/564x/4c/7e/e3/4c7ee3fd61cb7e3abb4dc5024a1da198.jpg',
   );
+
+  const [token, setToken] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,19 +29,39 @@ export function AuthProvider({children}) {
       const storagedUser = await AsyncStorage.getItem('@RNAuth:user');
       const storagedToken = await AsyncStorage.getItem('@RNAuth:token');
       const wasSigned = await AsyncStorage.getItem('@RNAuth:wasSigned');
-
-      if (wasSigned === null || undefined) {
+      console.log(wasSigned);
+      console.log(storagedUser, {token: storagedToken});
+      if (
+        wasSigned === null ||
+        undefined ||
+        ((storagedUser === null || undefined) &&
+          (storagedToken === null || undefined))
+      ) {
         setLoading(false);
       } else if (storagedUser && storagedToken) {
         api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
 
         setUser(JSON.parse(storagedUser));
+        setToken(storagedToken);
         setLoading(false);
       }
     }
 
     loadStoragedData();
   }, []);
+  async function validateToken() {
+    await api
+      .get('/residences')
+      .then(() => {
+        return true;
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          SignOut();
+          return false;
+        }
+      });
+  }
   async function SignIn(email, password) {
     const data = {
       email,
@@ -79,7 +100,7 @@ export function AuthProvider({children}) {
     try {
       const response = await SignIn(email, password);
       setUser(response.user);
-
+      setToken(response.token);
       api.defaults.headers.Authorization = `Bearer ${response.token}`;
       await Promise.all([
         AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user)),
@@ -123,6 +144,7 @@ export function AuthProvider({children}) {
         setBio,
         avatar,
         setAvatar,
+        token,
       }}>
       {children}
     </AuthContext.Provider>
