@@ -6,7 +6,7 @@ import {useAuth} from '../../contexts/auth';
 
 import styles from './styles';
 export default function UserRowEditAvatar({user}) {
-  const {avatar, setAvatar} = useAuth();
+  const {setAvatar} = useAuth();
   const [temporaryAvatar, setTemporaryAvatar] = useState(null);
   const selectFile = () => {
     var options = {
