@@ -20,7 +20,7 @@ export default function EditResidenceConfig({navigation}) {
     is_location_available,
     setIsLocationAvailable,
   } = useFeed();
-  const {user, SignOut, setUser} = useAuth();
+  const {user, avatar, SignOut, setUser} = useAuth();
   const [bio, setBio] = useState('');
   const [phone, setPhone] = useState('');
   const [user_state, setUserState] = useState('');
@@ -74,10 +74,50 @@ export default function EditResidenceConfig({navigation}) {
       },
     });
   }
-  function UpdateUserData(id) {
+  function uploadUserPhoto(id, formData) {
+    const url = 'http://192.168.15.14:3333/users/upload';
+    const config = {
+      method: 'PATCH',
+      'Content-Type': 'multipart/form-data',
+      body: formData,
+    };
+    console.log('Fpr, data:  ' + formData);
+    fetch(url, config)
+      .then((response) => response.json())
+      .then(async (result) => {
+        try {
+          await UpdateUserData(id, result.imageUrl);
+          Popup.show({
+            type: 'Success',
+            title: 'Você foi cadastrado com sucesso!!',
+            button: true,
+            textBody: 'Você será redirecionado para a tela de login agora.',
+            buttontext: 'OK',
+            callback: () => {
+              Popup.hide();
+              navigation.navigate('LoginHome');
+            },
+          });
+        } catch {
+          Popup.show({
+            type: 'Danger',
+            title: 'Tente Novamente',
+            button: true,
+            textBody: 'Oops!! Parece que algo deu errado com o cadastro',
+            buttontext: 'OK',
+            callback: () => {
+              Popup.hide();
+            },
+          });
+        }
+      });
+  }
+
+  function UpdateUserData(id, profile_pic) {
     const data = {
       bio,
       phone,
+      avatar: profile_pic,
       user_state,
       user_city,
       is_email_available,
@@ -108,11 +148,12 @@ export default function EditResidenceConfig({navigation}) {
         {
           text: 'atualizar informações',
           onPress: () => {
-            const newUser = UpdateUserData(user.id);
-            if (newUser !== null) {
-              setUser(newUser);
-              SignOut();
-            }
+            const formData = new FormData();
+            formData.append('image', avatar);
+
+            uploadUserPhoto(user.id, formData);
+
+            //SignOut();
           },
         },
       ],
