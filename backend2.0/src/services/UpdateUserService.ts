@@ -6,6 +6,7 @@ interface Request {
   id: string;
   bio: string;
   phone: string;
+  avatar: string;
   user_state: string;
   user_city: string;
   is_email_available: boolean;
@@ -18,6 +19,7 @@ export default class UpdateUserService {
     id,
     bio,
     phone,
+    avatar,
     user_state,
     user_city,
     is_email_available,
@@ -29,15 +31,18 @@ export default class UpdateUserService {
     const user = await usersRepository.findOne(id);
 
     if (user === undefined) {
-      throw new AppError("user doesn't exist", 401);
+      throw new AppError("user doesn't exist", 404);
     }
-
+    if (!avatar) {
+      throw new AppError('You need to upload an image');
+    }
     if (bio === null) {
       bio = 'sem descrição disponível';
     }
 
     user.bio = bio;
     user.phone = phone;
+    user.avatar = avatar;
     user.user_state = user_state;
     user.user_city = user_city;
     user.is_email_available = is_email_available;

@@ -7,6 +7,7 @@ import UpdateUserService from '../services/UpdateUserService';
 import FavoriteResidenceService from '../services/FavoriteResidenceService';
 import DeleteUserService from '../services/DeleteUserService';
 import AvatarUpload from '../middlewares/AvatarUpload';
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const usersRouter = Router();
 
@@ -72,11 +73,12 @@ usersRouter.post('/find', async (request, response) => {
   return response.json({ user: result, is_registered: true });
 });
 
-usersRouter.put('/:user_id', async (request, response) => {
+usersRouter.put('/:user_id', ensureAuthenticated, async (request, response) => {
   const { user_id } = request.params;
   const {
     bio,
     phone,
+    avatar,
     user_state,
     user_city,
     is_email_available,
@@ -90,34 +92,43 @@ usersRouter.put('/:user_id', async (request, response) => {
     id: user_id,
     bio,
     phone,
+    avatar,
     user_state,
     user_city,
     is_email_available,
     is_phone_available,
     is_location_available,
   });
-
+  delete user.password;
   return response.json(user);
 });
 
-usersRouter.patch('/:user_id/favorite', async (request, response) => {
-  const { user_id } = request.params;
-  const { residence_id } = request.body;
-  const toggleFavorite = new FavoriteResidenceService();
+usersRouter.patch(
+  '/:user_id/favorite',
+  ensureAuthenticated,
+  async (request, response) => {
+    const { user_id } = request.params;
+    const { residence_id } = request.body;
+    const toggleFavorite = new FavoriteResidenceService();
 
-  const user = await toggleFavorite.execute({ residence_id, user_id });
+    const user = await toggleFavorite.execute({ residence_id, user_id });
 
-  return response.json(user);
-});
+    return response.json(user);
+  },
+);
 
-usersRouter.delete('/:user_id', async (request, response) => {
-  const { user_id } = request.params;
+usersRouter.delete(
+  '/:user_id',
+  ensureAuthenticated,
+  async (request, response) => {
+    const { user_id } = request.params;
 
-  const deleteUser = new DeleteUserService();
+    const deleteUser = new DeleteUserService();
 
-  const result = await deleteUser.execute({ id: user_id });
+    const result = await deleteUser.execute({ id: user_id });
 
-  return response.json(result);
-});
+    return response.json(result);
+  },
+);
 
 export default usersRouter;
