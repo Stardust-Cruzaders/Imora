@@ -93,9 +93,7 @@ export default function ProfileSelf({navigation}) {
 
             <Text style={[styles.bodyTitle, textStyles.font]}>Sobre</Text>
             <Text style={[styles.bodyText, textStyles.font]}>
-              {user.bio !== undefined || null
-                ? user.bio
-                : 'sem descrição disponível'}
+              {user.bio ? user.bio : 'sem descrição disponível'}
             </Text>
             <Div threshold={100} />
             <View>
