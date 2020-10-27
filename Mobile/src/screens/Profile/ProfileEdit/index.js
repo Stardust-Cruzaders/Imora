@@ -77,33 +77,24 @@ export default function EditResidenceConfig({navigation}) {
   function uploadUserPhoto(id, formData) {
     const url = 'http://192.168.15.14:3333/users/upload';
     const config = {
-      method: 'PATCH',
+      method: 'POST',
       'Content-Type': 'multipart/form-data',
       body: formData,
     };
-    console.log('Fpr, data:  ' + formData);
     fetch(url, config)
       .then((response) => response.json())
-      .then(async (result) => {
+      .then((result) => {
         try {
-          await UpdateUserData(id, result.imageUrl);
-          Popup.show({
-            type: 'Success',
-            title: 'Você foi cadastrado com sucesso!!',
-            button: true,
-            textBody: 'Você será redirecionado para a tela de login agora.',
-            buttontext: 'OK',
-            callback: () => {
-              Popup.hide();
-              navigation.navigate('LoginHome');
-            },
-          });
-        } catch {
+          console.log(result);
+          UpdateUserData(id, result.imageUrl);
+        } catch (err) {
+          console.log(err);
           Popup.show({
             type: 'Danger',
             title: 'Tente Novamente',
             button: true,
-            textBody: 'Oops!! Parece que algo deu errado com o cadastro',
+            textBody:
+              'Oops!! Parece que algo deu errado com a atualização das informações',
             buttontext: 'OK',
             callback: () => {
               Popup.hide();
@@ -131,7 +122,7 @@ export default function EditResidenceConfig({navigation}) {
         return response.data;
       })
       .catch((err) => {
-        console.log(err);
+        console.log('Erro ao tentar cadastrar usuário: ' + err);
         return null;
       });
   }
@@ -153,7 +144,7 @@ export default function EditResidenceConfig({navigation}) {
 
             uploadUserPhoto(user.id, formData);
 
-            //SignOut();
+            SignOut();
           },
         },
       ],
