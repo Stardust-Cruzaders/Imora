@@ -9,6 +9,7 @@ import styles from './styles';
 import api from '../../../services/api';
 import {useFeed} from '../../../contexts/feed';
 import {useAuth} from '../../../contexts/auth';
+import UserRowEditAvatar from '../../../Component/UserRowEditAvatar';
 
 export default function EditResidenceConfig({navigation}) {
   const {
@@ -186,6 +187,28 @@ export default function EditResidenceConfig({navigation}) {
               </View>
             </View>
             <Div threshold={30} />
+
+            <View style={styles.section}>
+              <View style={styles.headerView}>
+                <Text style={styles.title}>Trocar avatar</Text>
+                <Icon
+                  style={styles.icon}
+                  name={'image'}
+                  size={28}
+                  color={'#3f3f3f'}
+                />
+              </View>
+              <View>
+                <Text style={styles.description}>
+                  Altere sua foto de perfil.
+                </Text>
+                <View>
+                  <UserRowEditAvatar user={user} />
+                </View>
+              </View>
+            </View>
+            <Div threshold={30} />
+
             <View style={styles.section}>
               <View style={styles.headerView}>
                 <Text style={styles.title}>Visibilidade: </Text>
@@ -252,6 +275,7 @@ export default function EditResidenceConfig({navigation}) {
               </View>
             </View>
             <Div threshold={30} />
+
             <RectButton
               onPress={() => showDeleteAlert()}
               style={{backgroundColor: 'white', borderRadius: 1}}>
