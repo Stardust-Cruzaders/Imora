@@ -126,18 +126,6 @@ export default function RegisterUser2({navigation}) {
 
                       formData.append('image', avatar);
                       uploadUserPhoto(formData);
-
-                      Popup.show({
-                        type: 'Danger',
-                        title: 'Oops!! Parece que algo deu errado.',
-                        button: true,
-                        textBody:
-                          'Verifique se todas as informações estão digitadas corretamente.',
-                        buttontext: 'OK',
-                        callback: () => {
-                          Popup.hide();
-                        },
-                      });
                     } else {
                       Popup.show({
                         type: 'Danger',
