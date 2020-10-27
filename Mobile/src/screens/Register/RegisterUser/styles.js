@@ -12,7 +12,12 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: '#FFF',
     marginBottom: 10,
-    marginHorizontal: 20
+    marginHorizontal: 20,
+  },
+  avatar: {
+    resizeMode: 'contain',
+    borderRadius: 1000,
+    flex: 1,
   },
   body: {
     justifyContent: 'center',
@@ -26,7 +31,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 24,
     paddingVertical: 24,
-    marginTop: 40 
+    marginTop: 40,
   },
   buttonStyle: {
     borderRadius: 5,
@@ -65,7 +70,6 @@ const styles = StyleSheet.create({
   form: {
     marginBottom: 25,
   },
-  inputView: {},
   input: {
     backgroundColor: 'transparent',
     height: 50,

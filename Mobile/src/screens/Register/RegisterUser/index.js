@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
   ImageBackground,
   KeyboardAvoidingView,
   Platform,
-  TouchableOpacity
+  Image,
 } from 'react-native';
+import ImagePicker from 'react-native-image-picker';
 import {TextInput} from 'react-native-paper';
 import {RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
@@ -26,9 +27,30 @@ export default function RegisterUser({navigation}) {
     setPhone,
     bio,
     setBio,
-    //avatar,
-    //setAvatar,
+    avatar,
+    setAvatar,
   } = useAuth();
+  const [temporaryAvatar, setTemporaryAvatar] = useState('');
+  const selectFile = () => {
+    var options = {
+      title: 'Selecionar Imagem',
+      takePhotoButtonTitle: 'Tirar uma foto',
+      chooseFromLibraryButtonTitle: 'Escolher da galeria',
+      storageOptions: {
+        skipBackup: true,
+        path: 'imora_profile_pic',
+      },
+    };
+    ImagePicker.showImagePicker(options, (response) => {
+      const image = {
+        uri: response.uri,
+        name: response.fileName,
+        type: response.type,
+      };
+      setAvatar(image);
+      setTemporaryAvatar(response.data);
+    });
+  };
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -43,22 +65,41 @@ export default function RegisterUser({navigation}) {
           <View style={styles.body}>
             <Text style={styles.fontTitle}>Cadastre-se para começar!</Text>
             <View style={styles.whiteBox}>
-
-            <View style={{borderWidth: 10 , borderColor: '#FFF', borderRadius: 100, position: 'absolute', top: -50, right: 100 }}>
-            <RectButton
-            style={{
-            borderWidth:1,
-            alignItems:'center',
-            justifyContent: 'center',
-            width:60,
-            height:60,
-            backgroundColor:'#DDE0E3',
-            borderRadius:50,
-            }}
-            >
-          <Icon name={'user'}  size={30} color="#8D8D97" />
-          </RectButton>
-          </View>
+              <View
+                style={{
+                  borderWidth: 10,
+                  borderColor: '#FFF',
+                  borderRadius: 100,
+                  position: 'absolute',
+                  top: -50,
+                  right: 100,
+                }}>
+                <RectButton
+                  onPress={() => {
+                    selectFile();
+                  }}
+                  style={{
+                    borderWidth: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: 60,
+                    height: 60,
+                    backgroundColor: '#DDE0E3',
+                    borderRadius: 50,
+                  }}>
+                  <Image
+                    source={
+                      temporaryAvatar
+                        ? {uri: 'data:image/jpeg;base64,' + temporaryAvatar}
+                        : {
+                            uri:
+                              'https://i.pinimg.com/originals/1e/bd/e5/1ebde5ea08d965cfa4a7e0a8616087a5.jpg',
+                          }
+                    }
+                    style={styles.avatar}
+                  />
+                </RectButton>
+              </View>
 
               <View style={styles.form}>
                 <View style={styles.inputView}>
@@ -128,7 +169,7 @@ export default function RegisterUser({navigation}) {
                     underlineColorAndroid={'#3F3F3F'}
                     multiline={true}
                     maxLength={500}
-                    textAlignVertical= {true}
+                    textAlignVertical={true}
                     left={<TextInput.Icon name="book" color={'#7E57C2'} />}
                   />
                 </View>
