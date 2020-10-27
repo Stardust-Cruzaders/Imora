@@ -16,45 +16,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     padding: 5,
   },
-  profileInfo: {
-    justifyContent: 'center',
-    alignContent: 'center',
 
-    marginVertical: 25,
-  },
-  profilePic: {
-    resizeMode: 'contain',
-    width: 150,
-    height: 150,
-
-    alignSelf: 'center',
-
-    borderRadius: 1000,
-
-    flex: 1,
-  },
-  profilePicView: {
-    width: 150,
-    height: 150,
-
-    borderRadius: 1000,
-    borderColor: '#FFF',
-    borderWidth: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-
-    marginBottom: 15,
-    alignSelf: 'center',
-    backgroundColor: '#FFF',
-  },
-  headerTitle: {
-    color: '#FFF',
-
-    fontSize: 30,
-    fontWeight: 'bold',
-
-    alignSelf: 'center',
-  },
   icon: {
     marginRight: 5,
   },

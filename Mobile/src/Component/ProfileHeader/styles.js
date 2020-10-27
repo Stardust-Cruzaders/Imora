@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   profilePic: {
-    resizeMode: 'contain',
-    width: 150,
+    resizeMode: 'cover',
+    width: '100%',
     height: 150,
 
     alignSelf: 'center',

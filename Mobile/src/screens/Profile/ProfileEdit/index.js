@@ -9,6 +9,7 @@ import styles from './styles';
 import api from '../../../services/api';
 import {useFeed} from '../../../contexts/feed';
 import {useAuth} from '../../../contexts/auth';
+import UserRowEditAvatar from '../../../Component/UserRowEditAvatar';
 
 export default function EditResidenceConfig({navigation}) {
   const {
@@ -19,7 +20,7 @@ export default function EditResidenceConfig({navigation}) {
     is_location_available,
     setIsLocationAvailable,
   } = useFeed();
-  const {user, SignOut, setUser} = useAuth();
+  const {user, avatar, SignOut, setUser} = useAuth();
   const [bio, setBio] = useState('');
   const [phone, setPhone] = useState('');
   const [user_state, setUserState] = useState('');
@@ -73,10 +74,41 @@ export default function EditResidenceConfig({navigation}) {
       },
     });
   }
-  function UpdateUserData(id) {
+  function uploadUserPhoto(id, formData) {
+    const url = 'http://192.168.15.14:3333/users/upload';
+    const config = {
+      method: 'POST',
+      'Content-Type': 'multipart/form-data',
+      body: formData,
+    };
+    fetch(url, config)
+      .then((response) => response.json())
+      .then((result) => {
+        try {
+          console.log(result);
+          UpdateUserData(id, result.imageUrl);
+        } catch (err) {
+          console.log(err);
+          Popup.show({
+            type: 'Danger',
+            title: 'Tente Novamente',
+            button: true,
+            textBody:
+              'Oops!! Parece que algo deu errado com a atualização das informações',
+            buttontext: 'OK',
+            callback: () => {
+              Popup.hide();
+            },
+          });
+        }
+      });
+  }
+
+  function UpdateUserData(id, profile_pic) {
     const data = {
       bio,
       phone,
+      avatar: profile_pic,
       user_state,
       user_city,
       is_email_available,
@@ -90,7 +122,7 @@ export default function EditResidenceConfig({navigation}) {
         return response.data;
       })
       .catch((err) => {
-        console.log(err);
+        console.log('Erro ao tentar cadastrar usuário: ' + err);
         return null;
       });
   }
@@ -107,11 +139,12 @@ export default function EditResidenceConfig({navigation}) {
         {
           text: 'atualizar informações',
           onPress: () => {
-            const newUser = UpdateUserData(user.id);
-            if (newUser !== null) {
-              setUser(newUser);
-              SignOut();
-            }
+            const formData = new FormData();
+            formData.append('image', avatar);
+
+            uploadUserPhoto(user.id, formData);
+
+            SignOut();
           },
         },
       ],
@@ -186,6 +219,28 @@ export default function EditResidenceConfig({navigation}) {
               </View>
             </View>
             <Div threshold={30} />
+
+            <View style={styles.section}>
+              <View style={styles.headerView}>
+                <Text style={styles.title}>Trocar avatar</Text>
+                <Icon
+                  style={styles.icon}
+                  name={'image'}
+                  size={28}
+                  color={'#3f3f3f'}
+                />
+              </View>
+              <View>
+                <Text style={styles.description}>
+                  Altere sua foto de perfil.
+                </Text>
+                <View>
+                  <UserRowEditAvatar user={user} />
+                </View>
+              </View>
+            </View>
+            <Div threshold={30} />
+
             <View style={styles.section}>
               <View style={styles.headerView}>
                 <Text style={styles.title}>Visibilidade: </Text>
@@ -252,6 +307,7 @@ export default function EditResidenceConfig({navigation}) {
               </View>
             </View>
             <Div threshold={30} />
+
             <RectButton
               onPress={() => showDeleteAlert()}
               style={{backgroundColor: 'white', borderRadius: 1}}>
