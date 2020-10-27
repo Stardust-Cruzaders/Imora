@@ -17,9 +17,7 @@ export function AuthProvider({children}) {
   const [user_city, setUserCity] = useState('');
   const [phone, setPhone] = useState('');
   const [bio, setBio] = useState('');
-  const [avatar, setAvatar] = useState(
-    'https://i.pinimg.com/564x/4c/7e/e3/4c7ee3fd61cb7e3abb4dc5024a1da198.jpg',
-  );
+  const [avatar, setAvatar] = useState('');
 
   const [token, setToken] = useState('');
   const [loading, setLoading] = useState(true);
@@ -49,19 +47,7 @@ export function AuthProvider({children}) {
 
     loadStoragedData();
   }, []);
-  async function validateToken() {
-    await api
-      .get('/residences')
-      .then(() => {
-        return true;
-      })
-      .catch((error) => {
-        if (error.response.status === 401) {
-          SignOut();
-          return false;
-        }
-      });
-  }
+
   async function SignIn(email, password) {
     const data = {
       email,
@@ -70,18 +56,19 @@ export function AuthProvider({children}) {
     try {
       console.log(email, password);
       const response = await api.post('/sessions', data);
+      console.log(response.data);
       return response.data;
     } catch (err) {
       console.log(`Erro de autenticação: ${err.message}`);
       return err;
     }
   }
-  async function Register() {
+  async function Register(profile_picture) {
     const data = {
       name,
       email,
       password,
-      avatar,
+      avatar: profile_picture,
       bio,
       is_host: false,
       phone,
