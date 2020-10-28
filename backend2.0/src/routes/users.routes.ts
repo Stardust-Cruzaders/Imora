@@ -131,17 +131,16 @@ usersRouter.delete(
     return response.json(result);
   },
 );
-usersRouter.delete(
+usersRouter.post(
   '/upload/delete',
   ensureAuthenticated,
   async (request, response) => {
     const { file_name } = request.body;
     const storage = new Storage({ keyFilename: 'Imora-de02efe2d599.json' });
-
+    console.log(file_name);
     const bucketName = 'imora_user_pictures';
 
     const res = await storage.bucket(bucketName).file(file_name).delete();
-    console.log(res);
     return response.status(204).send();
   },
 );

@@ -83,12 +83,28 @@ export default function EditResidenceConfig({navigation}) {
       'Content-Type': 'multipart/form-data',
       body: formData,
     };
+    let oldFileName = user.avatar.substr(8).split('/')[2];
+    const data = {
+      file_name: oldFileName,
+    };
     fetch(url, config)
       .then((response) => response.json())
       .then((result) => {
         try {
-          console.log(result);
           UpdateUserData(id, result.imageUrl);
+          api.post('/users/upload/delete', data).catch(() => {
+            Popup.show({
+              type: 'Danger',
+              title: 'Tente Novamente',
+              button: true,
+              textBody:
+                'Oops!! Parece que algo deu errado com a atualização das informações',
+              buttontext: 'OK',
+              callback: () => {
+                Popup.hide();
+              },
+            });
+          });
         } catch (err) {
           console.log(err);
           Popup.show({
@@ -121,7 +137,6 @@ export default function EditResidenceConfig({navigation}) {
       .put(`/users/${id}`, data)
       .then((response) => {
         console.log(response.data);
-        console.log('Avatar alterado: ' + changedAvatar);
 
         setChangedAvatar(false);
         return response.data;
