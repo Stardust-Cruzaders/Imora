@@ -31,6 +31,7 @@ export default function FeedProvider({children}) {
   const [is_phone_available, setIsPhoneAvailable] = useState(true);
   const [is_location_available, setIsLocationAvailable] = useState(true);
 
+  const [changedAvatar, setChangedAvatar] = useState(false);
   function CheckIfIsEmpty(x) {
     if (x === '') {
       return null;
@@ -118,6 +119,8 @@ export default function FeedProvider({children}) {
         setIsPhoneAvailable,
         is_location_available,
         setIsLocationAvailable,
+        changedAvatar,
+        setChangedAvatar,
       }}>
       {children}
     </FeedContext.Provider>

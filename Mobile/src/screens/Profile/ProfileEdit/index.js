@@ -19,6 +19,8 @@ export default function EditResidenceConfig({navigation}) {
     setIsPhoneAvailable,
     is_location_available,
     setIsLocationAvailable,
+    changedAvatar,
+    setChangedAvatar,
   } = useFeed();
   const {user, avatar, SignOut, setUser} = useAuth();
   const [bio, setBio] = useState('');
@@ -119,6 +121,9 @@ export default function EditResidenceConfig({navigation}) {
       .put(`/users/${id}`, data)
       .then((response) => {
         console.log(response.data);
+        console.log('Avatar alterado: ' + changedAvatar);
+
+        setChangedAvatar(false);
         return response.data;
       })
       .catch((err) => {
@@ -141,8 +146,12 @@ export default function EditResidenceConfig({navigation}) {
           onPress: () => {
             const formData = new FormData();
             formData.append('image', avatar);
-
-            uploadUserPhoto(user.id, formData);
+            console.log('Usuario alterou avatar? ' + changedAvatar);
+            if (changedAvatar) {
+              uploadUserPhoto(user.id, formData);
+            } else {
+              UpdateUserData(user.id, user.avatar);
+            }
 
             SignOut();
           },

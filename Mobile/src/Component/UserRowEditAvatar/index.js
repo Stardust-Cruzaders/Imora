@@ -3,10 +3,12 @@ import {View, Text, Image} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import ImagePicker from 'react-native-image-picker';
 import {useAuth} from '../../contexts/auth';
+import {useFeed} from '../../contexts/feed';
 
 import styles from './styles';
 export default function UserRowEditAvatar({user}) {
   const {setAvatar} = useAuth();
+  const {changedAvatar, setChangedAvatar} = useFeed();
   const [temporaryAvatar, setTemporaryAvatar] = useState(null);
   const selectFile = () => {
     var options = {
@@ -26,6 +28,7 @@ export default function UserRowEditAvatar({user}) {
       };
       setAvatar(image);
       setTemporaryAvatar(response.data);
+      setChangedAvatar(true);
     });
   };
   return (
