@@ -1,3 +1,4 @@
+import { Storage } from '@google-cloud/storage';
 import { Router } from 'express';
 
 import multer from 'multer';
@@ -130,5 +131,18 @@ usersRouter.delete(
     return response.json(result);
   },
 );
+usersRouter.delete(
+  '/upload/delete',
+  ensureAuthenticated,
+  async (request, response) => {
+    const { file_name } = request.body;
+    const storage = new Storage({ keyFilename: 'Imora-de02efe2d599.json' });
 
+    const bucketName = 'imora_user_pictures';
+
+    const res = await storage.bucket(bucketName).file(file_name).delete();
+    console.log(res);
+    return response.status(204).send();
+  },
+);
 export default usersRouter;
