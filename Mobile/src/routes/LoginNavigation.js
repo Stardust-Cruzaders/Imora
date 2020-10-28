@@ -3,6 +3,7 @@ import React from 'react';
 
 import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 
+import OnBoarding from '../screens/onBoarding';
 import Login from '../screens/Login';
 import LoginHome from '../screens/Login/LoginHome';
 import ForgotPass from '../screens/Login/ForgotPass';
@@ -26,6 +27,7 @@ export default function LoginNavigation({isRegistered}) {
       />
       <Stack.Screen name={'RegisterUser'} component={RegisterUser} />
       <Stack.Screen name={'RegisterUser2'} component={RegisterUser2} />
+      <Stack.Screen name={'OnBoarding'} component={OnBoarding} />
       <Stack.Screen name={'MainNavigation'} component={MainNavigation} />
     </Stack.Navigator>
   );

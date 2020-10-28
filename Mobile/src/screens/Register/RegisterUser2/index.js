@@ -33,11 +33,12 @@ export default function RegisterUser2({navigation}) {
             type: 'Success',
             title: 'Você foi cadastrado com sucesso!!',
             button: true,
-            textBody: 'Você será redirecionado para a tela de login agora.',
+            textBody:
+              'Você será redirecionado para a tela de apresentação agora.',
             buttontext: 'OK',
             callback: () => {
               Popup.hide();
-              navigation.navigate('LoginHome');
+              navigation.navigate('OnBoarding');
             },
           });
         } catch {
