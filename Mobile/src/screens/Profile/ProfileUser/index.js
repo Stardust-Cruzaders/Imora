@@ -20,7 +20,6 @@ export default function ProfileUser({navigation, route}) {
     is_phone_available,
     is_location_available,
   } = route.params.user;
-
   return (
     <View style={styles.container}>
       <ScrollView>
