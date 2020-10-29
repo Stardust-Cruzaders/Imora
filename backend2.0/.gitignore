@@ -2,5 +2,7 @@
 .vscode/
 node_modules/
 build/
-
+.env
 Imora-de02efe2d599.json
+dist
+ormconfig.json
