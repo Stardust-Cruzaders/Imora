@@ -1,15 +1,16 @@
-{
+module.exports = {
   "type": "postgres",
+  "url": process.env.DATABASE_URL,
 	"host": "localhost",
   "port": 5434,
   "username": "postgres",
   "password": "docker",
   "database": "imora",
   "entities": [
-		"./src/models/*.ts"
+		"./dist/models/*.ts"
 	],
   "migrations": [
-    "./src/database/migrations/*.ts"
+    "./dist/database/migrations/*.ts"
   ],
   "cli": {
     "migrationsDir": "./src/database/migrations/"

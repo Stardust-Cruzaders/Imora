@@ -1,9 +1,12 @@
+import dotenv from 'dotenv';
 import 'reflect-metadata';
-import express, { NextFunction, Request, response, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import routes from './routes';
 import AppError from './errors/AppError';
 import './database';
+
+dotenv.config();
 
 const app = express();
 
