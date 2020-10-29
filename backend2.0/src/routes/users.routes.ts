@@ -140,7 +140,7 @@ usersRouter.post(
     console.log(file_name);
     const bucketName = 'imora_user_pictures';
 
-    const res = await storage.bucket(bucketName).file(file_name).delete();
+    await storage.bucket(bucketName).file(file_name).delete();
     return response.status(204).send();
   },
 );

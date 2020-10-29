@@ -90,7 +90,7 @@ export default function EditResidenceConfig({navigation}) {
     fetch(url, config)
       .then((response) => response.json())
       .then((result) => {
-        try {
+        try { 
           UpdateUserData(id, result.imageUrl);
           api.post('/users/upload/delete', data).catch(() => {
             Popup.show({
