@@ -50,7 +50,7 @@ export default function ResidenceEdit({navigation}) {
   } = useResidenceAdd();
 
   function AddPhotos(formData) {
-    const url = 'http://192.168.15.14:3333/residences/upload';
+    const url = 'https://imora-rest-api.herokuapp.com/residences/upload';
     const config = {
       method: 'POST',
       headers: {

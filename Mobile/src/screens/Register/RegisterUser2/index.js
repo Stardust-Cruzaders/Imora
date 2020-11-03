@@ -17,7 +17,7 @@ export default function RegisterUser2({navigation}) {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   function uploadUserPhoto(formData) {
-    const url = 'http://192.168.15.14:3333/users/upload';
+    const url = 'https://imora-rest-api.herokuapp.com/users/upload';
     const config = {
       method: 'POST',
       'Content-Type': 'multipart/form-data',
