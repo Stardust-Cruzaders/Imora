@@ -51,7 +51,7 @@ export default function ResidenceAddProvider({children}) {
     },
   ]);
   //Residence Conditions
-  const [maxResidentNum, setMaxResidentNum] = useState('');
+  const [maxResidentNum, setMaxResidentNum] = useState('1');
   const [currentResidents, setCurrentResidents] = useState('0');
   const [allowPets, setAllowPets] = useState(false);
   const [allowSmokers, setAllowSmokers] = useState(false);
