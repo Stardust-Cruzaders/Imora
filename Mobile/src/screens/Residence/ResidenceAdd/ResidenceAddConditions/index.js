@@ -62,7 +62,7 @@ export default function ResidenceAddConditions({navigation}) {
                   marginBottom: 20,
                 }}>
                 <Text style={[styles.cardText, textStyles.font]}>
-                  Número máximo de ocupantes:{' '}
+                  Número máximo de ocupantes:
                 </Text>
                 <TextInput
                   style={[styles.input]}
