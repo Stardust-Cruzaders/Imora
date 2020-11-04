@@ -7,17 +7,22 @@ const styles = StyleSheet.create({
     borderTopColor: 'transparent',
     borderRadius: 30,
     flex: 2,
-    marginRight: 10,
     height: 50,
 
-    elevation: 15,
+    elevation: 5,
+
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    marginRight: 8,
   },
   inputContainerStyle: {
     backgroundColor: '#FFF',
     flexDirection: 'row-reverse',
     fontFamily: 'Roboto',
-    height: 38,
-    justifyContent: 'center',
+
+    margin: 0,
   },
 });
 export default styles;
