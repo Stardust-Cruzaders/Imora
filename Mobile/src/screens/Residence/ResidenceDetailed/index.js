@@ -69,7 +69,6 @@ export default function ResidenceDetailed({route, navigation}) {
       }
     });
   }
-
   function openGps(lat, lng) {
     var url = `http://maps.google.com/maps?daddr=${residenceLat},${residenceLng}`;
     openExternalApp(url);
@@ -93,7 +92,7 @@ export default function ResidenceDetailed({route, navigation}) {
         user.id,
       )}`,
     );
-    CreateLocationTypeMessage(route.params.residence_type);
+    CreateLocationTypeMessage(route.params.residence.residence_type);
     setComforts(
       [
         {

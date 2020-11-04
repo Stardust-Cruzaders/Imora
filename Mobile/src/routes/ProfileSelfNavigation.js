@@ -26,7 +26,7 @@ export default function MyResidencesTab() {
           width: '45%',
           marginLeft: 5,
         },
-        labelStyle: {fontSize: 14},
+        labelStyle: {fontSize: 12},
         elevation: 0,
         activeTintColor: '#FFF',
         style: {
