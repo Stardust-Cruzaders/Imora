@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
-import {Image, Text, View, TouchableOpacity} from 'react-native';
-
-import Feed from '../Feed';
+import React from 'react';
+import {Image, Text, View} from 'react-native';
+import {RectButton} from 'react-native-gesture-handler';
 import styles from './styles';
 
 import Swiper from 'react-native-swiper';
@@ -61,13 +60,13 @@ export default function OnBoarding({navigation}) {
           <Text style={styles.title}>Então vamos lá ?</Text>
         </View>
         <Image source={require('../../img/fim.png')} style={styles.endImage} />
-        <TouchableOpacity
+        <RectButton
           style={styles.button}
           onPress={() => {
             navigation.navigate('LoginHome');
           }}>
           <Text style={styles.textButton}>Vamos!</Text>
-        </TouchableOpacity>
+        </RectButton>
       </View>
     </Swiper>
   );
