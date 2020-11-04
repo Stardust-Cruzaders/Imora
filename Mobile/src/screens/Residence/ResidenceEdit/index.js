@@ -349,7 +349,7 @@ export default function ResidenceEdit({navigation}) {
               <Text style={[styles.description, {marginBottom: 25}]}>
                 {street} {neighborhood} {number}
               </Text>
-              {complement != null && (
+              {(complement != null || complement != '') && (
                 <Text style={[styles.description, {marginBottom: 25}]}>
                   Complemento: {complement}
                 </Text>
