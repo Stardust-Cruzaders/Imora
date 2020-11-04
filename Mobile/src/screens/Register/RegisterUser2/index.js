@@ -53,6 +53,19 @@ export default function RegisterUser2({navigation}) {
             },
           });
         }
+      })
+      .catch((err) => {
+        console.log('erro no fetch: ' + err);
+        Popup.show({
+          type: 'Danger',
+          title: 'Tente Novamente',
+          button: true,
+          textBody: 'Oops!! Parece que algo deu errado com o cadastro' + err,
+          buttontext: 'OK',
+          callback: () => {
+            Popup.hide();
+          },
+        });
       });
   }
   return (
