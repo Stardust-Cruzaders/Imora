@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   cardTitle: {
-    fontSize: 25,
+    fontSize: 23,
     alignSelf: 'center',
     fontFamily: 'Roboto',
     color: '#3F3F3F',

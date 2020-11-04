@@ -17,7 +17,7 @@ export default function RegisterUser2({navigation}) {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   function uploadUserPhoto(formData) {
-    const url = 'http://192.168.15.14:3333/users/upload';
+    const url = 'https://imora-rest-api.herokuapp.com/users/upload';
     const config = {
       method: 'POST',
       'Content-Type': 'multipart/form-data',
@@ -53,6 +53,19 @@ export default function RegisterUser2({navigation}) {
             },
           });
         }
+      })
+      .catch((err) => {
+        console.log('erro no fetch: ' + err);
+        Popup.show({
+          type: 'Danger',
+          title: 'Tente Novamente',
+          button: true,
+          textBody: 'Oops!! Parece que algo deu errado com o cadastro' + err,
+          buttontext: 'OK',
+          callback: () => {
+            Popup.hide();
+          },
+        });
       });
   }
   return (

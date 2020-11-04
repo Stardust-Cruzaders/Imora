@@ -7,11 +7,11 @@ const styles = StyleSheet.create({
   },
   fontTitle: {
     fontFamily: 'Roboto',
-    fontSize: 30,
+    fontSize: 25,
     textAlign: 'center',
     fontWeight: '400',
     color: '#FFF',
-    marginBottom: 10,
+    marginBottom: 15,
     marginHorizontal: 20,
   },
   avatar: {
@@ -70,9 +70,18 @@ const styles = StyleSheet.create({
   form: {
     marginBottom: 25,
   },
+  inputView: {
+    marginVertical: 5,
+  },
   input: {
     backgroundColor: 'transparent',
     height: 50,
+    marginVertical: 5,
+    fontSize: 13,
+  },
+  bioInput: {
+    backgroundColor: 'transparent',
+    fontSize: 13,
   },
 });
 

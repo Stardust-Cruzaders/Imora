@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   mainTitle: {
     color: '#3F3F3F',
 
-    fontSize: 36,
+    fontSize: 32,
 
     marginBottom: 10,
   },
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   location: {
     color: '#8D8D97',
 
-    fontSize: 22,
+    fontSize: 20,
 
     marginBottom: 15,
   },
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   price: {
     color: '#3F3F3F',
 
-    fontSize: 25,
+    fontSize: 20,
 
     fontWeight: 'bold',
 
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   name: {
     color: '#3F3F3F',
 
-    fontSize: 25,
+    fontSize: 20,
 
     marginBottom: 10,
   },
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   subTitle: {
     color: '#8D8D97',
 
-    fontSize: 18,
+    fontSize: 16,
 
     marginBottom: 15,
   },
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   title1: {
     color: '#3F3F3F',
 
-    fontSize: 30,
+    fontSize: 25,
 
     marginBottom: 10,
 
@@ -152,19 +152,20 @@ const styles = StyleSheet.create({
   description: {
     color: '#3F3F3F',
 
-    fontSize: 20,
+    fontSize: 18,
 
     marginBottom: 15,
 
     marginHorizontal: 25,
 
     alignSelf: 'flex-start',
+    textAlign: 'left',
   },
 
   descriptionList: {
     color: '#3F3F3F',
 
-    fontSize: 18,
+    fontSize: 16,
 
     marginBottom: 15,
 
@@ -216,8 +217,6 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
   button: {
-    justifyContent: 'center',
-
     alignItems: 'center',
 
     alignSelf: 'center',
@@ -226,27 +225,24 @@ const styles = StyleSheet.create({
 
     borderRadius: 10,
 
-    paddingVertical: 10,
+    marginHorizontal: 25,
+
+    padding: 15,
   },
 
   buttonText: {
     color: '#FFF',
 
-    fontSize: 24,
+    fontSize: 18,
 
     fontWeight: 'bold',
   },
 
   dot: {
-    color: '#888',
+    color: 'black',
 
-    fontSize: 50,
-  },
-
-  activeDot: {
-    color: '#26E07C',
-
-    fontSize: 50,
+    fontSize: 20,
+    marginRight: 2,
   },
 });
 

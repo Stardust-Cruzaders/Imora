@@ -160,7 +160,7 @@ export default function RegisterUser({navigation}) {
                 </View>
                 <View style={styles.inputView}>
                   <TextInput
-                    style={styles.input}
+                    style={styles.bioInput}
                     value={bio}
                     onChangeText={(text) => {
                       setBio(text);
@@ -168,6 +168,7 @@ export default function RegisterUser({navigation}) {
                     placeholder={'Bio (Opcional)'}
                     underlineColorAndroid={'#3F3F3F'}
                     multiline={true}
+                    numberOfLines={4}
                     maxLength={500}
                     textAlignVertical={true}
                     left={<TextInput.Icon name="book" color={'#7E57C2'} />}

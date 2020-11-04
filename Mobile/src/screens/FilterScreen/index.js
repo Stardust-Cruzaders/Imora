@@ -53,15 +53,14 @@ export default function FilterScreen({navigation}) {
   if (loading) {
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <ActivityIndicator color={'purple'} size="large" />
+        <ActivityIndicator color={'purple'} size="small" />
         <Text
           style={{
             color: '#3F3F3F',
-            fontSize: 32,
+            fontSize: 20,
             fontFamily: 'Robotto',
           }}>
-          {' '}
-          Filtrando Residências... :D
+          Filtrando Residências...
         </Text>
       </View>
     );

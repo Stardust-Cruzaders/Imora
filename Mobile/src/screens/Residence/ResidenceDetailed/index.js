@@ -69,9 +69,8 @@ export default function ResidenceDetailed({route, navigation}) {
       }
     });
   }
-
   function openGps(lat, lng) {
-    var url = `geo:${lat},${lng}`;
+    var url = `http://maps.google.com/maps?daddr=${residenceLat},${residenceLng}`;
     openExternalApp(url);
   }
   function ToggleInterest(residence_id, user_id) {
@@ -93,7 +92,7 @@ export default function ResidenceDetailed({route, navigation}) {
         user.id,
       )}`,
     );
-    CreateLocationTypeMessage(route.params.residence_type);
+    CreateLocationTypeMessage(route.params.residence.residence_type);
     setComforts(
       [
         {
@@ -271,27 +270,25 @@ export default function ResidenceDetailed({route, navigation}) {
               {route.params.residence.description}
             </Text>
             <View style={styles.titleWithIconView}>
-              <Text style={[textStyles.font, {fontSize: 30}]}>•</Text>
+              <Text style={[textStyles.font, styles.dot]}>•</Text>
               <MaterialCommunityIcon
                 name={'toilet'}
                 size={25}
                 color={'#3F3F3F'}
               />
               <Text style={[styles.descriptionList, textStyles.font]}>
-                Quantidade de banheiros: {route.params.residence.num_bathrooms}
+                Banheiros: {route.params.residence.num_bathrooms}
               </Text>
             </View>
             <View style={styles.titleWithIconView}>
-              <Text style={[{fontSize: 30, marginRight: 5}, textStyles.font]}>
-                •
-              </Text>
+              <Text style={[styles.dot, textStyles.font]}>•</Text>
               <MaterialCommunityIcon
                 name={'bed-outline'}
                 size={25}
                 color={'#3F3F3F'}
               />
               <Text style={[styles.descriptionList, textStyles.font]}>
-                Quantidade de quartos: {route.params.residence.num_rooms}
+                Quartos: {route.params.residence.num_rooms}
               </Text>
             </View>
           </View>
@@ -308,13 +305,7 @@ export default function ResidenceDetailed({route, navigation}) {
                 {comforts.map((comfort) => {
                   return (
                     <View key={comfort.id} style={styles.titleWithIconView}>
-                      <Text
-                        style={[
-                          {fontSize: 30, marginRight: 5},
-                          textStyles.font,
-                        ]}>
-                        •
-                      </Text>
+                      <Text style={[styles.dot, textStyles.font]}>•</Text>
                       <MaterialCommunityIcon
                         name={comfort.icon}
                         size={25}
@@ -385,7 +376,7 @@ export default function ResidenceDetailed({route, navigation}) {
             {conditions.map((condition) => {
               return (
                 <View key={condition.id} style={styles.titleWithIconView}>
-                  <Text style={{fontSize: 30, marginRight: 5}}>•</Text>
+                  <Text style={styles.dot}>•</Text>
                   <MaterialIcon
                     name={condition.icon}
                     size={25}
@@ -432,8 +423,7 @@ export default function ResidenceDetailed({route, navigation}) {
                 <View style={{flexDirection: 'row'}}>
                   <Icon name={'map-pin'} size={30} color={'#FFF'} />
                   <Text style={[styles.buttonText, textStyles.font]}>
-                    {' '}
-                    Mostrar no Google Maps{' '}
+                    Mostrar no Google Maps
                   </Text>
                 </View>
               </RectButton>

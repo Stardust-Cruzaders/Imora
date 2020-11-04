@@ -50,7 +50,7 @@ export default function ResidenceEdit({navigation}) {
   } = useResidenceAdd();
 
   function AddPhotos(formData) {
-    const url = 'http://192.168.15.14:3333/residences/upload';
+    const url = 'https://imora-rest-api.herokuapp.com/residences/upload';
     const config = {
       method: 'POST',
       headers: {
@@ -349,7 +349,7 @@ export default function ResidenceEdit({navigation}) {
               <Text style={[styles.description, {marginBottom: 25}]}>
                 {street} {neighborhood} {number}
               </Text>
-              {complement != null && (
+              {(complement != null || complement != '') && (
                 <Text style={[styles.description, {marginBottom: 25}]}>
                   Complemento: {complement}
                 </Text>

@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Roboto',
     color: '#3F3F3F',
+    width: 260,
   },
 
   description: {
@@ -57,7 +58,6 @@ const styles = StyleSheet.create({
   input: {
     height: 50,
     color: '#3F3F3F',
-    textAlign: 'right',
   },
   dot: {
     color: '#888',
