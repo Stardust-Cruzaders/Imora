@@ -155,6 +155,32 @@ export default function EditResidenceConfig({route, navigation}) {
                   <Div threshold={32} height={1.5} />
                   <RectButton
                     onPress={() => {
+                      navigation.navigate('ResidenceEditPhotos', {
+                        params: {
+                          residence: route.params.residence,
+                        },
+                      });
+                    }}>
+                    <View style={styles.section}>
+                      <View style={styles.headerView}>
+                        <Text style={styles.title}>Alterar Fotos</Text>
+                        <Icon
+                          style={styles.icon}
+                          name={'image'}
+                          size={28}
+                          color={'#3f3f3f'}
+                        />
+                      </View>
+                      <View>
+                        <Text style={styles.description}>
+                          Clique aqui para alterar as fotos dessa residência.
+                        </Text>
+                      </View>
+                    </View>
+                  </RectButton>
+                  <Div threshold={32} height={1.5} />
+                  <RectButton
+                    onPress={() => {
                       showDeleteAlert();
                     }}>
                     <View style={styles.section}>
