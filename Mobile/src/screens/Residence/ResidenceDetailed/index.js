@@ -22,8 +22,10 @@ import Div from '../../../Component/Div';
 import ImageSwipe from '../../../Component/ImageSwipe';
 import styles from './styles';
 import {useAuth} from '../../../contexts/auth';
+import {useFeed} from '../../../contexts/feed';
 export default function ResidenceDetailed({route, navigation}) {
   const {user} = useAuth();
+  const {residences} = useFeed();
   const width = useWindowDimensions().width;
   const [loading, setLoading] = useState(true);
   const [locationTypeMessage, setLocationTypeMessage] = useState('');
@@ -60,6 +62,7 @@ export default function ResidenceDetailed({route, navigation}) {
   const [residenceLng, setResidenceLng] = useState('');
   const [couldFindAddress, setCouldFindAddress] = useState(false);
   const [interessed_users, setInteressedUsers] = useState([]);
+  const [wasUpdated, setWasUpdated] = useState(false);
   function openExternalApp(url) {
     Linking.canOpenURL(url).then((supported) => {
       if (supported) {
@@ -79,6 +82,7 @@ export default function ResidenceDetailed({route, navigation}) {
         user_id,
       })
       .then((response) => {
+        setWasUpdated(true);
         setInteressedUsers(response.data.interessed_users);
       })
       .catch((err) => {
@@ -92,7 +96,7 @@ export default function ResidenceDetailed({route, navigation}) {
         user.id,
       )}`,
     );
-    console.log(route.params.residence.residence_type);
+    console.log(route.params.residence);
     CreateLocationTypeMessage(route.params.residence.residence_type);
     setComforts(
       [
@@ -408,9 +412,9 @@ export default function ResidenceDetailed({route, navigation}) {
               {route.params.residence.neighborhood}{' '}
               {route.params.residence.numberr}
             </Text>
-            {route.params.complement != null && (
+            {route.params.residence.complement != null && (
               <Text style={[styles.description, {marginBottom: 25}]}>
-                Complemento: {route.params.complement}
+                Complemento: {route.params.residence.complement}
               </Text>
             )}
             {couldFindAddress && (
@@ -434,7 +438,11 @@ export default function ResidenceDetailed({route, navigation}) {
               style={[
                 styles.button,
                 {
-                  backgroundColor: interessed_users.includes(user.id)
+                  backgroundColor: wasUpdated
+                    ? interessed_users.includes(user.id)
+                      ? 'black'
+                      : '#7e57c2'
+                    : route.params.residence.interessed_users.includes(user.id)
                     ? 'black'
                     : '#7E57C2',
                   width: width - 75,
@@ -444,7 +452,11 @@ export default function ResidenceDetailed({route, navigation}) {
                 ToggleInterest(route.params.residence.id, user.id);
               }}>
               <Text style={[styles.buttonText, textStyles.font]}>
-                {interessed_users.includes(user.id)
+                {wasUpdated
+                  ? interessed_users.includes(user.id)
+                    ? 'Você demonstrou interesse'
+                    : 'Demonstrar interesse'
+                  : route.params.residence.interessed_users.includes(user.id)
                   ? 'Você demonstrou interesse'
                   : 'Demonstrar interesse'}
               </Text>
