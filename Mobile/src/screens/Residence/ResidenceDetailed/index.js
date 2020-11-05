@@ -49,7 +49,7 @@ export default function ResidenceDetailed({route, navigation}) {
           'Você terá que compartilhar um dormitório, assim como o espaço com outras pessoas',
         );
       default:
-        setLocationTypeMessage('Sla kk');
+        setLocationTypeMessage('');
         break;
     }
   }
@@ -92,6 +92,7 @@ export default function ResidenceDetailed({route, navigation}) {
         user.id,
       )}`,
     );
+    console.log(route.params.residence.residence_type);
     CreateLocationTypeMessage(route.params.residence.residence_type);
     setComforts(
       [
@@ -178,6 +179,7 @@ export default function ResidenceDetailed({route, navigation}) {
     route.params.residence.notebook_work,
     route.params.residence.parking,
     route.params.residence.pool,
+    route.params.residence.residence_type,
     route.params.residence.tv,
     route.params.residence.wifi,
     route.params.residence_type,
