@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
 import {Text, View, SafeAreaView, FlatList} from 'react-native';
 import axios from 'axios';
 import styles from './styles';
@@ -28,6 +29,24 @@ export default function Feed({navigation}) {
     'Nenhuma Residência Foi encontrada',
   );
   const [errorIcon, setErrorIcon] = useState('archive');
+  const [isFetching, setIsFetching] = useState(false);
+  function onRefresh() {
+    setIsFetching(true);
+    api
+      .get('/residences')
+      .then((response) => {
+        if (response.data.length >= 1) {
+          setResidences(response.data);
+          setResidencesOk(true);
+        } else {
+          setResidencesOk(false);
+        }
+      })
+      .catch((err) => {
+        setResidencesOk(false);
+      })
+      .finally(() => setIsFetching(false));
+  }
   async function ListAll(source) {
     try {
       const response = await api.get('/residences', {
@@ -35,6 +54,7 @@ export default function Feed({navigation}) {
       });
       if (response.data.length >= 1) {
         setResidences(response.data);
+        setResidencesOk(true);
       } else {
         setResidencesOk(false);
       }
@@ -90,7 +110,7 @@ export default function Feed({navigation}) {
       source.cancel();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [residenceName]);
+  }, [residenceName, residences]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -108,21 +128,19 @@ export default function Feed({navigation}) {
         </RectButton>
       </View>
       {!loading ? (
-        residencesOk ? (
-          <FlatList
-            data={residences}
-            keyExtractor={(item) => item.id}
-            renderItem={({item}) => (
-              <FeedBoxComponent
-                user_id={user.id}
-                residence={item}
-                navigation={navigation}
-              />
-            )}
-          />
-        ) : (
-          <NotFound message={errorMessage} icon={errorIcon} />
-        )
+        <FlatList
+          data={residences}
+          onRefresh={() => onRefresh()}
+          refreshing={isFetching}
+          keyExtractor={(item) => item.id}
+          renderItem={({item}) => (
+            <FeedBoxComponent
+              user_id={user.id}
+              residence={item}
+              navigation={navigation}
+            />
+          )}
+        />
       ) : (
         <ActivityIndicator size={'small'} color={'purple'} />
       )}
