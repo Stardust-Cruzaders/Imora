@@ -412,7 +412,7 @@ export default function ResidenceDetailed({route, navigation}) {
               {route.params.residence.neighborhood}{' '}
               {route.params.residence.numberr}
             </Text>
-            {route.params.residence.complement != null && (
+            {!!route.params.residence.complement && (
               <Text style={[styles.description, {marginBottom: 25}]}>
                 Complemento: {route.params.residence.complement}
               </Text>
