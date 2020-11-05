@@ -69,6 +69,19 @@ export default function FeedProvider({children}) {
     }
   }
 
+  function GetResidences() {
+    api
+      .get('/residences')
+      .then((response) => {
+        setResidences(response.data);
+      })
+      .catch((err) => {
+        console.log(`erro ao buscar residências: ${err} `);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
   return (
     <FeedContext.Provider
       value={{
@@ -121,6 +134,7 @@ export default function FeedProvider({children}) {
         setIsLocationAvailable,
         changedAvatar,
         setChangedAvatar,
+        GetResidences,
       }}>
       {children}
     </FeedContext.Provider>
