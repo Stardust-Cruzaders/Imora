@@ -32,6 +32,7 @@ export default function Feed({navigation}) {
   const [isFetching, setIsFetching] = useState(false);
   function onRefresh() {
     setIsFetching(true);
+    setLoading(true);
     api
       .get('/residences')
       .then((response) => {
@@ -44,6 +45,7 @@ export default function Feed({navigation}) {
       })
       .catch((err) => {
         setResidencesOk(false);
+        throw err;
       })
       .finally(() => setIsFetching(false));
   }
@@ -57,6 +59,8 @@ export default function Feed({navigation}) {
         setResidencesOk(true);
       } else {
         setResidencesOk(false);
+        setErrorIcon('archive');
+        setErrorMessage('Nenhuma Residência Foi encontrada');
       }
       setLoading(false);
     } catch (err) {
@@ -76,9 +80,14 @@ export default function Feed({navigation}) {
           residence_name: residenceName,
         },
       });
-
-      setResidences(response.data);
-      setResidencesOk(true);
+      if (response.data.length >= 1) {
+        setResidences(response.data);
+        setResidencesOk(true);
+      } else {
+        setResidencesOk(false);
+        setErrorIcon('archive');
+        setErrorMessage('Nenhuma Residência Foi encontrada');
+      }
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -128,19 +137,23 @@ export default function Feed({navigation}) {
         </RectButton>
       </View>
       {!loading ? (
-        <FlatList
-          data={residences}
-          onRefresh={() => onRefresh()}
-          refreshing={isFetching}
-          keyExtractor={(item) => item.id}
-          renderItem={({item}) => (
-            <FeedBoxComponent
-              user_id={user.id}
-              residence={item}
-              navigation={navigation}
-            />
-          )}
-        />
+        residencesOk ? (
+          <FlatList
+            data={residences}
+            onRefresh={() => onRefresh()}
+            refreshing={isFetching}
+            keyExtractor={(item) => item.id}
+            renderItem={({item}) => (
+              <FeedBoxComponent
+                user_id={user.id}
+                residence={item}
+                navigation={navigation}
+              />
+            )}
+          />
+        ) : (
+          <NotFound icon={errorIcon} message={errorMessage} />
+        )
       ) : (
         <ActivityIndicator size={'small'} color={'purple'} />
       )}
