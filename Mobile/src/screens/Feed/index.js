@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {useFocusEffect} from '@react-navigation/native';
 import {Text, View, SafeAreaView, FlatList} from 'react-native';
 import axios from 'axios';
 import styles from './styles';
