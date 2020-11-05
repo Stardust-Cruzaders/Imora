@@ -65,10 +65,6 @@ export default function Feed({navigation}) {
     } catch (err) {
       setLoading(false);
       setResidencesOk(false);
-      setErrorIcon('wifi-off');
-      setErrorMessage(
-        'Oops! parece que nossos servidores não estão disponíveis no Momento',
-      );
     }
   }
   async function ListSearch(source) {
@@ -91,10 +87,6 @@ export default function Feed({navigation}) {
     } catch (err) {
       setLoading(false);
       setResidencesOk(false);
-      setErrorIcon('wifi-off');
-      setErrorMessage(
-        'Oops! parece que nossos servidores não estão disponíveis no Momento',
-      );
     }
   }
 
