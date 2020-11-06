@@ -46,6 +46,7 @@ export default function ResidenceAddMain({navigation, route}) {
     resourcePath,
     setResourcePath,
     setDefaultValues,
+    isUpdatingValues,
     setIsUpdatingValues,
     images,
     setImages,
@@ -57,6 +58,7 @@ export default function ResidenceAddMain({navigation, route}) {
       if (route.params.residence) {
         setIsUpdatingValues(true);
         setDefaultValues(route.params.residence);
+        console.log(images);
       } else {
         setIsUpdatingValues(false);
       }
@@ -64,6 +66,7 @@ export default function ResidenceAddMain({navigation, route}) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const selectFile = () => {
     var options = {
       title: 'Selecionar imagem',
@@ -186,51 +189,54 @@ export default function ResidenceAddMain({navigation, route}) {
                 maxLength={3}
               />
             </View>
-            <View>
-              <RectButton
-                style={[styles.button, {width: width - 80}]}
-                onPress={() => {
-                  selectFile();
-                }}>
-                <View style={{flexDirection: 'row'}}>
-                  <Icon name={'paperclip'} color={'#3F3F3F'} size={24} />
-                  <Text style={styles.buttonText}>Anexar Foto </Text>
-                  <Icon
-                    name={'chevron-right'}
-                    color={'#3F3F3F'}
-                    size={24}
-                    style={{position: 'absolute', left: 290}}
-                  />
-                </View>
-              </RectButton>
-              <View style={styles.imageView}>
-                {resourcePath != undefined && (
-                  <FlatList
-                    horizontal
-                    data={resourcePath}
-                    keyExtractor={() => nanoid(9)}
-                    renderItem={({item}) => {
-                      return (
-                        <View style={styles.imageComponent}>
-                          <BorderlessButton
-                            style={{width: 100, height: 100}}
-                            onPress={() => {
-                              DeleteImageConfirmation(item);
-                            }}>
-                            <Image
-                              source={{
-                                uri: 'data:image/jpeg;base64,' + item.data,
-                              }}
+            {isUpdatingValues === false && (
+              <View>
+                <RectButton
+                  style={[styles.button, {width: width - 80}]}
+                  onPress={() => {
+                    selectFile();
+                  }}>
+                  <View style={{flexDirection: 'row'}}>
+                    <Icon name={'paperclip'} color={'#3F3F3F'} size={24} />
+                    <Text style={styles.buttonText}>Anexar Foto </Text>
+                    <Icon
+                      name={'chevron-right'}
+                      color={'#3F3F3F'}
+                      size={24}
+                      style={{position: 'absolute', left: 290}}
+                    />
+                  </View>
+                </RectButton>
+
+                <View style={styles.imageView}>
+                  {resourcePath != undefined && (
+                    <FlatList
+                      horizontal
+                      data={resourcePath}
+                      keyExtractor={() => nanoid(9)}
+                      renderItem={({item}) => {
+                        return (
+                          <View style={styles.imageComponent}>
+                            <BorderlessButton
                               style={{width: 100, height: 100}}
-                            />
-                          </BorderlessButton>
-                        </View>
-                      );
-                    }}
-                  />
-                )}
+                              onPress={() => {
+                                DeleteImageConfirmation(item);
+                              }}>
+                              <Image
+                                source={{
+                                  uri: 'data:image/jpeg;base64,' + item.data,
+                                }}
+                                style={{width: 100, height: 100}}
+                              />
+                            </BorderlessButton>
+                          </View>
+                        );
+                      }}
+                    />
+                  )}
+                </View>
               </View>
-            </View>
+            )}
             <View style={styles.cardFooter}>
               <BorderlessButton
                 style={styles.navButton}
@@ -249,7 +255,7 @@ export default function ResidenceAddMain({navigation, route}) {
                 style={styles.navButton}
                 onPress={() => {
                   if (VerifyFields()) {
-                    if (VerifyPhotos()) {
+                    if (VerifyPhotos() || isUpdatingValues) {
                       navigation.navigate('ResidenceAddType');
                     } else {
                       Popup.show({
