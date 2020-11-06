@@ -156,9 +156,7 @@ export default function EditResidenceConfig({route, navigation}) {
                   <RectButton
                     onPress={() => {
                       navigation.navigate('ResidenceEditPhotos', {
-                        params: {
-                          residence: route.params.residence,
-                        },
+                        residence: route.params.residence,
                       });
                     }}>
                     <View style={styles.section}>
