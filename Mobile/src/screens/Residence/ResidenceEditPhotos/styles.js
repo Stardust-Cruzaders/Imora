@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 
     justifyContent: 'center',
     alignItems: 'flex-start',
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
     alignContent: 'center',
     padding: 10,
 
@@ -50,6 +50,22 @@ const styles = StyleSheet.create({
   iconView: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  saveButton: {
+    backgroundColor: '#26E07C',
+
+    position: 'absolute',
+    bottom: 1,
+    right: 1,
+    margin: 15,
+    marginRight: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    borderRadius: 100,
+
+    width: 65,
+    height: 65,
   },
 });
 export default styles;
