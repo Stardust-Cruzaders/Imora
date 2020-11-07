@@ -9,6 +9,8 @@ import {
 import ImagePicker from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/Feather';
 import {Root, Popup} from 'popup-ui';
+
+import api from '../../../services/api';
 import ResidenceAddHeader from '../../../Component/ResidenceAddHeader';
 import {useAuth} from '../../../contexts/auth';
 import styles from './styles';
@@ -50,20 +52,29 @@ export default function ResidenceEditPhotos({navigation, route}) {
       }
     });
   };
-  function handleUpdateResidencePhotos() {}
+  function handleUpdateResidencePhotos(residence_id, images) {
+    const data = {
+      images,
+    };
+    api
+      .patch(`/residences/${residence_id}/update_images`, data)
+      .then((response) => {
+        console.log('Resposta de update images: ' + response.data);
+      })
+      .catch((err) => {
+        console.log('Erro ao atualizar as informações: ' + err);
+      });
+  }
   function DeleteOldImg(item) {
     setOldImagesArray(
       oldImagesArray.filter((img) => {
         return img !== item;
       }),
     );
-
-    setImagesToDelete([
-      ...imagesToDelete,
-      oldImagesArray.filter((img) => {
-        return img === item;
-      }),
-    ]);
+    const imageToDelete = oldImagesArray.filter((img) => {
+      return img === item;
+    });
+    setImagesToDelete([...imagesToDelete, ...imageToDelete]);
   }
   function DeleteNewImg(item) {
     setNewImagesArray(
@@ -119,10 +130,40 @@ export default function ResidenceEditPhotos({navigation, route}) {
         });
       });
   }
-  function DeleteSelectedImages() {}
+  function DeleteSelectedImages() {
+    const data = {
+      imagesToDelete,
+    };
+    console.log('Imagens que serão deletadas: ');
+    console.log(imagesToDelete);
+    api.post(`/residences/${residence.id}/upload/delete`, data).catch((err) => {
+      Popup.show({
+        type: 'Danger',
+        title: 'Tente Novamente',
+        button: true,
+        textBody:
+          'Oops!! Parece que algo deu errado com a exclusão das imagens antigas: ' +
+          err,
+        buttontext: 'OK',
+        callback: () => {
+          Popup.hide();
+        },
+      });
+    });
+  }
   async function SaveModifications() {
-    DeleteImageConfirmation();
-    AddNewImages();
+    if (imagesToDelete.length >= 1) {
+      DeleteSelectedImages();
+    } else {
+      console.log('Nenhuma imagem para deletar: ' + imagesToDelete.length);
+    }
+    if (newImagesObject.length >= 1) {
+      AddNewImages();
+    } else {
+      console.log(
+        'Nenhuma imagem nova pra adicionar: ' + newImagesObject.length,
+      );
+    }
   }
   const DeleteImageConfirmation = (item, imageType) => {
     Alert.alert(
@@ -188,7 +229,7 @@ export default function ResidenceEditPhotos({navigation, route}) {
                       <BorderlessButton
                         style={styles.deleteImageButton}
                         onPress={() => {
-                          DeleteImageConfirmation(item);
+                          DeleteImageConfirmation(item, 'old');
                         }}>
                         <Image
                           source={{
