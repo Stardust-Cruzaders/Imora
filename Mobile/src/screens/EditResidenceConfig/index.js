@@ -20,10 +20,26 @@ export default function EditResidenceConfig({route, navigation}) {
     'Parece que não tem ninguém interessado nessa residência no momento',
   );
   const [errorIcon, setErrorIcon] = useState('archive');
+  function DeleteImagesFromGCS() {
+    const data = {
+      imagesToDelete: route.params.residence.images,
+    };
+    api
+      .post(`/residences/${route.params.residence.id}/upload/delete`, data)
+      .catch((err) => {
+        console.log('erro ao tentar excluir imagens' + err);
+      });
+  }
+
   function handleResidenceDeletion(residence_id) {
-    api.delete(`/residences/${residence_id}`).catch((error) => {
-      console.log(error);
-    });
+    api
+      .delete(`/residences/${residence_id}`)
+      .then(() => {
+        DeleteImagesFromGCS();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   function handleUpdateAvailability(residence_id) {
     api
