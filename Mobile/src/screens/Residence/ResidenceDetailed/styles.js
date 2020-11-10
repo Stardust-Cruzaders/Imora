@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
 
     marginBottom: 15,
-
+    marginRight: 5,
     marginLeft: 5,
 
     top: 5,

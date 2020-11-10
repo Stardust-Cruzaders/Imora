@@ -28,6 +28,26 @@ export default function Feed({navigation}) {
     'Nenhuma Residência Foi encontrada',
   );
   const [errorIcon, setErrorIcon] = useState('archive');
+  const [isFetching, setIsFetching] = useState(false);
+  function onRefresh() {
+    setIsFetching(true);
+    setLoading(true);
+    api
+      .get('/residences')
+      .then((response) => {
+        if (response.data.length >= 1) {
+          setResidences(response.data);
+          setResidencesOk(true);
+        } else {
+          setResidencesOk(false);
+        }
+      })
+      .catch((err) => {
+        setResidencesOk(false);
+        throw err;
+      })
+      .finally(() => setIsFetching(false));
+  }
   async function ListAll(source) {
     try {
       const response = await api.get('/residences', {
@@ -35,17 +55,16 @@ export default function Feed({navigation}) {
       });
       if (response.data.length >= 1) {
         setResidences(response.data);
+        setResidencesOk(true);
       } else {
         setResidencesOk(false);
+        setErrorIcon('archive');
+        setErrorMessage('Nenhuma Residência Foi encontrada');
       }
       setLoading(false);
     } catch (err) {
       setLoading(false);
       setResidencesOk(false);
-      setErrorIcon('wifi-off');
-      setErrorMessage(
-        'Oops! parece que nossos servidores não estão disponíveis no Momento',
-      );
     }
   }
   async function ListSearch(source) {
@@ -56,17 +75,18 @@ export default function Feed({navigation}) {
           residence_name: residenceName,
         },
       });
-
-      setResidences(response.data);
-      setResidencesOk(true);
+      if (response.data.length >= 1) {
+        setResidences(response.data);
+        setResidencesOk(true);
+      } else {
+        setResidencesOk(false);
+        setErrorIcon('archive');
+        setErrorMessage('Nenhuma Residência Foi encontrada');
+      }
       setLoading(false);
     } catch (err) {
       setLoading(false);
       setResidencesOk(false);
-      setErrorIcon('wifi-off');
-      setErrorMessage(
-        'Oops! parece que nossos servidores não estão disponíveis no Momento',
-      );
     }
   }
 
@@ -90,7 +110,7 @@ export default function Feed({navigation}) {
       source.cancel();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [residenceName]);
+  }, [residenceName, residences]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -111,6 +131,8 @@ export default function Feed({navigation}) {
         residencesOk ? (
           <FlatList
             data={residences}
+            onRefresh={() => onRefresh()}
+            refreshing={isFetching}
             keyExtractor={(item) => item.id}
             renderItem={({item}) => (
               <FeedBoxComponent
@@ -121,7 +143,7 @@ export default function Feed({navigation}) {
             )}
           />
         ) : (
-          <NotFound message={errorMessage} icon={errorIcon} />
+          <NotFound icon={errorIcon} message={errorMessage} />
         )
       ) : (
         <ActivityIndicator size={'small'} color={'purple'} />

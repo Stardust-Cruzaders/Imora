@@ -12,6 +12,7 @@ import ProfileEdit from '../screens/Profile/ProfileEdit';
 import MyResidences from '../screens/MyResidences';
 import ResidenceAddNavigation from './ResidenceAddNavigation';
 import EditResidenceConfig from '../screens/EditResidenceConfig';
+import ResidenceEditPhotos from '../screens/Residence/ResidenceEditPhotos';
 
 const Stack = createNativeStackNavigator();
 export default function MainNavigation() {
@@ -35,6 +36,10 @@ export default function MainNavigation() {
         <Stack.Screen
           name={'EditResidenceConfig'}
           component={EditResidenceConfig}
+        />
+        <Stack.Screen
+          name={'ResidenceEditPhotos'}
+          component={ResidenceEditPhotos}
         />
         <Stack.Screen name={'ProfileEdit'} component={ProfileEdit} />
       </Stack.Navigator>
