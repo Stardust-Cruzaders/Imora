@@ -39,7 +39,6 @@ export default function ResidenceEdit({navigation}) {
     comforts,
     conditions,
     checkIfEmpty,
-    resourcePath,
     complement,
     currentResidents,
     HandleResidenceAdd,
@@ -78,7 +77,7 @@ export default function ResidenceEdit({navigation}) {
             },
           });
         } else {
-          HandleResidenceUpdate(residence_id);
+          HandleResidenceUpdate(residence_id, images);
 
           Popup.show({
             type: 'Success',

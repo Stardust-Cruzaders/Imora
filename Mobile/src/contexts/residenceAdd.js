@@ -172,7 +172,7 @@ export default function ResidenceAddProvider({children}) {
     setPrice(residence.price);
     setNumRooms(residence.num_rooms);
     setNumBathrooms(residence.num_bathrooms);
-
+    setImages(residence.images);
     //Residence Type
     setLocationType(residence.residence_type);
     setCheckedHouseType(residence.residence_place);

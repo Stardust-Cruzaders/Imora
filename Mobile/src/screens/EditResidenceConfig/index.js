@@ -20,10 +20,26 @@ export default function EditResidenceConfig({route, navigation}) {
     'Parece que não tem ninguém interessado nessa residência no momento',
   );
   const [errorIcon, setErrorIcon] = useState('archive');
+  function DeleteImagesFromGCS() {
+    const data = {
+      imagesToDelete: route.params.residence.images,
+    };
+    api
+      .post(`/residences/${route.params.residence.id}/upload/delete`, data)
+      .catch((err) => {
+        console.log('erro ao tentar excluir imagens' + err);
+      });
+  }
+
   function handleResidenceDeletion(residence_id) {
-    api.delete(`/residences/${residence_id}`).catch((error) => {
-      console.log(error);
-    });
+    api
+      .delete(`/residences/${residence_id}`)
+      .then(() => {
+        DeleteImagesFromGCS();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   function handleUpdateAvailability(residence_id) {
     api
@@ -148,6 +164,30 @@ export default function EditResidenceConfig({route, navigation}) {
                         <Text style={styles.description}>
                           Clique aqui para alterar as informações dessa
                           residência.
+                        </Text>
+                      </View>
+                    </View>
+                  </RectButton>
+                  <Div threshold={32} height={1.5} />
+                  <RectButton
+                    onPress={() => {
+                      navigation.navigate('ResidenceEditPhotos', {
+                        residence: route.params.residence,
+                      });
+                    }}>
+                    <View style={styles.section}>
+                      <View style={styles.headerView}>
+                        <Text style={styles.title}>Alterar Fotos</Text>
+                        <Icon
+                          style={styles.icon}
+                          name={'image'}
+                          size={28}
+                          color={'#3f3f3f'}
+                        />
+                      </View>
+                      <View>
+                        <Text style={styles.description}>
+                          Clique aqui para alterar as fotos dessa residência.
                         </Text>
                       </View>
                     </View>
