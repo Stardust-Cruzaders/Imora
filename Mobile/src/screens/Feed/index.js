@@ -6,7 +6,6 @@ import {
   FlatList,
   ActivityIndicator,
 } from 'react-native';
-import axios from 'axios';
 import styles from './styles';
 
 import FeedBoxComponent from '../../Component/FeedBoxComponent';
@@ -40,15 +39,9 @@ export default function Feed({navigation}) {
     api
       .get('/residences')
       .then((response) => {
-        if (response.data.length >= 1) {
-          setResidences(response.data);
-          setResidencesOk(true);
-        } else {
-          setResidencesOk(false);
-        }
+        setResidences(response.data);
       })
       .catch((err) => {
-        setResidencesOk(false);
         throw err;
       })
       .finally(() => setIsFetching(false));
@@ -56,18 +49,12 @@ export default function Feed({navigation}) {
   async function ListAll() {
     try {
       const response = await api.get('/residences');
-      if (response.data.length >= 1) {
-        setResidences(response.data);
-        setResidencesOk(true);
-      } else {
-        setResidencesOk(false);
-        setErrorIcon('archive');
-        setErrorMessage('Nenhuma Residência Foi encontrada');
-      }
+
+      setResidences(response.data);
+
       setLoading(false);
     } catch (err) {
-      setLoading(false);
-      setResidencesOk(false);
+      console.log(`Error when trying to list all residences: ${err}`);
     }
   }
   async function ListSearch() {
@@ -77,18 +64,10 @@ export default function Feed({navigation}) {
           residence_name: residenceName,
         },
       });
-      if (response.data.length >= 1) {
-        setResidences(response.data);
-        setResidencesOk(true);
-      } else {
-        setResidencesOk(false);
-        setErrorIcon('archive');
-        setErrorMessage('Nenhuma Residência Foi encontrada');
-      }
+      setResidences(response.data);
       setLoading(false);
     } catch (err) {
-      setLoading(false);
-      setResidencesOk(false);
+      console.log(err);
     }
   }
 
@@ -130,23 +109,19 @@ export default function Feed({navigation}) {
         </RectButton>
       </View>
       {!loading ? (
-        residencesOk ? (
-          <FlatList
-            data={residences}
-            onRefresh={() => onRefresh()}
-            refreshing={isFetching}
-            keyExtractor={(item) => item.id}
-            renderItem={({item}) => (
-              <FeedBoxComponent
-                user_id={user.id}
-                residence={item}
-                navigation={navigation}
-              />
-            )}
-          />
-        ) : (
-          <NotFound icon={errorIcon} message={errorMessage} />
-        )
+        <FlatList
+          data={residences}
+          onRefresh={() => onRefresh()}
+          refreshing={isFetching}
+          keyExtractor={(item) => item.id}
+          renderItem={({item}) => (
+            <FeedBoxComponent
+              user_id={user.id}
+              residence={item}
+              navigation={navigation}
+            />
+          )}
+        />
       ) : (
         <ActivityIndicator size={'small'} color={'purple'} />
       )}
