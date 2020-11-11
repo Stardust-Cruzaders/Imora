@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View, SafeAreaView, FlatList} from 'react-native';
+import {
+  Text,
+  View,
+  SafeAreaView,
+  FlatList,
+  ActivityIndicator,
+} from 'react-native';
 import axios from 'axios';
 import styles from './styles';
 
@@ -8,7 +14,6 @@ import SearchBar from '../../Component/SearchBar';
 
 import {RectButton} from 'react-native-gesture-handler';
 import api from '../../services/api';
-import {ActivityIndicator} from 'react-native-paper';
 import {useFeed} from '../../contexts/feed';
 import {useAuth} from '../../contexts/auth';
 import NotFound from '../../Component/NotFound';
@@ -48,11 +53,9 @@ export default function Feed({navigation}) {
       })
       .finally(() => setIsFetching(false));
   }
-  async function ListAll(source) {
+  async function ListAll() {
     try {
-      const response = await api.get('/residences', {
-        cancelToken: source.token,
-      });
+      const response = await api.get('/residences');
       if (response.data.length >= 1) {
         setResidences(response.data);
         setResidencesOk(true);
@@ -67,10 +70,9 @@ export default function Feed({navigation}) {
       setResidencesOk(false);
     }
   }
-  async function ListSearch(source) {
+  async function ListSearch() {
     try {
       const response = await api.get('/residences/search', {
-        cancelToken: source.token,
         params: {
           residence_name: residenceName,
         },
@@ -91,24 +93,24 @@ export default function Feed({navigation}) {
   }
 
   useEffect(() => {
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
-
+    let mounted = true;
     async function handleFeed() {
       if (
         (residenceName === undefined || residenceName === '') &&
         filtered === false
       ) {
-        await ListAll(source);
+        if (mounted) {
+          await ListAll();
+        }
       } else {
-        await ListSearch(source);
+        if (mounted) {
+        }
+        await ListSearch();
       }
     }
 
     handleFeed();
-    return () => {
-      source.cancel();
-    };
+    return () => (mounted = false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [residenceName, residences]);
 
