@@ -10,7 +10,7 @@ import {
 
 import styles from './styles';
 import FavoriteButton from '../FavoriteButton';
-import {nanoid} from 'nanoid';
+import {nanoid} from 'nanoid/non-secure';
 export default function ImageSwipe({img, isRawImage = false, widthDiff, residence_id, user_id}) {
   const width = useWindowDimensions().width;
   const height = width * 0.6;
