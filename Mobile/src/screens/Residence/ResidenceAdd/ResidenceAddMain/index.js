@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   useWindowDimensions,
   Alert,
+  ScrollView
 } from 'react-native';
 
 import styles from './styles';
@@ -142,10 +143,12 @@ export default function ResidenceAddMain({navigation, route}) {
   return (
     <>
       <Root>
-        <ResidenceAddHeader />
+      
+
         <View style={styles.container}>
+       
           <KeyboardAvoidingView
-            enabled={false}
+            enabled={true}
             style={[styles.card, {width: width - 55}]}>
             <Text style={[styles.cardTitle, textStyles.font]}>
               {' '}
@@ -188,6 +191,7 @@ export default function ResidenceAddMain({navigation, route}) {
                 keyboardType={'number-pad'}
                 maxLength={3}
               />
+            
             </View>
             {isUpdatingValues === false && (
               <View>
@@ -207,6 +211,7 @@ export default function ResidenceAddMain({navigation, route}) {
                     />
                   </View>
                 </RectButton>
+                
 
                 <View style={styles.imageView}>
                   {resourcePath != undefined && (
@@ -284,6 +289,7 @@ export default function ResidenceAddMain({navigation, route}) {
                 <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
               </BorderlessButton>
             </View>
+            
           </KeyboardAvoidingView>
         </View>
       </Root>
