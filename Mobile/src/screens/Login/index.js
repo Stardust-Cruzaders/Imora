@@ -11,11 +11,10 @@ import styles from './styles';
 import textStyles from '../../textStyles';
 
 import {useAuth} from '../../contexts/auth';
-import {Icon} from 'react-native-vector-icons/Feather';
 
 // user.picture.data.url
 export default function Login({navigation}) {
-  const {FacebookSignIn, isRegistered} = useAuth();
+  const {isRegistered} = useAuth();
 
   return (
     <View style={styles.container}>
