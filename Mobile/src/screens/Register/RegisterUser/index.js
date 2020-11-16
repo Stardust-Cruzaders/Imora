@@ -154,6 +154,7 @@ export default function RegisterUser({navigation}) {
                     }}
                     placeholder={'Telefone (opcional)'}
                     maxLength={15}
+                    keyboardType={'phone-pad'}
                     underlineColorAndroid={'#3F3F3F'}
                     left={<TextInput.Icon name="phone" color={'#7E57C2'} />}
                   />
