@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import {TextInput} from 'react-native-paper';
+import {ActivityIndicator, TextInput} from 'react-native-paper';
 import {RectButton} from 'react-native-gesture-handler';
 import {Root, Popup} from 'popup-ui';
 import styles from './styles';
@@ -16,6 +16,7 @@ export default function LoginHome({navigation}) {
   const {Login} = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState('');
   return (
     <Root>
       <View style={styles.container}>
@@ -66,24 +67,30 @@ export default function LoginHome({navigation}) {
                     />
                   </View>
                 </View>
-                <RectButton
-                  onPress={async () => {
-                    if ((await Login(email, password)) === false) {
-                      Popup.show({
-                        type: 'Danger',
-                        title: 'Oops!! Parece que algo deu errado.',
-                        button: true,
-                        textBody: 'Combinação de email/senha errada 😥',
-                        buttontext: 'OK',
-                        callback: () => {
-                          Popup.hide();
-                        },
-                      });
-                    }
-                  }}
-                  style={styles.buttonStyle}>
-                  <Text style={styles.textButton}>Continuar</Text>
-                </RectButton>
+                {loading ? (
+                  <ActivityIndicator color={'purple'} />
+                ) : (
+                  <RectButton
+                    onPress={async () => {
+                      setLoading(true);
+                      if ((await Login(email, password)) === false) {
+                        Popup.show({
+                          type: 'Danger',
+                          title: 'Oops!! Parece que algo deu errado.',
+                          button: true,
+                          textBody: 'Combinação de email/senha errada 😥',
+                          buttontext: 'OK',
+                          callback: () => {
+                            Popup.hide();
+                          },
+                        });
+                      }
+                      setLoading(false);
+                    }}
+                    style={styles.buttonStyle}>
+                    <Text style={styles.textButton}>Continuar</Text>
+                  </RectButton>
+                )}
               </View>
               <View style={styles.forgotPasswordView}>
                 <Text style={styles.subTextWhite}>Esqueceu sua senha?</Text>
