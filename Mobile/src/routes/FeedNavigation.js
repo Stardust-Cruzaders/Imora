@@ -7,9 +7,7 @@ import Feed from '../screens/Feed';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import Icon from 'react-native-vector-icons/Feather';
 import MyResidencesTab from './ProfileSelfNavigation';
-import Chat from '../screens/Chat';
 import Favorites from '../screens/Favorites';
-import ProfileSelf from '../screens/Profile/ProfileSelf';
 const Tab = createMaterialBottomTabNavigator();
 export default function FeedNavigation() {
   return (
@@ -37,16 +35,7 @@ export default function FeedNavigation() {
           tabBarIcon: () => <Icon name={'heart'} size={24} color={'#FFF'} />,
         }}
       />
-      <Tab.Screen
-        name="Chat"
-        component={Chat}
-        options={{
-          tabBarLabel: 'Mensagens',
-          tabBarIcon: () => (
-            <Icon name={'message-circle'} size={24} color={'#FFF'} />
-          ),
-        }}
-      />
+
       <Tab.Screen
         name="MyResidences"
         component={MyResidencesTab}
