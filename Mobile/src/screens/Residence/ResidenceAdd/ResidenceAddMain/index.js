@@ -150,10 +150,7 @@ export default function ResidenceAddMain({navigation, route}) {
           <KeyboardAvoidingView
             enabled={true}
             style={[styles.card, {width: width - 55}]}>
-            <Text style={[styles.cardTitle, textStyles.font]}>
-              {' '}
-              Introdução{' '}
-            </Text>
+            <Text style={[styles.cardTitle, textStyles.font]}>Introdução</Text>
             <Div threshold={120} height={2} />
             <Text style={[styles.description, textStyles.font]}>
               Escolhe um nome, preço, e tire algumas fotos do seu imóvel. :D
@@ -283,8 +280,6 @@ export default function ResidenceAddMain({navigation, route}) {
                       callback: () => Popup.hide(),
                     });
                   }
-
-                  //
                 }}>
                 <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
               </BorderlessButton>

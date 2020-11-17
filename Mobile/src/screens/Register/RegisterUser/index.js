@@ -70,7 +70,7 @@ export default function RegisterUser({navigation}) {
                   borderRadius: 100,
                   position: 'absolute',
                   top: -50,
-                  right: 100,
+                  right: 75,
                 }}>
                 <RectButton
                   onPress={() => {
@@ -80,8 +80,8 @@ export default function RegisterUser({navigation}) {
                     borderWidth: 1,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    width: 60,
-                    height: 60,
+                    width: 100,
+                    height: 100,
                     backgroundColor: '#DDE0E3',
                     borderRadius: 50,
                   }}>
@@ -152,6 +152,7 @@ export default function RegisterUser({navigation}) {
                     }}
                     placeholder={'Telefone (opcional)'}
                     maxLength={15}
+                    keyboardType={'phone-pad'}
                     underlineColorAndroid={'#3F3F3F'}
                     left={<TextInput.Icon name="phone" color={'#7E57C2'} />}
                   />

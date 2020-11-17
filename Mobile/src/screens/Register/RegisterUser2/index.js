@@ -5,6 +5,7 @@ import {
   ImageBackground,
   KeyboardAvoidingView,
   Platform,
+  ActivityIndicator,
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {RectButton} from 'react-native-gesture-handler';
@@ -15,8 +16,10 @@ import {useAuth} from '../../../contexts/auth';
 export default function RegisterUser2({navigation}) {
   const {email, avatar, setEmail, password, setPassword, Register} = useAuth();
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   function uploadUserPhoto(formData) {
+    setLoading(true);
     const url = 'https://imora-rest-api.herokuapp.com/users/upload';
     const config = {
       method: 'POST',
@@ -66,8 +69,10 @@ export default function RegisterUser2({navigation}) {
             Popup.hide();
           },
         });
-      });
+      })
+      .finally(() => setLoading(false));
   }
+
   return (
     <Root>
       <View style={styles.container}>
@@ -131,30 +136,34 @@ export default function RegisterUser2({navigation}) {
                     />
                   </View>
                 </View>
-                <RectButton
-                  onPress={async () => {
-                    if (password === confirmPassword) {
-                      const formData = new FormData();
+                {loading ? (
+                  <ActivityIndicator color={'purple'} />
+                ) : (
+                  <RectButton
+                    onPress={async () => {
+                      if (password === confirmPassword) {
+                        const formData = new FormData();
 
-                      formData.append('image', avatar);
-                      uploadUserPhoto(formData);
-                    } else {
-                      Popup.show({
-                        type: 'Danger',
-                        title: 'Oops!! Parece que algo deu errado.',
-                        button: true,
-                        textBody:
-                          'As senhas não batem. certifique-se de que a senha é igual em todos os campos',
-                        buttontext: 'OK',
-                        callback: () => {
-                          Popup.hide();
-                        },
-                      });
-                    }
-                  }}
-                  style={styles.buttonStyle}>
-                  <Text style={styles.textButton}>Tudo Pronto!</Text>
-                </RectButton>
+                        formData.append('image', avatar);
+                        uploadUserPhoto(formData);
+                      } else {
+                        Popup.show({
+                          type: 'Danger',
+                          title: 'Oops!! Parece que algo deu errado.',
+                          button: true,
+                          textBody:
+                            'As senhas não batem. certifique-se de que a senha é igual em todos os campos',
+                          buttontext: 'OK',
+                          callback: () => {
+                            Popup.hide();
+                          },
+                        });
+                      }
+                    }}
+                    style={styles.buttonStyle}>
+                    <Text style={styles.textButton}>Tudo Pronto!</Text>
+                  </RectButton>
+                )}
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>

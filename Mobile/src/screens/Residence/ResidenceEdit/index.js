@@ -46,6 +46,7 @@ export default function ResidenceEdit({navigation}) {
     HandleResidenceUpdate,
     residence_id,
     images,
+    resourcePath,
   } = useResidenceAdd();
 
   function AddPhotos(formData) {
@@ -105,7 +106,9 @@ export default function ResidenceEdit({navigation}) {
         subtitle={'Clique no lápis para alterar uma sessão'}
       />
       <ScrollView style={styles.scroll}>
-        <View style={[styles.headerImgView]} />
+        <View style={[styles.headerImgView]}>
+          <ImageSwipe img={resourcePath} isRawImage={true} widthDiff={0} />
+        </View>
         <View style={styles.container}>
           <View style={[styles.bodyView, {width: width - 50}]}>
             <View style={styles.basicInfoView}>

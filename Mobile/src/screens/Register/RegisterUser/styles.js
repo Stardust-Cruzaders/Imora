@@ -29,9 +29,9 @@ const styles = StyleSheet.create({
     width: 280,
     backgroundColor: '#FFF',
     borderRadius: 5,
-    paddingHorizontal: 24,
-    paddingVertical: 24,
-    marginTop: 40,
+    paddingHorizontal: 20,
+    paddingVertical: 40,
+    marginTop: 80,
   },
   buttonStyle: {
     borderRadius: 5,
