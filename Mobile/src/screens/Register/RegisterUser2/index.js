@@ -80,8 +80,6 @@ export default function RegisterUser2({navigation}) {
           imageStyle={{opacity: 0.3}}>
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-            <View style={styles.body}>
-              <Text style={styles.fontTitle}>Cadastre-se para começar!</Text>
               <View style={styles.whiteBox}>
                 <View style={styles.form}>
                   <View style={styles.inputView}>
@@ -157,7 +155,6 @@ export default function RegisterUser2({navigation}) {
                   style={styles.buttonStyle}>
                   <Text style={styles.textButton}>Tudo Pronto!</Text>
                 </RectButton>
-              </View>
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>
