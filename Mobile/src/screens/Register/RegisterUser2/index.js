@@ -97,6 +97,8 @@ export default function RegisterUser2({navigation}) {
                       placeholder={'Email'}
                       keyboardType={'email-address'}
                       underlineColorAndroid={'#3F3F3F'}
+                      editable={false} 
+                      selectTextOnFocus={false}
                       left={
                         <TextInput.Icon
                           name="email-outline"
@@ -115,6 +117,8 @@ export default function RegisterUser2({navigation}) {
                       placeholder={'Senha'}
                       secureTextEntry
                       underlineColorAndroid={'#3F3F3F'}
+                      editable={false} 
+                      selectTextOnFocus={false}
                       left={
                         <TextInput.Icon name="lock-outline" color={'#7E57C2'} />
                       }
@@ -130,6 +134,8 @@ export default function RegisterUser2({navigation}) {
                       placeholder={'Confirmar senha'}
                       secureTextEntry
                       underlineColorAndroid={'#3F3F3F'}
+                      editable={false} 
+                      selectTextOnFocus={false}
                       left={
                         <TextInput.Icon name="lock-outline" color={'#7E57C2'} />
                       }

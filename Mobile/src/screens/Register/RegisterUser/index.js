@@ -110,6 +110,8 @@ export default function RegisterUser({navigation}) {
                     placeholder={'Nome Completo'}
                     keyboardType={'email-address'}
                     underlineColorAndroid={'#3F3F3F'}
+                    editable={false} 
+                    selectTextOnFocus={false}
                     left={<TextInput.Icon name="account" color={'#7E57C2'} />}
                   />
                 </View>
@@ -121,6 +123,8 @@ export default function RegisterUser({navigation}) {
                       setUserState(text);
                     }}
                     placeholder={'Estado'}
+                    editable={false} 
+                    selectTextOnFocus={false}
                     underlineColorAndroid={'#3F3F3F'}
                     maxLength={2}
                     left={
@@ -136,6 +140,8 @@ export default function RegisterUser({navigation}) {
                       setUserCity(text);
                     }}
                     placeholder={'Cidade'}
+                    editable={false} 
+                    selectTextOnFocus={false}
                     maxLength={85}
                     underlineColorAndroid={'#3F3F3F'}
                     left={
@@ -153,6 +159,8 @@ export default function RegisterUser({navigation}) {
                     placeholder={'Telefone (opcional)'}
                     maxLength={15}
                     keyboardType={'phone-pad'}
+                    editable={false} 
+                    selectTextOnFocus={false}
                     underlineColorAndroid={'#3F3F3F'}
                     left={<TextInput.Icon name="phone" color={'#7E57C2'} />}
                   />
@@ -168,6 +176,8 @@ export default function RegisterUser({navigation}) {
                     underlineColorAndroid={'#3F3F3F'}
                     multiline={true}
                     numberOfLines={4}
+                    editable={false} 
+                    selectTextOnFocus={false}
                     maxLength={500}
                     textAlignVertical={true}
                     left={<TextInput.Icon name="book" color={'#7E57C2'} />}
