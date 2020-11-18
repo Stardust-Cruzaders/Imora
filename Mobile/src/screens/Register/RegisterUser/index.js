@@ -64,12 +64,10 @@ export default function RegisterUser({navigation}) {
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
              <View
                 style={{
-                  borderWidth: 10,
-                  borderColor: '#FFF',
-                  borderRadius: 100,
-                  position: 'absolute',
-                  top: 5,
-                  right: 115,
+                  alignSelf: 'center',
+                  marginTop: 10,
+                  flex: 1,
+                  
                 }}>
                 <RectButton
                   onPress={() => {
