@@ -85,88 +85,85 @@ export default function RegisterUser2({navigation}) {
           imageStyle={{opacity: 0.3}}>
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-              <View style={styles.whiteBox}>
-                <View style={styles.form}>
-                  <View style={styles.inputView}>
-                    <TextInput
-                      style={styles.input}
-                      value={email}
-                      onChangeText={(text) => {
-                        setEmail(text);
-                      }}
-                      placeholder={'Email'}
-                      keyboardType={'email-address'}
-                      underlineColorAndroid={'#3F3F3F'}
-                      selectTextOnFocus={false}
-                      left={
-                        <TextInput.Icon
-                          name="email-outline"
-                          color={'#7E57C2'}
-                        />
-                      }
-                    />
-                  </View>
-                  <View style={styles.inputView}>
-                    <TextInput
-                      style={styles.input}
-                      value={password}
-                      onChangeText={(text) => {
-                        setPassword(text);
-                      }}
-                      placeholder={'Senha'}
-                      secureTextEntry
-                      underlineColorAndroid={'#3F3F3F'}
-                      selectTextOnFocus={false}
-                      left={
-                        <TextInput.Icon name="lock-outline" color={'#7E57C2'} />
-                      }
-                    />
-                  </View>
-                  <View style={styles.inputView}>
-                    <TextInput
-                      style={styles.input}
-                      value={confirmPassword}
-                      onChangeText={(text) => {
-                        setConfirmPassword(text);
-                      }}
-                      placeholder={'Confirmar senha'}
-                      secureTextEntry
-                      underlineColorAndroid={'#3F3F3F'}
-                      selectTextOnFocus={false}
-                      left={
-                        <TextInput.Icon name="lock-outline" color={'#7E57C2'} />
-                      }
-                    />
-                  </View>
-                </View>
-                {loading ? (
-                  <ActivityIndicator color={'purple'} />
-                ) : (
-                  <RectButton
-                    onPress={async () => {
-                      if (password === confirmPassword) {
-                        const formData = new FormData();
-
-                        formData.append('image', avatar);
-                        uploadUserPhoto(formData);
-                      } else {
-                        Popup.show({
-                          type: 'Danger',
-                          title: 'Oops!! Parece que algo deu errado.',
-                          button: true,
-                          textBody:
-                            'As senhas não batem. certifique-se de que a senha é igual em todos os campos',
-                          buttontext: 'OK',
-                          callback: () => {
-                            Popup.hide();
-                          },
-                        });
-                      }
+            <View style={styles.whiteBox}>
+              <View style={styles.form}>
+                <View style={styles.inputView}>
+                  <TextInput
+                    style={styles.input}
+                    value={email}
+                    onChangeText={(text) => {
+                      setEmail(text);
                     }}
-                    style={styles.buttonStyle}>
-                    <Text style={styles.textButton}>Tudo Pronto!</Text>
-                  </RectButton>
-                )}
+                    placeholder={'Email'}
+                    keyboardType={'email-address'}
+                    underlineColorAndroid={'#3F3F3F'}
+                    selectTextOnFocus={false}
+                    left={
+                      <TextInput.Icon name="email-outline" color={'#7E57C2'} />
+                    }
+                  />
+                </View>
+                <View style={styles.inputView}>
+                  <TextInput
+                    style={styles.input}
+                    value={password}
+                    onChangeText={(text) => {
+                      setPassword(text);
+                    }}
+                    placeholder={'Senha'}
+                    secureTextEntry
+                    underlineColorAndroid={'#3F3F3F'}
+                    selectTextOnFocus={false}
+                    left={
+                      <TextInput.Icon name="lock-outline" color={'#7E57C2'} />
+                    }
+                  />
+                </View>
+                <View style={styles.inputView}>
+                  <TextInput
+                    style={styles.input}
+                    value={confirmPassword}
+                    onChangeText={(text) => {
+                      setConfirmPassword(text);
+                    }}
+                    placeholder={'Confirmar senha'}
+                    secureTextEntry
+                    underlineColorAndroid={'#3F3F3F'}
+                    selectTextOnFocus={false}
+                    left={
+                      <TextInput.Icon name="lock-outline" color={'#7E57C2'} />
+                    }
+                  />
+                </View>
+              </View>
+              {loading ? (
+                <ActivityIndicator color={'purple'} />
+              ) : (
+                <RectButton
+                  onPress={async () => {
+                    if (password === confirmPassword) {
+                      const formData = new FormData();
+
+                      formData.append('image', avatar);
+                      uploadUserPhoto(formData);
+                    } else {
+                      Popup.show({
+                        type: 'Danger',
+                        title: 'Oops!! Parece que algo deu errado.',
+                        button: true,
+                        textBody:
+                          'As senhas não batem. certifique-se de que a senha é igual em todos os campos',
+                        buttontext: 'OK',
+                        callback: () => {
+                          Popup.hide();
+                        },
+                      });
+                    }
+                  }}
+                  style={styles.buttonStyle}>
+                  <Text style={styles.textButton}>Tudo Pronto!</Text>
+                </RectButton>
+              )}
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>

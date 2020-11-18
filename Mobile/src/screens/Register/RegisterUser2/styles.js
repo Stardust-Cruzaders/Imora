@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   imageBackground: {
-    position: 'absolute',
     backgroundColor: 'rgba(0,0,0,0.45)',
     width: d.width,
     height: d.height,
