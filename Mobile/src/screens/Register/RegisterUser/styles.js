@@ -15,9 +15,15 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   avatar: {
-    resizeMode: 'contain',
-    borderRadius: 1000,
+    resizeMode: 'cover',
+    width: '100%',
+    height: 175,
+
+    borderRadius: 100,
+    alignSelf: 'center',
+
     flex: 1,
+  
   },
   body: {
     justifyContent: 'center',
@@ -31,7 +37,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    marginTop: 110,
+    marginTop: 130,
   },
   buttonStyle: {
     borderRadius: 5,

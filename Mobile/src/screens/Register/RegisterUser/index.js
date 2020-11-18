@@ -62,15 +62,14 @@ export default function RegisterUser({navigation}) {
         imageStyle={{opacity: 0.3}}>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-            <View style={styles.whiteBox}>
-              <View
+             <View
                 style={{
                   borderWidth: 10,
                   borderColor: '#FFF',
                   borderRadius: 100,
                   position: 'absolute',
-                  top: -125,
-                  right: 75,
+                  top: 5,
+                  right: 115,
                 }}>
                 <RectButton
                   onPress={() => {
@@ -99,6 +98,8 @@ export default function RegisterUser({navigation}) {
                 </RectButton>
               </View>
 
+
+            <View style={styles.whiteBox}>
               <View style={styles.form}>
                 <View style={styles.inputView}>
                   <TextInput
