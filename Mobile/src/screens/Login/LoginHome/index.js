@@ -42,7 +42,6 @@ export default function LoginHome({navigation}) {
                       }}
                       placeholder={'Email'}
                       keyboardType={'email-address'}
-                      editable={false} 
                       selectTextOnFocus={false}
                       underlineColorAndroid={'#3F3F3F'}
                       left={
@@ -63,7 +62,6 @@ export default function LoginHome({navigation}) {
                       placeholder={'Senha'}
                       secureTextEntry
                       underlineColorAndroid={'#3F3F3F'}
-                      editable={false} 
                       selectTextOnFocus={false}
                       left={
                         <TextInput.Icon name="lock-outline" color={'#7E57C2'} />
