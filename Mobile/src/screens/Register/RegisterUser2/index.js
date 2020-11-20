@@ -103,7 +103,7 @@ export default function RegisterUser2({navigation}) {
         <ImageBackground
           source={{
             uri:
-              'https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
+              'https://images.unsplash.com/photo-1525693170072-2bf3c8390a4a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
           }}
           style={styles.imageBackground}
           imageStyle={{opacity: 0.3}}>

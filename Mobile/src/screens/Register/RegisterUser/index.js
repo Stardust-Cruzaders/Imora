@@ -56,7 +56,7 @@ export default function RegisterUser({navigation}) {
         <ImageBackground
           source={{
             uri:
-              'https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
+              'https://images.unsplash.com/photo-1525693170072-2bf3c8390a4a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
           }}
           style={styles.imageBackground}
           imageStyle={{opacity: 0.3}}>
@@ -87,7 +87,7 @@ export default function RegisterUser({navigation}) {
                       ? {uri: 'data:image/jpeg;base64,' + temporaryAvatar}
                       : {
                           uri:
-                            'https://i.pinimg.com/564x/d9/7b/bb/d97bbb08017ac2309307f0822e63d082.jpg',
+                            'https://i.pinimg.com/564x/49/ce/d2/49ced2e29b6d4945a13be722bac54642.jpg',
                         }
                   }
                   style={styles.avatar}
