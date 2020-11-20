@@ -16,14 +16,12 @@ export default function FavoriteButton({user_id, residence_id}) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   async function toggleFavorite() {
+    setIsFavorite(isFavorite ? false : true);
     try {
       const newUser = await api.patch(`/users/${user_id}/favorite`, {
         residence_id,
       });
       const response = await api.get(`/residences/${user.id}/favorites`);
-      setIsFavorite(
-        newUser.data.favorites.includes(residence_id) ? true : false,
-      );
       console.log(response.data);
       setFavoriteResidences(response.data);
       if (response.data.length >= 1) {
