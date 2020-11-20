@@ -26,7 +26,7 @@ export default function Feed({navigation}) {
     setLoading,
     filtered,
   } = useFeed();
-  const {user} = useAuth();
+  const {user, token} = useAuth();
   const [residencesOk, setResidencesOk] = useState(true);
   const [errorMessage, setErrorMessage] = useState(
     'Nenhuma Residência Foi encontrada',

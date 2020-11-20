@@ -19,7 +19,7 @@ export function AuthProvider({children}) {
   const [bio, setBio] = useState('');
   const [avatar, setAvatar] = useState('');
 
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,14 +31,13 @@ export function AuthProvider({children}) {
       console.log(storagedUser, {token: storagedToken});
       if (
         wasSigned === null ||
-        undefined ||
+        wasSigned === undefined ||
         ((storagedUser === null || undefined) &&
           (storagedToken === null || undefined))
       ) {
         setLoading(false);
       } else if (storagedUser && storagedToken) {
         api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
-
         setUser(JSON.parse(storagedUser));
         setToken(storagedToken);
         setLoading(false);
@@ -56,7 +55,8 @@ export function AuthProvider({children}) {
     try {
       console.log(email, password);
       const response = await api.post('/sessions', data);
-      console.log(response.data);
+      console.log(response.data.token);
+      api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
       return response.data;
     } catch (err) {
       console.log(`Erro de autenticação: ${err.message}`);
