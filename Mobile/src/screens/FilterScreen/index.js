@@ -1,14 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React from 'react';
 import {View, ScrollView, Text, useWindowDimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {
-  RadioButton,
-  Divider,
-  TextInput,
-  ActivityIndicator,
-} from 'react-native-paper';
-import CheckboxComponent from '../../Component/CheckboxComponent';
+import {RadioButton, TextInput, ActivityIndicator} from 'react-native-paper';
 
 import styles from './styles';
 import {useFeed} from '../../contexts/feed';
@@ -17,30 +11,8 @@ export default function FilterScreen({navigation}) {
   const {
     price,
     setPrice,
-    residenceType,
-    setResidenceType,
     residencePlace,
     setResidencePlace,
-    allowPets,
-    setAllowPets,
-    allowSmokers,
-    setAllowSmokers,
-    wifi,
-    setWifi,
-    kitchen,
-    setKitchen,
-    tv,
-    setTV,
-    ac,
-    setAC,
-    notebookWork,
-    setNotebookWork,
-    grill,
-    setGrill,
-    pool,
-    setPool,
-    parking,
-    setParking,
     city,
     setCity,
     Search,
@@ -110,47 +82,30 @@ export default function FilterScreen({navigation}) {
 
             <View style={styles.sectionView}>
               <Text style={styles.subTitleStyle}>Tipo de imóvel</Text>
-              <View style={styles.radioButtonView}>
-                <RadioButton
-                  value="Casa"
-                  status={residencePlace === 'Casa' ? 'checked' : 'unchecked'}
+              <RadioButton.Group
+                onValueChange={(value) => setResidencePlace(value)}
+                value={residencePlace}>
+                <RadioButton.Item
+                  label="Casa"
+                  value={'Casa'}
                   color={'#7E57C2'}
-                  onPress={() => setResidencePlace('Casa')}
                 />
-                <Text style={styles.textStyle}>Casa</Text>
-              </View>
-              <View style={styles.radioButtonView}>
-                <RadioButton
-                  value="Apartamento"
-                  status={
-                    residencePlace === 'Apartamento' ? 'checked' : 'unchecked'
-                  }
+                <RadioButton.Item
+                  label="Apartamento"
+                  value={'Apartamento'}
                   color={'#7E57C2'}
-                  onPress={() => setResidencePlace('Apartamento')}
                 />
-                <Text style={styles.textStyle}>Apartamento</Text>
-              </View>
-
-              <View style={styles.radioButtonView}>
-                <RadioButton
-                  value="República"
-                  status={
-                    residencePlace === 'República' ? 'checked' : 'unchecked'
-                  }
+                <RadioButton.Item
+                  label="República"
+                  value={'República'}
                   color={'#7E57C2'}
-                  onPress={() => setResidencePlace('República')}
                 />
-                <Text style={styles.textStyle}>República</Text>
-              </View>
-              <View style={styles.radioButtonView}>
-                <RadioButton
-                  value=""
-                  status={residencePlace === '' ? 'checked' : 'unchecked'}
+                <RadioButton.Item
+                  label="Todas as opções"
+                  value={'Todas as opções'}
                   color={'#7E57C2'}
-                  onPress={() => setResidencePlace('')}
                 />
-                <Text style={styles.textStyle}>Todas as opções</Text>
-              </View>
+              </RadioButton.Group>
             </View>
           </View>
         </View>
