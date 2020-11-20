@@ -10,8 +10,7 @@ import {
 import ImagePicker from 'react-native-image-picker';
 import {TextInput} from 'react-native-paper';
 import {RectButton} from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/Feather';
-
+import {Root, Popup} from 'popup-ui';
 import styles from './styles';
 import {useAuth} from '../../../contexts/auth';
 
@@ -52,50 +51,49 @@ export default function RegisterUser({navigation}) {
     });
   };
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={{
-          uri:
-            'https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
-        }}
-        style={styles.imageBackground}
-        imageStyle={{opacity: 0.3}}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-             <View
+    <Root>
+      <View style={styles.container}>
+        <ImageBackground
+          source={{
+            uri:
+              'https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
+          }}
+          style={styles.imageBackground}
+          imageStyle={{opacity: 0.3}}>
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            <View
+              style={{
+                alignSelf: 'center',
+                marginTop: 10,
+                flex: 1,
+              }}>
+              <RectButton
+                onPress={() => {
+                  selectFile();
+                }}
                 style={{
-                  alignSelf: 'center',
-                  marginTop: 10,
-                  flex: 1,
-                  
+                  borderWidth: 1,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 100,
+                  height: 100,
+                  backgroundColor: '#DDE0E3',
+                  borderRadius: 50,
                 }}>
-                <RectButton
-                  onPress={() => {
-                    selectFile();
-                  }}
-                  style={{
-                    borderWidth: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: 100,
-                    height: 100,
-                    backgroundColor: '#DDE0E3',
-                    borderRadius: 50,
-                  }}>
-                  <Image
-                    source={
-                      temporaryAvatar
-                        ? {uri: 'data:image/jpeg;base64,' + temporaryAvatar}
-                        : {
-                            uri:
-                              'https://i.pinimg.com/originals/1e/bd/e5/1ebde5ea08d965cfa4a7e0a8616087a5.jpg',
-                          }
-                    }
-                    style={styles.avatar}
-                  />
-                </RectButton>
-              </View>
-
+                <Image
+                  source={
+                    temporaryAvatar
+                      ? {uri: 'data:image/jpeg;base64,' + temporaryAvatar}
+                      : {
+                          uri:
+                            'https://i.pinimg.com/564x/d9/7b/bb/d97bbb08017ac2309307f0822e63d082.jpg',
+                        }
+                  }
+                  style={styles.avatar}
+                />
+              </RectButton>
+            </View>
 
             <View style={styles.whiteBox}>
               <View style={styles.form}>
@@ -121,7 +119,7 @@ export default function RegisterUser({navigation}) {
                       setUserState(text);
                     }}
                     placeholder={'Estado'}
-                     selectTextOnFocus={false}
+                    selectTextOnFocus={false}
                     underlineColorAndroid={'#3F3F3F'}
                     maxLength={2}
                     left={
@@ -180,14 +178,36 @@ export default function RegisterUser({navigation}) {
               </View>
               <RectButton
                 onPress={() => {
-                  navigation.navigate('RegisterUser2');
+                  if (!name || !user_city || !user_state) {
+                    Popup.show({
+                      type: 'Danger',
+                      title: 'Erro!',
+                      button: true,
+                      textBody:
+                        'Nome, estado e cidade são informações obrigatórias que precisam ser preenchidas',
+                      buttonText: 'Ok',
+                      callback: () => Popup.hide(),
+                    });
+                  } else if (!avatar) {
+                    Popup.show({
+                      type: 'Warning',
+                      title: 'Selecione uma foto',
+                      button: true,
+                      textBody: 'Escolha uma foto para avançar',
+                      buttonText: 'Ok',
+                      callback: () => Popup.hide(),
+                    });
+                  } else {
+                    navigation.navigate('RegisterUser2');
+                  }
                 }}
                 style={styles.buttonStyle}>
                 <Text style={styles.textButton}>Avançar</Text>
               </RectButton>
-          </View>
-        </KeyboardAvoidingView>
-      </ImageBackground>
-    </View>
+            </View>
+          </KeyboardAvoidingView>
+        </ImageBackground>
+      </View>
+    </Root>
   );
 }

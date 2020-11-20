@@ -14,10 +14,32 @@ import styles from './styles';
 import {useAuth} from '../../../contexts/auth';
 
 export default function RegisterUser2({navigation}) {
-  const {email, avatar, setEmail, password, setPassword, Register} = useAuth();
+  const {
+    setName,
+    setUserState,
+    setUserCity,
+    setPhone,
+    setBio,
+    email,
+    avatar,
+    setAvatar,
+    setEmail,
+    password,
+    setPassword,
+    Register,
+  } = useAuth();
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
-
+  function Clean() {
+    setName('');
+    setUserState('');
+    setUserCity('');
+    setPhone('');
+    setBio('');
+    setEmail('');
+    setPassword('');
+    setAvatar(null);
+  }
   function uploadUserPhoto(formData) {
     setLoading(true);
     const url = 'https://imora-rest-api.herokuapp.com/users/upload';
@@ -32,6 +54,7 @@ export default function RegisterUser2({navigation}) {
       .then(async (result) => {
         try {
           await Register(result.imageUrl);
+
           Popup.show({
             type: 'Success',
             title: 'Você foi cadastrado com sucesso!!',
@@ -41,6 +64,7 @@ export default function RegisterUser2({navigation}) {
             buttontext: 'OK',
             callback: () => {
               Popup.hide();
+              Clean();
               navigation.navigate('OnBoarding');
             },
           });
