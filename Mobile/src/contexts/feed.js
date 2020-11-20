@@ -33,7 +33,8 @@ export default function FeedProvider({children}) {
 
   const [changedAvatar, setChangedAvatar] = useState(false);
   function CheckIfIsEmpty(x) {
-    if (x === '') {
+    console.log(x);
+    if (x === '' || x === 'all') {
       return null;
     } else {
       return x;
