@@ -102,7 +102,7 @@ export default function FilterScreen({navigation}) {
                 />
                 <RadioButton.Item
                   label="Todas as opções"
-                  value={'Todas as opções'}
+                  value={'all'}
                   color={'#7E57C2'}
                 />
               </RadioButton.Group>

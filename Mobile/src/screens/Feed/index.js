@@ -44,7 +44,10 @@ export default function Feed({navigation}) {
       .catch((err) => {
         throw err;
       })
-      .finally(() => setIsFetching(false));
+      .finally(() => {
+        setIsFetching(false);
+        setLoading(false);
+      });
   }
   async function ListAll() {
     try {
@@ -74,6 +77,7 @@ export default function Feed({navigation}) {
   useEffect(() => {
     let mounted = true;
     async function handleFeed() {
+      console.log('Executed');
       if (
         (residenceName === undefined || residenceName === '') &&
         filtered === false
@@ -91,7 +95,7 @@ export default function Feed({navigation}) {
     handleFeed();
     return () => (mounted = false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [residenceName, residences]);
+  }, [residenceName]);
 
   return (
     <SafeAreaView style={styles.container}>
