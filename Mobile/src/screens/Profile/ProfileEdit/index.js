@@ -3,6 +3,8 @@ import {View, Text, Alert, ScrollView} from 'react-native';
 import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import {Popup, Root} from 'popup-ui';
 import Div from '../../../Component/Div';
 import styles from './styles';
@@ -135,10 +137,15 @@ export default function EditResidenceConfig({navigation}) {
     };
     api
       .put(`/users/${id}`, data)
-      .then((response) => {
+      .then(async (response) => {
         console.log(response.data);
-
-        setChangedAvatar(false);
+        console.log(user);
+        setUser(response.data);
+        await AsyncStorage.setItem(
+          '@RNAuth:user',
+          JSON.stringify(response.data),
+        ),
+          setChangedAvatar(false);
         return response.data;
       })
       .catch((err) => {
@@ -150,7 +157,7 @@ export default function EditResidenceConfig({navigation}) {
   function ConfirmationAlert() {
     Alert.alert(
       'Confirmar',
-      'Deseja alterar suas informações? Você será desconectado do app.',
+      'Deseja alterar suas informações? ',
       [
         {
           text: 'cancelar',
@@ -167,8 +174,7 @@ export default function EditResidenceConfig({navigation}) {
             } else {
               UpdateUserData(user.id, user.avatar);
             }
-
-            SignOut();
+            navigation.goBack();
           },
         },
       ],
