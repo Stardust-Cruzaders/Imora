@@ -3,9 +3,6 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8E8E8',
-  },
-  card: {
     backgroundColor: '#FFF',
     alignSelf: 'center',
     marginHorizontal: 45,
@@ -39,10 +36,7 @@ const styles = StyleSheet.create({
   icon: {
     alignSelf: 'center',
   },
-  powerIcon: {
-    alignSelf: 'center',
-    padding: 5,
-  },
+
   description: {
     color: '#8D8D97',
 

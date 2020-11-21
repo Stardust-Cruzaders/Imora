@@ -10,7 +10,8 @@ import {
 
 import styles from './styles';
 import FavoriteButton from '../FavoriteButton';
-export default function ImageSwipe({img, widthDiff, residence_id, user_id}) {
+import {nanoid} from 'nanoid/non-secure';
+export default function ImageSwipe({img, isRawImage = false, widthDiff, residence_id, user_id}) {
   const width = useWindowDimensions().width;
   const height = width * 0.6;
 
@@ -42,9 +43,10 @@ export default function ImageSwipe({img, widthDiff, residence_id, user_id}) {
         {img.map((image, index) => (
           <Image
             key={index}
-            source={{
-              uri: /*'data:image/jpeg;base64,' +*/ image,
-            }}
+            source={ isRawImage ? {
+
+              uri: 'data:image/jpeg;base64,' + image.data,
+            } : {uri: image}}
             style={imgStyle}
           />
         ))}
@@ -52,7 +54,7 @@ export default function ImageSwipe({img, widthDiff, residence_id, user_id}) {
       </ScrollView>
       <View style={styles.pagination}>
         {img.map((i, k) => (
-          <Text key={i} style={k == (active - 0) ? styles.activeDot : styles.dot}>•</Text>
+          <Text key={nanoid(9)} style={k == (active - 0) ? styles.activeDot : styles.dot}>•</Text>
         ))}
       </View>
       <FavoriteButton user_id={user_id} residence_id={residence_id}/>

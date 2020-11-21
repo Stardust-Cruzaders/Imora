@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, SafeAreaView, Text, FlatList} from 'react-native';
+import {View, SafeAreaView, Text, FlatList, ScrollView} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -52,6 +52,7 @@ export default function MyResidences({navigation}) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.newResidenceView}>
+          
         <RectButton
           onPress={() => {
             navigation.navigate('ResidenceAdd');
@@ -65,7 +66,9 @@ export default function MyResidences({navigation}) {
           />
           <Text style={styles.newResidenceButtonText}>Criar novo anúncio </Text>
         </RectButton>
+       
       </View>
+      
       <Div threshold={50} height={1.5} />
       <View style={styles.residenceToggleView}>
         {!loading ? (
@@ -91,6 +94,8 @@ export default function MyResidences({navigation}) {
           </View>
         )}
       </View>
+      
     </SafeAreaView>
+  
   );
 }

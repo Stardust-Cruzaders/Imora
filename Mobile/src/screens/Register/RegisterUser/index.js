@@ -10,8 +10,7 @@ import {
 import ImagePicker from 'react-native-image-picker';
 import {TextInput} from 'react-native-paper';
 import {RectButton} from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/Feather';
-
+import {Root, Popup} from 'popup-ui';
 import styles from './styles';
 import {useAuth} from '../../../contexts/auth';
 
@@ -52,55 +51,51 @@ export default function RegisterUser({navigation}) {
     });
   };
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={{
-          uri:
-            'https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
-        }}
-        style={styles.imageBackground}
-        imageStyle={{opacity: 0.3}}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-          <View style={styles.body}>
-            <Text style={styles.fontTitle}>Cadastre-se para começar!</Text>
-            <View style={styles.whiteBox}>
-              <View
+    <Root>
+      <View style={styles.container}>
+        <ImageBackground
+          source={{
+            uri:
+              'https://images.unsplash.com/photo-1525693170072-2bf3c8390a4a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+          }}
+          style={styles.imageBackground}
+          imageStyle={{opacity: 0.3}}>
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            <View
+              style={{
+                alignSelf: 'center',
+                marginTop: 10,
+                flex: 1,
+              }}>
+              <RectButton
+                onPress={() => {
+                  selectFile();
+                }}
                 style={{
-                  borderWidth: 10,
-                  borderColor: '#FFF',
-                  borderRadius: 100,
-                  position: 'absolute',
-                  top: -50,
-                  right: 100,
+                  borderWidth: 1,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 100,
+                  height: 100,
+                  backgroundColor: '#DDE0E3',
+                  borderRadius: 50,
                 }}>
-                <RectButton
-                  onPress={() => {
-                    selectFile();
-                  }}
-                  style={{
-                    borderWidth: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: 60,
-                    height: 60,
-                    backgroundColor: '#DDE0E3',
-                    borderRadius: 50,
-                  }}>
-                  <Image
-                    source={
-                      temporaryAvatar
-                        ? {uri: 'data:image/jpeg;base64,' + temporaryAvatar}
-                        : {
-                            uri:
-                              'https://i.pinimg.com/originals/1e/bd/e5/1ebde5ea08d965cfa4a7e0a8616087a5.jpg',
-                          }
-                    }
-                    style={styles.avatar}
-                  />
-                </RectButton>
-              </View>
+                <Image
+                  source={
+                    temporaryAvatar
+                      ? {uri: 'data:image/jpeg;base64,' + temporaryAvatar}
+                      : {
+                          uri:
+                            'https://i.pinimg.com/564x/49/ce/d2/49ced2e29b6d4945a13be722bac54642.jpg',
+                        }
+                  }
+                  style={styles.avatar}
+                />
+              </RectButton>
+            </View>
 
+            <View style={styles.whiteBox}>
               <View style={styles.form}>
                 <View style={styles.inputView}>
                   <TextInput
@@ -112,6 +107,7 @@ export default function RegisterUser({navigation}) {
                     placeholder={'Nome Completo'}
                     keyboardType={'email-address'}
                     underlineColorAndroid={'#3F3F3F'}
+                    selectTextOnFocus={false}
                     left={<TextInput.Icon name="account" color={'#7E57C2'} />}
                   />
                 </View>
@@ -123,6 +119,7 @@ export default function RegisterUser({navigation}) {
                       setUserState(text);
                     }}
                     placeholder={'Estado'}
+                    selectTextOnFocus={false}
                     underlineColorAndroid={'#3F3F3F'}
                     maxLength={2}
                     left={
@@ -138,6 +135,7 @@ export default function RegisterUser({navigation}) {
                       setUserCity(text);
                     }}
                     placeholder={'Cidade'}
+                    selectTextOnFocus={false}
                     maxLength={85}
                     underlineColorAndroid={'#3F3F3F'}
                     left={
@@ -154,6 +152,8 @@ export default function RegisterUser({navigation}) {
                     }}
                     placeholder={'Telefone (opcional)'}
                     maxLength={15}
+                    keyboardType={'phone-pad'}
+                    selectTextOnFocus={false}
                     underlineColorAndroid={'#3F3F3F'}
                     left={<TextInput.Icon name="phone" color={'#7E57C2'} />}
                   />
@@ -169,6 +169,7 @@ export default function RegisterUser({navigation}) {
                     underlineColorAndroid={'#3F3F3F'}
                     multiline={true}
                     numberOfLines={4}
+                    selectTextOnFocus={false}
                     maxLength={500}
                     textAlignVertical={true}
                     left={<TextInput.Icon name="book" color={'#7E57C2'} />}
@@ -177,15 +178,36 @@ export default function RegisterUser({navigation}) {
               </View>
               <RectButton
                 onPress={() => {
-                  navigation.navigate('RegisterUser2');
+                  if (!name || !user_city || !user_state) {
+                    Popup.show({
+                      type: 'Danger',
+                      title: 'Erro!',
+                      button: true,
+                      textBody:
+                        'Nome, estado e cidade são informações obrigatórias que precisam ser preenchidas',
+                      buttonText: 'Ok',
+                      callback: () => Popup.hide(),
+                    });
+                  } else if (!avatar) {
+                    Popup.show({
+                      type: 'Warning',
+                      title: 'Selecione uma foto',
+                      button: true,
+                      textBody: 'Escolha uma foto para avançar',
+                      buttonText: 'Ok',
+                      callback: () => Popup.hide(),
+                    });
+                  } else {
+                    navigation.navigate('RegisterUser2');
+                  }
                 }}
                 style={styles.buttonStyle}>
                 <Text style={styles.textButton}>Avançar</Text>
               </RectButton>
             </View>
-          </View>
-        </KeyboardAvoidingView>
-      </ImageBackground>
-    </View>
+          </KeyboardAvoidingView>
+        </ImageBackground>
+      </View>
+    </Root>
   );
 }

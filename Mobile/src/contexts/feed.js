@@ -33,7 +33,8 @@ export default function FeedProvider({children}) {
 
   const [changedAvatar, setChangedAvatar] = useState(false);
   function CheckIfIsEmpty(x) {
-    if (x === '') {
+    console.log(x);
+    if (x === '' || x === 'all') {
       return null;
     } else {
       return x;
@@ -43,18 +44,7 @@ export default function FeedProvider({children}) {
     const response = await api.get('/residences', {
       params: {
         price: CheckIfIsEmpty(price),
-        residence_type: CheckIfIsEmpty(residenceType),
         residence_place: CheckIfIsEmpty(residencePlace),
-        allow_pets: allowPets,
-        allow_smokers: allowSmokers,
-        wifi,
-        kitchen,
-        tv,
-        ac,
-        notebook_work: notebookWork,
-        grill,
-        pool,
-        parking,
         city: CheckIfIsEmpty(city),
       },
     });

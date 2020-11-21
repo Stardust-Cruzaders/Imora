@@ -72,7 +72,7 @@ export default function ResidenceDetailed({route, navigation}) {
       }
     });
   }
-  function openGps(lat, lng) {
+  function openGps() {
     var url = `http://maps.google.com/maps?daddr=${residenceLat},${residenceLng}`;
     openExternalApp(url);
   }
@@ -174,6 +174,7 @@ export default function ResidenceDetailed({route, navigation}) {
     address,
     geoURL,
     interessed_users,
+    route.params.residence,
     route.params.residence.ac,
     route.params.residence.allow_pets,
     route.params.residence.allow_smokers,
