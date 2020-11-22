@@ -9,14 +9,11 @@ import {
   KeyboardAvoidingView,
   useWindowDimensions,
   Alert,
-  ScrollView
 } from 'react-native';
 
 import styles from './styles';
-import textStyles from '../../../../textStyles';
 
 import Icon from 'react-native-vector-icons/Feather';
-import Div from '../../../../Component/Div';
 
 import ImagePicker from 'react-native-image-picker';
 import 'react-native-get-random-values';
@@ -142,20 +139,15 @@ export default function ResidenceAddMain({navigation, route}) {
 
   return (
     <>
-      <Root>
-      
+      <Root style={{flex:1}}>
 
         <View style={styles.container}>
        
           <KeyboardAvoidingView
             enabled={true}
             style={[styles.card, {width: width - 55}]}>
-            <Text style={[styles.cardTitle, textStyles.font]}>Introdução</Text>
-            <Div threshold={120} height={2} />
-            <Text style={[styles.description, textStyles.font]}>
-              Escolhe um nome, preço, e tire algumas fotos do seu imóvel. :D
-            </Text>
             <View style={styles.main}>
+           
               <TextInput
                 style={[styles.input, {width: width - 80}]}
                 value={title}
@@ -234,10 +226,15 @@ export default function ResidenceAddMain({navigation, route}) {
                           </View>
                         );
                       }}
+                      
                     />
+                    
                   )}
+                  
                 </View>
+                
               </View>
+              
             )}
             <View style={styles.cardFooter}>
               <BorderlessButton
@@ -283,9 +280,10 @@ export default function ResidenceAddMain({navigation, route}) {
                 }}>
                 <Icon name={'arrow-right-circle'} color={'#7E57C2'} size={40} />
               </BorderlessButton>
-            </View>
             
+            </View>
           </KeyboardAvoidingView>
+         
         </View>
       </Root>
     </>
