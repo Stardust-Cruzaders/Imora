@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, Image, useWindowDimensions, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  useWindowDimensions,
+  ScrollView,
+  Linking,
+} from 'react-native';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
 import styles from './styles';
@@ -25,14 +32,19 @@ export default function ProfileUser({navigation, route}) {
       <ScrollView>
         <View style={styles.headerView}>
           <View style={[styles.topBar, {width: width}]}>
-            <BorderlessButton onPress={() => {}}>
-              <Icon
-                style={{margin: 15}}
-                name={'message-square'}
-                size={45}
-                color={'#FFF'}
-              />
-            </BorderlessButton>
+            {is_phone_available && phone && (
+              <BorderlessButton
+                onPress={() => {
+                  Linking.openURL(`whatsapp://send?phone=${phone}`);
+                }}>
+                <Icon
+                  style={{margin: 15}}
+                  name={'message-square'}
+                  size={45}
+                  color={'#FFF'}
+                />
+              </BorderlessButton>
+            )}
           </View>
           <View style={styles.profileInfo}>
             <View style={styles.profilePicView}>
