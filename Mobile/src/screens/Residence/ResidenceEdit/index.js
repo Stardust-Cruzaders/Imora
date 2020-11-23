@@ -78,7 +78,7 @@ export default function ResidenceEdit({navigation}) {
             },
           });
         } else {
-          HandleResidenceUpdate(residence_id, images);
+          HandleResidenceUpdate(residence_id);
 
           Popup.show({
             type: 'Success',
