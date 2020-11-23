@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
 
   cardText: {
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'Roboto',
     color: '#3F3F3F',
     width: 260,

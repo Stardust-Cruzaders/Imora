@@ -52,13 +52,12 @@ export default function ResidenceAddConditions({navigation}) {
               Aqui você pode definir diferentes tipos de restrições para sua
               residência
             </Text>
-            <View style={styles.checklist}>
-              <View
+            <View
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
-                  justifyContent: 'flex-start',
-
+                  justifyContent: 'space-evenly',
+                  marginHorizontal: 10,
                   marginBottom: 20,
                 }}>
                 <Text style={[styles.cardText, textStyles.font]}>
@@ -77,8 +76,8 @@ export default function ResidenceAddConditions({navigation}) {
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
-                  justifyContent: 'flex-start',
-
+                  justifyContent: 'space-evenly',
+                  marginHorizontal: 10,
                   marginBottom: 20,
                 }}>
                 <Text style={[styles.cardText, textStyles.font]}>
@@ -93,6 +92,7 @@ export default function ResidenceAddConditions({navigation}) {
                   maxLength={3}
                 />
               </View>
+              
               <CheckboxComponent
                 value={allowPets}
                 setValue={setAllowPets}
@@ -162,7 +162,6 @@ export default function ResidenceAddConditions({navigation}) {
               </View>
             </View>
           </View>
-        </View>
       </Root>
     </>
   );

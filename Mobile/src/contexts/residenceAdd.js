@@ -126,12 +126,10 @@ export default function ResidenceAddProvider({children}) {
     }
   }
 
-  function HandleResidenceUpdate(residence_id, images) {
+  function HandleResidenceUpdate(residence_id) {
     const data = {
       residence_name: title,
       description: description,
-      images: images,
-      available: true,
       zipcode: zipcode,
       state: state,
       city: city,
@@ -157,7 +155,7 @@ export default function ResidenceAddProvider({children}) {
       current_residents: currentResidents,
       max_residents: maxResidentNum,
     };
-
+    console.log(data);
     api.put(`/residences/${residence_id}`, data).catch((err) => {
       console.log('Error: ' + err);
     });
@@ -189,8 +187,8 @@ export default function ResidenceAddProvider({children}) {
     setHasParkingLot(residence.parking);
 
     //Residence Conditions
-    setMaxResidentNum(residence.max_residents);
-    setCurrentResidents(residence.current_residents);
+    setMaxResidentNum(residence.max_residents.toString());
+    setCurrentResidents(residence.current_residents.toString());
     setAllowPets(residence.allow_pets);
     setAllowSmokers(residence.allow_smokers);
 
