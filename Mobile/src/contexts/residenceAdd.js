@@ -130,7 +130,6 @@ export default function ResidenceAddProvider({children}) {
     const data = {
       residence_name: title,
       description: description,
-      available: true,
       zipcode: zipcode,
       state: state,
       city: city,
@@ -156,7 +155,7 @@ export default function ResidenceAddProvider({children}) {
       current_residents: currentResidents,
       max_residents: maxResidentNum,
     };
-
+    console.log(data);
     api.put(`/residences/${residence_id}`, data).catch((err) => {
       console.log('Error: ' + err);
     });
