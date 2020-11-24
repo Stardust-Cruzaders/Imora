@@ -13,7 +13,6 @@
 - NodeJS
 - Express
 - PostgreSQL
-- Firebase
 
 ---
 
@@ -29,6 +28,9 @@
 ---
 
 ## Sobre 📖
+
+# Funcionalidades
+
 
 ### Descrição
 
