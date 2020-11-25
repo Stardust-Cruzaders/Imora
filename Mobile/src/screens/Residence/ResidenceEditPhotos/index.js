@@ -101,19 +101,6 @@ export default function ResidenceEditPhotos({navigation, route}) {
       .then((response) => response.json())
       .then((result) => {
         handleUpdateResidencePhotos(residence.id, result.files);
-
-        Popup.show({
-          type: 'Success',
-          title: 'Residência Alterada com sucesso',
-          button: true,
-          textBody:
-            'Sua residência foi alterada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
-          buttontext: 'OK',
-          callback: () => {
-            Popup.hide();
-            navigation.navigate('Feed');
-          },
-        });
       })
       .catch((err) => {
         console.log('Erro ao tentar fazer o upload: ' + err);
@@ -200,7 +187,21 @@ export default function ResidenceEditPhotos({navigation, route}) {
         },
         {
           text: 'Sim',
-          onPress: () => SaveModifications(),
+          onPress: () => {
+            SaveModifications();
+            Popup.show({
+              type: 'Success',
+              title: 'Residência Alterada com sucesso',
+              button: true,
+              textBody:
+                'Sua residência foi alterada com sucesso! 🥳🥳 Você pode ver e modificar seu anúncio na aba de minhas residências, em seu perfil ^^',
+              buttontext: 'OK',
+              callback: () => {
+                Popup.hide();
+                navigation.navigate('Feed');
+              },
+            });
+          },
 
           style: 'destructive',
         },
