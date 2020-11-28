@@ -1,83 +1,85 @@
-<h1 align="center"> Imora </h1>
+
+<h1 align="center">💚 Imora-Frontend 💚</h1>
+<p align="center"> 
+Esse é o frontend do aplicativo android Imora, desenvolvido com React,React-native e Javascript
+</p>
 <p align="center">
-<img src="https://i.imgur.com/mnAp4ts.png" align="center" width="400" height="400"></img>
+<img src="https://i.imgur.com/NCtFqtl.png" align="center" />
 </p>
 
- 
 
 ## Tecnologias :rocket: 
-### Esse projeto foi desenvolvido comm as seguintes tecnologias
+### Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-- ReactJS
-- React Native
-- NodeJS
-- Express
-- PostgreSQL
-- Firebase
+- React
+- React-Native
+- JavaScript
 
 ---
 
 ## Sumário 🛰
 
-- [Sobre 📖](#Sobre)
-- [Instalação 👷‍♂️](#Instalação)
-- [Principais funcionalidades 🛠✨](#Funcionalidades)
-- [Contribuindo 🤗](#Contribuindo)
-- [Time 👨‍💻](#Time)
-- [Contato 💼](#Contribuibndo)
-
----
+- [Sobre 📖](#sobre-)
+- [Instalação 👷‍♂️](#instalação-%EF%B8%8F)
+- [Funcionalidades 🛠✨](#funcionalidades-)
+- [Contato 💼](#contato-)
+- [Licença 👨‍⚖️](#licença-%EF%B8%8F)
 
 ## Sobre 📖
 
 ### Descrição
+O Aplicativo Imora foi projetado para conectar estudantes que querem cursar faculdade em outra cidade com repúblicas universitárias que aceitam estudantes ou pessoas com imóveis ou quartos disponíveis para alugar. O Imora busca reunir oferta e procura em um único local, diminuindo o tempo que um estudante passaria procurando uma moradia ou o tempo que um locador gastaria tentando alugar seu imóvel. 
 
-O Aplicativo Imora foi projetado para conectar estudantes que querem cursar faculdade em outra cidade  com repúblicas universitárias que aceitam estudantes ou pessoas com imóveis ou quartos  disponíveis para alugar. O Imora busca reunir oferta e procura em um único local, diminuindo o tempo que um estudante passaria procurando uma moradia ou o tempo que um locador  gastaria tentando alugar seu imóvel. 
+Esse é a Rest API criada com typescript e node, você pode encontrar o repositório do aplicativo criado com react native [aqui](https://github.com/Stardust-Cruzaders/Imora)
 
 ### Objetivo
+O projeto foi desenvolvido como trabalho de conclusão de curso do 3º Ano do ensino médio integrado ao técnico na ETEC Rodrigues de abreu. 
 
-O projeto está sendo desenvolvido como Trabalho de conclusão de curso do 3º Ano do ensino médio integrado ao técnico na ETEC Rodrigues de abreu.
+### O que eu aprendi 👨‍🏫
+
+- JavaScript em prática.
+- Usar elementos de UI e design com FlexBox.
+- Sistema de Branchs e commits.
+- Implementação de sistemas de navegação.
 
 ---
-
-# Funcionalidades  🛠✨
-
-- Sistema de autenticação com facebook  ou google
-- Usuário pode ver anúncios de imóveis disponíveis
-- Usuário pode entrar em contato com outras pessoas do aplicativo através de nosso próprio sistema de mensagens instantâneas.
-- Usuário pode visualizar o perfil de outras pessoas.
 
 ## Instalação 👷‍♂️
 
 ### Instalando dependências
-utilize esses comandos para instalar as dependências
-`yarn` ou `npm install`
-Rodando o app em modo de desenvolvimento
-`yarn run android` ou `react-native run-android`
-### Começando o servidor de desenvolvimento
-`yarn start` ou `react-native start`
+
+Dentro do projeto, execute:
+`yarn` 
+
+### Executando a API em modo de desenvolvimento
+
+`yarn dev:server`
+
+### Executar as migrations
+
+`yarn typeorm migrations:run`
+
+Não esqueça de criar um banco de dados e atualizar as informações do arquivo
 
 ---
 
+## Funcionalidades 🛠✨
 
-## Time 👨‍💻
-| <a href="https://github.com/stelianok" target="_blank">**Kauã Steliano**</a> | <a href="https://github.com/GabrielIshibashi" target="_blank">**Gabriel Ishibashi**</a>
-| :---: |:---:|
-| [![Kauã Steliano](https://avatars0.githubusercontent.com/u/39469125?s=460&u=ffe5b02120cf0c761931731569682b9ce1514102&v=4?v=3&s=200)](https://github.com/stelianok)    | [![Gabriel Ishibashi](https://avatars3.githubusercontent.com/u/58631378?s=800&u=d1fea05f883cca3019fa8ac04aac8b4b6390279a&v=4?)](https://github.com/GabrielIshibashi)
+- Autenticação.
+- CRUD completo de usuários.
+- CRUD completo de residências.
+- Residências podem ser filtradas por nome,preço, cidade e tipo (Casa, Apartamento, República).
+- Usuários podem visualizar uma trajetória da sua localização atual até a residência cadastrada com um único clique.
+- Integração com Google maps API.
+- Integração com o Google cloud storage.
 
 ---
 
 ## Contato 💼
 
-### Gabriel Ishibashi
-
-Github: 
-[Gabriel Ishibashi](https://github.com/GabrielIshibashi)
-Linkedn: 
-[Gabriel Ishibashi](https://www.linkedin.com/in/gabriel-ishibashi-0935641b5/)
-
-E-mail:
-gabriel.ishibashi@outlook.com
+| <a href="https://github.com/stelianok" target="_blank">**Kauã Steliano**</a> 
+| :---: 
+| [![Name](https://avatars2.githubusercontent.com/u/39469125?s=460&u=97e778a861a7a42bee1b16f6be1c80467c50c1d1&v=4)](https://github.com/stelianok)    
 
 ### Kauã Steliano
 
@@ -90,10 +92,12 @@ stelianok@gmail.com
 Github: 
 [Stelianok](https://github.com/stelianok)
 
+
 ---
 
-## License 👨‍⚖️
+## Licença 👨‍⚖️
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
+
