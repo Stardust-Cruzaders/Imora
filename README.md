@@ -11,10 +11,12 @@ Esse é o frontend do aplicativo android Imora, desenvolvido com React,React-nat
 ## Tecnologias :rocket: 
 ### Esse projeto foi desenvolvido com as seguintes tecnologias:
 
+
 - React
 - React-Native
 - JavaScript
 - Google Cloud 
+
 
 ---
 
@@ -27,6 +29,9 @@ Esse é o frontend do aplicativo android Imora, desenvolvido com React,React-nat
 - [Licença 👨‍⚖️](#licença-%EF%B8%8F)
 
 ## Sobre 📖
+
+# Funcionalidades
+
 
 ### Descrição
 O Aplicativo Imora foi projetado para conectar estudantes que querem cursar faculdade em outra cidade com repúblicas universitárias que aceitam estudantes ou pessoas com imóveis ou quartos disponíveis para alugar. O Imora busca reunir oferta e procura em um único local, diminuindo o tempo que um estudante passaria procurando uma moradia ou o tempo que um locador gastaria tentando alugar seu imóvel.  O aplicativo é composto de 35 telas, e é conectado com uma Rest API escrita com typescript. 
